@@ -11,11 +11,15 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _ceilingCheck;
 
+    [SerializeField] private Transform _leftAttackObject;
+    [SerializeField] private Transform _rightAttackObject;
+    [SerializeField] private Transform _downAttackObject;
+    [SerializeField] private Transform _upAttackObject;
+
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-    private bool _grounded;            // Whether or not the player is grounded.
-    const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
+    private bool _grounded;            
     private Rigidbody2D _Rigidbody2D;
-    private bool _FacingRight = true;  // For determining which way the player is currently facing.
+    private bool _FacingRight = true;  
 
     [SerializeField]
     PlayerID _PlayerID;
@@ -26,7 +30,8 @@ public class CharacterController : MonoBehaviour
     [Range(0, 150.0f)] [SerializeField] float _moveSpeed;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
 
-    //jump related
+    //JUMP RELATED
+    //------------------------------------
     [Header("Jump")]
 
     [SerializeField] private bool _airControl = false;
@@ -41,6 +46,36 @@ public class CharacterController : MonoBehaviour
 
     float _jumpTimeCounter;
 
+
+    //ATTACK RELATED
+    //-----------------------------------
+    [Header("Attacks")]
+    private BoxCollider2D _leftAttackCollider, _rightAttackCollider, _downAttackCollider, _upAttackCollider;
+
+    private float _attackDuration;
+    private float _attackCooldown;
+
+    [Header("Upwards Attack")]
+
+    public Vector2 _UpAttackSize;
+    public Vector2 _UpAttackOffset;
+    [SerializeField] private float _upAttackDuration;
+
+    [Header("Downwards Attack")]
+
+    public Vector2 _DownAttackSize;
+    public Vector2 _DownAttackOffset;
+    [SerializeField] private float _downAttackDuration;
+
+    [Header("Side Attacks")]
+
+    public Vector2 _SideAttackSize;
+    public Vector2 _SideAttackOffset;
+    [SerializeField] private float _sideAttackDuration;
+
+
+    //EVENTS RELATED
+    //-----------------------------------
     [Header("Events")]
     [Space]
 
@@ -53,7 +88,10 @@ public class CharacterController : MonoBehaviour
     //private
 
     float _horizontalMove = 0.0f;
+    float _horizontalInput = 0.0f;
+    float _verticalInput = 0.0f;
     bool _jumpKeyDown = false;
+    bool _attackKeyDown = false;
     bool _jumping = false;
     string _inputSuffix;
 
@@ -63,12 +101,12 @@ public class CharacterController : MonoBehaviour
 
 
 
-    //private
 
     private void Awake()
     {
         _Rigidbody2D = this.GetComponent<Rigidbody2D>();
 
+        //proper input 
         switch (_PlayerID)
         {
             case PlayerID.Player1:
@@ -87,6 +125,11 @@ public class CharacterController : MonoBehaviour
                 break;
         }
 
+        //attack
+        _leftAttackCollider = _leftAttackObject.GetComponent<BoxCollider2D>();
+        _rightAttackCollider = _rightAttackObject.GetComponent<BoxCollider2D>();
+        _upAttackCollider = _upAttackObject.GetComponent<BoxCollider2D>();
+        _downAttackCollider = _downAttackObject.GetComponent<BoxCollider2D>();
 
 
         if (OnLandEvent == null)
@@ -115,13 +158,16 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        //Movement
         HandlePlayerInput();
         Move(_horizontalMove,_jumpKeyDown);
 
+        //Attacking
+        Attack();
     }
 
 
-    public void Move(float move, bool jump)
+    private void Move(float move, bool jump)
     {
    
 
@@ -174,6 +220,53 @@ public class CharacterController : MonoBehaviour
 
     }
 
+    private void Attack()
+    {
+        if (_attackKeyDown)
+        {
+
+            float absHorizontal = Mathf.Abs(_horizontalInput);
+            float absVertical = Mathf.Abs(_verticalInput);
+
+            //attack in the direction you're facing
+            if (_horizontalInput == 0 && _verticalInput == 0)
+            {
+                if (_FacingRight)
+                {
+                    //RIGHT ATTACK
+                }
+                else
+                {
+                    //LEFT ATTACK
+                }
+            }
+            else
+            if (absVertical >= absHorizontal)
+            {
+                if(_verticalInput <0)
+                {
+                    //DOWN ATTACK
+                }
+                else
+                {
+                    //UP ATTACK
+                }
+            }
+            else if(absVertical < absHorizontal)
+            {
+                if (_horizontalInput < 0)
+                {
+                    //LEFT ATTACK
+                }
+                else
+                {
+                    //RIGHT ATTACK
+                }
+            }
+
+
+        }
+    }
 
     private void Flip()
     {
@@ -188,8 +281,9 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePlayerInput()
     {
-
-        _horizontalMove = Input.GetAxisRaw("Horizontal" + _inputSuffix) * Time.fixedDeltaTime * _moveSpeed;
+        _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
+        _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
+        _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
         if (Input.GetButtonDown("Jump" + _inputSuffix))
         {
@@ -198,6 +292,15 @@ public class CharacterController : MonoBehaviour
         else if (Input.GetButtonUp("Jump" + _inputSuffix))
         {
             _jumpKeyDown = false;
+        }
+
+        if(Input.GetButtonDown("Attack" + _inputSuffix))
+        {
+            _attackKeyDown = true;
+        }
+        else
+        {
+            _attackKeyDown = false;
         }
     }
 
