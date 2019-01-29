@@ -6,13 +6,13 @@ public class CharacterController : MonoBehaviour
 {
     enum PlayerID { Player1, Player2, Player3, Player4 };
     enum PlayerState { Idle, Jumping, Running, Dead };
+    enum AttackType { Side, Up, Down, None };
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _ceilingCheck;
 
-    [SerializeField] private Transform _leftAttackObject;
-    [SerializeField] private Transform _rightAttackObject;
+    [SerializeField] private Transform _sideAttackObject;
     [SerializeField] private Transform _downAttackObject;
     [SerializeField] private Transform _upAttackObject;
 
@@ -24,11 +24,21 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     PlayerID _PlayerID;
 
-    
+
+
+
+    //GENERAL MOVEMENT
+    //------------------------------------
     [Header("Player Movement")]
 
     [Range(0, 150.0f)] [SerializeField] float _moveSpeed;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
+
+
+    float _horizontalMove = 0.0f;
+    float _horizontalInput = 0.0f;
+    float _verticalInput = 0.0f;
+
 
     //JUMP RELATED
     //------------------------------------
@@ -45,15 +55,15 @@ public class CharacterController : MonoBehaviour
 
 
     float _jumpTimeCounter;
-
+    bool _jumpKeyDown = false;
+    bool _jumping = false;
 
     //ATTACK RELATED
     //-----------------------------------
     [Header("Attacks")]
-    private BoxCollider2D _leftAttackCollider, _rightAttackCollider, _downAttackCollider, _upAttackCollider;
+    [SerializeField][Tooltip("How long the you can't attack after the attack ends")] private float _attackCooldownDuration;
 
-    private float _attackDuration;
-    private float _attackCooldown;
+    private BoxCollider2D _sideAttackCollider, _downAttackCollider, _upAttackCollider;
 
     [Header("Upwards Attack")]
 
@@ -73,6 +83,13 @@ public class CharacterController : MonoBehaviour
     public Vector2 _SideAttackOffset;
     [SerializeField] private float _sideAttackDuration;
 
+    bool _attackKeyDown = false;
+    bool _attacking = false;
+    bool _AttackOnCooldown = false;
+    AttackType _currentAttack = AttackType.None;
+
+    private float _attackTimer = 0.0f;
+    private float _attackCooldownTimer = 0.0f;
 
     //EVENTS RELATED
     //-----------------------------------
@@ -82,18 +99,13 @@ public class CharacterController : MonoBehaviour
     public UnityEvent OnLandEvent;
 
     [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
+    public class BoolEvent : UnityEvent<bool> { }    
 
+    //random
 
-    //private
-
-    float _horizontalMove = 0.0f;
-    float _horizontalInput = 0.0f;
-    float _verticalInput = 0.0f;
-    bool _jumpKeyDown = false;
-    bool _attackKeyDown = false;
-    bool _jumping = false;
     string _inputSuffix;
+
+    
 
     private Vector3 _Velocity = Vector3.zero;
 
@@ -126,8 +138,7 @@ public class CharacterController : MonoBehaviour
         }
 
         //attack
-        _leftAttackCollider = _leftAttackObject.GetComponent<BoxCollider2D>();
-        _rightAttackCollider = _rightAttackObject.GetComponent<BoxCollider2D>();
+        _sideAttackCollider = _sideAttackObject.GetComponent<BoxCollider2D>();
         _upAttackCollider = _upAttackObject.GetComponent<BoxCollider2D>();
         _downAttackCollider = _downAttackObject.GetComponent<BoxCollider2D>();
 
@@ -160,10 +171,16 @@ public class CharacterController : MonoBehaviour
 
         //Movement
         HandlePlayerInput();
+        _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
         Move(_horizontalMove,_jumpKeyDown);
 
         //Attacking
-        Attack();
+        if (_attackKeyDown)
+        {
+            StartAttack();
+        }
+
+        AttackTick();
     }
 
 
@@ -220,56 +237,129 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    private void Attack()
+    private void StartAttack()
     {
-        if (_attackKeyDown)
+        if (!_attacking && !_AttackOnCooldown)
         {
 
             float absHorizontal = Mathf.Abs(_horizontalInput);
             float absVertical = Mathf.Abs(_verticalInput);
 
-            //attack in the direction you're facing
-            if (_horizontalInput == 0 && _verticalInput == 0)
-            {
-                if (_FacingRight)
-                {
-                    //RIGHT ATTACK
-                }
-                else
-                {
-                    //LEFT ATTACK
-                }
-            }
-            else
-            if (absVertical >= absHorizontal)
+
+            _attacking = true;
+
+            if (absVertical > absHorizontal)
             {
                 if(_verticalInput <0)
                 {
-                    //DOWN ATTACK
+                    if(!_grounded)
+                    {
+                        //DOWN ATTACK
+                        _currentAttack = AttackType.Down;
+                        _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                        _downAttackCollider.enabled = true;
+                    }
+                    else
+                    {
+                        _attacking = false;
+                    }
                 }
                 else
                 {
                     //UP ATTACK
+                    _currentAttack = AttackType.Up;
+                    _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                    _upAttackCollider.enabled = true;
                 }
             }
-            else if(absVertical < absHorizontal)
+            else if(absHorizontal >= absVertical)
             {
-                if (_horizontalInput < 0)
-                {
-                    //LEFT ATTACK
-                }
-                else
-                {
-                    //RIGHT ATTACK
-                }
+                //SIDE ATTACK
+                _currentAttack = AttackType.Side;
+                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                _sideAttackCollider.enabled = true;
             }
 
 
         }
     }
 
+    private void AttackTick()
+    {
+        //attack cooldown
+        if(_AttackOnCooldown)
+        {
+            _attackCooldownTimer += Time.deltaTime;
+
+            if(_attackCooldownTimer >= _attackCooldownDuration)
+            {
+                _attackCooldownTimer = 0.0f;
+                _AttackOnCooldown = false;
+            }
+        }
+
+        //attack timer
+        if(_attacking)
+        {
+            _attackTimer += Time.deltaTime;
+
+            bool attackReset = false;
+
+
+            //reset after attack finishes
+            switch (_currentAttack)
+            {
+                //collider specific changes
+                case AttackType.Side:
+                    if (_attackTimer > _sideAttackDuration)
+                    {
+                        attackReset = true;
+                        _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                        _sideAttackCollider.enabled = false;
+                    }
+                    break;
+                case AttackType.Up:
+                    if (_attackTimer > _upAttackDuration)
+                    {
+                        attackReset = true;
+                        _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                        _upAttackCollider.enabled = false;
+                    }
+                    break;
+                case AttackType.Down:
+                    if (_attackTimer > _downAttackDuration)
+                    {
+                        attackReset = true;
+                        _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                        _downAttackCollider.enabled = false;
+                    }
+                    break;
+                case AttackType.None:
+                    break;
+                default:
+                    break;
+            }
+
+            //general reset
+            if (attackReset)
+            {
+                _attackTimer = 0.0f;
+                _attacking = false;
+                _currentAttack = AttackType.None;
+                _AttackOnCooldown = true;
+            }
+        }
+
+
+        //hitting something
+
+
+
+    }
+
     private void Flip()
     {
+
         // Switch the way the player is labelled as facing.
         _FacingRight = !_FacingRight;
 
@@ -281,8 +371,10 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePlayerInput()
     {
+     
+
+        
         _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
-        _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
         _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
         if (Input.GetButtonDown("Jump" + _inputSuffix))
@@ -294,7 +386,7 @@ public class CharacterController : MonoBehaviour
             _jumpKeyDown = false;
         }
 
-        if(Input.GetButtonDown("Attack" + _inputSuffix))
+        if (Input.GetButtonDown("Attack" + _inputSuffix))
         {
             _attackKeyDown = true;
         }
@@ -302,6 +394,9 @@ public class CharacterController : MonoBehaviour
         {
             _attackKeyDown = false;
         }
+         
+
+        
     }
 
 }

@@ -1,0 +1,63 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[ExecuteInEditMode]
+public class ColliderEditorChange : MonoBehaviour {
+
+    enum HitboxId { Up, Down, Side };
+
+    private BoxCollider2D _collider;
+    private CharacterController _charController;
+
+    [SerializeField]
+    HitboxId _hitBoxID = HitboxId.Up;
+
+    private void Awake()
+    {
+        _collider = this.GetComponent<BoxCollider2D>();
+        _charController = this.GetComponentInParent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        this.GetComponent<SpriteRenderer>().enabled = false;
+        _collider.enabled = false;
+        //this.enabled = false;
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+
+        switch (_hitBoxID)
+        {
+            case HitboxId.Up:
+                _collider.size = _charController._UpAttackSize;
+                //_collider.offset = _charController._UpAttackOffset;
+                _collider.transform.localPosition = new Vector3(_charController._UpAttackOffset.x, _charController._UpAttackOffset.y, 0);
+                break;
+            case HitboxId.Down:
+                _collider.size = _charController._DownAttackSize;
+                //_collider.offset = _charController._DownAttackOffset;
+                _collider.transform.localPosition = new Vector3(_charController._DownAttackOffset.x, _charController._DownAttackOffset.y, 0);
+
+                break;
+            //case HitboxId.Left:
+            //    _collider.size = new Vector2(_charController._SideAttackSize.y, _charController._SideAttackSize.x);
+            //    //_collider.offset = new Vector2( - _charController._SideAttackOffset.x , _charController._SideAttackOffset.y);
+            //    _collider.transform.localPosition = new Vector3(-_charController._SideAttackOffset.x, _charController._SideAttackOffset.y, 0);
+            //
+            //    break;
+            case HitboxId.Side:
+                _collider.size = new Vector2( _charController._SideAttackSize.y, _charController._SideAttackSize.x);
+                //_collider.offset = _charController._SideAttackOffset;
+                _collider.transform.localPosition = new Vector3(_charController._SideAttackOffset.x, _charController._SideAttackOffset.y, 0);
+
+                break;
+            default:
+                break;
+        }
+
+    }
+}
