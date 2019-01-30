@@ -4,9 +4,7 @@ using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
-    enum PlayerID { Player1, Player2, Player3, Player4 };
-    enum PlayerState { Idle, Jumping, Running, Dead };
-    enum AttackType { Side, Up, Down, None };
+    
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -19,13 +17,10 @@ public class CharacterController : MonoBehaviour
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;            
     private Rigidbody2D _Rigidbody2D;
-    private bool _FacingRight = true;  
+    public bool _FacingRight = true;
 
     [SerializeField]
     PlayerID _PlayerID;
-
-
-
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -70,18 +65,24 @@ public class CharacterController : MonoBehaviour
     public Vector2 _UpAttackSize;
     public Vector2 _UpAttackOffset;
     [SerializeField] private float _upAttackDuration;
+    [SerializeField] [Range(-60.0f, 60.0f)] public float _UpAttackLaunchAngle;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _UpAttackLaunchSize;
 
     [Header("Downwards Attack")]
 
     public Vector2 _DownAttackSize;
     public Vector2 _DownAttackOffset;
     [SerializeField] private float _downAttackDuration;
+    [SerializeField] [Range(-60.0f, 60.0f)] public float _DownAttackLaunchAngle;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _DownAttackLaunchSize;
 
     [Header("Side Attacks")]
 
     public Vector2 _SideAttackSize;
     public Vector2 _SideAttackOffset;
     [SerializeField] private float _sideAttackDuration;
+    [SerializeField] [Range(-60.0f, 60.0f)] public float _SideAttackLaunchAngle;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _SideAttackLaunchSize;
 
     bool _attackKeyDown = false;
     bool _attacking = false;
@@ -279,8 +280,6 @@ public class CharacterController : MonoBehaviour
                 _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
                 _sideAttackCollider.enabled = true;
             }
-
-
         }
     }
 
@@ -398,5 +397,7 @@ public class CharacterController : MonoBehaviour
 
         
     }
+
+   
 
 }
