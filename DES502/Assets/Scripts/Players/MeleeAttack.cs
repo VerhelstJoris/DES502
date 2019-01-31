@@ -32,23 +32,31 @@ public class MeleeAttack : MonoBehaviour {
             case HitboxID.Up:
                 launchAngle = _charController._UpAttackLaunchAngle;
                 _launchAmount = _charController._UpAttackLaunchSize;
-                defaultDirection = new Vector2(0, 1);
+
+                defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle+90));
+                defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle+90));
                 break;
             case HitboxID.Down:
                 launchAngle = _charController._DownAttackLaunchAngle;
                 _launchAmount = _charController._DownAttackLaunchSize;
-                defaultDirection = new Vector2(0, -1);
+
+                defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle + 270));
+                defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle + 270));
                 break;
             case HitboxID.Side:
                 launchAngle = _charController._SideAttackLaunchAngle;
                 _launchAmount = _charController._SideAttackLaunchSize;
-                defaultDirection = new Vector2(1, 0);
+
+
+                defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * launchAngle);
+                defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * launchAngle);
+
                 break;
             default:
                 break;
         }
 
-
+        defaultDirection.Normalize();
         _defaultLaunchVector = defaultDirection;
     }
 
@@ -63,13 +71,13 @@ public class MeleeAttack : MonoBehaviour {
         Vector2 launchVector=_defaultLaunchVector;
         if (!_charController._FacingRight)
         {
-            _defaultLaunchVector.x *= -1;
+            launchVector.x *= -1;
         }
 
         if (col.tag=="Player")
         {
             Debug.Log("Player");
-            
+            Debug.Log(launchVector);
             col.GetComponent<Rigidbody2D>().AddForce(launchVector * _launchAmount);
         }
 

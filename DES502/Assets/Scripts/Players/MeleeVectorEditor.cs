@@ -14,13 +14,13 @@ public class MeleeVectorEditor : MonoBehaviour {
     private void Awake()
     {
 
-
+        this.GetComponent<SpriteRenderer>().enabled = true;
         _charController = this.GetComponentInParent<CharacterController>();
     }
 
     // Use this for initialization
     void Start () {
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        //this.GetComponent<SpriteRenderer>().enabled = false;
 
 
     }
