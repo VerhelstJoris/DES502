@@ -201,7 +201,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642829137208832}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5948228, w: 0.8038569}
+  m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.9238796}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -227,7 +227,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667914867046682}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0.57714516, w: 0.81664157}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 0.70000046, y: 0.70000046, z: 0.7}
   m_Children: []
@@ -240,7 +240,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147507169793126}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.53803533, w: 0.8429223}
   m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children: []
@@ -490,17 +490,17 @@ MonoBehaviour:
   _UpAttackSize: {x: 1, y: 0.6}
   _UpAttackOffset: {x: 0, y: 0.6}
   _upAttackDuration: 0.25
-  _UpAttackLaunchAngle: 0
+  _UpAttackLaunchAngle: -24.9
   _UpAttackLaunchSize: 1200
   _DownAttackSize: {x: 1, y: 0.6}
   _DownAttackOffset: {x: 0, y: -0.6}
   _downAttackDuration: 0.25
-  _DownAttackLaunchAngle: 0
+  _DownAttackLaunchAngle: 19.5
   _DownAttackLaunchSize: 1200
   _SideAttackSize: {x: 0.9, y: 1.4}
   _SideAttackOffset: {x: 0.7, y: 0}
   _sideAttackDuration: 0.25
-  _SideAttackLaunchAngle: 17
+  _SideAttackLaunchAngle: 45
   _SideAttackLaunchSize: 1200
   OnLandEvent:
     m_PersistentCalls:

@@ -190,7 +190,7 @@ public class CharacterController : MonoBehaviour
    
 
         //only control the player if grounded or airControl is turned on
-        if (_grounded || _airControl)
+        if (_grounded || (_jumping&& _airControl))
         {
 
             // Move the character by finding the target velocity
@@ -214,13 +214,17 @@ public class CharacterController : MonoBehaviour
         {
             _jumping = true;
             _jumpTimeCounter = _jumpTime;
-            //_Rigidbody2D.velocity = Vector2.up * _intialJumpForce;
             _Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
+
+            Debug.Log("Started Jump");
         }
 
         if(jump && _jumping)
         {
-            if(_jumpTimeCounter>0)
+            //Debug.Log("Jumping");
+
+
+            if (_jumpTimeCounter>0)
             {
                 //_Rigidbody2D.velocity = Vector2.up * _jumpForce;
                 _Rigidbody2D.AddForce(Vector2.up * _jumpForce);

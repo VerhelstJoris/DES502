@@ -76,12 +76,13 @@ public class MeleeAttack : MonoBehaviour {
 
         if (col.tag=="Player")
         {
-            Debug.Log("Player");
-            Debug.Log(launchVector);
-            col.GetComponent<Rigidbody2D>().AddForce(launchVector * _launchAmount);
+            //Debug.Log("Player");
+            //Debug.Log(launchVector);
+            //col.GetComponent<Rigidbody2D>().AddForce(launchVector * _launchAmount);
+            col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
         }
 
-        if(col.tag=="Weapon")
+        if (col.tag=="Weapon")
         {
             //parry
         }
