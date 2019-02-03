@@ -411,16 +411,24 @@ public class CharacterController : MonoBehaviour
         
     }
 
-
     public void Stun(float duration)
     {
         _stunned = true;
         _stunnedDuration = duration;
+        this.GetComponent<SpriteRenderer>().color = Color.red;
     }
 
     private void StunTick()
     {
+        _stunnedTimer += Time.deltaTime;
 
+        if(_stunnedTimer>=_stunnedDuration)
+        {
+            _stunned = false;
+            _stunnedTimer = 0.0f;
+            this.GetComponent<SpriteRenderer>().color = Color.white;
+
+        }
     }
 
 }

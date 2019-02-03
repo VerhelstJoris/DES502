@@ -20,7 +20,7 @@ public class MeleeVectorEditor : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //this.GetComponent<SpriteRenderer>().enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
 
 
     }

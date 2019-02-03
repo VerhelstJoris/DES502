@@ -492,16 +492,19 @@ MonoBehaviour:
   _upAttackDuration: 0.25
   _UpAttackLaunchAngle: -24.9
   _UpAttackLaunchSize: 1200
+  _UpAttackStunDuration: 0.5
   _DownAttackSize: {x: 1, y: 0.6}
   _DownAttackOffset: {x: 0, y: -0.6}
   _downAttackDuration: 0.25
   _DownAttackLaunchAngle: 19.5
   _DownAttackLaunchSize: 1200
+  _DownAttackStunDuration: 0.5
   _SideAttackSize: {x: 0.9, y: 1.4}
   _SideAttackOffset: {x: 0.7, y: 0}
   _sideAttackDuration: 0.25
   _SideAttackLaunchAngle: 45
   _SideAttackLaunchSize: 1200
+  _SideAttackStunDuration: 0.5
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -572,7 +575,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642829137208832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -707,7 +710,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147507169793126}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -797,7 +800,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1667914867046682}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

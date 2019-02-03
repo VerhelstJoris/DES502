@@ -14,6 +14,7 @@ public class MeleeAttack : MonoBehaviour {
 
     private float _launchAmount;
     private Vector2 _defaultLaunchVector;
+    private float _stunDuration;
 
     // Use this for initialization
     void Awake () {
@@ -35,6 +36,8 @@ public class MeleeAttack : MonoBehaviour {
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle+90));
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle+90));
+
+                _stunDuration = _charController._UpAttackStunDuration;
                 break;
             case HitboxID.Down:
                 launchAngle = _charController._DownAttackLaunchAngle;
@@ -42,6 +45,9 @@ public class MeleeAttack : MonoBehaviour {
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle + 270));
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle + 270));
+
+                _stunDuration = _charController._DownAttackStunDuration;
+
                 break;
             case HitboxID.Side:
                 launchAngle = _charController._SideAttackLaunchAngle;
@@ -50,6 +56,8 @@ public class MeleeAttack : MonoBehaviour {
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * launchAngle);
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * launchAngle);
+
+                _stunDuration = _charController._SideAttackStunDuration;
 
                 break;
             default:
@@ -78,8 +86,8 @@ public class MeleeAttack : MonoBehaviour {
         {
             //Debug.Log("Player");
             //Debug.Log(launchVector);
-            //col.GetComponent<Rigidbody2D>().AddForce(launchVector * _launchAmount);
             col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
+            col.GetComponent<CharacterController>().Stun(_stunDuration);
         }
 
         if (col.tag=="Weapon")
