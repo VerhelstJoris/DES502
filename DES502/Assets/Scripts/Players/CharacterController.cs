@@ -67,6 +67,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _upAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _UpAttackLaunchAngle;
     [SerializeField] [Range(0.0f, 2000.0f)] public float _UpAttackLaunchSize;
+    [SerializeField][Range(0.0f, 1.5f)] public float _UpAttackStunDuration;
 
     [Header("Downwards Attack")]
 
@@ -75,6 +76,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _downAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _DownAttackLaunchAngle;
     [SerializeField] [Range(0.0f, 2000.0f)] public float _DownAttackLaunchSize;
+    [SerializeField] [Range(0.0f, 1.5f)] public float _DownAttackStunDuration;
 
     [Header("Side Attacks")]
 
@@ -83,6 +85,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _sideAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _SideAttackLaunchAngle;
     [SerializeField] [Range(0.0f, 2000.0f)] public float _SideAttackLaunchSize;
+    [SerializeField] [Range(0.0f, 1.5f)] public float _SideAttackStunDuration;
 
     bool _attackKeyDown = false;
     bool _attacking = false;
@@ -91,6 +94,10 @@ public class CharacterController : MonoBehaviour
 
     private float _attackTimer = 0.0f;
     private float _attackCooldownTimer = 0.0f;
+
+    bool _stunned = false;
+    float _stunnedTimer=0.0f;
+    float _stunnedDuration = 0.0f;
 
     //EVENTS RELATED
     //-----------------------------------
@@ -155,8 +162,6 @@ public class CharacterController : MonoBehaviour
         bool wasGrounded = _grounded;
         _grounded = false;
 
-        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, _whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -182,15 +187,19 @@ public class CharacterController : MonoBehaviour
         }
 
         AttackTick();
-    }
 
+        //being stunned
+        if (_stunned)
+        {
+            StunTick();
+        }
+    }
 
     private void Move(float move, bool jump)
     {
    
-
         //only control the player if grounded or airControl is turned on
-        if (_grounded || (_jumping&& _airControl))
+        if ((_grounded || (_airControl)) && !_stunned)
         {
 
             // Move the character by finding the target velocity
@@ -402,6 +411,16 @@ public class CharacterController : MonoBehaviour
         
     }
 
-   
+
+    public void Stun(float duration)
+    {
+        _stunned = true;
+        _stunnedDuration = duration;
+    }
+
+    private void StunTick()
+    {
+
+    }
 
 }
