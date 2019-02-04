@@ -299,21 +299,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114511483185054924, guid: eaa672ba6e302cd4c8872f5a446a5d3e,
-        type: 2}
-      propertyPath: _SideAttackLaunchSize
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114511483185054924, guid: eaa672ba6e302cd4c8872f5a446a5d3e,
-        type: 2}
-      propertyPath: _DownAttackLaunchSize
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114511483185054924, guid: eaa672ba6e302cd4c8872f5a446a5d3e,
-        type: 2}
-      propertyPath: _UpAttackLaunchSize
-      value: 1200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa672ba6e302cd4c8872f5a446a5d3e, type: 2}
   m_IsPrefabParent: 0
