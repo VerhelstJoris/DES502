@@ -17,7 +17,14 @@ public class CharacterController : MonoBehaviour
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;            
     private Rigidbody2D _Rigidbody2D;
+    [HideInInspector]
     public bool _FacingRight = true;
+
+    [Header("General")]
+    [SerializeField]
+    private float _deathDuration;
+    [SerializeField]
+    private RespawnPoint _respawnPoint;
 
     [SerializeField]
     PlayerID _PlayerID;
@@ -113,13 +120,9 @@ public class CharacterController : MonoBehaviour
 
     string _inputSuffix;
 
-    
-
     private Vector3 _Velocity = Vector3.zero;
 
     PlayerState _playerState = PlayerState.Idle;
-
-
 
 
     private void Awake()
@@ -429,6 +432,13 @@ public class CharacterController : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = Color.white;
 
         }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Died");
+        _respawnPoint.GetComponent<RespawnPoint>().Respawn();
+        this.transform.position = _respawnPoint.transform.position;
     }
 
 }
