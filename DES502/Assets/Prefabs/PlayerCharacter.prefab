@@ -252,7 +252,7 @@ MonoBehaviour:
   _respawnPoint: {fileID: 0}
   _PlayerID: 0
   _moveSpeed: 40
-  _movementSmoothing: 0.05
+  _movementSmoothing: 0.1
   _airControl: 1
   _jumpForce: 20
   _intialJumpForce: 150
