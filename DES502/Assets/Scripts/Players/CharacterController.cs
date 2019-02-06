@@ -58,6 +58,7 @@ public class CharacterController : MonoBehaviour
 
     float _jumpTimeCounter;
     bool _jumpKeyDown = false;
+    bool _jumpKeyDownAlready = false;
     bool _jumping = false;
 
     //ATTACK RELATED
@@ -213,7 +214,8 @@ public class CharacterController : MonoBehaviour
         {
 
             // Move the character by finding the target velocity
-            Vector3 targetVelocity = new Vector2(move * 10f, _Rigidbody2D.velocity.y);
+            float magicNumber = 10f;  // ???
+            Vector3 targetVelocity = new Vector2(move * magicNumber, _Rigidbody2D.velocity.y);
             // And then smoothing it out and applying it to the character
             _Rigidbody2D.velocity = Vector3.SmoothDamp(_Rigidbody2D.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
 
@@ -229,7 +231,8 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        if (_grounded && jump)
+        // this will trigger multiple times because the player will still be close enough to the ground to pass the check of being grounded
+        if (_grounded && jump && !_jumpKeyDownAlready)
         {
             _jumping = true;
             _jumpTimeCounter = _jumpTime;
@@ -258,6 +261,16 @@ public class CharacterController : MonoBehaviour
 
         if (!jump)
             _jumping = false;
+
+        // make sure jump key checks will only return true once per press
+        if (jump)
+        {
+            _jumpKeyDownAlready = true;
+        }
+        else
+        {
+            _jumpKeyDownAlready = false;
+        }
 
     }
 
@@ -324,7 +337,6 @@ public class CharacterController : MonoBehaviour
         if(_attacking)
         {
             _attackTimer += Time.deltaTime;
-
             bool attackReset = false;
 
 
@@ -371,12 +383,7 @@ public class CharacterController : MonoBehaviour
                 _AttackOnCooldown = true;
             }
         }
-
-
         //hitting something
-
-
-
     }
 
     private void Flip()
@@ -393,9 +400,6 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePlayerInput()
     {
-     
-
-        
         _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
         _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
@@ -416,9 +420,6 @@ public class CharacterController : MonoBehaviour
         {
             _attackKeyDown = false;
         }
-         
-
-        
     }
 
     public void Stun(float duration)
