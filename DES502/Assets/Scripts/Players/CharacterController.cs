@@ -4,7 +4,8 @@ using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
-    
+    [HideInInspector]
+    public GameManager _GameManager;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -23,11 +24,10 @@ public class CharacterController : MonoBehaviour
     [Header("General")]
     [SerializeField]
     private float _deathDuration;
-    [SerializeField]
-    private RespawnPoint _respawnPoint;
+ 
 
     [SerializeField]
-    PlayerID _PlayerID;
+    public PlayerID _PlayerID;
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -122,7 +122,7 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 _Velocity = Vector3.zero;
 
-    PlayerState _playerState = PlayerState.Idle;
+    public PlayerState _PlayerState = PlayerState.Idle;
 
 
     private void Awake()
@@ -387,8 +387,6 @@ public class CharacterController : MonoBehaviour
     private void HandlePlayerInput()
     {
      
-
-        
         _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
         _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
@@ -437,8 +435,15 @@ public class CharacterController : MonoBehaviour
     public void Die()
     {
         Debug.Log("Died");
-        _respawnPoint.GetComponent<RespawnPoint>().Respawn();
-        this.transform.position = _respawnPoint.transform.position;
+        _PlayerState = PlayerState.Dead;
+
+        RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
+        point.Respawn();
+
+        this.transform.position = point.transform.position;
+        _PlayerState = PlayerState.Idle;
+
+
     }
 
 }
