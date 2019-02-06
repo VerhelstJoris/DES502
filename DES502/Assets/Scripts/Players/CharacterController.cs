@@ -22,9 +22,8 @@ public class CharacterController : MonoBehaviour
     public bool _FacingRight = true;
 
     [Header("General")]
-    [SerializeField]
-    private float _deathDuration;
- 
+    [SerializeField][Tooltip("Death duration will always be the same across all player characters")]
+    public static float DeathDuration=1.5f;
 
     [SerializeField]
     public PlayerID _PlayerID;
@@ -228,7 +227,7 @@ public class CharacterController : MonoBehaviour
             _jumpTimeCounter = _jumpTime;
             _Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
 
-            Debug.Log("Started Jump");
+            //Debug.Log("Started Jump");
         }
 
         if(jump && _jumping)
@@ -438,9 +437,9 @@ public class CharacterController : MonoBehaviour
         _PlayerState = PlayerState.Dead;
 
         RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
-        point.Respawn();
+        point.Activate(this);
 
-        this.transform.position = point.transform.position;
+        //this.transform.position = point._RespawnPoint.transform.position;
         _PlayerState = PlayerState.Idle;
 
 

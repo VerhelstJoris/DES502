@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
         {
             _playerCharacters[i]._GameManager = this;
         }
+
+        for (int i = 0; i < _respawnPoints.Length; i++)
+        {
+            _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.DeathDuration;
+        }
     }
 
     // Update is called once per frame
@@ -64,7 +69,7 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < _playerCharacters.Length; j++)
             {
 
-                if(_playerCharacters[j]._PlayerState!=PlayerState.Dead)
+                if(_playerCharacters[j]._PlayerState!=PlayerState.Dead && !_respawnPoints[i]._Active)
                 {
                     float distance = Vector3.Distance(_respawnPoints[i].transform.position, _playerCharacters[j].transform.position);
 

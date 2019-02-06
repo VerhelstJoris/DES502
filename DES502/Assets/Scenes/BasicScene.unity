@@ -456,6 +456,11 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 512404557281292153, guid: 7dbed4f489165554a9bdd605d8cdb0a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dbed4f489165554a9bdd605d8cdb0a4, type: 3}
 --- !u!114 &1863105808 stripped
@@ -2025,6 +2030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FlipX
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 512404557281292153, guid: 7dbed4f489165554a9bdd605d8cdb0a4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dbed4f489165554a9bdd605d8cdb0a4, type: 3}
