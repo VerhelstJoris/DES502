@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
-            _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.DeathDuration;
+            _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.RespawnDuration;
         }
     }
 

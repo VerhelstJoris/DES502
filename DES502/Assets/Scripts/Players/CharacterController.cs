@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
 
     [Header("General")]
     [SerializeField][Tooltip("Death duration will always be the same across all player characters")]
-    public static float DeathDuration=1.5f;
+    public static float RespawnDuration=1.5f;
 
     [SerializeField]
     public PlayerID _PlayerID;
@@ -123,6 +123,29 @@ public class CharacterController : MonoBehaviour
 
     public PlayerState _PlayerState = PlayerState.Idle;
 
+    public void Initialize(PlayerID id)
+    {
+        _PlayerID = id;
+
+        //proper input 
+        switch (_PlayerID)
+        {
+            case PlayerID.Player1:
+                _inputSuffix = "_P1";
+                break;
+            case PlayerID.Player2:
+                _inputSuffix = "_P2";
+                break;
+            case PlayerID.Player3:
+                _inputSuffix = "_P3";
+                break;
+            case PlayerID.Player4:
+                _inputSuffix = "_P4";
+                break;
+            default:
+                break;
+        }
+    }
 
     private void Awake()
     {
@@ -439,9 +462,7 @@ public class CharacterController : MonoBehaviour
         RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
         point.Activate(this);
 
-        //this.transform.position = point._RespawnPoint.transform.position;
-        _PlayerState = PlayerState.Idle;
-
+        Destroy(gameObject);
 
     }
 
