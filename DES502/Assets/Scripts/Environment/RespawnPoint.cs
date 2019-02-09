@@ -121,7 +121,7 @@ public class RespawnPoint : MonoBehaviour
         //animation event via reference class
         _doorOpened = true;
 
-        Debug.Log("Door Opened");
+        //Debug.Log("Door Opened");
     }
 
 
@@ -131,6 +131,6 @@ public class RespawnPoint : MonoBehaviour
         _doorClosed = true;
         _animator.SetBool("DoorTriggered", false);
         _animator.SetBool("DoorClosed", true);
-        Debug.Log("Door Closed");
+        //Debug.Log("Door Closed");
     }
 }

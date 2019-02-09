@@ -7,6 +7,9 @@ public class CharacterController : MonoBehaviour
     [HideInInspector]
     public GameManager _GameManager;
 
+    private Animator _animator;
+    private Rigidbody2D _rigidbody;
+
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _ceilingCheck;
@@ -17,7 +20,6 @@ public class CharacterController : MonoBehaviour
 
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;            
-    private Rigidbody2D _Rigidbody2D;
     [HideInInspector]
     public bool _FacingRight = true;
 
@@ -149,7 +151,8 @@ public class CharacterController : MonoBehaviour
 
     private void Awake()
     {
-        _Rigidbody2D = this.GetComponent<Rigidbody2D>();
+        _rigidbody = this.GetComponent<Rigidbody2D>();
+        _animator = this.GetComponent<Animator>();
 
         //proper input 
         switch (_PlayerID)
@@ -196,6 +199,8 @@ public class CharacterController : MonoBehaviour
                 if (!wasGrounded)
                 {
                     OnLandEvent.Invoke();
+                    _animator.SetBool("Jumping", false);
+
                 }
             }
         }
@@ -228,10 +233,19 @@ public class CharacterController : MonoBehaviour
         {
 
             // Move the character by finding the target velocity
-            Vector3 targetVelocity = new Vector2(move * 10f, _Rigidbody2D.velocity.y);
+            Vector3 targetVelocity = new Vector2(move * 10f, _rigidbody.velocity.y);
             // And then smoothing it out and applying it to the character
-            _Rigidbody2D.velocity = Vector3.SmoothDamp(_Rigidbody2D.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
+            _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
 
+
+            if(_grounded && move!=0)
+            {
+                _animator.SetBool("Running", true);
+            }
+            else if(_grounded && move ==0)
+            {
+                _animator.SetBool("Running", false);
+            }
 
             //looking in the right direction
             if (move > 0 && !_FacingRight)
@@ -248,12 +262,14 @@ public class CharacterController : MonoBehaviour
         {
             _jumping = true;
             _jumpTimeCounter = _jumpTime;
-            _Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
+            _rigidbody.AddForce(Vector2.up * _intialJumpForce);
 
             //Debug.Log("Started Jump");
+            _animator.SetBool("Jumping", true);
+
         }
 
-        if(jump && _jumping)
+        if (jump && _jumping)
         {
             //Debug.Log("Jumping");
 
@@ -261,7 +277,7 @@ public class CharacterController : MonoBehaviour
             if (_jumpTimeCounter>0)
             {
                 //_Rigidbody2D.velocity = Vector2.up * _jumpForce;
-                _Rigidbody2D.AddForce(Vector2.up * _jumpForce);
+                _rigidbody.AddForce(Vector2.up * _jumpForce);
 
                 _jumpTimeCounter -= Time.deltaTime;
             }
