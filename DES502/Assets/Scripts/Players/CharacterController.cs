@@ -181,13 +181,14 @@ public class CharacterController : MonoBehaviour
 
         //Movement
         HandlePlayerInput();
-        if (!_attacking)  // only set a horizontal movement direction if not attacking
+        // halt movement if attacking while on the ground
+        if (_attacking && _grounded)
         {
-            _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
+            _horizontalMove = 0;
         }
         else
         {
-            _horizontalMove = 0;
+            _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
         }
         Move(_horizontalMove,_jumpKeyDown);
 
