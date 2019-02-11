@@ -72,7 +72,7 @@ public class CharacterController : MonoBehaviour
     //ATTACK RELATED
     //-----------------------------------
     [Header("Attacks")]
-    [SerializeField][Tooltip("How long the you can't attack after the attack ends")] private float _attackCooldownDuration;
+    [SerializeField][Tooltip("How long that you can't attack after the attack ends")] private float _attackCooldownDuration;
 
     private BoxCollider2D _sideAttackCollider, _downAttackCollider, _upAttackCollider;
 
@@ -252,7 +252,7 @@ public class CharacterController : MonoBehaviour
 
             // Move the character by finding the target velocity
             float magicNumber = 10f;  // this directly affects move speed, refactor?
-            Vector3 targetVelocity = new Vector2(move * magicNumber, _Rigidbody2D.velocity.y);
+            Vector3 targetVelocity = new Vector2(move * magicNumber, _rigidbody.velocity.y);
 
             // And then smoothing it out and applying it to the character
             _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
@@ -305,7 +305,7 @@ public class CharacterController : MonoBehaviour
                 //_Rigidbody2D.AddForce(Vector2.up * _jumpForce);
                 //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
                 //_Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
-                _Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
                 //Debug.Log(_jumpForce);
                 //Debug.Log(_jumpVelocity);
                 //_rigidbody.AddForce(Vector2.up * _jumpForce);
