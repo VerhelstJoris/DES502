@@ -60,8 +60,6 @@ public class CharacterController : MonoBehaviour
     float _minJumpTime = 0.2f;
     [Range(0, 5.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
     float _maxJumpHeight = 3.0f;
-    [SerializeField] [Tooltip("Recalculate jump every jump? Only enable for testing different values in  the editor preview.")]
-    bool _recalculateJumpEveryJump = false;
 
     float _jumpTimeCounter;
     bool _jumpKeyDown = false;
@@ -241,7 +239,7 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        // this will trigger multiple times because the player will still be close enough to the ground to pass the check of being grounded
+        // _grounded will still return true as you begin to jump!
         if (_grounded && jump && !_jumpKeyDownAlready)
         {
             _jumping = true;
@@ -249,7 +247,7 @@ public class CharacterController : MonoBehaviour
             //_Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
             //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
 
-            Debug.Log("Started Jump");
+            //Debug.Log("Started Jump");
         }
 
         if(jump && _jumping)
@@ -273,6 +271,7 @@ public class CharacterController : MonoBehaviour
 
         if (!jump)
             _jumping = false;
+            // TODO: Ensure minimum jump height reached
 
         // make sure jump key checks will only return true once per press
         if (jump)
