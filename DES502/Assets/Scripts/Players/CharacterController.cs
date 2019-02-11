@@ -48,18 +48,27 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private bool _airControl = false;
 
-    [Range(0, 150.0f)] [SerializeField] [Tooltip("How much force is added to the player every frame until the jumptime runs out")]
-    float _jumpForce = 5.0f;
-    [Range(0, 400.0f)] [SerializeField][Tooltip("Initial force applied to the player when he first presses jump")]
-    float _intialJumpForce = 25.0f;
-    [Range(0, 2.0f)] [SerializeField][Tooltip("How long the player can keep ascending in his jump in seconds")]
-    float _jumpTime = 1.5f;
-
+    //[Range(0, 150.0f)] [SerializeField] [Tooltip("How much force is added to the player every frame until the jumptime runs out")]
+    //float _jumpForce = 5.0f;
+    //[Range(0, 400.0f)] [SerializeField][Tooltip("Initial force applied to the player when he first presses jump")]
+    //float _intialJumpForce = 25.0f;
+    //[Range(0, 2.0f)] [SerializeField][Tooltip("How long the player can keep ascending in his jump in seconds")]
+    //float _jumpTime = 1.5f;
+    [Range(0, 2.0f)] [SerializeField] [Tooltip("How high (in grid units) will the minimum jump height reach?")]
+    float _minJumpHeight = 0.5f;
+    [Range(0, 1.0f)] [SerializeField] [Tooltip("How long (in seconds) does it take to reach the minimum jump height?")]
+    float _minJumpTime = 0.2f;
+    [Range(0, 5.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
+    float _maxJumpHeight = 3.0f;
+    [SerializeField] [Tooltip("Recalculate jump every jump? Only enable for testing different values in  the editor preview.")]
+    bool _recalculateJumpEveryJump = false;
 
     float _jumpTimeCounter;
     bool _jumpKeyDown = false;
     bool _jumpKeyDownAlready = false;
     bool _jumping = false;
+    float _jumpVelocity = 0.0f;
+    float _maxJumpTime = 0.0f;
 
     //ATTACK RELATED
     //-----------------------------------
@@ -158,6 +167,7 @@ public class CharacterController : MonoBehaviour
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
+        ConfigureJump(_minJumpHeight, _minJumpTime, _maxJumpHeight);
     }
 
     private void FixedUpdate()
@@ -215,11 +225,10 @@ public class CharacterController : MonoBehaviour
         {
 
             // Move the character by finding the target velocity
-            float magicNumber = 10f;  // ???
+            float magicNumber = 10f;  // this directly affects move speed, refactor?
             Vector3 targetVelocity = new Vector2(move * magicNumber, _Rigidbody2D.velocity.y);
             // And then smoothing it out and applying it to the character
             _Rigidbody2D.velocity = Vector3.SmoothDamp(_Rigidbody2D.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
-
 
             //looking in the right direction
             if (move > 0 && !_FacingRight)
@@ -236,22 +245,24 @@ public class CharacterController : MonoBehaviour
         if (_grounded && jump && !_jumpKeyDownAlready)
         {
             _jumping = true;
-            _jumpTimeCounter = _jumpTime;
-            _Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
+            _jumpTimeCounter = _maxJumpTime;
+            //_Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
+            //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
 
             Debug.Log("Started Jump");
         }
 
         if(jump && _jumping)
         {
-            //Debug.Log("Jumping");
-
-
-            if (_jumpTimeCounter>0)
+            if (_jumpTimeCounter >= 0)
             {
                 //_Rigidbody2D.velocity = Vector2.up * _jumpForce;
-                _Rigidbody2D.AddForce(Vector2.up * _jumpForce);
-
+                //_Rigidbody2D.AddForce(Vector2.up * _jumpForce);
+                //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
+                //_Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
+                _Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
+                //Debug.Log(_jumpForce);
+                //Debug.Log(_jumpVelocity);
                 _jumpTimeCounter -= Time.deltaTime;
             }
             else
@@ -450,4 +461,18 @@ public class CharacterController : MonoBehaviour
         this.transform.position = _respawnPoint.transform.position;
     }
 
+    private void ConfigureJump(float min_height, float min_time, float max_height)
+    {
+        // calculate values from supplied arguments
+        float delta = 1.0f / 8;  // based on physics velocity update ticks but this might be wrong...
+        float gravity = (2 * min_height) / (2 * min_time);
+        float jumpVelocity = Mathf.Sqrt(2 * gravity * min_height);
+        float maxTime = Mathf.Sqrt((2 * max_height) / (gravity + jumpVelocity));
+        // apply values to member variables to be used in jump/gravity calculation
+        //Physics2D.gravity = new Vector2(0, -gravity * delta);
+        // still innacurate, but feels more accurate without multiplying by delta
+        Physics2D.gravity = new Vector2(0, -gravity);
+        _jumpVelocity = jumpVelocity;
+        _maxJumpTime = maxTime;
+    }
 }

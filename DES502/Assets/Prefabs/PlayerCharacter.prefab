@@ -257,6 +257,10 @@ MonoBehaviour:
   _jumpForce: 55
   _intialJumpForce: 149
   _jumpTime: 0.25
+  _minJumpHeight: 1.5
+  _minJumpTime: 0.05
+  _maxJumpHeight: 3
+  _recalculateJumpEveryJump: 0
   _attackCooldownDuration: 0.4
   _UpAttackSize: {x: 1, y: 0.6}
   _UpAttackOffset: {x: 0, y: 0.6}
