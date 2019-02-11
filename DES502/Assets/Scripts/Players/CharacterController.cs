@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _ceilingCheck;
+    [SerializeField] private Transform _projectileSpawn;
 
     [SerializeField] private Transform _sideAttackObject;
     [SerializeField] private Transform _downAttackObject;
@@ -49,12 +50,6 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private bool _airControl = false;
 
-    //[Range(0, 150.0f)] [SerializeField] [Tooltip("How much force is added to the player every frame until the jumptime runs out")]
-    //float _jumpForce = 5.0f;
-    //[Range(0, 400.0f)] [SerializeField][Tooltip("Initial force applied to the player when he first presses jump")]
-    //float _intialJumpForce = 25.0f;
-    //[Range(0, 2.0f)] [SerializeField][Tooltip("How long the player can keep ascending in his jump in seconds")]
-    //float _jumpTime = 1.5f;
     [Range(0, 2.0f)] [SerializeField] [Tooltip("How high (in grid units) will the minimum jump height reach?")]
     float _minJumpHeight = 0.5f;
     [Range(0, 1.0f)] [SerializeField] [Tooltip("How long (in seconds) does it take to reach the minimum jump height?")]
@@ -105,7 +100,7 @@ public class CharacterController : MonoBehaviour
 
     bool _attackKeyDown = false;
     bool _attacking = false;
-    bool _AttackOnCooldown = false;
+    bool _attackOnCooldown = false;
     AttackType _currentAttack = AttackType.None;
 
     private float _attackTimer = 0.0f;
@@ -114,6 +109,19 @@ public class CharacterController : MonoBehaviour
     bool _stunned = false;
     float _stunnedTimer=0.0f;
     float _stunnedDuration = 0.0f;
+
+    //PROJECTILE ATTACK related
+    //----------------------------------
+    [Header("Projectile Attack")]
+    [SerializeField] bool _projectileSeparateAttack = false;
+    [SerializeField] [Range(0.0f, 5.0f)] private float _projectileCooldownDuration=2.5f;
+    [SerializeField] [Range(0.0f, 1.5f)] private float _projectileStunDuration = 0.25f;
+    [SerializeField] [Range(0.0f, 1000.0f)] private float _projectileLaunchAmount = 200.0f;
+
+
+    private bool _projectileOnCooldown = false;
+    private float _projectileCooldownTimer = 0.0f;
+
 
     //EVENTS RELATED
     //-----------------------------------
@@ -211,6 +219,8 @@ public class CharacterController : MonoBehaviour
                     OnLandEvent.Invoke();
                     _animator.SetBool("Jumping", false);
 
+                    _projectileOnCooldown = false;
+                    _projectileCooldownTimer = 0.0f;
                 }
             }
         }
@@ -336,45 +346,63 @@ public class CharacterController : MonoBehaviour
 
     private void StartAttack()
     {
-        if (!_attacking && !_AttackOnCooldown)
+        if (_grounded && !_projectileSeparateAttack)
         {
-
-            float absHorizontal = Mathf.Abs(_horizontalInput);
-            float absVertical = Mathf.Abs(_verticalInput);
-
-
-            _attacking = true;
-
-            if (absVertical > absHorizontal)
+            //MELEE
+            if (!_attacking && !_attackOnCooldown)
             {
-                if(_verticalInput <0)
+
+                float absHorizontal = Mathf.Abs(_horizontalInput);
+                float absVertical = Mathf.Abs(_verticalInput);
+
+
+                _attacking = true;
+
+                if (absVertical > absHorizontal)
                 {
-                    if(!_grounded)
+                    if (_verticalInput < 0)
                     {
-                        //DOWN ATTACK
-                        _currentAttack = AttackType.Down;
-                        _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                        _downAttackCollider.enabled = true;
+                        if (!_grounded)
+                        {
+                            //DOWN ATTACK
+                            _currentAttack = AttackType.Down;
+                            _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                            _downAttackCollider.enabled = true;
+                        }
+                        else
+                        {
+                            _attacking = false;
+                        }
                     }
                     else
                     {
-                        _attacking = false;
+                        //UP ATTACK
+                        _currentAttack = AttackType.Up;
+                        _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                        _upAttackCollider.enabled = true;
                     }
                 }
-                else
+                else if (absHorizontal >= absVertical)
                 {
-                    //UP ATTACK
-                    _currentAttack = AttackType.Up;
-                    _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                    _upAttackCollider.enabled = true;
+                    //SIDE ATTACK
+                    _currentAttack = AttackType.Side;
+                    _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                    _sideAttackCollider.enabled = true;
                 }
             }
-            else if(absHorizontal >= absVertical)
+
+        }
+        else if(!_grounded && !_projectileSeparateAttack)
+        {
+            if (!_projectileOnCooldown)
             {
-                //SIDE ATTACK
-                _currentAttack = AttackType.Side;
-                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                _sideAttackCollider.enabled = true;
+                Vector2 direction = new Vector2(1, 0);
+                if(!_FacingRight)
+                {
+                    direction.x = -1;
+                }
+
+                ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration);
             }
         }
     }
@@ -382,14 +410,26 @@ public class CharacterController : MonoBehaviour
     private void AttackTick()
     {
         //attack cooldown
-        if(_AttackOnCooldown)
+        if(_attackOnCooldown)
         {
             _attackCooldownTimer += Time.deltaTime;
 
             if(_attackCooldownTimer >= _attackCooldownDuration)
             {
                 _attackCooldownTimer = 0.0f;
-                _AttackOnCooldown = false;
+                _attackOnCooldown = false;
+            }
+        }
+
+        //projectile cooldown
+        if(_projectileOnCooldown)
+        {
+            _projectileCooldownTimer += Time.deltaTime;
+
+            if(_projectileCooldownTimer >= _projectileCooldownDuration)
+            {
+                _projectileOnCooldown = false;
+                _projectileCooldownTimer = 0.0f;
             }
         }
 
@@ -440,7 +480,7 @@ public class CharacterController : MonoBehaviour
                 _attackTimer = 0.0f;
                 _attacking = false;
                 _currentAttack = AttackType.None;
-                _AttackOnCooldown = true;
+                _attackOnCooldown = true;
             }
         }
         //hitting something
@@ -480,6 +520,11 @@ public class CharacterController : MonoBehaviour
         else
         {
             _attackKeyDown = false;
+        }
+
+        if(Input.GetButtonDown("SpecialAttack" + _inputSuffix))
+        {
+            Debug.Log(_PlayerID.ToString() + " Special Attack");
         }
     }
 

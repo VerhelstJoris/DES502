@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 [ExecuteInEditMode]
-public class WeaponColliderEditor : MonoBehaviour {
+public class WeaponColliderEditor : MonoBehaviour
+{
 
 
     private BoxCollider2D _collider;

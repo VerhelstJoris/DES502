@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4886152750612570}
   - component: {fileID: 212630624092202664}
-  - component: {fileID: 114237336841382748}
+  - component: {fileID: 5996415146883131996}
   m_Layer: 8
   m_Name: UpAttackArrow
   m_TagString: Untagged
@@ -66,8 +66,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -722496145
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bcd0d50a189b5464987813c8b9224b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114237336841382748
+--- !u!114 &5996415146883131996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,7 @@ Transform:
   - {fileID: 4093339635466722}
   - {fileID: 4941518910137070}
   - {fileID: 4956600221823962}
+  - {fileID: 3791191169761638049}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,6 +247,7 @@ MonoBehaviour:
     m_Bits: 23
   _groundCheck: {fileID: 4671596346071952}
   _ceilingCheck: {fileID: 4768968290413416}
+  _projectileSpawn: {fileID: 3791191169761638049}
   _sideAttackObject: {fileID: 4093339635466722}
   _downAttackObject: {fileID: 4956600221823962}
   _upAttackObject: {fileID: 4941518910137070}
@@ -273,9 +275,11 @@ MonoBehaviour:
   _SideAttackSize: {x: 0.9, y: 1.4}
   _SideAttackOffset: {x: 0.7, y: 0}
   _sideAttackDuration: 0.25
-  _SideAttackLaunchAngle: 45
+  _SideAttackLaunchAngle: 16
   _SideAttackLaunchSize: 1200
   _SideAttackStunDuration: 0.5
+  _projectileCooldownDuration: 2.5
+  _projectileSeparateAttack: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -311,9 +315,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4956600221823962}
   - component: {fileID: 61295621953576038}
-  - component: {fileID: 114876731425080888}
   - component: {fileID: 212690045679483132}
   - component: {fileID: 114561093111380574}
+  - component: {fileID: 3015923769511914639}
   m_Layer: 8
   m_Name: DownAttackHitbox
   m_TagString: Weapon
@@ -362,18 +366,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.6}
   m_EdgeRadius: 0
---- !u!114 &114876731425080888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308025759817610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212690045679483132
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -435,6 +427,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitboxID: 1
+--- !u!114 &3015923769511914639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308025759817610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1360306650241526
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,9 +449,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4941518910137070}
   - component: {fileID: 61775156311467160}
-  - component: {fileID: 114156423977985332}
   - component: {fileID: 212437552951943034}
   - component: {fileID: 114321895603784414}
+  - component: {fileID: 7079950545035057525}
   m_Layer: 8
   m_Name: UpAttackHitbox
   m_TagString: Weapon
@@ -496,18 +500,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.6}
   m_EdgeRadius: 0
---- !u!114 &114156423977985332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360306650241526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212437552951943034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -569,6 +561,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitboxID: 0
+--- !u!114 &7079950545035057525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360306650241526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1420569743018116
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,9 +613,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4093339635466722}
   - component: {fileID: 61142854586095450}
-  - component: {fileID: 114009269067659434}
   - component: {fileID: 212611993653269700}
   - component: {fileID: 114748258933265256}
+  - component: {fileID: 562427857773920789}
   m_Layer: 8
   m_Name: SideAttackHitbox
   m_TagString: Weapon
@@ -660,18 +664,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &114009269067659434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640541992869350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212611993653269700
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -733,6 +725,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitboxID: 2
+--- !u!114 &562427857773920789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640541992869350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2829e933a047b6f4a8f556b6210d50c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1642829137208832
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4689256097031620}
   - component: {fileID: 212323198514332488}
-  - component: {fileID: 114539717330918702}
+  - component: {fileID: 6692346652169115973}
   m_Layer: 8
   m_Name: SideAttackArrow
   m_TagString: Untagged
@@ -758,7 +762,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642829137208832}
-  m_LocalRotation: {x: -0, y: -0, z: -0.38268343, w: 0.9238796}
+  m_LocalRotation: {x: -0, y: -0, z: -0.60181504, w: 0.79863554}
   m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -799,8 +803,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -722496145
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bcd0d50a189b5464987813c8b9224b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -813,7 +817,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114539717330918702
+--- !u!114 &6692346652169115973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -836,7 +840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4821704184113852}
   - component: {fileID: 212703717153000440}
-  - component: {fileID: 114944979890980868}
+  - component: {fileID: 1796004240039937628}
   m_Layer: 8
   m_Name: DownAttackArrow
   m_TagString: Untagged
@@ -853,7 +857,7 @@ Transform:
   m_GameObject: {fileID: 1667914867046682}
   m_LocalRotation: {x: -0, y: -0, z: -0.57714516, w: 0.81664157}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 0.70000046, y: 0.70000046, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4956600221823962}
   m_RootOrder: 0
@@ -892,8 +896,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -722496145
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bcd0d50a189b5464987813c8b9224b0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -906,7 +910,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114944979890980868
+--- !u!114 &1796004240039937628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -948,4 +952,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4919216183500478}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9178709795751259168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3791191169761638049}
+  m_Layer: 8
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3791191169761638049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178709795751259168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.323, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4919216183500478}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6,7 +6,8 @@ public class ObjectFactory : MonoBehaviour
 {
     protected static ObjectFactory instance; // Needed
     public GameObject _PlayerPrefab;
-   
+    public GameObject _ProjectileAttackPrefab;
+
     void Start()
     {
         instance = this;
@@ -21,5 +22,13 @@ public class ObjectFactory : MonoBehaviour
         return character;
     }
     
+    public static ProjectileAttack CreateProjectile(PlayerID owner, Vector3 position, Vector2 direction, float launchAmount, float stunduration)
+    {
+        var projectile = Object.Instantiate(instance._ProjectileAttackPrefab, Vector3.zero, Quaternion.identity).GetComponent<ProjectileAttack>();
+
+        projectile.Inititalize(owner, direction, launchAmount, stunduration);
+        projectile.transform.position = position;
+        return projectile;
+    }
 
 }
