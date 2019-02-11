@@ -39,14 +39,27 @@ public class GameManager : MonoBehaviour
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
         _playerCharacters = FindObjectsOfType<CharacterController>();
 
-        for (int i = 0; i < _playerCharacters.Length ; i++)
-        {
-            _playerCharacters[i]._GameManager = this;
-        }
+        //for (int i = 0; i < _playerCharacters.Length ; i++)
+        //{
+        //    //_playerCharacters[i]._GameManager = this;
+        //}
 
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
             _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.RespawnDuration;
+        }
+    }
+
+    public void AddPlayer(CharacterController player)
+    {
+        for (int i = 0; i < _playerCharacters.Length; i++)
+        {
+            if(_playerCharacters[i]._PlayerID == player._PlayerID)
+            {
+                _playerCharacters[i] = player;
+                _playerCharacters[i]._GameManager = this;
+                break;
+            }
         }
     }
 
@@ -78,7 +91,6 @@ public class GameManager : MonoBehaviour
                         closestPlayerDistance = distance;
                     }
                 }
-
 
                 //after the last one
                 if(j==_playerCharacters.Length-1)

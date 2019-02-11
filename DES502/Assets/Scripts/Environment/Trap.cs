@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicSpike : MonoBehaviour
+public class Trap : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,12 +16,21 @@ public class BasicSpike : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public virtual void Reset()
     {
-        if(col.tag=="Player")
-        {
-            col.GetComponent<CharacterController>().Die();
-        }
 
     }
+
+
+    //just for inheritance sake
+    public virtual void Activate()
+    {
+
+    }
+
+    public virtual void Deactivate()
+    {
+
+    }
+
 }

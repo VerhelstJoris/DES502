@@ -153,6 +153,7 @@ public class CharacterController : MonoBehaviour
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _animator = this.GetComponent<Animator>();
+        _GameManager = FindObjectOfType<GameManager>();
 
         //proper input 
         switch (_PlayerID)
