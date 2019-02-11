@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8144705289790166597
+--- !u!1 &5286464520339132197
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8144705289790166593}
-  - component: {fileID: 8144705289790166592}
-  - component: {fileID: 8144705289790166595}
-  - component: {fileID: 8144705289790166594}
-  m_Layer: 9
-  m_Name: spikes
+  - component: {fileID: 5286464520339132193}
+  - component: {fileID: 5286464520339132194}
+  - component: {fileID: 5286464520339132195}
+  - component: {fileID: 5286464520339132196}
+  m_Layer: 0
+  m_Name: SpikeLever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8144705289790166593
+--- !u!4 &5286464520339132193
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144705289790166597}
+  m_GameObject: {fileID: 5286464520339132197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -2.75, z: -4}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.6, y: -2.78, z: -1.9005585}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8144705289790166592
+--- !u!212 &5286464520339132194
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144705289790166597}
+  m_GameObject: {fileID: 5286464520339132197}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -70,40 +70,24 @@ SpriteRenderer:
   m_SortingLayerID: 1278327643
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4145110de8aface45867dc032fbd11b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 008a4c9c4209d5948b5f70fbdddfe44b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.94666666, y: 1.0866667}
+  m_Size: {x: 2.45, y: 2.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8144705289790166595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144705289790166597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b468e4a4e0e97d4d9603b2c573cf5c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activationDuration: 0.3
-  _deactivationDuration: 0.3
-  _activeWhileActivating: 0
-  _activeWhileDeactivating: 1
---- !u!61 &8144705289790166594
+--- !u!61 &5286464520339132195
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144705289790166597}
+  m_GameObject: {fileID: 5286464520339132197}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -114,12 +98,29 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.94666666, y: 1.0866667}
-    newSize: {x: 0.94666666, y: 1.0866667}
+    oldSize: {x: 0.6125, y: 0.5675}
+    newSize: {x: 2.45, y: 2.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6125, y: 0.5675}
   m_EdgeRadius: 0
+--- !u!114 &5286464520339132196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5286464520339132197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe22988fa77f334b9c40e51f6f8d91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trap: {fileID: 0}
+  _activeDuration: 4
+  _cooldownDuration: 4
+  _deactivatedSprite: {fileID: 21300000, guid: 008a4c9c4209d5948b5f70fbdddfe44b, type: 3}
+  _activatedSprite: {fileID: 21300000, guid: f52850fc32ec06643b74288468e9c9e4, type: 3}

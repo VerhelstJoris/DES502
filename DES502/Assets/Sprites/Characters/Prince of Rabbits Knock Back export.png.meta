@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 4145110de8aface45867dc032fbd11b0
+guid: bccef61625c13fb44b5cd6137be3e3ad
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Prince of Rabbits Knock Back export_0
+    21300002: Prince of Rabbits Knock Back export_1
+    21300004: Prince of Rabbits Knock Back export_2
+    21300006: Prince of Rabbits Knock Back export_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -31,8 +35,8 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
-    aniso: 1
+    filterMode: -1
+    aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -40,12 +44,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 150
+  spritePixelsToUnits: 2700
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,11 +97,51 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Prince of Rabbits Knock Back export_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 800
+        width: 2502
+        height: 2684
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cfa20a34fcf23f4e8def3757b50b4aa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prince of Rabbits Knock Back export_3
+      rect:
+        serializedVersion: 2
+        x: 2926
+        y: 800
+        width: 2562
+        height: 2685
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4453213b5d5bb42b643e7a15692de0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4621bbc93bb233341821dcc050a898e3
+    spriteID: 496c271a80e511c48ab6a1b48eccc32e
     vertices: []
     indices: 
     edges: []

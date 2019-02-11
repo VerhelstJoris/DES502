@@ -46,12 +46,6 @@ public class WeaponColliderEditor : MonoBehaviour {
                 _collider.transform.localPosition = new Vector3(_charController._DownAttackOffset.x, _charController._DownAttackOffset.y, 0);
 
                 break;
-            //case HitboxId.Left:
-            //    _collider.size = new Vector2(_charController._SideAttackSize.y, _charController._SideAttackSize.x);
-            //    //_collider.offset = new Vector2( - _charController._SideAttackOffset.x , _charController._SideAttackOffset.y);
-            //    _collider.transform.localPosition = new Vector3(-_charController._SideAttackOffset.x, _charController._SideAttackOffset.y, 0);
-            //
-            //    break;
             case HitboxID.Side:
                 _collider.size = new Vector2( _charController._SideAttackSize.y, _charController._SideAttackSize.x);
                 //_collider.offset = _charController._SideAttackOffset;

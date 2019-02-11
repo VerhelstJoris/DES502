@@ -4,7 +4,11 @@ using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
-    
+    [HideInInspector]
+    public GameManager _GameManager;
+
+    private Animator _animator;
+    private Rigidbody2D _rigidbody;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -16,18 +20,15 @@ public class CharacterController : MonoBehaviour
 
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;            
-    private Rigidbody2D _Rigidbody2D;
     [HideInInspector]
     public bool _FacingRight = true;
 
     [Header("General")]
-    [SerializeField]
-    private float _deathDuration;
-    [SerializeField]
-    private RespawnPoint _respawnPoint;
+    [SerializeField][Tooltip("Death duration will always be the same across all player characters")]
+    public static float RespawnDuration=1.5f;
 
     [SerializeField]
-    PlayerID _PlayerID;
+    public PlayerID _PlayerID;
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -130,12 +131,37 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 _Velocity = Vector3.zero;
 
-    PlayerState _playerState = PlayerState.Idle;
+    public PlayerState _PlayerState = PlayerState.Idle;
 
+    public void Initialize(PlayerID id)
+    {
+        _PlayerID = id;
+
+        //proper input 
+        switch (_PlayerID)
+        {
+            case PlayerID.Player1:
+                _inputSuffix = "_P1";
+                break;
+            case PlayerID.Player2:
+                _inputSuffix = "_P2";
+                break;
+            case PlayerID.Player3:
+                _inputSuffix = "_P3";
+                break;
+            case PlayerID.Player4:
+                _inputSuffix = "_P4";
+                break;
+            default:
+                break;
+        }
+    }
 
     private void Awake()
     {
-        _Rigidbody2D = this.GetComponent<Rigidbody2D>();
+        _rigidbody = this.GetComponent<Rigidbody2D>();
+        _animator = this.GetComponent<Animator>();
+        _GameManager = FindObjectOfType<GameManager>();
 
         //proper input 
         switch (_PlayerID)
@@ -183,6 +209,8 @@ public class CharacterController : MonoBehaviour
                 if (!wasGrounded)
                 {
                     OnLandEvent.Invoke();
+                    _animator.SetBool("Jumping", false);
+
                 }
             }
         }
@@ -225,8 +253,20 @@ public class CharacterController : MonoBehaviour
             // Move the character by finding the target velocity
             float magicNumber = 10f;  // this directly affects move speed, refactor?
             Vector3 targetVelocity = new Vector2(move * magicNumber, _Rigidbody2D.velocity.y);
+
             // And then smoothing it out and applying it to the character
-            _Rigidbody2D.velocity = Vector3.SmoothDamp(_Rigidbody2D.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
+            _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
+
+
+
+            if(_grounded && move!=0)
+            {
+                _animator.SetBool("Running", true);
+            }
+            else if(_grounded && move ==0)
+            {
+                _animator.SetBool("Running", false);
+            }
 
             //looking in the right direction
             if (move > 0 && !_FacingRight)
@@ -243,14 +283,21 @@ public class CharacterController : MonoBehaviour
         if (_grounded && jump && !_jumpKeyDownAlready)
         {
             _jumping = true;
+
             _jumpTimeCounter = _maxJumpTime;
             //_Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
             //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
 
             //Debug.Log("Started Jump");
+            //_jumpTimeCounter = _jumpTime;
+            //_rigidbody.AddForce(Vector2.up * _intialJumpForce);
+
+            //Debug.Log("Started Jump");
+            _animator.SetBool("Jumping", true);
+
         }
 
-        if(jump && _jumping)
+        if (jump && _jumping)
         {
             if (_jumpTimeCounter >= 0)
             {
@@ -261,6 +308,8 @@ public class CharacterController : MonoBehaviour
                 _Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
                 //Debug.Log(_jumpForce);
                 //Debug.Log(_jumpVelocity);
+                //_rigidbody.AddForce(Vector2.up * _jumpForce);
+
                 _jumpTimeCounter -= Time.deltaTime;
             }
             else
@@ -411,6 +460,7 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePlayerInput()
     {
+
         _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
         _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
@@ -456,8 +506,13 @@ public class CharacterController : MonoBehaviour
     public void Die()
     {
         Debug.Log("Died");
-        _respawnPoint.GetComponent<RespawnPoint>().Respawn();
-        this.transform.position = _respawnPoint.transform.position;
+        _PlayerState = PlayerState.Dead;
+
+        RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
+        point.Activate(this);
+
+        Destroy(gameObject);
+
     }
 
     private void ConfigureJump(float min_height, float min_time, float max_height)

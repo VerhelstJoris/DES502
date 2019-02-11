@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class Trap : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,4 +15,22 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public virtual void Reset()
+    {
+
+    }
+
+
+    //just for inheritance sake
+    public virtual void Activate()
+    {
+
+    }
+
+    public virtual void Deactivate()
+    {
+
+    }
+
 }
