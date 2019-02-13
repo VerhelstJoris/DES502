@@ -278,8 +278,10 @@ MonoBehaviour:
   _SideAttackLaunchAngle: 16
   _SideAttackLaunchSize: 1200
   _SideAttackStunDuration: 0.5
-  _projectileCooldownDuration: 2.5
-  _projectileSeparateAttack: 0
+  _projectileCooldownDuration: 0.3
+  _projectileStunDuration: 0.25
+  _projectileLaunchAmount: 200
+  _projectileStartupDuration: 0.157
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
