@@ -113,10 +113,10 @@ public class CharacterController : MonoBehaviour
     //PROJECTILE ATTACK related
     //----------------------------------
     [Header("Projectile Attack")]
-    [SerializeField] [Range(0.0f, 5.0f)] private float _projectileCooldownDuration = 2.5f;
-    [SerializeField] [Range(0.0f, 1.5f)] private float _projectileStunDuration = 0.25f;
-    [SerializeField] [Range(0.0f, 1000.0f)] private float _projectileLaunchAmount = 200.0f;
-    [SerializeField] [Range(0.0f, 1.5f)] private float _projectileWindupDuration = 0.5f;
+    [SerializeField] [Range(0.0f, 5.0f)] [Tooltip("Duration in which you can't fire another projectile")] private float _projectileCooldownDuration = 2.5f;
+    [SerializeField] [Range(0.0f, 1.5f)] [Tooltip("Duration for which opponents hit are stunned")] private float _projectileStunDuration = 0.25f;
+    [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")] private float _projectileLaunchAmount = 200.0f;
+    [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing") private float _projectileStartupDuration = 0.5f;
 
     bool _specialAttackKeyDown = false;
     bool _specialAttacking = false;
@@ -489,8 +489,9 @@ public class CharacterController : MonoBehaviour
 
         if(_projectileFiring)
         {
+            // is this startup on a projectile?
             _projectileFiringTimer += Time.deltaTime;
-            if (_projectileFiringTimer >= _projectileWindupDuration)
+            if (_projectileFiringTimer >= _projectileStartupDuration)
             {
                 
                 //actually create the projectile
