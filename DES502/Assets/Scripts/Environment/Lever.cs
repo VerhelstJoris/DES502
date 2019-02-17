@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    enum LeverType { Timed, Switch };
+
+    [SerializeField]
+    private LeverType _leverType = LeverType.Timed;
 
     [SerializeField]
     private Trap _trap;
@@ -32,7 +36,10 @@ public class Lever : MonoBehaviour
     void Start()
     {
         _renderer = this.GetComponent<SpriteRenderer>();
-        _trap.Reset();
+        if (_trap)
+        {
+            _trap.Reset();
+        }
     }
 
     void FixedUpdate()
@@ -50,14 +57,13 @@ public class Lever : MonoBehaviour
         }
 
         //active timer
-        if (_active)
+        if (_active && _leverType == LeverType.Timed)
         {
             _activeTimer += Time.deltaTime;
 
             if(_activeTimer >= _activeDuration)
             {
-                _active = false;
-                _onCooldown = true;
+                
                 Deactivate();
             }
         }  
@@ -71,6 +77,12 @@ public class Lever : MonoBehaviour
             {
                 Activate();
             }
+            
+            if(_active && !_onCooldown && _leverType == LeverType.Switch)
+            {
+                Deactivate();
+            }
+
         }
     }
 
@@ -82,12 +94,23 @@ public class Lever : MonoBehaviour
 
         _renderer.sprite = _activatedSprite;
         _trap.Activate();
+
+        if(_leverType==LeverType.Switch)
+        {
+            _onCooldown = true;
+        }
     }
 
     void Deactivate()
     {
         _trap.Deactivate();
         _renderer.sprite = _deactivatedSprite;
+
+        _active = false;
+        _onCooldown = true;
+        _cooldownTimer = 0.0f;
+        _activeTimer = 0.0f;
+
     }
 
 }

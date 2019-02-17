@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : Trap
+public class SpikeTrap : Trap
 {
 
     private SpriteRenderer _renderer;
