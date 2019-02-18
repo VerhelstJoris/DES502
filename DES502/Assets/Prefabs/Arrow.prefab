@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8683930210686211661}
   - component: {fileID: 8282304105783794891}
   - component: {fileID: 471165584}
+  - component: {fileID: 667105827}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Weapon
@@ -89,7 +90,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8683930210686211660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -141,3 +142,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &667105827
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683930210686211660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.31, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
