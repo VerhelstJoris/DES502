@@ -9,6 +9,7 @@ public class CharacterController : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
+    private BoxCollider2D _collider;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -42,6 +43,7 @@ public class CharacterController : MonoBehaviour
     float _horizontalInput = 0.0f;
     float _verticalInput = 0.0f;
 
+    bool _running = false;
 
     //JUMP RELATED
     //------------------------------------
@@ -154,6 +156,7 @@ public class CharacterController : MonoBehaviour
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _animator = this.GetComponent<Animator>();
         _GameManager = FindObjectOfType<GameManager>();
+        _collider = this.GetComponent<BoxCollider2D>();
 
         //proper input 
         switch (_PlayerID)
@@ -239,13 +242,17 @@ public class CharacterController : MonoBehaviour
             _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
 
 
-            if(_grounded && move!=0)
+            if(_grounded && move!=0 && !_running)
             {
                 _animator.SetBool("Running", true);
+                _running = true;
+                _collider.size = new Vector2(0.75f, 0.65f);
             }
-            else if(_grounded && move ==0)
+            else if(_grounded && move ==0 && _horizontalInput==0 && _running)
             {
                 _animator.SetBool("Running", false);
+                _running = false;
+                _collider.size = new Vector2(0.5f, 0.9f);
             }
 
             //looking in the right direction
