@@ -9,6 +9,7 @@ public class CharacterController : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
+    private BoxCollider2D _collider;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -43,6 +44,7 @@ public class CharacterController : MonoBehaviour
     float _horizontalInput = 0.0f;
     float _verticalInput = 0.0f;
 
+    bool _running = false;
 
     //JUMP RELATED
     //------------------------------------
@@ -120,7 +122,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 5.0f)] [Tooltip("Duration in which you can't fire another projectile")] private float _projectileCooldownDuration = 2.5f;
     [SerializeField] [Range(0.0f, 1.5f)] [Tooltip("Duration for which opponents hit are stunned")] private float _projectileStunDuration = 0.25f;
     [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")] private float _projectileLaunchAmount = 200.0f;
-    [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing") private float _projectileStartupDuration = 0.5f;
+    [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing")] private float _projectileStartupDuration = 0.5f;
 
     bool _specialAttackKeyDown = false;
     bool _specialAttacking = false;
@@ -178,6 +180,7 @@ public class CharacterController : MonoBehaviour
         _rigidbody = this.GetComponent<Rigidbody2D>();
         _animator = this.GetComponent<Animator>();
         _GameManager = FindObjectOfType<GameManager>();
+        _collider = this.GetComponent<BoxCollider2D>();
 
         //proper input 
         switch (_PlayerID)
@@ -277,13 +280,17 @@ public class CharacterController : MonoBehaviour
 
 
 
-            if(_grounded && move!=0)
+            if(_grounded && move!=0 && !_running)
             {
                 _animator.SetBool("Running", true);
+                _running = true;
+                _collider.size = new Vector2(0.75f, 0.65f);
             }
-            else if(_grounded && move ==0)
+            else if(_grounded && move ==0 && _horizontalInput==0 && _running)
             {
                 _animator.SetBool("Running", false);
+                _running = false;
+                _collider.size = new Vector2(0.5f, 0.9f);
             }
 
             //looking in the right direction

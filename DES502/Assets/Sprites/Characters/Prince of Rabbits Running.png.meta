@@ -110,7 +110,7 @@ TextureImporter:
         x: 282
         y: 1710
         width: 760
-        height: 603
+        height: 604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb562258b3e20df4aa1a3f36c63e9cff
+      spriteID: ce5fb4be5960e7d459ba697b8ca9466b
       vertices: []
       indices: 
       edges: []
@@ -127,9 +127,9 @@ TextureImporter:
       name: Prince of Rabbits Running_1
       rect:
         serializedVersion: 2
-        x: 1487
+        x: 1489
         y: 1689
-        width: 797
+        width: 795
         height: 571
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -138,7 +138,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 669ffbe980d8ac441aaa3bbf4451f217
+      spriteID: 895e82131702c2e4c9605df5257f6723
       vertices: []
       indices: 
       edges: []
@@ -147,9 +147,9 @@ TextureImporter:
       name: Prince of Rabbits Running_2
       rect:
         serializedVersion: 2
-        x: 2405
+        x: 2406
         y: 1705
-        width: 748
+        width: 747
         height: 563
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8454d97981e6764499f72af1941a6471
+      spriteID: bc7d54cb9b6fc80449e5885b6edd6cf7
       vertices: []
       indices: 
       edges: []
@@ -168,9 +168,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 1027
+        y: 1029
         width: 760
-        height: 611
+        height: 609
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b6341bde3279fe4b8de4bb34388c2e5
+      spriteID: f3e29a362c7218848b9c9224acc90f45
       vertices: []
       indices: 
       edges: []
@@ -190,7 +190,7 @@ TextureImporter:
         x: 1210
         y: 1053
         width: 930
-        height: 571
+        height: 568
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -198,7 +198,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4feef582e00c08a4795c946012f76b4f
+      spriteID: 4948a1d9aa19f41429628c748d59efff
       vertices: []
       indices: 
       edges: []
@@ -207,10 +207,10 @@ TextureImporter:
       name: Prince of Rabbits Running_5
       rect:
         serializedVersion: 2
-        x: 2366
-        y: 1035
-        width: 836
-        height: 627
+        x: 2365
+        y: 1036
+        width: 837
+        height: 626
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,7 +218,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb7e4d2e232bff84cb2bb550733aca12
+      spriteID: fb4c230047ee91e4d8b7744e6f4e1ef0
       vertices: []
       indices: 
       edges: []
@@ -227,10 +227,10 @@ TextureImporter:
       name: Prince of Rabbits Running_6
       rect:
         serializedVersion: 2
-        x: 219
+        x: 222
         y: 361
-        width: 763
-        height: 592
+        width: 760
+        height: 590
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,7 +238,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cb9c4176157b9b4fb1c337ea320973f
+      spriteID: 2920157f241f2834295be3533f9a0ab5
       vertices: []
       indices: 
       edges: []
@@ -247,10 +247,10 @@ TextureImporter:
       name: Prince of Rabbits Running_7
       rect:
         serializedVersion: 2
-        x: 1288
-        y: 342
-        width: 761
-        height: 585
+        x: 1290
+        y: 343
+        width: 759
+        height: 584
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,7 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b5e7e788ffc7044b849778843130057
+      spriteID: a3ffa39ad2ea3844f9f7c557edb72353
       vertices: []
       indices: 
       edges: []
@@ -269,7 +269,7 @@ TextureImporter:
         serializedVersion: 2
         x: 2457
         y: 343
-        width: 763
+        width: 761
         height: 589
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -278,7 +278,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07d286bf834aeac4fb5dac67b89ab5a9
+      spriteID: 15ae172fcfcf7ad4499d3e087b58f08a
       vertices: []
       indices: 
       edges: []
