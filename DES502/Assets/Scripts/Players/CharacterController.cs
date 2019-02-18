@@ -56,6 +56,10 @@ public class CharacterController : MonoBehaviour
     float _minJumpTime = 0.2f;
     [Range(0, 5.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
     float _maxJumpHeight = 3.0f;
+    [SerializeField] [Tooltip("Should fall speed be clamped?")]
+    bool _shouldClampFallSpeed = true;
+    [Range(-50.0f, 0)] [SerializeField] [Tooltip("How fast should fall speed be clamped to?")]
+    float _maxFallSpeed = -20.0f;
 
     float _jumpTimeCounter;
     bool _jumpKeyDown = false;
@@ -323,13 +327,19 @@ public class CharacterController : MonoBehaviour
                 //Debug.Log(_jumpForce);
                 //Debug.Log(_jumpVelocity);
                 //_rigidbody.AddForce(Vector2.up * _jumpForce);
-
                 _jumpTimeCounter -= Time.deltaTime;
             }
             else
             {
                 _jumping = false;
             }
+        }
+
+        // Don't clamp this during hit stun?
+        if (_shouldClampFallSpeed) // && _rigidbody.velocity.y < 0)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Max(_rigidbody.velocity.y, _maxFallSpeed));
+            //Debug.Log("_rigidbody.velocity.y = " + _rigidbody.velocity.y);
         }
 
         if (!jump)
