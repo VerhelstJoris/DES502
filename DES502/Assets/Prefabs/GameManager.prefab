@@ -60,3 +60,5 @@ MonoBehaviour:
     type: 3}
   _ProjectileAttackPrefab: {fileID: 8683930210686211660, guid: 17ea88d699cc0b447996daf7b6831397,
     type: 3}
+  _PlayerTagPrefab: {fileID: 4903010053701468713, guid: 17862c9561988bd4493f9ce80df13aff,
+    type: 3}

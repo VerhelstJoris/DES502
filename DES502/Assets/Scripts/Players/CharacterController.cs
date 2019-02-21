@@ -10,6 +10,9 @@ public class CharacterController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _collider;
+    [HideInInspector]
+    public PlayerTag _PlayerTag;
+
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -600,7 +603,12 @@ public class CharacterController : MonoBehaviour
         _PlayerState = PlayerState.Dead;
 
         RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
-        point.Activate(this);
+        point.Activate(_PlayerID);
+
+        if (_PlayerTag)
+        {
+            Destroy(_PlayerTag.gameObject);
+        }
 
         Destroy(gameObject);
 

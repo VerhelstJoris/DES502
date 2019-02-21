@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private RespawnPoint[] _respawnPoints;
     private CharacterController[] _playerCharacters;
 
+    public int PlayersToSpawn = 2;
+
     private void Awake()
     {
         //GM will NOT be created if not in scene
@@ -39,14 +41,15 @@ public class GameManager : MonoBehaviour
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
         _playerCharacters = FindObjectsOfType<CharacterController>();
 
-        //for (int i = 0; i < _playerCharacters.Length ; i++)
-        //{
-        //    //_playerCharacters[i]._GameManager = this;
-        //}
-
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
             _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.RespawnDuration;
+        }
+
+        //spawn in the players
+        for (int i = 0; i < PlayersToSpawn; i++)
+        {
+            _respawnPoints[i].Activate( (PlayerID)i );
         }
     }
 
@@ -79,26 +82,30 @@ public class GameManager : MonoBehaviour
         {
             float closestPlayerDistance = float.MaxValue ;
 
-            for (int j = 0; j < _playerCharacters.Length; j++)
+            if (!_respawnPoints[i]._Active)
             {
 
-                if(_playerCharacters[j]._PlayerState!=PlayerState.Dead && !_respawnPoints[i]._Active)
+                for (int j = 0; j < _playerCharacters.Length; j++)
                 {
-                    float distance = Vector3.Distance(_respawnPoints[i].transform.position, _playerCharacters[j].transform.position);
 
-                    if (distance < closestPlayerDistance)
+                    if (_playerCharacters[j]._PlayerState != PlayerState.Dead && !_respawnPoints[i]._Active)
                     {
-                        closestPlayerDistance = distance;
+                        float distance = Vector3.Distance(_respawnPoints[i].transform.position, _playerCharacters[j].transform.position);
+
+                        if (distance < closestPlayerDistance)
+                        {
+                            closestPlayerDistance = distance;
+                        }
                     }
-                }
 
-                //after the last one
-                if(j==_playerCharacters.Length-1)
-                {
-                    if(closestPlayerDistance > longestDistanceAll)
+                    //after the last one
+                    if (j == _playerCharacters.Length - 1)
                     {
-                        respawnID = i;
-                        longestDistanceAll = closestPlayerDistance;
+                        if (closestPlayerDistance > longestDistanceAll)
+                        {
+                            respawnID = i;
+                            longestDistanceAll = closestPlayerDistance;
+                        }
                     }
                 }
             }

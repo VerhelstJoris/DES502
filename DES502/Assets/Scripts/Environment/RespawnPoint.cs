@@ -42,8 +42,6 @@ public class RespawnPoint : MonoBehaviour
             {
                 _doorOpenDuration = ac.animationClips[i].length;
             }
-
-       
         }
 
     }
@@ -93,9 +91,9 @@ public class RespawnPoint : MonoBehaviour
         
     }
 
-    public void Activate(CharacterController player)
+    public void Activate(PlayerID id)
     {
-        _IdToSpawn = player.GetComponent<CharacterController>()._PlayerID;
+        _IdToSpawn = id;
 
         _Active = true;
         _preRespawn = true;
@@ -105,6 +103,7 @@ public class RespawnPoint : MonoBehaviour
         _animator.SetBool("DoorClosed", false);
 
     }
+
 
     private void Respawn()
     {

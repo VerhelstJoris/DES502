@@ -7,6 +7,7 @@ public class ObjectFactory : MonoBehaviour
     protected static ObjectFactory instance; // Needed
     public GameObject _PlayerPrefab;
     public GameObject _ProjectileAttackPrefab;
+    public GameObject _PlayerTagPrefab;
 
     void Start()
     {
@@ -19,9 +20,24 @@ public class ObjectFactory : MonoBehaviour
         var character = Object.Instantiate(instance._PlayerPrefab, Vector3.zero, Quaternion.identity).GetComponent<CharacterController>();
         character.Initialize(id);
         character.transform.position = position;
+
+        CreatePlayerTag(character);
+
         return character;
     }
-    
+
+    public static PlayerTag CreatePlayerTag(CharacterController character)
+    {
+        var playerTag = Object.Instantiate(instance._PlayerTagPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerTag>();
+        playerTag.Initialize(character);
+
+        character._PlayerTag = playerTag;
+
+        return playerTag;
+    }
+
+
+
     public static ProjectileAttack CreateProjectile(PlayerID owner, Vector3 position, Vector2 direction, float launchAmount, float stunduration)
     {
         var projectile = Object.Instantiate(instance._ProjectileAttackPrefab, Vector3.zero, Quaternion.identity).GetComponent<ProjectileAttack>();
