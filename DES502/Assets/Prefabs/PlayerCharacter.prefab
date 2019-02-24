@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _GameManager: {fileID: 0}
+  _PlayerTag: {fileID: 0}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 23
@@ -260,7 +261,7 @@ MonoBehaviour:
   _minJumpTime: 0.05
   _maxJumpHeight: 3
   _shouldClampFallSpeed: 1
-  _maxFallSpeed: -19.2
+  _maxFallSpeed: -10
   _attackCooldownDuration: 0.4
   _UpAttackSize: {x: 1, y: 0.6}
   _UpAttackOffset: {x: 0, y: 0.6}
