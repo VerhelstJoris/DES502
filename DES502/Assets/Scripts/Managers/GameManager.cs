@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
+    public GameModeScriptableObject _GMScriptableObject;
+
     private RespawnPoint[] _respawnPoints;
     private CharacterController[] _playerCharacters;
+    private PlayerUI[] _playerUIs;
+    private Canvas _canvas;
 
-    public int PlayersToSpawn = 2;
+    private int _playerAmount = 2;
+    private TeamSetup _teamSetup;
+    private GameWinCondition _winCondition;
+
+
+    private float _gameTimerLeft;
+    private int _startingStocksPerPlayer;
 
     private void Awake()
     {
@@ -26,30 +37,63 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-    }
 
-    //private void OnDestroy()
-    //{
-    //    if (this == _instance)
-    //    {
-    //        _instance = null;
-    //    }
-    //}
+        _teamSetup = _GMScriptableObject.TeamSetup;
+        _winCondition = _GMScriptableObject.GameWinCondition;
+        _playerAmount = _GMScriptableObject.PlayerAmount;
+
+
+        //stocks of timer
+        if (_winCondition == GameWinCondition.STOCKS)
+        {
+            _startingStocksPerPlayer = _GMScriptableObject.AmountOfStocks;
+        }
+        else if(_winCondition == GameWinCondition.TIME)
+        {
+            _gameTimerLeft = _GMScriptableObject.AmountOfTime;
+        }
+
+
+        Debug.Log(_teamSetup.ToString());
+        Debug.Log(_winCondition.ToString());
+        Debug.Log(_playerAmount);
+    }
 
     void Start()
     {
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
         _playerCharacters = FindObjectsOfType<CharacterController>();
+        _playerUIs = FindObjectsOfType<PlayerUI>();
+        _canvas = FindObjectOfType<Canvas>();
 
+        //destroy all playercharacters and UI's present in the scene
+        for (int i = 0; i < _playerCharacters.Length; i++)
+        {
+            Destroy(_playerCharacters[i].gameObject);
+            _playerCharacters[i] = null;
+        }
+
+        for (int i = 0; i < _playerUIs.Length; i++)
+        {
+            Destroy(_playerUIs[i].gameObject);
+            _playerUIs[i] = null;
+        }
+
+
+        
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
             _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.RespawnDuration;
         }
 
         //spawn in the players
-        for (int i = 0; i < PlayersToSpawn; i++)
+        for (int i = 0; i < _playerAmount; i++)
         {
-            _respawnPoints[i].Activate( (PlayerID)i );
+            PlayerData data;
+            data.Id = (PlayerID)i;
+            data.Stocks = _startingStocksPerPlayer;
+
+            _respawnPoints[i].Activate(data);
         }
     }
 
@@ -69,7 +113,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_winCondition==GameWinCondition.TIME)
+        {
+            Mathf.Clamp(_gameTimerLeft -= Time.deltaTime,0.0f,1000000);
+
+            if(_gameTimerLeft <= 0.0f)
+            {
+
+            }
+        }
     }
 
     public RespawnPoint FindBestRespawnPoint(PlayerID playerID)
@@ -116,5 +168,24 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void CreatePlayerUI(CharacterController character)
+    {
+
+        if (_playerUIs.Length != 0)
+        {
+            for (int i = 0; i < _playerUIs.Length; i++)
+            {
+
+                if (_playerUIs[i] != null && _playerUIs[i]._PlayerID == character._PlayerID)
+                {
+                    character._PlayerUI = _playerUIs[i];
+                    return;
+                }
+            }
+        }
+
+        var ui = ObjectFactory.CreatePlayerUI(character, _playerAmount, _winCondition);
+        ui.transform.SetParent(_canvas.transform,false);
+    }
 
 }

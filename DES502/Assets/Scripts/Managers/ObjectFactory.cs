@@ -8,6 +8,7 @@ public class ObjectFactory : MonoBehaviour
     public GameObject _PlayerPrefab;
     public GameObject _ProjectileAttackPrefab;
     public GameObject _PlayerTagPrefab;
+    public GameObject _PlayerUIPrefab;
 
     void Start()
     {
@@ -15,10 +16,10 @@ public class ObjectFactory : MonoBehaviour
     }
 
 
-    public static CharacterController CreatePlayer(PlayerID id, Vector3 position)
+    public static CharacterController CreatePlayer(PlayerData data, Vector3 position)
     {
         var character = Object.Instantiate(instance._PlayerPrefab, Vector3.zero, Quaternion.identity).GetComponent<CharacterController>();
-        character.Initialize(id);
+        character.Initialize(data);
         character.transform.position = position;
 
         CreatePlayerTag(character);
@@ -28,13 +29,21 @@ public class ObjectFactory : MonoBehaviour
 
     public static PlayerTag CreatePlayerTag(CharacterController character)
     {
-        var playerTag = Object.Instantiate(instance._PlayerTagPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerTag>();
-        playerTag.Initialize(character);
+        var playerUI = Object.Instantiate(instance._PlayerTagPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerTag>();
+        playerUI.Initialize(character);
 
-        character._PlayerTag = playerTag;
 
-        return playerTag;
+        return playerUI;
     }
+
+    public static PlayerUI CreatePlayerUI(CharacterController character, int amountOfPlayers, GameWinCondition winCondition)
+    {
+        var playerUI = Object.Instantiate(instance._PlayerUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerUI>();
+        playerUI.Initialize(character, amountOfPlayers, winCondition);
+
+        return playerUI;
+    }
+
 
 
 
