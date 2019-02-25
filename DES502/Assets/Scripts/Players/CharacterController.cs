@@ -12,6 +12,8 @@ public class CharacterController : MonoBehaviour
     private BoxCollider2D _collider;
     [HideInInspector]
     public PlayerTag _PlayerTag;
+    [HideInInspector]
+    public PlayerUI _PlayerUI;
 
 
     [SerializeField] private LayerMask _whatIsGround;
@@ -34,6 +36,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField]
     public PlayerID _PlayerID;
+
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -144,7 +147,12 @@ public class CharacterController : MonoBehaviour
     public UnityEvent OnLandEvent;
 
     [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }    
+    public class BoolEvent : UnityEvent<bool> { }
+
+    //GAMEMODE RELATED
+    //-----------------------------------
+    [HideInInspector]
+    public int _AmountOfStocks;
 
     //random
 
@@ -154,9 +162,12 @@ public class CharacterController : MonoBehaviour
 
     public PlayerState _PlayerState = PlayerState.Idle;
 
-    public void Initialize(PlayerID id)
+    public void Initialize(PlayerData data)
     {
-        _PlayerID = id;
+        _PlayerID = data.Id;
+        _AmountOfStocks = data.Stocks;
+
+        Debug.Log(_AmountOfStocks);
 
         //proper input 
         switch (_PlayerID)
@@ -176,6 +187,11 @@ public class CharacterController : MonoBehaviour
             default:
                 break;
         }
+
+
+        //player UI
+        _GameManager.CreatePlayerUI(this);
+
     }
 
     private void Awake()
@@ -214,6 +230,7 @@ public class CharacterController : MonoBehaviour
             OnLandEvent = new UnityEvent();
 
         ConfigureJump(_minJumpHeight, _minJumpTime, _maxJumpHeight);
+
     }
 
     private void FixedUpdate()
@@ -601,13 +618,23 @@ public class CharacterController : MonoBehaviour
     {
         Debug.Log("Died");
         _PlayerState = PlayerState.Dead;
+        _AmountOfStocks--;
 
-        RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
-        point.Activate(_PlayerID);
+
+        PlayerData data;
+        data.Id = _PlayerID;
+        data.Stocks = _AmountOfStocks;
 
         if (_PlayerTag)
         {
             Destroy(_PlayerTag.gameObject);
+        }
+
+        if (_AmountOfStocks <= 0)
+        {
+            RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
+
+            point.Activate(data);
         }
 
         Destroy(gameObject);

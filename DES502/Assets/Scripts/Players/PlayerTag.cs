@@ -15,8 +15,15 @@ public class PlayerTag : MonoBehaviour
 
     void Update()
     {
-        Vector3 charPos= _character.transform.position;
-        this.transform.position = new Vector3(charPos.x, charPos.y + 0.6f , charPos.z);
+        if (_character)
+        {
+            Vector3 charPos = _character.transform.position;
+            this.transform.position = new Vector3(charPos.x, charPos.y + 0.6f, charPos.z);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Die()
