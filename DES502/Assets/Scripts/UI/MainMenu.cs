@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _GMScriptableObject.PlayerAmount = 2;
+        _GMScriptableObject.TeamSetup = TeamSetup.FFA;
+        _GMScriptableObject.GameWinCondition = GameWinCondition.STOCKS;
+
         //add delegates here so we don't have to manually add them in the inspector
         _amountPlayersDropdown.onValueChanged.AddListener(delegate
         {

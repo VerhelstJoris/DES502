@@ -34,9 +34,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Tooltip("Death duration will always be the same across all player characters")]
     public static float RespawnDuration = 1.5f;
 
-    [SerializeField]
     public PlayerID _PlayerID;
 
+    public TeamID _TeamID;
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -167,7 +167,7 @@ public class CharacterController : MonoBehaviour
         _PlayerID = data.Id;
         _AmountOfStocks = data.Stocks;
 
-        Debug.Log(_AmountOfStocks);
+        Debug.Log("Amount of stocks: " + _AmountOfStocks);
 
         //proper input 
         switch (_PlayerID)
@@ -624,13 +624,14 @@ public class CharacterController : MonoBehaviour
         PlayerData data;
         data.Id = _PlayerID;
         data.Stocks = _AmountOfStocks;
+        data.TeamId = _TeamID;
 
         if (_PlayerTag)
         {
             Destroy(_PlayerTag.gameObject);
         }
 
-        if (_AmountOfStocks <= 0)
+        if ( _AmountOfStocks > 0 || _GameManager._WinCondition != GameWinCondition.STOCKS)
         {
             RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
 

@@ -9,6 +9,7 @@ public class ObjectFactory : MonoBehaviour
     public GameObject _ProjectileAttackPrefab;
     public GameObject _PlayerTagPrefab;
     public GameObject _PlayerUIPrefab;
+    public GameObject _TimerUIPrefab;
 
     void Start()
     {
@@ -36,15 +37,20 @@ public class ObjectFactory : MonoBehaviour
         return playerUI;
     }
 
-    public static PlayerUI CreatePlayerUI(CharacterController character, int amountOfPlayers, GameWinCondition winCondition)
+    public static PlayerUI CreatePlayerUI(CharacterController character, int amountOfPlayers, GameWinCondition winCondition, TeamSetup teamSetup)
     {
         var playerUI = Object.Instantiate(instance._PlayerUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerUI>();
-        playerUI.Initialize(character, amountOfPlayers, winCondition);
+        playerUI.Initialize(character, amountOfPlayers, winCondition,teamSetup);
 
         return playerUI;
     }
 
-
+    public static TimerUI CreateTimerUI(GameManager manager,float amountOfTime)
+    {
+        var timerUI = Object.Instantiate(instance._TimerUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<TimerUI>();
+        timerUI.Initialize(manager, amountOfTime);
+        return timerUI;
+    }
 
 
     public static ProjectileAttack CreateProjectile(PlayerID owner, Vector3 position, Vector2 direction, float launchAmount, float stunduration)

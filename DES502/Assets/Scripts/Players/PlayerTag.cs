@@ -35,6 +35,29 @@ public class PlayerTag : MonoBehaviour
     {
         _character = character;
         _id = character._PlayerID;
-        _text.text = _id.ToString();
+
+        switch (_id)
+        {
+            case PlayerID.Player1:
+                _text.text = "P1";
+                break;
+            case PlayerID.Player2:
+                _text.text = "P2";
+                break;
+            case PlayerID.Player3:
+                _text.text = "P3";
+                break;
+            case PlayerID.Player4:
+                _text.text = "P4";
+                break;
+            default:
+                break;
+        }
+
+        
+
+        Color temp;
+        PlayerHelpers.PlayerColorDictionary.TryGetValue(_id, out temp);
+        _text.color = temp;
     }
 }

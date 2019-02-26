@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GMScriptableObject: {fileID: 11400000, guid: 2a29bf43814e804459d0c3b2bdb43733,
     type: 2}
+  _PlayerAmount: 2
+  _TeamSetup: 0
+  _WinCondition: 0
 --- !u!114 &7024020573438695994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,4 +68,6 @@ MonoBehaviour:
   _PlayerTagPrefab: {fileID: 4903010053701468713, guid: 17862c9561988bd4493f9ce80df13aff,
     type: 3}
   _PlayerUIPrefab: {fileID: 5387103091838023569, guid: aa2a6fc6a55896f4db7e03709e1f914c,
+    type: 3}
+  _TimerUIPrefab: {fileID: 3263816469429800350, guid: a81af3e796db0e949a708e4bbc3d02a0,
     type: 3}

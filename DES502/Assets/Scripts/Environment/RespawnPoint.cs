@@ -31,7 +31,10 @@ public class RespawnPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animator = _door.GetComponent<Animator>();
+        if (_door != null)
+        {
+            _animator = _door.GetComponent<Animator>();
+        }
         _door.transform.position = _startingPoint.transform.position;
 
 
