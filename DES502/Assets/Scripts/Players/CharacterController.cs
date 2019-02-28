@@ -25,6 +25,7 @@ public class CharacterController : MonoBehaviour
 
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;
+    private bool _hitCeiling;  // used to cancel jumping early if hitting a ceiling
     [HideInInspector]
     public bool _FacingRight = true;
 
@@ -219,6 +220,7 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         //grounded checks
+        // Move to own method?
         bool wasGrounded = _grounded;
         _grounded = false;
 
@@ -238,6 +240,7 @@ public class CharacterController : MonoBehaviour
                 }
             }
         }
+
 
         //Movement
         HandlePlayerInput();
@@ -307,36 +310,31 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        // _grounded will still return true as you begin to jump!
+        // should we start jumping?
         if (_grounded && jump && !_jumpKeyDownAlready)
         {
+        // _grounded will still return true as you begin to jump!
             _jumping = true;
-
             _jumpTimeCounter = _maxJumpTime;
-            //_Rigidbody2D.AddForce(Vector2.up * _intialJumpForce);
-            //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
-
-            //Debug.Log("Started Jump");
-            //_jumpTimeCounter = _jumpTime;
-            //_rigidbody.AddForce(Vector2.up * _intialJumpForce);
-
             //Debug.Log("Started Jump");
             _animator.SetBool("Jumping", true);
 
         }
 
+        // currently jumping
         if (jump && _jumping)
         {
             if (_jumpTimeCounter >= 0)
             {
-                //_Rigidbody2D.velocity = Vector2.up * _jumpForce;
-                //_Rigidbody2D.AddForce(Vector2.up * _jumpForce);
-                //_Rigidbody2D.AddForce(Vector2.up * _jumpVelocity);
-                //_Rigidbody2D.velocity = new Vector2(_Rigidbody2D.velocity.x, _jumpVelocity);
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
-                //Debug.Log(_jumpForce);
-                //Debug.Log(_jumpVelocity);
-                //_rigidbody.AddForce(Vector2.up * _jumpForce);
+                if (!IsHittingCeiling())
+                {
+                    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
+                }
+                else
+                {
+                    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+                    _jumping = false;
+                }
                 _jumpTimeCounter -= Time.deltaTime;
             }
             else
@@ -348,6 +346,7 @@ public class CharacterController : MonoBehaviour
         // Don't clamp this during hit stun?
         if (_shouldClampFallSpeed) // && _rigidbody.velocity.y < 0)
         {
+            // We create this multiple times, could optimise by pooling together the y velocity value changes then create the new rigidbody value only once
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Max(_rigidbody.velocity.y, _maxFallSpeed));
             //Debug.Log("_rigidbody.velocity.y = " + _rigidbody.velocity.y);
         }
@@ -627,5 +626,20 @@ public class CharacterController : MonoBehaviour
         Physics2D.gravity = new Vector2(0, -gravity);
         _jumpVelocity = jumpVelocity;
         _maxJumpTime = maxTime;
+    }
+
+    private bool IsHittingCeiling()
+    {
+        // Check to see if the character is currently hitting a ceiling
+        // Add a new indepndant radius for ceiling check?
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_ceilingCheck.position, k_groundedRadius, _whatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                return true;
+            }
+        }
+        return false;  // return false if we haven't already returned true
     }
 }
