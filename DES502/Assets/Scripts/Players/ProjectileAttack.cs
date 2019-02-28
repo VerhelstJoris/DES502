@@ -13,22 +13,23 @@ public class ProjectileAttack : MonoBehaviour
     Rigidbody2D _rb;
     private bool _currentlyDropping = false;
     private float _dropTimer;
-    private float _dropDuration = 0.2f;
+    private float _dropDuration;
 
 
     private void Awake()
     {
         _rb = this.GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0;
-        _dropTimer = _dropDuration;
     }
 
-    public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration)
+    public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration, float dropduration)
     {
         _owner = owner;
         _defaultLaunchVector = direction;
         _launchAmount = launchAmount;
         _stunDuration = stunduration;
+        _dropDuration = dropduration;
+        _dropTimer = _dropDuration;
 
         // Magic number - change to const?
         _rb.AddForce(direction * 1500);

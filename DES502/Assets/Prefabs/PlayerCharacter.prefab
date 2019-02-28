@@ -285,6 +285,7 @@ MonoBehaviour:
   _projectileStunDuration: 0.25
   _projectileLaunchAmount: 200
   _projectileStartupDuration: 0.157
+  _projectileDropDuration: 0.1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []

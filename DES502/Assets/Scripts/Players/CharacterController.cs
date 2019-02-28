@@ -128,6 +128,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 1.5f)] [Tooltip("Duration for which opponents hit are stunned")] private float _projectileStunDuration = 0.25f;
     [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")] private float _projectileLaunchAmount = 200.0f;
     [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing")] private float _projectileStartupDuration = 0.5f;
+    [SerializeField] [Range(0.0f, 0.2f)] [Tooltip("Duration before projectiles start to be affected by gravity")] private float _projectileDropDuration = 0.1f;
 
     bool _specialAttackKeyDown = false;
     bool _specialAttacking = false;
@@ -521,7 +522,7 @@ public class CharacterController : MonoBehaviour
                     direction.x = -1;
                 }
 
-                ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration);
+                ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration, _projectileDropDuration);
 
                 _projectileFiring = false;
                 _projectileOnCooldown = true;
