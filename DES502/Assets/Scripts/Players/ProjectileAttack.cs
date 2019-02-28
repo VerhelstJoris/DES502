@@ -14,6 +14,7 @@ public class ProjectileAttack : MonoBehaviour
     private bool _currentlyDropping = false;
     private float _dropTimer;
     private float _dropDuration;
+    private float _dropGravityScale;
 
 
     private void Awake()
@@ -22,7 +23,7 @@ public class ProjectileAttack : MonoBehaviour
         _rb.gravityScale = 0;
     }
 
-    public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration, float dropduration)
+    public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration, float dropduration, int launchspeed, float dropgravityscale)
     {
         _owner = owner;
         _defaultLaunchVector = direction;
@@ -30,9 +31,10 @@ public class ProjectileAttack : MonoBehaviour
         _stunDuration = stunduration;
         _dropDuration = dropduration;
         _dropTimer = _dropDuration;
+        _dropGravityScale = dropgravityscale;
 
         // Magic number - change to const?
-        _rb.AddForce(direction * 1500);
+        _rb.AddForce(direction * launchspeed);
 
         if (direction.x <= 0)
         {
@@ -73,7 +75,7 @@ public class ProjectileAttack : MonoBehaviour
         {
             if (_dropTimer <= 0)
             {
-                _rb.gravityScale = 1;
+                _rb.gravityScale = _dropGravityScale;
             }
             _dropTimer -= Time.deltaTime;
         }

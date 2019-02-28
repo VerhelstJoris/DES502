@@ -129,6 +129,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")] private float _projectileLaunchAmount = 200.0f;
     [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing")] private float _projectileStartupDuration = 0.5f;
     [SerializeField] [Range(0.0f, 0.2f)] [Tooltip("Duration before projectiles start to be affected by gravity")] private float _projectileDropDuration = 0.1f;
+    [SerializeField] [Range(0, 2000)] [Tooltip("Launch force to apply to projectiles")] private int _projectileLaunchSpeed = 1600;
+    [SerializeField] [Range(0.0f, 3.0f)] [Tooltip("Gravity scale to use when projectiles start to drop")] private float _projectileGravityScale = 1.0f;
 
     bool _specialAttackKeyDown = false;
     bool _specialAttacking = false;
@@ -522,7 +524,7 @@ public class CharacterController : MonoBehaviour
                     direction.x = -1;
                 }
 
-                ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration, _projectileDropDuration);
+                ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration, _projectileDropDuration, _projectileLaunchSpeed, _projectileGravityScale);
 
                 _projectileFiring = false;
                 _projectileOnCooldown = true;

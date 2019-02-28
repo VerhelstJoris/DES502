@@ -38,11 +38,11 @@ public class ObjectFactory : MonoBehaviour
 
 
 
-    public static ProjectileAttack CreateProjectile(PlayerID owner, Vector3 position, Vector2 direction, float launchAmount, float stunduration, float dropduration)
+    public static ProjectileAttack CreateProjectile(PlayerID owner, Vector3 position, Vector2 direction, float launchAmount, float stunduration, float dropduration, int launchspeed, float dropgravityscale)
     {
         var projectile = Object.Instantiate(instance._ProjectileAttackPrefab, Vector3.zero, Quaternion.identity).GetComponent<ProjectileAttack>();
 
-        projectile.Inititalize(owner, direction, launchAmount, stunduration, dropduration);
+        projectile.Inititalize(owner, direction, launchAmount, stunduration, dropduration, launchspeed, dropgravityscale);
         projectile.transform.position = position;
         return projectile;
     }
