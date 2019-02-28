@@ -11,11 +11,16 @@ public class ProjectileAttack : MonoBehaviour
     private bool _movingRight;
     PlayerID _owner;
     Rigidbody2D _rb;
+    private bool _currentlyDropping = false;
+    private float _dropTimer;
+    private float _dropDuration = 0.2f;
 
 
     private void Awake()
     {
         _rb = this.GetComponent<Rigidbody2D>();
+        _rb.gravityScale = 0;
+        _dropTimer = _dropDuration;
     }
 
     public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration)
@@ -25,9 +30,10 @@ public class ProjectileAttack : MonoBehaviour
         _launchAmount = launchAmount;
         _stunDuration = stunduration;
 
+        // Magic number - change to const?
         _rb.AddForce(direction * 1500);
 
-        if (direction.x <=0)
+        if (direction.x <= 0)
         {
             // Multiply the player's x local scale by -1.
             Vector3 theScale = transform.localScale;
@@ -58,5 +64,17 @@ public class ProjectileAttack : MonoBehaviour
         {
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (!_currentlyDropping)
+        {
+            if (_dropTimer <= 0)
+            {
+                _rb.gravityScale = 1;
+            }
+            _dropTimer -= Time.deltaTime;
+        }
     }
 }
