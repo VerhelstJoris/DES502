@@ -26,6 +26,7 @@ public class CharacterController : MonoBehaviour
     const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;
     private bool _hitCeiling;  // used to cancel jumping early if hitting a ceiling
+    const float k_ceilingHitRadius = .1f; // Radius of the overlap circle to determine if grounded
     [HideInInspector]
     public bool _FacingRight = true;
 
@@ -631,8 +632,7 @@ public class CharacterController : MonoBehaviour
     private bool IsHittingCeiling()
     {
         // Check to see if the character is currently hitting a ceiling
-        // Add a new indepndant radius for ceiling check?
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(_ceilingCheck.position, k_groundedRadius, _whatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_ceilingCheck.position, k_ceilingHitRadius, _whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
