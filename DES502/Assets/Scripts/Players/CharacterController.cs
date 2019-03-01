@@ -252,28 +252,7 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //grounded checks
-        // Move to own method?
-        bool wasGrounded = _grounded;
-        _grounded = false;
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, _whatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].gameObject != gameObject)
-            {
-                _grounded = true;
-                if (!wasGrounded)
-                {
-                    OnLandEvent.Invoke();
-                    _animator.SetBool("Jumping", false);
-
-                    //_projectileOnCooldown = false;
-                    //_projectileCooldownTimer = 0.0f;
-                }
-            }
-        }
-
+        _grounded = IsGrounded();
 
         //Movement
         HandlePlayerInput();
@@ -778,5 +757,27 @@ public class CharacterController : MonoBehaviour
             }
         }
         return false;  // return false if we haven't already returned true
+    }
+
+    private bool IsGrounded()
+    {
+        bool wasGrounded = _grounded;
+        bool grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, _whatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                grounded = true;
+                if (!wasGrounded)
+                {
+                    OnLandEvent.Invoke();
+                    _animator.SetBool("Jumping", false);
+                    //_projectileOnCooldown = false;
+                    //_projectileCooldownTimer = 0.0f;
+                }
+            }
+        }
+        return grounded;
     }
 }
