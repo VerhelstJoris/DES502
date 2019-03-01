@@ -1,16 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
+    public GameModeScriptableObject _GMScriptableObject;
+
     private RespawnPoint[] _respawnPoints;
     private CharacterController[] _playerCharacters;
+    private PlayerUI[] _playerUIs;
+    private Canvas _canvas;
 
-    public int PlayersToSpawn = 2;
+    [HideInInspector]
+    public int _PlayerAmount = 2;
+    [HideInInspector]
+    public TeamSetup _TeamSetup;
+    [HideInInspector]
+    public GameWinCondition _WinCondition;
+
+    public float _GameTimerLeft=0.0f;
+    private int _startingStocksPerPlayer;
 
     private void Awake()
     {
@@ -26,20 +39,63 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-    }
 
-    //private void OnDestroy()
-    //{
-    //    if (this == _instance)
-    //    {
-    //        _instance = null;
-    //    }
-    //}
+        _TeamSetup = _GMScriptableObject.TeamSetup;
+        _WinCondition = _GMScriptableObject.GameWinCondition;
+        _PlayerAmount = _GMScriptableObject.PlayerAmount;
+
+
+        //stocks of timer
+        if (_WinCondition == GameWinCondition.STOCKS)
+        {
+            _startingStocksPerPlayer = _GMScriptableObject.AmountOfStocks;
+        }
+        else if(_WinCondition == GameWinCondition.TIME)
+        {
+            _GameTimerLeft = _GMScriptableObject.AmountOfTime;
+        }
+
+
+        Debug.Log(_TeamSetup.ToString());
+        Debug.Log(_WinCondition.ToString());
+        Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
+    }
 
     void Start()
     {
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
+
         _playerCharacters = FindObjectsOfType<CharacterController>();
+        _playerUIs = FindObjectsOfType<PlayerUI>();
+        _canvas = FindObjectOfType<Canvas>();
+
+        //destroy all playercharacters and UI's present in the scene
+        for (int i = 0; i < _playerCharacters.Length; i++)
+        {
+            Destroy(_playerCharacters[i].gameObject);
+            _playerCharacters[i] = null;
+        }
+
+        for (int i = 0; i < _playerUIs.Length; i++)
+        {
+            Destroy(_playerUIs[i].gameObject);
+            _playerUIs[i] = null;
+        }
+
+        if (_canvas == null)
+        {
+            GameObject g = new GameObject();
+            _canvas = g.AddComponent<Canvas>();
+            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        }
+
+        //create TIMER UI
+        if(_WinCondition==GameWinCondition.TIME)
+        {
+            var timer = ObjectFactory.CreateTimerUI(this, _GameTimerLeft);
+            timer.transform.SetParent(_canvas.transform, false);
+
+        }
 
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
@@ -47,9 +103,13 @@ public class GameManager : MonoBehaviour
         }
 
         //spawn in the players
-        for (int i = 0; i < PlayersToSpawn; i++)
+        for (int i = 0; i < _PlayerAmount; i++)
         {
-            _respawnPoints[i].Activate( (PlayerID)i );
+            PlayerData data;
+            data.Id = (PlayerID)i;
+            data.Stocks = _startingStocksPerPlayer;
+            data.TeamId = (TeamID)(i % 2);
+            _respawnPoints[i].Activate(data);
         }
     }
 
@@ -69,7 +129,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_WinCondition==GameWinCondition.TIME)
+        {
+            Mathf.Clamp(_GameTimerLeft -= Time.deltaTime,0.0f,1000000.0f);
+
+            if(_GameTimerLeft <= 0.0f)
+            {
+                EndGame();
+            }
+        }
     }
 
     public RespawnPoint FindBestRespawnPoint(PlayerID playerID)
@@ -95,6 +163,7 @@ public class GameManager : MonoBehaviour
                         if (distance < closestPlayerDistance)
                         {
                             closestPlayerDistance = distance;
+                            Debug.Log(closestPlayerDistance + "Closest Distance");
                         }
                     }
 
@@ -112,9 +181,37 @@ public class GameManager : MonoBehaviour
 
         }
 
+
+        Debug.Log(respawnID + " chosen");
         return _respawnPoints[respawnID];
 
     }
+
+    public void CreatePlayerUI(CharacterController character)
+    {
+
+        if (_playerUIs.Length != 0)
+        {
+            for (int i = 0; i < _playerUIs.Length; i++)
+            {
+
+                if (_playerUIs[i] != null && _playerUIs[i]._PlayerID == character._PlayerID)
+                {
+                    character._PlayerUI = _playerUIs[i];
+                    return;
+                }
+            }
+        }
+
+        var ui = ObjectFactory.CreatePlayerUI(character, _PlayerAmount, _WinCondition, _TeamSetup);
+        ui.transform.SetParent(_canvas.transform,false);
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("GAME ENDED");
+    }
+
 
 
 }

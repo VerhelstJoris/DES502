@@ -5,6 +5,7 @@ using UnityEngine;
 public class RespawnPoint : MonoBehaviour
 {
     private Animator _animator;
+    [HideInInspector]
     public GameManager _GM;
 
     public bool _Active = false;
@@ -25,12 +26,15 @@ public class RespawnPoint : MonoBehaviour
 
     private float _activeTimer;
 
-    private PlayerID _IdToSpawn;
+    private PlayerData _playerData;
 
     // Start is called before the first frame update
     void Start()
     {
-        _animator = _door.GetComponent<Animator>();
+        if (_door != null)
+        {
+            _animator = _door.GetComponent<Animator>();
+        }
         _door.transform.position = _startingPoint.transform.position;
 
 
@@ -91,9 +95,10 @@ public class RespawnPoint : MonoBehaviour
         
     }
 
-    public void Activate(PlayerID id)
+    public void Activate(PlayerData data)
     {
-        _IdToSpawn = id;
+        _playerData = data;
+        
 
         _Active = true;
         _preRespawn = true;
@@ -110,8 +115,7 @@ public class RespawnPoint : MonoBehaviour
         //_charToRespawn.transform.position = _RespawnPoint.transform.position;
 
         //CharacterController character = Instantiate<CharacterController>(_charToRespawn);
-        CharacterController character= ObjectFactory.CreatePlayer(_IdToSpawn, _RespawnPoint.transform.position);
-        //_GM.AddPlayer(character);
+        ObjectFactory.CreatePlayer(_playerData, _RespawnPoint.transform.position);
     }
 
     public void AnimDoorOpened()
