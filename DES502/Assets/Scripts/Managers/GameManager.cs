@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public GameModeScriptableObject _GMScriptableObject;
 
     private RespawnPoint[] _respawnPoints;
-    private CharacterController[] _playerCharacters;
+    //private CharacterController[] _playerCharacters = new CharacterController[4];
+    private List<CharacterController> _characterControllers = new List<CharacterController>();
     private PlayerUI[] _playerUIs;
     private Canvas _canvas;
 
@@ -65,16 +66,20 @@ public class GameManager : MonoBehaviour
     {
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
 
-        _playerCharacters = FindObjectsOfType<CharacterController>();
         _playerUIs = FindObjectsOfType<PlayerUI>();
         _canvas = FindObjectOfType<Canvas>();
 
-        //destroy all playercharacters and UI's present in the scene
-        for (int i = 0; i < _playerCharacters.Length; i++)
-        {
-            Destroy(_playerCharacters[i].gameObject);
-            _playerCharacters[i] = null;
-        }
+        //_playerCharacters = FindObjectsOfType<CharacterController>();
+
+        ////destroy all playercharacters and UI's present in the scene
+        //for (int i = 0; i < _playerCharacters.Length; i++)
+        //{
+        //    if (_playerCharacters[i] != null)
+        //    {
+        //        Destroy(_playerCharacters[i].gameObject);
+        //        _playerCharacters[i] = null;
+        //    }
+        //}
 
         for (int i = 0; i < _playerUIs.Length; i++)
         {
@@ -82,6 +87,7 @@ public class GameManager : MonoBehaviour
             _playerUIs[i] = null;
         }
 
+        //create a canvas if necessary
         if (_canvas == null)
         {
             GameObject g = new GameObject();
@@ -115,15 +121,27 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer(CharacterController player)
     {
-        for (int i = 0; i < _playerCharacters.Length; i++)
+        bool playerFound = false;
+
+        player._GameManager = this;
+
+
+        for (int i = 0; i < _characterControllers.Count; i++)
         {
-            if(_playerCharacters[i]._PlayerID == player._PlayerID)
+            if(_characterControllers[i]._PlayerID == player._PlayerID)
             {
-                _playerCharacters[i] = player;
-                _playerCharacters[i]._GameManager = this;
+                _characterControllers[i] = player;
+                playerFound = true;
                 break;
             }
         }
+
+        if(!playerFound)
+        {
+            _characterControllers.Add(player);
+        }
+
+        Debug.Log("Player Added: " + player._PlayerID.ToString());
     }
 
     // Update is called once per frame
@@ -145,6 +163,9 @@ public class GameManager : MonoBehaviour
         int respawnID=0;
         float longestDistanceAll = 0.0f;
 
+        //Debug.Log("Amount of respawnpoints: " + _respawnPoints.Length);
+        //Debug.Log("Amount of players: " + _characterControllers.Count);
+
 
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
@@ -153,22 +174,21 @@ public class GameManager : MonoBehaviour
             if (!_respawnPoints[i]._Active)
             {
 
-                for (int j = 0; j < _playerCharacters.Length; j++)
+                for (int j = 0; j < _characterControllers.Count; j++)
                 {
 
-                    if (_playerCharacters[j]._PlayerState != PlayerState.Dead && !_respawnPoints[i]._Active)
+                    if (_characterControllers[j]._PlayerState != PlayerState.Dead && !_respawnPoints[i]._Active)
                     {
-                        float distance = Vector3.Distance(_respawnPoints[i].transform.position, _playerCharacters[j].transform.position);
+                        float distance = Vector3.Distance(_respawnPoints[i].transform.position, _characterControllers[j].transform.position);
 
                         if (distance < closestPlayerDistance)
                         {
                             closestPlayerDistance = distance;
-                            Debug.Log(closestPlayerDistance + "Closest Distance");
                         }
                     }
 
                     //after the last one
-                    if (j == _playerCharacters.Length - 1)
+                    if (j == _characterControllers.Count - 1)
                     {
                         if (closestPlayerDistance > longestDistanceAll)
                         {
@@ -182,7 +202,6 @@ public class GameManager : MonoBehaviour
         }
 
 
-        Debug.Log(respawnID + " chosen");
         return _respawnPoints[respawnID];
 
     }

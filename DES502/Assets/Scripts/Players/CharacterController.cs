@@ -172,7 +172,7 @@ public class CharacterController : MonoBehaviour
         _PlayerID = data.Id;
         _AmountOfStocks = data.Stocks;
 
-        Debug.Log("Amount of stocks: " + _AmountOfStocks);
+        //Debug.Log("Amount of stocks: " + _AmountOfStocks);
 
         //proper input 
         switch (_PlayerID)
@@ -196,6 +196,7 @@ public class CharacterController : MonoBehaviour
 
         //player UI
         _GameManager.CreatePlayerUI(this);
+        _GameManager.AddPlayer(this);
 
     }
 
@@ -205,6 +206,7 @@ public class CharacterController : MonoBehaviour
         _animator = this.GetComponent<Animator>();
         _GameManager = FindObjectOfType<GameManager>();
         _collider = this.GetComponent<BoxCollider2D>();
+
 
         //proper input 
         switch (_PlayerID)
@@ -235,6 +237,7 @@ public class CharacterController : MonoBehaviour
             OnLandEvent = new UnityEvent();
 
         ConfigureJump(_minJumpHeight, _minJumpTime, _maxJumpHeight);
+
 
     }
 
