@@ -37,7 +37,6 @@ public class CharacterController : MonoBehaviour
     public static float RespawnDuration = 1.5f;
 
     public PlayerID _PlayerID;
-
     public TeamID _TeamID;
 
     //GENERAL MOVEMENT
@@ -159,6 +158,8 @@ public class CharacterController : MonoBehaviour
     [HideInInspector]
     public int _AmountOfStocks;
 
+    [HideInInspector]
+    public int _AmountOfDeaths;
     //random
 
     string _inputSuffix;
@@ -171,8 +172,8 @@ public class CharacterController : MonoBehaviour
     {
         _PlayerID = data.Id;
         _AmountOfStocks = data.Stocks;
-
-        //Debug.Log("Amount of stocks: " + _AmountOfStocks);
+        _TeamID = data.TeamId;
+        _AmountOfDeaths = data.Deaths;
 
         //proper input 
         switch (_PlayerID)
@@ -622,20 +623,23 @@ public class CharacterController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Died");
         _PlayerState = PlayerState.Dead;
         _AmountOfStocks--;
-
+        _AmountOfDeaths++;
 
         PlayerData data;
         data.Id = _PlayerID;
         data.Stocks = _AmountOfStocks;
         data.TeamId = _TeamID;
+        data.Deaths = _AmountOfDeaths;
 
         if (_PlayerTag)
         {
             Destroy(_PlayerTag.gameObject);
         }
+
+        _PlayerUI.UpdateStockText(_AmountOfStocks);
+        _GameManager.PlayerDeath(this);
 
         if ( _AmountOfStocks > 0 || _GameManager._WinCondition != GameWinCondition.STOCKS)
         {

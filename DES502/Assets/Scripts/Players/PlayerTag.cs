@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTag : MonoBehaviour
 {
     private PlayerID _id;
+    private TeamID _team;
     private CharacterController _character;
     private TextMesh _text;
 
@@ -31,11 +32,13 @@ public class PlayerTag : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Initialize(CharacterController character)
+    public void Initialize(CharacterController character, TeamSetup setup)
     {
         _character = character;
         _id = character._PlayerID;
+        _team = _character._TeamID;
 
+        
         switch (_id)
         {
             case PlayerID.Player1:
@@ -57,7 +60,14 @@ public class PlayerTag : MonoBehaviour
         
 
         Color temp;
-        PlayerHelpers.PlayerColorDictionary.TryGetValue(_id, out temp);
+        if (setup == TeamSetup.FFA)
+        {
+            PlayerHelpers.PlayerColorDictionary.TryGetValue(_id, out temp);
+        }
+        else
+        {
+            PlayerHelpers.TeamColorDictionary.TryGetValue(_team, out temp);
+        }
         _text.color = temp;
     }
 }

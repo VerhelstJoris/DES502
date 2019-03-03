@@ -49,6 +49,7 @@ MonoBehaviour:
   _PlayerAmount: 2
   _TeamSetup: 0
   _WinCondition: 0
+  _GameTimerLeft: 0
 --- !u!114 &7024020573438695994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,4 +71,8 @@ MonoBehaviour:
   _PlayerUIPrefab: {fileID: 5387103091838023569, guid: aa2a6fc6a55896f4db7e03709e1f914c,
     type: 3}
   _TimerUIPrefab: {fileID: 3263816469429800350, guid: a81af3e796db0e949a708e4bbc3d02a0,
+    type: 3}
+  _GameEndMenuPrefab: {fileID: 6526301412224088522, guid: 68e19cc3c87696746beb438759612373,
+    type: 3}
+  _EventSystemPrefab: {fileID: 1394342761071538646, guid: a4719c63bb20fef47a77f1c38465d0fe,
     type: 3}

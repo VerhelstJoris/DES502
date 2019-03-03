@@ -17,6 +17,7 @@ public struct PlayerData
 {
     public PlayerID Id;
     public int Stocks;
+    public int Deaths;
     public TeamID TeamId;
 };
 

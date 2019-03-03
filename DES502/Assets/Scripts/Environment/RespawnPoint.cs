@@ -115,7 +115,7 @@ public class RespawnPoint : MonoBehaviour
         //_charToRespawn.transform.position = _RespawnPoint.transform.position;
 
         //CharacterController character = Instantiate<CharacterController>(_charToRespawn);
-        ObjectFactory.CreatePlayer(_playerData, _RespawnPoint.transform.position);
+        ObjectFactory.CreatePlayer(_playerData, _RespawnPoint.transform.position, _GM._TeamSetup);
     }
 
     public void AnimDoorOpened()

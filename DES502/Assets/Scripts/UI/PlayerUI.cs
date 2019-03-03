@@ -7,7 +7,9 @@ public class PlayerUI : MonoBehaviour
 {
     public PlayerID _PlayerID;
     private TeamID _teamID;
+    private GameWinCondition _winCondition;
     private int _amountOfStocks;
+
 
     [SerializeField]
     private Text _stocksText;
@@ -28,23 +30,38 @@ public class PlayerUI : MonoBehaviour
     {
         _PlayerID = character._PlayerID;
         _teamID = character._TeamID;
+        Debug.Log(_teamID.ToString());
+
         _amountOfStocks = character._AmountOfStocks;
+        _winCondition = winCondition;
 
         this.transform.position = new Vector3(-350 + ((700.0f / (amountOfPlayers-1)) * (int)_PlayerID), 150, 0);
+
+        var rectTransform = GetComponent<RectTransform>();
+
 
         switch (_PlayerID)
         {
             case PlayerID.Player1:
-                this.transform.position = new Vector3(-375 , 150, 0);
+                rectTransform.anchorMin = new Vector2(0, 1);
+                rectTransform.anchorMax = new Vector2(0, 1);
+                this.transform.position = new Vector3(50, -50, 0);
+
                 break;
             case PlayerID.Player2:
-                this.transform.position = new Vector3(375, 150, 0);
+                rectTransform.anchorMin = new Vector2(1, 1);
+                rectTransform.anchorMax = new Vector2(1, 1);
+                this.transform.position = new Vector3(-50, -50, 0);
                 break;
             case PlayerID.Player3:
-                this.transform.position = new Vector3(-375, -150, 0);
+                rectTransform.anchorMin = new Vector2(0, 0);
+                rectTransform.anchorMax = new Vector2(0, 0);
+                this.transform.position = new Vector3(50, 50, 0);
                 break;
             case PlayerID.Player4:
-                this.transform.position = new Vector3(375, -150, 0);
+                rectTransform.anchorMin = new Vector2(1, 0);
+                rectTransform.anchorMax = new Vector2(1, 0);
+                this.transform.position = new Vector3(-50, 50, 0);
                 break;
             default:
                 break;
@@ -78,5 +95,15 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateStockText(int stocks)
+    {
+        if (_winCondition == GameWinCondition.STOCKS)
+        {
+            _amountOfStocks = stocks;
+            _stocksText.text = _amountOfStocks.ToString();
+        }
+
     }
 }
