@@ -455,6 +455,7 @@ public class CharacterController : MonoBehaviour
                     else
                     {
                         _chargingAttack = true;
+                        this.GetComponent<SpriteRenderer>().color = new Color(0, 1.0f, 0);
                     }
                 }
             }
@@ -474,6 +475,10 @@ public class CharacterController : MonoBehaviour
 
     private void ReleaseAttack()
     {
+        _chargingAttack = false;
+        this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
+
+
         switch (_currentAttack)
         {
             //collider specific changes
@@ -556,7 +561,6 @@ public class CharacterController : MonoBehaviour
         {
             _attackTimer += Time.deltaTime;
             bool attackReset = false;
-
 
             //reset after attack finishes
             switch (_currentAttack)
