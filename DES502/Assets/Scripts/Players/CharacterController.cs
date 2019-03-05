@@ -90,8 +90,10 @@ public class CharacterController : MonoBehaviour
     public Vector2 _UpAttackOffset;
     [SerializeField] private float _upAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _UpAttackLaunchAngle;
-    [SerializeField] [Range(0.0f, 2000.0f)] public float _UpAttackLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _UpAttackMaxLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _UpAttackMinLaunchSize;
     [SerializeField] [Range(0.0f, 1.5f)] public float _UpAttackStunDuration;
+    [SerializeField] [Range(0.0f, 2.5f)] public float _UpAttackHoldDuration;
 
     [Header("Downwards Attack")]
 
@@ -99,8 +101,10 @@ public class CharacterController : MonoBehaviour
     public Vector2 _DownAttackOffset;
     [SerializeField] private float _downAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _DownAttackLaunchAngle;
-    [SerializeField] [Range(0.0f, 2000.0f)] public float _DownAttackLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _DownAttackMaxLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _DownAttackMinLaunchSize;
     [SerializeField] [Range(0.0f, 1.5f)] public float _DownAttackStunDuration;
+    [SerializeField] [Range(0.0f, 2.5f)] public float _DownAttackHoldDuration;
 
     [Header("Side Attacks")]
 
@@ -108,16 +112,20 @@ public class CharacterController : MonoBehaviour
     public Vector2 _SideAttackOffset;
     [SerializeField] private float _sideAttackDuration;
     [SerializeField] [Range(-60.0f, 60.0f)] public float _SideAttackLaunchAngle;
-    [SerializeField] [Range(0.0f, 2000.0f)] public float _SideAttackLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _SideAttackMaxLaunchSize;
+    [SerializeField] [Range(0.0f, 2000.0f)] public float _SideAttackMinLaunchSize;
     [SerializeField] [Range(0.0f, 1.5f)] public float _SideAttackStunDuration;
+    [SerializeField] [Range(0.0f, 2.5f)] public float _SideAttackHoldDuration;
 
     bool _attackKeyDown = false;
+    bool _chargingAttack = false;
     bool _attacking = false;
     bool _attackOnCooldown = false;
     AttackType _currentAttack = AttackType.None;
 
     private float _attackTimer = 0.0f;
     private float _attackCooldownTimer = 0.0f;
+    private float _attackChargeTimer=0.0f;
 
     bool _stunned = false;
     float _stunnedTimer = 0.0f;
@@ -403,9 +411,9 @@ public class CharacterController : MonoBehaviour
                 float absHorizontal = Mathf.Abs(_horizontalInput);
                 float absVertical = Mathf.Abs(_verticalInput);
 
-
                 _attacking = true;
 
+                
                 if (absVertical > absHorizontal)
                 {
                     if (_verticalInput < 0)
@@ -413,32 +421,45 @@ public class CharacterController : MonoBehaviour
                         if (!_grounded)
                         {
                             //DOWN ATTACK
-                            _currentAttack = AttackType.Down;
-                            _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                            _downAttackCollider.enabled = true;
+                            //_currentAttack = AttackType.Down;
+                           
                         }
                         else
                         {
                             _attacking = false;
+                            _currentAttack = AttackType.None;
                         }
                     }
                     else
                     {
                         //UP ATTACK
                         _currentAttack = AttackType.Up;
-                        _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                        _upAttackCollider.enabled = true;
+                        
                     }
                 }
                 else if (absHorizontal >= absVertical)
                 {
                     //SIDE ATTACK
-                    _currentAttack = AttackType.Side;
-                    _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                    _sideAttackCollider.enabled = true;
+                    _currentAttack = AttackType.Side; 
+                }
+
+
+                //decide if attack is immediatly released or charged
+                if(_currentAttack != AttackType.None)
+                {
+                    //can't charge Attack while in mid-air
+                    if(!_grounded)
+                    {
+                        ReleaseAttack();
+                    }
+                    else
+                    {
+                        _chargingAttack = true;
+                    }
                 }
             }
         }
+
 
         //SPECIAL ATTACK
         if (_specialAttackKeyDown)
@@ -449,6 +470,30 @@ public class CharacterController : MonoBehaviour
             }
         }
        
+    }
+
+    private void ReleaseAttack()
+    {
+        switch (_currentAttack)
+        {
+            //collider specific changes
+            case AttackType.Side:
+                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                _sideAttackCollider.enabled = true;
+                break;
+            case AttackType.Up:
+                _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                _upAttackCollider.enabled = true;
+                break;
+            case AttackType.Down:
+                _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
+                _downAttackCollider.enabled = true;
+                break;
+            case AttackType.None:
+                break;
+            default:
+                break;
+        }
     }
 
     private void AttackTick()
@@ -465,9 +510,49 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        //charging attack
+        if(_chargingAttack)
+        {
+            Debug.Log("CHARGING");
+            _attackChargeTimer += Time.deltaTime;
+
+            switch (_currentAttack)
+            {
+                //collider specific changes
+                case AttackType.Side:
+                    if (_attackChargeTimer > _SideAttackHoldDuration)
+                    {
+                        ReleaseAttack();
+                        _attackChargeTimer = 0.0f;
+                        _chargingAttack = false;
+                    }
+                    break;
+                case AttackType.Up:
+                    if (_attackChargeTimer > _UpAttackHoldDuration)
+                    {
+                        ReleaseAttack();
+                        _attackChargeTimer = 0.0f;
+                        _chargingAttack = false;
+                    }
+                    break;
+                case AttackType.Down:
+                    if (_attackChargeTimer > _DownAttackHoldDuration)
+                    {
+                        ReleaseAttack();
+                        _attackChargeTimer = 0.0f;
+                        _chargingAttack = false;
+                    }
+                    break;
+                case AttackType.None:
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         //attack timer
-        if (_attacking)
+        if (_attacking && !_chargingAttack)
         {
             _attackTimer += Time.deltaTime;
             bool attackReset = false;
@@ -586,9 +671,14 @@ public class CharacterController : MonoBehaviour
         {
             _attackKeyDown = true;
         }
-        else
+        else if (Input.GetButtonUp("Attack" + _inputSuffix))
         {
             _attackKeyDown = false;
+
+            if (_chargingAttack)
+            {
+                ReleaseAttack();
+            }
         }
 
         if(Input.GetButtonDown("SpecialAttack" + _inputSuffix))
@@ -598,6 +688,8 @@ public class CharacterController : MonoBehaviour
         else
         {
             _specialAttackKeyDown = false;
+
+
         }
     }
 
@@ -606,6 +698,8 @@ public class CharacterController : MonoBehaviour
         _stunned = true;
         _stunnedDuration = duration;
         this.GetComponent<SpriteRenderer>().color = Color.red;
+        _animator.SetBool("Stunned", true);
+
     }
 
     private void StunTick()
@@ -617,6 +711,7 @@ public class CharacterController : MonoBehaviour
             _stunned = false;
             _stunnedTimer = 0.0f;
             this.GetComponent<SpriteRenderer>().color = Color.white;
+            _animator.SetBool("Stunned", false);
 
         }
     }

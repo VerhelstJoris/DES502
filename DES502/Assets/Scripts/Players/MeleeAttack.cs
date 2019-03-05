@@ -12,7 +12,7 @@ public class MeleeAttack : MonoBehaviour {
     public HitboxID _hitboxID;
 
 
-    private float _launchAmount;
+    private float _launchAmountMax, _launchAmountMin;
     private Vector2 _defaultLaunchVector;
     private float _stunDuration;
 
@@ -32,7 +32,8 @@ public class MeleeAttack : MonoBehaviour {
         {
             case HitboxID.Up:
                 launchAngle = _charController._UpAttackLaunchAngle;
-                _launchAmount = _charController._UpAttackLaunchSize;
+                _launchAmountMax = _charController._UpAttackMaxLaunchSize;
+                _launchAmountMin = _charController._UpAttackMinLaunchSize;
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle+90));
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle+90));
@@ -41,7 +42,8 @@ public class MeleeAttack : MonoBehaviour {
                 break;
             case HitboxID.Down:
                 launchAngle = _charController._DownAttackLaunchAngle;
-                _launchAmount = _charController._DownAttackLaunchSize;
+                _launchAmountMax = _charController._DownAttackMaxLaunchSize;
+                _launchAmountMin = _charController._DownAttackMinLaunchSize;
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * (launchAngle + 270));
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * (launchAngle + 270));
@@ -51,8 +53,8 @@ public class MeleeAttack : MonoBehaviour {
                 break;
             case HitboxID.Side:
                 launchAngle = _charController._SideAttackLaunchAngle;
-                _launchAmount = _charController._SideAttackLaunchSize;
-
+                _launchAmountMax = _charController._SideAttackMaxLaunchSize;
+                _launchAmountMin = _charController._SideAttackMinLaunchSize;
 
                 defaultDirection.x = Mathf.Cos(Mathf.Deg2Rad * launchAngle);
                 defaultDirection.y = Mathf.Sin(Mathf.Deg2Rad * launchAngle);
@@ -86,7 +88,7 @@ public class MeleeAttack : MonoBehaviour {
         {
             //Debug.Log("Player");
             //Debug.Log(launchVector);
-            col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
+            col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmountMax,col.transform.position);
             col.GetComponent<CharacterController>().Stun(_stunDuration);
         }
 

@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GameManager: {fileID: 0}
   _PlayerTag: {fileID: 0}
+  _PlayerUI: {fileID: 0}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 23
@@ -254,6 +255,7 @@ MonoBehaviour:
   _upAttackObject: {fileID: 4941518910137070}
   _FacingRight: 1
   _PlayerID: 0
+  _TeamID: 0
   _moveSpeed: 40
   _movementSmoothing: 0.1
   _airControl: 1
@@ -267,20 +269,26 @@ MonoBehaviour:
   _UpAttackOffset: {x: 0, y: 0.6}
   _upAttackDuration: 0.25
   _UpAttackLaunchAngle: -24.9
-  _UpAttackLaunchSize: 1200
+  _UpAttackMaxLaunchSize: 1200
+  _UpAttackMinLaunchSize: 500
   _UpAttackStunDuration: 0.5
+  _UpAttackHoldDuration: 1.5
   _DownAttackSize: {x: 1, y: 0.6}
   _DownAttackOffset: {x: 0, y: -0.6}
   _downAttackDuration: 0.25
   _DownAttackLaunchAngle: 19.5
-  _DownAttackLaunchSize: 1200
+  _DownAttackMaxLaunchSize: 1200
+  _DownAttackMinLaunchSize: 500
   _DownAttackStunDuration: 0.5
+  _DownAttackHoldDuration: 1.5
   _SideAttackSize: {x: 0.9, y: 1.4}
   _SideAttackOffset: {x: 0.7, y: 0}
   _sideAttackDuration: 0.25
   _SideAttackLaunchAngle: 16
-  _SideAttackLaunchSize: 1200
+  _SideAttackMaxLaunchSize: 1200
+  _SideAttackMinLaunchSize: 500
   _SideAttackStunDuration: 0.5
+  _SideAttackHoldDuration: 1.5
   _projectileCooldownDuration: 0.3
   _projectileStunDuration: 0.25
   _projectileLaunchAmount: 200
@@ -293,6 +301,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _AmountOfStocks: 0
+  _AmountOfDeaths: 0
   _PlayerState: 0
 --- !u!95 &1282642253655051
 Animator:
