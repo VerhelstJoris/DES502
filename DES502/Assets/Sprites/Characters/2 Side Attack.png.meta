@@ -1,0 +1,329 @@
+fileFormatVersion: 2
+guid: c5aedb653053c8645a65822653f4c1a4
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 2 Side Attack_0
+    21300002: 2 Side Attack_1
+    21300004: 2 Side Attack_2
+    21300006: 2 Side Attack_3
+    21300008: 2 Side Attack_4
+    21300010: 2 Side Attack_5
+    21300012: 2 Side Attack_6
+    21300014: 2 Side Attack_7
+    21300016: 2 Side Attack_8
+    21300018: 2 Side Attack_9
+    21300020: 2 Side Attack_10
+    21300022: 2 Side Attack_11
+    21300024: 2 Side Attack_12
+    21300026: 2 Side Attack_13
+    21300028: 2 Side Attack_14
+    21300030: 2 Side Attack_15
+    21300032: 2 Side Attack_16
+    21300034: 2 Side Attack_17
+    21300036: 2 Side Attack_18
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 2 Side Attack_0
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1608
+        width: 654
+        height: 918
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84ec53e5fe816964ebf33087b0cd43c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_1
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 1611
+        width: 672
+        height: 918
+      alignment: 9
+      pivot: {x: 0.675, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 911d525392ead134491c0017d260ea98
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_3
+      rect:
+        serializedVersion: 2
+        x: 2159
+        y: 1611
+        width: 742
+        height: 918
+      alignment: 9
+      pivot: {x: 0.7125, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315aa217791072e459752af1d1226204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_5
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 1608
+        width: 761
+        height: 918
+      alignment: 9
+      pivot: {x: 0.725, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0838844f6e677c44c9aa55f1fe27efdf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_7
+      rect:
+        serializedVersion: 2
+        x: 4957
+        y: 1602
+        width: 808
+        height: 918
+      alignment: 9
+      pivot: {x: 0.59, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 575f3a3ac669a894eba578caf6920e09
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 298
+        width: 1169
+        height: 921
+      alignment: 9
+      pivot: {x: 0.3125, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0251964528952cb4f918b1ebd8319444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_9
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 296
+        width: 1082
+        height: 916
+      alignment: 9
+      pivot: {x: 0.2625, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e6ef9db94faf443b57bf1d99524c76
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_10
+      rect:
+        serializedVersion: 2
+        x: 2776
+        y: 304
+        width: 1051
+        height: 917
+      alignment: 9
+      pivot: {x: 0.2375, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee63a2fbd023754bacbe4aaa7ffe062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_12
+      rect:
+        serializedVersion: 2
+        x: 4015
+        y: 304
+        width: 731
+        height: 921
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2af9b6f5ab266324aa738e98c57c9db9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Side Attack_14
+      rect:
+        serializedVersion: 2
+        x: 5074
+        y: 308
+        width: 753
+        height: 917
+      alignment: 9
+      pivot: {x: 0.375, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe3e854af38b654da0c3288aedb24b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: cff4de5e929456243b339346d9b6657c
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

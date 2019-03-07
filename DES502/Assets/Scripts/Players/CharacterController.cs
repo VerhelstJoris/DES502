@@ -83,6 +83,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Tooltip("How long that you can't attack after the attack ends")] private float _attackCooldownDuration;
 
     private BoxCollider2D _sideAttackCollider, _downAttackCollider, _upAttackCollider;
+    private MeleeAttack _sideAttack, _downAttack, _upAttack;
 
     [Header("Upwards Attack")]
 
@@ -121,6 +122,7 @@ public class CharacterController : MonoBehaviour
     bool _chargingAttack = false;
     bool _attacking = false;
     bool _attackOnCooldown = false;
+    bool _attackWindupFinished = false;
     AttackType _currentAttack = AttackType.None;
 
     private float _attackTimer = 0.0f;
@@ -241,12 +243,33 @@ public class CharacterController : MonoBehaviour
         _upAttackCollider = _upAttackObject.GetComponent<BoxCollider2D>();
         _downAttackCollider = _downAttackObject.GetComponent<BoxCollider2D>();
 
+        _sideAttack = _sideAttackObject.GetComponent<MeleeAttack>();
+        _upAttack = _upAttackObject.GetComponent<MeleeAttack>();
+        _downAttack = _downAttackObject.GetComponent<MeleeAttack>();
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
         ConfigureJump(_minJumpHeight, _minJumpTime, _maxJumpHeight);
 
+
+        //setting animation length
+        //get length of animation clip
+        RuntimeAnimatorController ac = _animator.runtimeAnimatorController;    //Get Animator controller
+        for (int i = 0; i < ac.animationClips.Length; i++)                 //For all animations
+        {
+            if (ac.animationClips[i].name == "Attack_Side")        //If it has the same name as your clip
+            {
+                float sideAttackDurationAnim = ac.animationClips[i].length;
+                _animator.SetFloat("Attack_Side_Speed", sideAttackDurationAnim / _sideAttackDuration);
+            }
+
+            //if (ac.animationClips[i].name == "Attack_Up")        //If it has the same name as your clip
+            //{
+            //    float upAttackDurationAnim = ac.animationClips[i].length;
+            //    _animator.SetFloat("Attack_Up_Speed", upAttackDurationAnim / _sideAttackDuration);
+            //}
+        }
 
     }
 
@@ -315,6 +338,12 @@ public class CharacterController : MonoBehaviour
             Vector3 targetVelocity = new Vector2(move * magicNumber, _rigidbody.velocity.y);
 
             // And then smoothing it out and applying it to the character
+
+            if(_attacking)
+            {
+                targetVelocity = new Vector2(0, _rigidbody.velocity.y);
+
+            }
             _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
 
 
@@ -440,22 +469,27 @@ public class CharacterController : MonoBehaviour
                 else if (absHorizontal >= absVertical)
                 {
                     //SIDE ATTACK
-                    _currentAttack = AttackType.Side; 
+                    _currentAttack = AttackType.Side;
+                    _animator.SetBool("Attacking_Side", true);
+
                 }
 
 
                 //decide if attack is immediatly released or charged
-                if(_currentAttack != AttackType.None)
+                if (_currentAttack != AttackType.None)
                 {
                     //can't charge Attack while in mid-air
                     if(!_grounded)
                     {
-                        ReleaseAttack();
+                        if (_attackWindupFinished)
+                        {
+                            ReleaseAttack();
+                        }
                     }
                     else
                     {
-                        _chargingAttack = true;
-                        this.GetComponent<SpriteRenderer>().color = new Color(0, 1.0f, 0);
+                        //_chargingAttack = true;
+                        //this.GetComponent<SpriteRenderer>().color = new Color(0, 1.0f, 0);
                     }
                 }
             }
@@ -475,6 +509,9 @@ public class CharacterController : MonoBehaviour
 
     private void ReleaseAttack()
     {
+        _animator.SetBool("Attack_Charged", true);
+
+
         _chargingAttack = false;
         this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f);
 
@@ -485,14 +522,19 @@ public class CharacterController : MonoBehaviour
             case AttackType.Side:
                 _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
                 _sideAttackCollider.enabled = true;
+                _sideAttack.SetLaunchAmount(_SideAttackMinLaunchSize + ((_attackChargeTimer / _SideAttackHoldDuration) * (_SideAttackMaxLaunchSize - _SideAttackMinLaunchSize)));
                 break;
             case AttackType.Up:
                 _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
                 _upAttackCollider.enabled = true;
+                _upAttack.SetLaunchAmount(_UpAttackMinLaunchSize + ((_attackChargeTimer / _UpAttackHoldDuration) * (_UpAttackMaxLaunchSize - _UpAttackMinLaunchSize)));
+
                 break;
             case AttackType.Down:
                 _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
                 _downAttackCollider.enabled = true;
+                _downAttack.SetLaunchAmount(_DownAttackMinLaunchSize +  ((_attackChargeTimer / _DownAttackHoldDuration) * (_DownAttackMaxLaunchSize-_DownAttackMinLaunchSize)));
+
                 break;
             case AttackType.None:
                 break;
@@ -516,7 +558,14 @@ public class CharacterController : MonoBehaviour
         }
 
         //charging attack
-        if(_chargingAttack)
+        if (_chargingAttack && _attackWindupFinished && !_attackKeyDown)
+        {
+            //releasing attack
+            Debug.Log("attack tap");
+            ReleaseAttack();
+        }
+
+        if (_chargingAttack && _attackWindupFinished)
         {
             Debug.Log("CHARGING");
             _attackChargeTimer += Time.deltaTime;
@@ -560,16 +609,16 @@ public class CharacterController : MonoBehaviour
         if (_attacking && !_chargingAttack)
         {
             _attackTimer += Time.deltaTime;
-            bool attackReset = false;
 
             //reset after attack finishes
             switch (_currentAttack)
             {
+
                 //collider specific changes
                 case AttackType.Side:
                     if (_attackTimer > _sideAttackDuration)
                     {
-                        attackReset = true;
+                        ResetAttack();
                         _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                         _sideAttackCollider.enabled = false;
                     }
@@ -577,7 +626,7 @@ public class CharacterController : MonoBehaviour
                 case AttackType.Up:
                     if (_attackTimer > _upAttackDuration)
                     {
-                        attackReset = true;
+                        ResetAttack();
                         _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                         _upAttackCollider.enabled = false;
                     }
@@ -585,7 +634,7 @@ public class CharacterController : MonoBehaviour
                 case AttackType.Down:
                     if (_attackTimer > _downAttackDuration)
                     {
-                        attackReset = true;
+                        ResetAttack();
                         _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                         _downAttackCollider.enabled = false;
                     }
@@ -596,14 +645,7 @@ public class CharacterController : MonoBehaviour
                     break;
             }
 
-            //general reset
-            if (attackReset)
-            {
-                _attackTimer = 0.0f;
-                _attacking = false;
-                _currentAttack = AttackType.None;
-                _attackOnCooldown = true;
-            }
+         
         }
 
 
@@ -644,6 +686,15 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    private void ResetAttack()
+    {
+        _attackTimer = 0.0f;
+        _attacking = false;
+        _currentAttack = AttackType.None;
+        _attackOnCooldown = true;
+        _attackWindupFinished = false;
+    }
+
     private void Flip()
     {
 
@@ -679,10 +730,6 @@ public class CharacterController : MonoBehaviour
         {
             _attackKeyDown = false;
 
-            if (_chargingAttack)
-            {
-                ReleaseAttack();
-            }
         }
 
         if(Input.GetButtonDown("SpecialAttack" + _inputSuffix))
@@ -692,8 +739,6 @@ public class CharacterController : MonoBehaviour
         else
         {
             _specialAttackKeyDown = false;
-
-
         }
     }
 
@@ -779,4 +824,27 @@ public class CharacterController : MonoBehaviour
         }
         return false;  // return false if we haven't already returned true
     }
+
+    public void WindupAnimationFinished()
+    {
+        Debug.Log("WINDUP FINISHED");
+        _attackWindupFinished = true;
+
+        if(_attackKeyDown)
+        {
+            _chargingAttack = true;
+            this.GetComponent<SpriteRenderer>().color = new Color(0, 1.0f, 0);
+        }
+        else
+        {
+            Debug.Log("attack tap");
+            ReleaseAttack();
+        }
+    }
+
+    public void AttackAnimationFinished()
+    {
+        ResetAttack();
+    }
 }
+

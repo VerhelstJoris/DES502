@@ -138,7 +138,6 @@ public class GameManager : MonoBehaviour
 
         _eventSystem = ObjectFactory.CreateEventSystem();
         
-
         //set respawnTime
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
