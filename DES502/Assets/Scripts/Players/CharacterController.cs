@@ -253,6 +253,10 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _grounded = IsGrounded();
+        if (!_grounded)
+        {
+            CheckIfLandingOnHead();
+        }
 
         //Movement
         HandlePlayerInput();
@@ -779,5 +783,29 @@ public class CharacterController : MonoBehaviour
             }
         }
         return grounded;
+    }
+
+    private void CheckIfLandingOnHead()
+    {
+        // This whole way of checking seems horribly unoptimal - should be first on the table if it comes to optimising code
+        int playerLayerMask = LayerMask.GetMask("Player");
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, playerLayerMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Debug.Log("COLLIDED WITH PLAYER");
+            /*
+            if (colliders[i].gameObject != gameObject)
+            {
+                grounded = true;
+                if (!wasGrounded)
+                {
+                    OnLandEvent.Invoke();
+                    _animator.SetBool("Jumping", false);
+                    //_projectileOnCooldown = false;
+                    //_projectileCooldownTimer = 0.0f;
+                }
+            }
+            */
+        }
     }
 }
