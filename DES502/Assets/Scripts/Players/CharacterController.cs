@@ -792,7 +792,15 @@ public class CharacterController : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, playerLayerMask);
         for (int i = 0; i < colliders.Length; i++)
         {
-            Debug.Log("COLLIDED WITH PLAYER");
+            if (colliders[i].gameObject.tag == "Player")
+            {
+                //if (colliders[i].gameObject.GetComponent<CharacterController>()._PlayerTag != _PlayerTag)
+                if (colliders[i].gameObject != this.gameObject)
+                {
+                    Debug.Log("COLLIDED WITH PLAYER");
+                }
+            }
+            //_rigidbody.AddForce(Vector2.up * 100);
             /*
             if (colliders[i].gameObject != gameObject)
             {
