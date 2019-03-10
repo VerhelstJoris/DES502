@@ -253,6 +253,7 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         _grounded = IsGrounded();
+        // TODO: change to only check while falling
         if (!_grounded)
         {
             CheckIfLandingOnHead();
@@ -788,6 +789,7 @@ public class CharacterController : MonoBehaviour
     private void CheckIfLandingOnHead()
     {
         // This whole way of checking seems horribly unoptimal - should be first on the table if it comes to optimising code
+        // Currently collides more than once!!
         int playerLayerMask = LayerMask.GetMask("Player");
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, playerLayerMask);
         for (int i = 0; i < colliders.Length; i++)
@@ -797,10 +799,13 @@ public class CharacterController : MonoBehaviour
                 //if (colliders[i].gameObject.GetComponent<CharacterController>()._PlayerTag != _PlayerTag)
                 if (colliders[i].gameObject != this.gameObject)
                 {
-                    Debug.Log("COLLIDED WITH PLAYER");
+                    //Debug.Log("COLLIDED WITH PLAYER");
+                    _rigidbody.AddForce(Vector2.up * 500);
+                    // get colliding player and stun them
+                    colliders[i].GetComponent<CharacterController>().Stun(0.5f);
+                    colliders[i].GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
                 }
             }
-            //_rigidbody.AddForce(Vector2.up * 100);
             /*
             if (colliders[i].gameObject != gameObject)
             {
