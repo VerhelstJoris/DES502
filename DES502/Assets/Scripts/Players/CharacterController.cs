@@ -77,6 +77,18 @@ public class CharacterController : MonoBehaviour
     float _jumpVelocity = 0.0f;
     float _maxJumpTime = 0.0f;
 
+    // These values aren't as important to fine tweak as regular jumping
+    [Header("Player Stomp")]
+    [Range(0, 1000)] [SerializeField] [Tooltip("How much force should be added to the player while bouncing?")]
+    int _playerStompJumpHeight = 500;
+    [Range(0, 1000)] [SerializeField] [Tooltip("How much force should be added to the player being bounced on?")]
+    int _playerStompKnockbackHeight = 500;
+    [Range(0f, 2f)] [SerializeField] [Tooltip("How long should the player being bounced on be stunned for?")]
+    float _playerStompStunDuration = 0.5f;
+    [Range(0f, 0.5f)] [SerializeField] [Tooltip("How long should the cooldown be inbetween stomps? (Note: this is to prevent the check returning true multiple times for the same stomp - make this value as low as it will go without causing issues)")]
+    float _playerStompCooldownDuration = 0.2f;
+    float _playerStompTimeCounter;
+
     //ATTACK RELATED
     //-----------------------------------
     [Header("Attacks")]
@@ -792,6 +804,7 @@ public class CharacterController : MonoBehaviour
         // Currently collides more than once!!
         int playerLayerMask = LayerMask.GetMask("Player");
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_groundCheck.position, k_groundedRadius, playerLayerMask);
+        Debug.Log(colliders.Length);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject.tag == "Player")
@@ -800,25 +813,12 @@ public class CharacterController : MonoBehaviour
                 if (colliders[i].gameObject != this.gameObject)
                 {
                     //Debug.Log("COLLIDED WITH PLAYER");
-                    _rigidbody.AddForce(Vector2.up * 500);
+                    _rigidbody.AddForce(Vector2.up * _playerStompJumpHeight);
                     // get colliding player and stun them
-                    colliders[i].GetComponent<CharacterController>().Stun(0.5f);
-                    colliders[i].GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
+                    colliders[i].GetComponent<CharacterController>().Stun(_playerStompStunDuration);
+                    colliders[i].GetComponent<Rigidbody2D>().AddForce(Vector2.up * _playerStompKnockbackHeight);
                 }
             }
-            /*
-            if (colliders[i].gameObject != gameObject)
-            {
-                grounded = true;
-                if (!wasGrounded)
-                {
-                    OnLandEvent.Invoke();
-                    _animator.SetBool("Jumping", false);
-                    //_projectileOnCooldown = false;
-                    //_projectileCooldownTimer = 0.0f;
-                }
-            }
-            */
         }
     }
 }
