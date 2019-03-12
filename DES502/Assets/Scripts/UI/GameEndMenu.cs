@@ -28,7 +28,7 @@ public class GameEndMenu : MonoBehaviour
     public void Initialize(GameManager manager, Canvas canvas)
     {
         _canvas = canvas;
-        _menuButton.onClick.AddListener(LoadMainMenuOnClick);
+        //_menuButton.onClick.AddListener(LoadMainMenuOnClick);
         Debug.Log("Initialized");
     }
 

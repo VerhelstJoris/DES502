@@ -1,0 +1,412 @@
+fileFormatVersion: 2
+guid: 29df9eecd57290f4b907ce568e9864f9
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 2 Upwards Attack_0
+    21300002: 2 Upwards Attack_1
+    21300004: 2 Upwards Attack_2
+    21300006: 2 Upwards Attack_3
+    21300008: 2 Upwards Attack_4
+    21300010: 2 Upwards Attack_5
+    21300012: 2 Upwards Attack_6
+    21300014: 2 Upwards Attack_7
+    21300016: 2 Upwards Attack_8
+    21300018: 2 Upwards Attack_9
+    21300020: 2 Upwards Attack_10
+    21300022: 2 Upwards Attack_11
+    21300024: 2 Upwards Attack_12
+    21300026: 2 Upwards Attack_13
+    21300028: 2 Upwards Attack_14
+    21300030: 2 Upwards Attack_15
+    21300032: 2 Upwards Attack_16
+    21300034: 2 Upwards Attack_17
+    21300036: 2 Upwards Attack_18
+    21300038: 2 Upwards Attack_19
+    21300040: 2 Upwards Attack_20
+    21300042: 2 Upwards Attack_21
+    21300044: 2 Upwards Attack_22
+    21300046: 2 Upwards Attack_23
+    21300048: 2 Upwards Attack_24
+    21300050: 2 Upwards Attack_25
+    21300052: 2 Upwards Attack_26
+    21300054: 2 Upwards Attack_27
+    21300056: 2 Upwards Attack_28
+    21300058: 2 Upwards Attack_29
+    21300060: 2 Upwards Attack_30
+    21300062: 2 Upwards Attack_31
+    21300064: 2 Upwards Attack_32
+    21300066: 2 Upwards Attack_33
+    21300068: 2 Upwards Attack_34
+    21300070: 2 Upwards Attack_35
+    21300072: 2 Upwards Attack_36
+    21300074: 2 Upwards Attack_37
+    21300076: 2 Upwards Attack_38
+    21300078: 2 Upwards Attack_39
+    21300080: 2 Upwards Attack_40
+    21300082: 2 Upwards Attack_41
+    21300084: 2 Upwards Attack_42
+    21300086: 2 Upwards Attack_43
+    21300088: 2 Upwards Attack_44
+    21300090: 2 Upwards Attack_45
+    21300092: 2 Upwards Attack_46
+    21300094: 2 Upwards Attack_47
+    21300096: 2 Upwards Attack_48
+    21300098: 2 Upwards Attack_49
+    21300100: 2 Upwards Attack_50
+    21300102: 2 Upwards Attack_51
+    21300104: 2 Upwards Attack_52
+    21300106: 2 Upwards Attack_53
+    21300108: 2 Upwards Attack_54
+    21300110: 2 Upwards Attack_55
+    21300112: 2 Upwards Attack_56
+    21300114: 2 Upwards Attack_57
+    21300116: 2 Upwards Attack_58
+    21300118: 2 Upwards Attack_59
+    21300120: 2 Upwards Attack_60
+    21300122: 2 Upwards Attack_61
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 2 Upwards Attack_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 2852
+        width: 591
+        height: 906
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1117fcd250a0f424cbf1836d2e5a59f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_2
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2852
+        width: 542
+        height: 917
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5a4f1d62854804da28e040d40fc6c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_4
+      rect:
+        serializedVersion: 2
+        x: 2758
+        y: 2852
+        width: 585
+        height: 884
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 509786cafaf56fd4f9dcbb888c914241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_6
+      rect:
+        serializedVersion: 2
+        x: 3800
+        y: 2852
+        width: 694
+        height: 884
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df2495dfd5291540a3e479f7f122805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1599
+        width: 828
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f351f27e7f42cd047b36f69212377d70
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_24
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 1599
+        width: 704
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5468305c9749740459734abf5b4626b9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_25
+      rect:
+        serializedVersion: 2
+        x: 2711
+        y: 1599
+        width: 674
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9536da315164d64cbd66c8c91ac6aa3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_27
+      rect:
+        serializedVersion: 2
+        x: 3750
+        y: 1599
+        width: 841
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1208099abc04d48bf98ae0770b8def
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_43
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 33
+        width: 906
+        height: 883
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 069df4a2033f995409ed5defa202b2c5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_44
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 33
+        width: 659
+        height: 1254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9375d410160d9634187fe6e808514c3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_46
+      rect:
+        serializedVersion: 2
+        x: 2547
+        y: 33
+        width: 673
+        height: 1079
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e1f61628cf0fe5419124e33e29333b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2 Upwards Attack_47
+      rect:
+        serializedVersion: 2
+        x: 3656
+        y: 27
+        width: 637
+        height: 913
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5006b73bcfc53d54b87d9b175d76feda
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d072fbf05f6d4d14cba089d611e2e87a
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

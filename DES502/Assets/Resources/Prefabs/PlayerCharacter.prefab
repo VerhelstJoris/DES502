@@ -287,7 +287,7 @@ MonoBehaviour:
   _DownAttackHoldDuration: 1.5
   _SideAttackSize: {x: 0.9, y: 1.4}
   _SideAttackOffset: {x: 0.7, y: 0}
-  _sideAttackDuration: 0.25
+  _sideAttackDuration: 0.4
   _SideAttackLaunchAngle: 16
   _SideAttackMaxLaunchSize: 1200
   _SideAttackMinLaunchSize: 500

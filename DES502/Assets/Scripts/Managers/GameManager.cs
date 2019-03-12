@@ -71,9 +71,9 @@ public class GameManager : MonoBehaviour
         }
 
 
-        Debug.Log(_TeamSetup.ToString());
-        Debug.Log(_WinCondition.ToString());
-        Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
+       //Debug.Log(_TeamSetup.ToString());
+       //Debug.Log(_WinCondition.ToString());
+       //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
     }
 
     void Start()
@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
 
         var playerUIsInScene = FindObjectsOfType<PlayerUI>();
         _canvas = FindObjectOfType<Canvas>();
+        _gameEndPanel = FindObjectOfType<GameEndMenu>();
+        if(_gameEndPanel)
+        {
+            _gameEndPanel.gameObject.SetActive(false);
+        }
+
         _eventSystem = FindObjectOfType<EventSystem>();
 
         var playersInScene = FindObjectsOfType<CharacterController>();
@@ -115,7 +121,7 @@ public class GameManager : MonoBehaviour
         }
 
         //create end game panel
-        if(!_gameEndPanel)
+        if(_gameEndPanel == null)
         {
             _gameEndPanel =  ObjectFactory.CreateGameEndMenu(this, _canvas);
             _gameEndPanel.transform.SetParent(_canvas.transform, false);
@@ -129,16 +135,7 @@ public class GameManager : MonoBehaviour
             timer.transform.SetParent(_canvas.transform, false);
 
         }
-
-        //create event system
-        if(_eventSystem)
-        {
-            Destroy(_eventSystem.gameObject);
-        }
-
-        _eventSystem = ObjectFactory.CreateEventSystem();
         
-
         //set respawnTime
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
