@@ -99,13 +99,11 @@ public class RespawnPoint : MonoBehaviour
     {
         _playerData = data;
         
-
         _Active = true;
         _preRespawn = true;
         _activeTimer = 0.0f;
         _doorOpened = false;
         _doorClosed = false;
-        _animator.SetBool("DoorClosed", false);
 
     }
 

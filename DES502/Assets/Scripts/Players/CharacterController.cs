@@ -264,11 +264,11 @@ public class CharacterController : MonoBehaviour
                 _animator.SetFloat("Attack_Side_Speed", sideAttackDurationAnim / _sideAttackDuration);
             }
 
-            //if (ac.animationClips[i].name == "Attack_Up")        //If it has the same name as your clip
-            //{
-            //    float upAttackDurationAnim = ac.animationClips[i].length;
-            //    _animator.SetFloat("Attack_Up_Speed", upAttackDurationAnim / _sideAttackDuration);
-            //}
+            if (ac.animationClips[i].name == "Attack_Up")        //If it has the same name as your clip
+            {
+                float upAttackDurationAnim = ac.animationClips[i].length;
+                _animator.SetFloat("Attack_Up_Speed", upAttackDurationAnim / _sideAttackDuration);
+            }
         }
 
     }
@@ -463,7 +463,8 @@ public class CharacterController : MonoBehaviour
                     {
                         //UP ATTACK
                         _currentAttack = AttackType.Up;
-                        
+                        _animator.SetBool("Attacking_Up", true);
+
                     }
                 }
                 else if (absHorizontal >= absVertical)
@@ -584,6 +585,7 @@ public class CharacterController : MonoBehaviour
                 case AttackType.Up:
                     if (_attackChargeTimer > _UpAttackHoldDuration)
                     {
+                        Debug.Log("RELEASE UP");
                         ReleaseAttack();
                         _attackChargeTimer = 0.0f;
                         _chargingAttack = false;
@@ -605,48 +607,48 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        //attack timer
-        if (_attacking && !_chargingAttack)
-        {
-            _attackTimer += Time.deltaTime;
+        ////attack timer
+        //if (_attacking && !_chargingAttack)
+        //{
+        //    _attackTimer += Time.deltaTime;
 
-            //reset after attack finishes
-            switch (_currentAttack)
-            {
+        //    //reset after attack finishes
+        //    switch (_currentAttack)
+        //    {
 
-                //collider specific changes
-                case AttackType.Side:
-                    if (_attackTimer > _sideAttackDuration)
-                    {
-                        ResetAttack();
-                        _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                        _sideAttackCollider.enabled = false;
-                    }
-                    break;
-                case AttackType.Up:
-                    if (_attackTimer > _upAttackDuration)
-                    {
-                        ResetAttack();
-                        _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                        _upAttackCollider.enabled = false;
-                    }
-                    break;
-                case AttackType.Down:
-                    if (_attackTimer > _downAttackDuration)
-                    {
-                        ResetAttack();
-                        _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                        _downAttackCollider.enabled = false;
-                    }
-                    break;
-                case AttackType.None:
-                    break;
-                default:
-                    break;
-            }
+        //        //collider specific changes
+        //        case AttackType.Side:
+        //            if (_attackTimer > _sideAttackDuration)
+        //            {
+        //                ResetAttack();
+        //                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+        //                _sideAttackCollider.enabled = false;
+        //            }
+        //            break;
+        //        case AttackType.Up:
+        //            if (_attackTimer > _upAttackDuration)
+        //            {
+        //                ResetAttack();
+        //                _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+        //                _upAttackCollider.enabled = false;
+        //            }
+        //            break;
+        //        case AttackType.Down:
+        //            if (_attackTimer > _downAttackDuration)
+        //            {
+        //                ResetAttack();
+        //                _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+        //                _downAttackCollider.enabled = false;
+        //            }
+        //            break;
+        //        case AttackType.None:
+        //            break;
+        //        default:
+        //            break;
+        //    }
 
          
-        }
+        //}
 
 
         //projectile cooldown
@@ -690,9 +692,43 @@ public class CharacterController : MonoBehaviour
     {
         _attackTimer = 0.0f;
         _attacking = false;
-        _currentAttack = AttackType.None;
         _attackOnCooldown = true;
         _attackWindupFinished = false;
+
+        _animator.SetBool("Attacking_Side", false);
+        _animator.SetBool("Attacking_Up", false);
+
+        //reset after attack finishes
+        switch (_currentAttack)
+        {
+
+            //collider specific changes
+            case AttackType.Side:
+                
+                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                _sideAttackCollider.enabled = false;
+                
+                break;
+            case AttackType.Up:
+               
+                _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                _upAttackCollider.enabled = false;
+                
+                break;
+            case AttackType.Down:
+                
+                 _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
+                 _downAttackCollider.enabled = false;
+                
+                break;
+            case AttackType.None:
+                break;
+            default:
+                break;
+        }
+
+        _currentAttack = AttackType.None;
+
     }
 
     private void Flip()
@@ -844,6 +880,7 @@ public class CharacterController : MonoBehaviour
 
     public void AttackAnimationFinished()
     {
+        Debug.Log("Attack Ends");
         ResetAttack();
     }
 }
