@@ -13,7 +13,6 @@ public class Powerup : MonoBehaviour
     public POWERUP_TYPES _type;
 
     [Header("Sprite Animation")]
-
     [Range(0.0f, 0.5f)] [SerializeField] [Tooltip("How far (in units) should the sprite move from it's origin point?")]
     public float _maxYMovement = 0.2f;
     [Range(0.0f, 3.0f)] [SerializeField] [Tooltip("How fast should the sprite move?")]
@@ -31,6 +30,11 @@ public class Powerup : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        UpdateSpritePosition();
+    }
+
+    void UpdateSpritePosition()
     {
         _animationTimer += Time.deltaTime * _animationSpeed;
         /*
