@@ -47,4 +47,14 @@ public class Powerup : MonoBehaviour
         //Debug.Log(newYPos);
         _spriteObject.transform.localPosition = new Vector2(0, newYPos);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Destroy powerup if player collides with it
+        //Debug.Log(other.gameObject.tag);
+        if (other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
