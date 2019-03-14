@@ -191,6 +191,10 @@ public class CharacterController : MonoBehaviour
 
     public PlayerState _PlayerState = PlayerState.Idle;
 
+    // Powerup related
+    [HideInInspector]
+    public bool _controlsReversed = false;
+
     public void Initialize(PlayerData data)
     {
         _PlayerID = data.Id;
@@ -312,7 +316,7 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
+            _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1) * _moveSpeed * Time.fixedDeltaTime;
         }
         Move(_horizontalMove,_jumpKeyDown);
 

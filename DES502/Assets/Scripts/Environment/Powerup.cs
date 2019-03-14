@@ -6,7 +6,8 @@ public class Powerup : MonoBehaviour
 {
     public enum POWERUP_TYPES
     {
-        TEST
+        TEST,
+        REVERSE_CONTROLS
     }
 
     [SerializeField] [Tooltip("What type of powerup is this?")]
@@ -54,7 +55,21 @@ public class Powerup : MonoBehaviour
         //Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
+            ActivateEffect(other.gameObject.GetComponent<CharacterController>());
             Destroy(gameObject);
+        }
+    }
+
+    void ActivateEffect(CharacterController player)
+    {
+        switch (_type)
+        {
+            case (POWERUP_TYPES.TEST):
+                break;
+            case (POWERUP_TYPES.REVERSE_CONTROLS):
+                // TODO: change to activate on the enemy team
+                player._controlsReversed = true;
+                break;
         }
     }
 }
