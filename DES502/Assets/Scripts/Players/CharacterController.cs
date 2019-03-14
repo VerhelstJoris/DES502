@@ -198,6 +198,8 @@ public class CharacterController : MonoBehaviour
     // effects
     [HideInInspector]
     public bool _controlsReversed = false;
+    [HideInInspector]
+    public float _moveSpeedMultiplier = 1;
 
     public void Initialize(PlayerData data)
     {
@@ -325,7 +327,8 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1) * _moveSpeed * Time.fixedDeltaTime;
+            _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1)
+                * _moveSpeed * _moveSpeedMultiplier * Time.fixedDeltaTime;
         }
         Move(_horizontalMove,_jumpKeyDown);
 
@@ -978,6 +981,7 @@ public class CharacterController : MonoBehaviour
         // much simpler solution than keeping track of what effect was active
         // hopefully this won't ever cause an issue
         _controlsReversed = false;
+        _moveSpeedMultiplier = 1;
     }
 }
 

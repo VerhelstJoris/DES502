@@ -7,13 +7,19 @@ public class Powerup : MonoBehaviour
     public enum POWERUP_TYPES
     {
         TEST,
-        REVERSE_CONTROLS
+        REVERSE_CONTROLS,
+        MOVE_SPEED
     }
 
+    [Header("General")]
     [SerializeField] [Tooltip("What type of powerup is this?")]
     public POWERUP_TYPES _type;
     [Range(0.0f, 10.0f)] [SerializeField] [Tooltip("How long (in seconds) should the powerup effect last for?")]
     public float _effectTime = 5.0f;
+
+    [Header("Powerup-specific")]
+    [Range(0.0f, 5.0f)] [SerializeField] [Tooltip("Speed multiplier to use for speed powerup.")]
+    public float _moveSpeedMultiplier = 2.5f;
 
     [Header("Sprite Animation")]
     [Range(0.0f, 0.5f)] [SerializeField] [Tooltip("How far (in units) should the sprite move from it's origin point?")]
@@ -71,6 +77,9 @@ public class Powerup : MonoBehaviour
             case (POWERUP_TYPES.REVERSE_CONTROLS):
                 // TODO: change to activate on the enemy team
                 player._controlsReversed = true;
+                break;
+            case (POWERUP_TYPES.MOVE_SPEED):
+                player._moveSpeedMultiplier = _moveSpeedMultiplier;
                 break;
         }
         player.StartPowerupTimer(_effectTime);
