@@ -12,6 +12,8 @@ public class Powerup : MonoBehaviour
 
     [SerializeField] [Tooltip("What type of powerup is this?")]
     public POWERUP_TYPES _type;
+    [Range(0.0f, 10.0f)] [SerializeField] [Tooltip("How long (in seconds) should the powerup effect last for?")]
+    public float _effectTime = 5.0f;
 
     [Header("Sprite Animation")]
     [Range(0.0f, 0.5f)] [SerializeField] [Tooltip("How far (in units) should the sprite move from it's origin point?")]
@@ -71,5 +73,6 @@ public class Powerup : MonoBehaviour
                 player._controlsReversed = true;
                 break;
         }
+        player.StartPowerupTimer(_effectTime);
     }
 }

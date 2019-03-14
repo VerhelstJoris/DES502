@@ -192,6 +192,10 @@ public class CharacterController : MonoBehaviour
     public PlayerState _PlayerState = PlayerState.Idle;
 
     // Powerup related
+    // general
+    private bool _isPowerupTimerActive;
+    private float _powerupTimer;
+    // effects
     [HideInInspector]
     public bool _controlsReversed = false;
 
@@ -288,6 +292,11 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+    }
+
+    private void Update()
+    {
+        PowerupTimerTick();
     }
 
     private void FixedUpdate()
@@ -939,6 +948,36 @@ public class CharacterController : MonoBehaviour
     public void AttackAnimationFinished()
     {
         ResetAttack();
+    }
+
+    public void StartPowerupTimer(float duration)
+    {
+        _isPowerupTimerActive = true;
+        _powerupTimer = duration;
+    }
+
+    private void PowerupTimerTick()
+    {
+        // timer tick for disabling powerups after recieving one
+        if (_isPowerupTimerActive)
+        {
+            _powerupTimer -= Time.deltaTime;
+            //Debug.Log("_powerupTimer: " + _powerupTimer);
+            if (_powerupTimer <= 0)
+            {
+                OnPowerupTimerEnd();
+            }
+        }
+    }
+
+    private void OnPowerupTimerEnd()
+    {
+        // stop the timer tick from happening
+        _isPowerupTimerActive = false;
+        // disable all powerup effects
+        // much simpler solution than keeping track of what effect was active
+        // hopefully this won't ever cause an issue
+        _controlsReversed = false;
     }
 }
 
