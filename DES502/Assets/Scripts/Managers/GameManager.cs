@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
        //Debug.Log(_TeamSetup.ToString());
        //Debug.Log(_WinCondition.ToString());
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
+
+        Random.seed = System.Environment.TickCount;
     }
 
     void Start()
