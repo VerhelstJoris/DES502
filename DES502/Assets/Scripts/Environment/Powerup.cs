@@ -6,7 +6,6 @@ public class Powerup : MonoBehaviour
 {
     public enum POWERUP_TYPES
     {
-        TEST,
         REVERSE_CONTROLS,
         MOVE_SPEED
     }
@@ -72,8 +71,6 @@ public class Powerup : MonoBehaviour
     {
         switch (_type)
         {
-            case (POWERUP_TYPES.TEST):
-                break;
             case (POWERUP_TYPES.REVERSE_CONTROLS):
                 // TODO: change to activate on the enemy team
                 player._controlsReversed = true;
