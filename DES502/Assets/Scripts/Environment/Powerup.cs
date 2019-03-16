@@ -7,7 +7,8 @@ public class Powerup : MonoBehaviour
     public enum POWERUP_TYPES
     {
         REVERSE_CONTROLS,
-        MOVE_SPEED
+        MOVE_SPEED,
+        RANDOM  // Needs to be last for the random powerup to work
     }
 
     [Header("General")]
@@ -62,14 +63,14 @@ public class Powerup : MonoBehaviour
         //Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
-            ActivateEffect(other.gameObject.GetComponent<CharacterController>());
+            ActivateEffect(other.gameObject.GetComponent<CharacterController>(), _type);
             Destroy(gameObject);
         }
     }
 
-    void ActivateEffect(CharacterController player)
+    void ActivateEffect(CharacterController player, POWERUP_TYPES powerup)
     {
-        switch (_type)
+        switch (powerup)
         {
             case (POWERUP_TYPES.REVERSE_CONTROLS):
                 // TODO: change to activate on the enemy team
@@ -77,6 +78,16 @@ public class Powerup : MonoBehaviour
                 break;
             case (POWERUP_TYPES.MOVE_SPEED):
                 player._moveSpeedMultiplier = _moveSpeedMultiplier;
+                break;
+            case (POWERUP_TYPES.RANDOM):
+                // Activate a random powerup effect that isn't this one
+                // get the amount of powerup types minus random
+                // for this to work, RANDOM must remain the last index of POWERUP_TYPES
+                int powerupTypes = System.Enum.GetValues(typeof(POWERUP_TYPES)).Length - 1;
+                //Debug.Log("powerupTypes: " + powerupTypes);
+                POWERUP_TYPES powerupToActivate = (POWERUP_TYPES)Random.Range(0, powerupTypes);
+                //Debug.Log("powerupToActivate: " + powerupToActivate);
+                ActivateEffect(player, powerupToActivate);
                 break;
         }
         player.StartPowerupTimer(_effectTime);

@@ -75,11 +75,11 @@ public class GameManager : MonoBehaviour
        //Debug.Log(_WinCondition.ToString());
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
 
-        Random.seed = System.Environment.TickCount;
     }
 
     void Start()
     {
+        Random.seed = System.Environment.TickCount;
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
 
         var playerUIsInScene = FindObjectsOfType<PlayerUI>();
