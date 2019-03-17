@@ -200,6 +200,8 @@ public class CharacterController : MonoBehaviour
     public bool _controlsReversed = false;
     [HideInInspector]
     public float _moveSpeedMultiplier = 1;
+    [HideInInspector]
+    public bool _rooted = false;
 
     public void Initialize(PlayerData data)
     {
@@ -360,7 +362,7 @@ public class CharacterController : MonoBehaviour
 
             // And then smoothing it out and applying it to the character
 
-            if(_attacking)
+            if(_attacking || _rooted)
             {
                 targetVelocity = new Vector2(0, _rigidbody.velocity.y);
 
@@ -394,7 +396,7 @@ public class CharacterController : MonoBehaviour
         }
 
         // should we start jumping?
-        if (_grounded && jump && !_jumpKeyDownAlready)
+        if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
         {
         // _grounded will still return true as you begin to jump!
             _jumping = true;
@@ -982,6 +984,7 @@ public class CharacterController : MonoBehaviour
         // hopefully this won't ever cause an issue
         _controlsReversed = false;
         _moveSpeedMultiplier = 1;
+        _rooted = false;
     }
 }
 

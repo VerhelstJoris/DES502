@@ -8,6 +8,7 @@ public class Powerup : MonoBehaviour
     {
         REVERSE_CONTROLS,
         MOVE_SPEED,
+        ROOT,
         RANDOM  // Needs to be last for the random powerup to work
     }
 
@@ -75,9 +76,15 @@ public class Powerup : MonoBehaviour
             case (POWERUP_TYPES.REVERSE_CONTROLS):
                 // TODO: change to activate on the enemy team
                 player._controlsReversed = true;
+                // apply visual effect
                 break;
             case (POWERUP_TYPES.MOVE_SPEED):
                 player._moveSpeedMultiplier = _moveSpeedMultiplier;
+                // apply visual effect
+                break;
+            case (POWERUP_TYPES.ROOT):
+                // TODO: change to activate on the enemy team
+                player._rooted = true;
                 break;
             case (POWERUP_TYPES.RANDOM):
                 // Activate a random powerup effect that isn't this one
