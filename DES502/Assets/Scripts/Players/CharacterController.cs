@@ -204,6 +204,8 @@ public class CharacterController : MonoBehaviour
     public bool _rooted = false;
     [HideInInspector]
     public bool _shielded = false;
+    [HideInInspector]
+    public bool _meleeInstantKill = false;
 
     public void Initialize(PlayerData data)
     {
@@ -987,9 +989,11 @@ public class CharacterController : MonoBehaviour
         _moveSpeedMultiplier = 1;
         _rooted = false;
         _shielded = false;
+        _meleeInstantKill = false;
     }
 
-    public void RecieveHit(Vector2 knockbackVelocity, float stunDuration)  // rename this?
+    // rename this?
+    public void RecieveHit(Vector2 knockbackVelocity, float stunDuration, bool meleeHit = false)
     {
         if (_shielded)  // block hit if shield active
         {
@@ -997,9 +1001,16 @@ public class CharacterController : MonoBehaviour
         }
         else  // recieve hit as normal
         {
-            //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
-            _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
-            Stun(stunDuration);
+            if (meleeHit && _meleeInstantKill)
+            {
+                Die();
+            }
+            else
+            {
+                //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
+                _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
+                Stun(stunDuration);
+            }
         }
     }
 }

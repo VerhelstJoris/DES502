@@ -10,6 +10,7 @@ public class Powerup : MonoBehaviour
         MOVE_SPEED,
         ROOT,
         SHIELD,
+        MELEE_INSTANT_KILL,
         RANDOM  // Needs to be last for the random powerup to work
     }
 
@@ -80,6 +81,7 @@ public class Powerup : MonoBehaviour
                 // apply visual effect
                 break;
             case (POWERUP_TYPES.MOVE_SPEED):
+                // TODO: change to activate on the friendly team
                 player._moveSpeedMultiplier = _moveSpeedMultiplier;
                 // apply visual effect
                 break;
@@ -88,7 +90,12 @@ public class Powerup : MonoBehaviour
                 player._rooted = true;
                 break;
             case (POWERUP_TYPES.SHIELD):
+                // TODO: change to activate on the friendly team
                 player._shielded = true;
+                break;
+            case (POWERUP_TYPES.MELEE_INSTANT_KILL):
+                // TODO: change to activate on the enemy team
+                player._meleeInstantKill = true;
                 break;
             case (POWERUP_TYPES.RANDOM):
                 // Activate a random powerup effect that isn't this one
