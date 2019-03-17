@@ -202,6 +202,8 @@ public class CharacterController : MonoBehaviour
     public float _moveSpeedMultiplier = 1;
     [HideInInspector]
     public bool _rooted = false;
+    [HideInInspector]
+    public bool _shielded = false;
 
     public void Initialize(PlayerData data)
     {
@@ -801,13 +803,12 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Stun(float duration)
+    private void Stun(float duration)
     {
         _stunned = true;
         _stunnedDuration = duration;
         this.GetComponent<SpriteRenderer>().color = Color.red;
         _animator.SetBool("Stunned", true);
-
     }
 
     private void StunTick()
@@ -923,8 +924,8 @@ public class CharacterController : MonoBehaviour
                     //Debug.Log("STOMP COLLIDED WITH PLAYER");
                     _rigidbody.AddForce(Vector2.up * _playerStompJumpHeight);
                     // get colliding player and stun them
-                    colliders[i].GetComponent<CharacterController>().Stun(_playerStompStunDuration);
-                    colliders[i].GetComponent<Rigidbody2D>().AddForce(Vector2.up * _playerStompKnockbackHeight);
+                    colliders[i].GetComponent<CharacterController>().RecieveHit(
+                            Vector2.up * _playerStompKnockbackHeight, _playerStompStunDuration);
                     // put stomp on a cooldown to prevent this triggering again next tick
                     _playerStompCooldownTimer = _playerStompCooldownDuration;
                     _playerStompOnCooldown = true;
@@ -985,6 +986,21 @@ public class CharacterController : MonoBehaviour
         _controlsReversed = false;
         _moveSpeedMultiplier = 1;
         _rooted = false;
+        _shielded = false;
+    }
+
+    public void RecieveHit(Vector2 knockbackVelocity, float stunDuration)  // rename this?
+    {
+        if (_shielded)  // block hit if shield active
+        {
+            _shielded = false;
+        }
+        else  // recieve hit as normal
+        {
+            //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
+            _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
+            Stun(stunDuration);
+        }
     }
 }
 

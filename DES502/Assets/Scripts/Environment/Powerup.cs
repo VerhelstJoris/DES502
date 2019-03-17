@@ -9,6 +9,7 @@ public class Powerup : MonoBehaviour
         REVERSE_CONTROLS,
         MOVE_SPEED,
         ROOT,
+        SHIELD,
         RANDOM  // Needs to be last for the random powerup to work
     }
 
@@ -35,7 +36,7 @@ public class Powerup : MonoBehaviour
     void Start()
     {
         _spriteObject = transform.GetChild(0).gameObject;
-        Debug.Log(_spriteObject.name);
+        //Debug.Log(_spriteObject.name);
     }
 
     // Update is called once per frame
@@ -85,6 +86,9 @@ public class Powerup : MonoBehaviour
             case (POWERUP_TYPES.ROOT):
                 // TODO: change to activate on the enemy team
                 player._rooted = true;
+                break;
+            case (POWERUP_TYPES.SHIELD):
+                player._shielded = true;
                 break;
             case (POWERUP_TYPES.RANDOM):
                 // Activate a random powerup effect that isn't this one

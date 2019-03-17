@@ -54,8 +54,8 @@ public class ProjectileAttack : MonoBehaviour
         {
             if (col.GetComponent<CharacterController>()._PlayerID != _owner)
             {
-                col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector * _launchAmount, col.transform.position);
-                col.GetComponent<CharacterController>().Stun(_stunDuration);
+                col.GetComponent<CharacterController>().RecieveHit(launchVector * _launchAmount,
+                    _stunDuration);
             }
         }
         else
