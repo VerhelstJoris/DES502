@@ -14,6 +14,28 @@ public class Powerup : MonoBehaviour
         RANDOM  // Needs to be last for the random powerup to work
     }
 
+    // int is converted to bool
+    // bool "target friendly"
+    // POWERUP_TARGETS must remain in the same order as POWERUP_TYPES
+    // RANDOM is unnecersary here
+    private static bool[] POWERUP_TARGETS = {
+        false,
+        true,
+        false,
+        true,
+        false};  // simpler to target the taker rather than the giver
+
+    /*
+    private enum POWERUP_TARGETS
+    {
+        REVERSE_CONTROLS = 0,
+        MOVE_SPEED = 1,
+        ROOT = 0,
+        SHIELD = 1,
+        MELEE_INSTANT_KILL = 0  // simpler to target the taker rather than the giver
+    }
+    */
+
     [Header("General")]
     [SerializeField] [Tooltip("What type of powerup is this?")]
     public POWERUP_TYPES _type;
@@ -66,12 +88,34 @@ public class Powerup : MonoBehaviour
         //Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
-            ActivateEffect(other.gameObject.GetComponent<CharacterController>(), _type);
-            Destroy(gameObject);
+            ActivatePowerup(other.gameObject.GetComponent<CharacterController>());
         }
     }
 
-    void ActivateEffect(CharacterController player, POWERUP_TYPES powerup)
+    private void ActivatePowerup(CharacterController player)
+    {
+        Debug.Log("powerup type: " + _type);
+        if (_type == POWERUP_TYPES.RANDOM)
+        {
+            // Activate a random powerup effect that isn't this one
+            // get the amount of powerup types minus random
+            // for this to work, RANDOM must remain the last index of POWERUP_TYPES
+            //Debug.Log("RANDOM POWERUP COLLECTED")
+            Random.InitState(System.Environment.TickCount);
+            int powerupTypes = System.Enum.GetValues(typeof(POWERUP_TYPES)).Length - 1;
+            //Debug.Log("powerupTypes: " + powerupTypes);
+            POWERUP_TYPES powerupToActivate = (POWERUP_TYPES)Random.Range(0, powerupTypes);
+            Debug.Log("random powerupToActivate: " + powerupToActivate);
+            GetPowerupTargets(player, powerupToActivate);
+        }
+        else
+        {
+            GetPowerupTargets(player, _type);
+        }
+        Destroy(gameObject);
+    }
+
+    private void ApplyEffect(CharacterController player, POWERUP_TYPES powerup)
     {
         switch (powerup)
         {
@@ -97,6 +141,8 @@ public class Powerup : MonoBehaviour
                 // TODO: change to activate on the enemy team
                 player._meleeInstantKill = true;
                 break;
+            // RANDOM is no longer called in the effect stage
+            /*
             case (POWERUP_TYPES.RANDOM):
                 // Activate a random powerup effect that isn't this one
                 // get the amount of powerup types minus random
@@ -105,9 +151,34 @@ public class Powerup : MonoBehaviour
                 //Debug.Log("powerupTypes: " + powerupTypes);
                 POWERUP_TYPES powerupToActivate = (POWERUP_TYPES)Random.Range(0, powerupTypes);
                 //Debug.Log("powerupToActivate: " + powerupToActivate);
-                ActivateEffect(player, powerupToActivate);
+                ApplyEffect(player, powerupToActivate);
                 break;
+            */
         }
         player.StartPowerupTimer(_effectTime);
+    }
+
+    private void GetPowerupTargets(CharacterController player, POWERUP_TYPES powerup)
+    {
+        List<CharacterController> totalPlayers = GameObject.Find("GameManager").GetComponent<GameManager>()._characterControllers;
+        int playerTeamIndex = GetTeamIndex(player);
+        foreach(CharacterController p in totalPlayers)
+        {
+            int pTeamIndex = GetTeamIndex(p);
+            int powerupTypeIndex = System.Array.IndexOf(POWERUP_TYPES.GetValues(_type.GetType()), powerup);
+            //Debug.Log("powerupTypeIndex: " + powerupTypeIndex);
+            bool powerupTargetFriendly = POWERUP_TARGETS[powerupTypeIndex];
+            if ((playerTeamIndex == pTeamIndex && powerupTargetFriendly)
+                    || (playerTeamIndex != pTeamIndex && !powerupTargetFriendly))
+            {
+                // do effect here!!
+                ApplyEffect(p, powerup);
+            }
+        }
+    }
+
+    private int GetTeamIndex(CharacterController player)
+    {
+        return (int)player._TeamID;
     }
 }

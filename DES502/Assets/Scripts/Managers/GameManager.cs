@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameModeScriptableObject _GMScriptableObject;
 
     private RespawnPoint[] _respawnPoints;
-    private List<CharacterController> _characterControllers = new List<CharacterController>();
+    public List<CharacterController> _characterControllers = new List<CharacterController>();
 
     //UI
     private List<PlayerUI> _playerUIs = new List<PlayerUI>();
