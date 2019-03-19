@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
             data.Stocks = _startingStocksPerPlayer;
             data.TeamId = (TeamID)(i % 2);
             data.Deaths = 0;
+            data.charID = (CharacterID)(i % 2);
             _respawnPoints[i].Activate(data);
         }
     }
@@ -304,7 +305,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        var ui = ObjectFactory.CreatePlayerUI(character, _PlayerAmount, _WinCondition, _TeamSetup);
+        var ui = ObjectFactory.CreatePlayerUI(character, _PlayerAmount, _WinCondition, _TeamSetup, character._CharID );
         ui.transform.SetParent(_canvas.transform,false);
         _playerUIs.Add(ui);
     }

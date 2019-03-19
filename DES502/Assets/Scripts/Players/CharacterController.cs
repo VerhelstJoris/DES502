@@ -41,6 +41,7 @@ public class CharacterController : MonoBehaviour
 
     public PlayerID _PlayerID;
     public TeamID _TeamID;
+    public CharacterID _CharID;
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -216,27 +217,34 @@ public class CharacterController : MonoBehaviour
         _AmountOfStocks = data.Stocks;
         _TeamID = data.TeamId;
         _AmountOfDeaths = data.Deaths;
+        _CharID = data.charID;
 
         //proper input + animator
         switch (_PlayerID)
         {
             case PlayerID.Player1:
                 _inputSuffix = "_P1";
-                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player2:
                 _inputSuffix = "_P2";
-                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             case PlayerID.Player3:
                 _inputSuffix = "_P3";
-                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player4:
                 _inputSuffix = "_P4";
-                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             default:
+                break;
+        }
+
+        switch (_CharID)
+        {
+            case CharacterID.Fox:
+                _animator.runtimeAnimatorController = _foxAnimator;
+                break;
+            case CharacterID.Rabbit:
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
         }
 
@@ -260,21 +268,27 @@ public class CharacterController : MonoBehaviour
         {
             case PlayerID.Player1:
                 _inputSuffix = "_P1";
-                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player2:
                 _inputSuffix = "_P2";
-                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             case PlayerID.Player3:
                 _inputSuffix = "_P3";
-                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player4:
                 _inputSuffix = "_P4";
-                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             default:
+                break;
+        }
+
+        switch (_CharID)
+        {
+            case CharacterID.Fox:
+                _animator.runtimeAnimatorController = _foxAnimator;
+                break;
+            case CharacterID.Rabbit:
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
         }
 
@@ -920,7 +934,7 @@ public class CharacterController : MonoBehaviour
         data.Stocks = _AmountOfStocks;
         data.TeamId = _TeamID;
         data.Deaths = _AmountOfDeaths;
-
+        data.charID = _CharID;
 
         if (_PlayerTag)
         {

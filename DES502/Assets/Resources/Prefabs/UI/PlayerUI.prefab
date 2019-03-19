@@ -321,3 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerID: 0
   _stocksText: {fileID: 635700298540310917}
+  _bgImage: {fileID: 5387103091838023575}
+  _charImage: {fileID: 5387103091761663559}
+  _rabbitImage: {fileID: 21300000, guid: 2dff48283f7161a4dbc073cfc2bc853a, type: 3}
+  _foxImage: {fileID: 21300000, guid: 0d6f5db8814a0524b878387066f24099, type: 3}

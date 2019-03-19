@@ -9,15 +9,18 @@ public class PlayerUI : MonoBehaviour
     private TeamID _teamID;
     private GameWinCondition _winCondition;
     private int _amountOfStocks;
-
+    private CharacterID _characterID;
 
     [SerializeField]
     private Text _stocksText;
-    private Image _bgImage;
+    [SerializeField]
+    private Image _bgImage, _charImage;
+
+    [SerializeField]
+    private Sprite _rabbitImage, _foxImage;
 
     private void Awake()
     {
-        _bgImage = this.GetComponent<Image>();
     }
 
     // Start is called before the first frame update
@@ -30,6 +33,7 @@ public class PlayerUI : MonoBehaviour
     {
         _PlayerID = character._PlayerID;
         _teamID = character._TeamID;
+        _characterID = character._CharID;
         Debug.Log(_teamID.ToString());
 
         _amountOfStocks = character._AmountOfStocks;
@@ -64,6 +68,18 @@ public class PlayerUI : MonoBehaviour
                 this.transform.position = new Vector3(-50, 50, 0);
                 break;
             default:
+                break;
+        }
+
+        switch (_characterID)
+        {
+            case CharacterID.Rabbit:
+                _charImage.sprite = _rabbitImage;
+
+                break;
+            case CharacterID.Fox:
+                _charImage.sprite = _foxImage;
+
                 break;
         }
 

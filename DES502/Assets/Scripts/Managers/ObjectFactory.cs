@@ -40,7 +40,7 @@ public class ObjectFactory : MonoBehaviour
         return playerUI;
     }
 
-    public static PlayerUI CreatePlayerUI(CharacterController character, int amountOfPlayers, GameWinCondition winCondition, TeamSetup teamSetup)
+    public static PlayerUI CreatePlayerUI(CharacterController character, int amountOfPlayers, GameWinCondition winCondition, TeamSetup teamSetup, CharacterID charId)
     {
         var playerUI = Object.Instantiate(instance._PlayerUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerUI>();
         playerUI.Initialize(character, amountOfPlayers, winCondition,teamSetup);
