@@ -15,6 +15,9 @@ public class CharacterController : MonoBehaviour
     [HideInInspector]
     public PlayerUI _PlayerUI;
 
+    [SerializeField]
+    private RuntimeAnimatorController _rabbitAnimator, _foxAnimator;
+
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -198,20 +201,24 @@ public class CharacterController : MonoBehaviour
         _TeamID = data.TeamId;
         _AmountOfDeaths = data.Deaths;
 
-        //proper input 
+        //proper input + animator
         switch (_PlayerID)
         {
             case PlayerID.Player1:
                 _inputSuffix = "_P1";
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player2:
                 _inputSuffix = "_P2";
+                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             case PlayerID.Player3:
                 _inputSuffix = "_P3";
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player4:
                 _inputSuffix = "_P4";
+                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             default:
                 break;
@@ -232,20 +239,24 @@ public class CharacterController : MonoBehaviour
         _collider = this.GetComponent<BoxCollider2D>();
 
 
-        //proper input 
+        //proper input + animator
         switch (_PlayerID)
         {
             case PlayerID.Player1:
                 _inputSuffix = "_P1";
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player2:
                 _inputSuffix = "_P2";
+                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             case PlayerID.Player3:
                 _inputSuffix = "_P3";
+                _animator.runtimeAnimatorController = _rabbitAnimator;
                 break;
             case PlayerID.Player4:
                 _inputSuffix = "_P4";
+                _animator.runtimeAnimatorController = _foxAnimator;
                 break;
             default:
                 break;
@@ -285,6 +296,7 @@ public class CharacterController : MonoBehaviour
         }
 
     }
+
 
     private void FixedUpdate()
     {
@@ -333,7 +345,7 @@ public class CharacterController : MonoBehaviour
 
     private void Move(float move, bool jump)
     {
-   
+    
         //only control the player if grounded or airControl is turned on
         if ((_grounded || (_airControl)) && !_stunned)
         {
@@ -612,50 +624,6 @@ public class CharacterController : MonoBehaviour
         }
 
 
-        ////attack timer
-        //if (_attacking && !_chargingAttack)
-        //{
-        //    _attackTimer += Time.deltaTime;
-
-        //    //reset after attack finishes
-        //    switch (_currentAttack)
-        //    {
-
-        //        //collider specific changes
-        //        case AttackType.Side:
-        //            if (_attackTimer > _sideAttackDuration)
-        //            {
-        //                ResetAttack();
-        //                _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-        //                _sideAttackCollider.enabled = false;
-        //            }
-        //            break;
-        //        case AttackType.Up:
-        //            if (_attackTimer > _upAttackDuration)
-        //            {
-        //                ResetAttack();
-        //                _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-        //                _upAttackCollider.enabled = false;
-        //            }
-        //            break;
-        //        case AttackType.Down:
-        //            if (_attackTimer > _downAttackDuration)
-        //            {
-        //                ResetAttack();
-        //                _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-        //                _downAttackCollider.enabled = false;
-        //            }
-        //            break;
-        //        case AttackType.None:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-         
-        //}
-
-
         //projectile cooldown
         if (_projectileOnCooldown)
         {
@@ -750,36 +718,38 @@ public class CharacterController : MonoBehaviour
 
     private void HandlePlayerInput()
     {
+        if(_PlayerState != PlayerState.Dead)
+        {
+            _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
+            _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
 
-        _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
-        _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
+            if (Input.GetButtonDown("Jump" + _inputSuffix))
+            {
+                _jumpKeyDown = true;
+            }
+            else if (Input.GetButtonUp("Jump" + _inputSuffix))
+            {
+                _jumpKeyDown = false;
+            }
 
-        if (Input.GetButtonDown("Jump" + _inputSuffix))
-        {
-            _jumpKeyDown = true;
-        }
-        else if (Input.GetButtonUp("Jump" + _inputSuffix))
-        {
-            _jumpKeyDown = false;
-        }
+            if (Input.GetButtonDown("Attack" + _inputSuffix))
+            {
+                _attackKeyDown = true;
+            }
+            else if (Input.GetButtonUp("Attack" + _inputSuffix))
+            {
+                _attackKeyDown = false;
 
-        if (Input.GetButtonDown("Attack" + _inputSuffix))
-        {
-            _attackKeyDown = true;
-        }
-        else if (Input.GetButtonUp("Attack" + _inputSuffix))
-        {
-            _attackKeyDown = false;
+            }
 
-        }
-
-        if(Input.GetButtonDown("SpecialAttack" + _inputSuffix))
-        {
-            _specialAttackKeyDown = true;
-        }
-        else
-        {
-            _specialAttackKeyDown = false;
+            if (Input.GetButtonDown("SpecialAttack" + _inputSuffix))
+            {
+                _specialAttackKeyDown = true;
+            }
+            else
+            {
+                _specialAttackKeyDown = false;
+            }
         }
     }
 
@@ -812,28 +782,10 @@ public class CharacterController : MonoBehaviour
         _AmountOfStocks--;
         _AmountOfDeaths++;
 
-        PlayerData data;
-        data.Id = _PlayerID;
-        data.Stocks = _AmountOfStocks;
-        data.TeamId = _TeamID;
-        data.Deaths = _AmountOfDeaths;
+        _animator.SetBool("Die", true);
 
-        if (_PlayerTag)
-        {
-            Destroy(_PlayerTag.gameObject);
-        }
 
-        _PlayerUI.UpdateStockText(_AmountOfStocks);
-        _GameManager.PlayerDeath(this);
-
-        if ( _AmountOfStocks > 0 || _GameManager._WinCondition != GameWinCondition.STOCKS)
-        {
-            RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
-
-            point.Activate(data);
-        }
-
-        Destroy(gameObject);
+       
 
     }
 
@@ -936,5 +888,38 @@ public class CharacterController : MonoBehaviour
     {
         ResetAttack();
     }
+
+    public void DeathAnimationFinished()
+    {
+        Debug.Log("Death Anim finished");
+
+
+        PlayerData data;
+        data.Id = _PlayerID;
+        data.Stocks = _AmountOfStocks;
+        data.TeamId = _TeamID;
+        data.Deaths = _AmountOfDeaths;
+
+
+        if (_PlayerTag)
+        {
+            Destroy(_PlayerTag.gameObject);
+        }
+
+        _PlayerUI.UpdateStockText(_AmountOfStocks);
+        _GameManager.PlayerDeath(this);
+
+        if (_AmountOfStocks > 0 || _GameManager._WinCondition != GameWinCondition.STOCKS)
+        {
+            RespawnPoint point = _GameManager.FindBestRespawnPoint(_PlayerID);
+
+            point.Activate(data);
+        }
+
+
+
+        Destroy(gameObject);
+    }
+
 }
 

@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 72e7ae51d9235564c925939000a713fd
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: K.O. fire_2
+    21300002: K.O. fire_1
+    21300004: K.O. fire_2
+    21300006: K.O. fire_3
+    21300008: K.O. fire_4
+    21300010: K.O. fire_5
+    21300012: K.O. fire_6
+    21300014: K.O. fire_7
+    21300016: K.O. fire_8
+    21300018: K.O. fire_9
+    21300020: K.O. fire_10
+    21300022: K.O. fire_11
+    21300024: K.O. fire_12
+    21300026: K.O. fire_13
+    21300028: K.O. fire_14
+    21300030: K.O. fire_15
+    21300032: K.O. fire_16
+    21300034: K.O. fire_17
+    21300036: K.O. fire_18
+    21300038: K.O. fire_19
+    21300040: K.O. fire_20
+    21300042: K.O. fire_21
+    21300044: K.O. fire_22
+    21300046: K.O. fire_23
+    21300048: K.O. fire_24
+    21300050: K.O. fire_25
+    21300052: K.O. fire_26
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: K.O. fire_2
+      rect:
+        serializedVersion: 2
+        x: 5107
+        y: 4819
+        width: 1180
+        height: 1126
+      alignment: 9
+      pivot: {x: 0.51174194, y: 0.512305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8691f6d090df84040a3a772c42530005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_1
+      rect:
+        serializedVersion: 2
+        x: 8465
+        y: 4877
+        width: 1594
+        height: 1138
+      alignment: 9
+      pivot: {x: 0.47696564, y: 0.5391784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba31c679257a53459d26db657d78c4f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_3
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 5272
+        width: 173
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f895b15d4717f4bbe3d6d839fa61dd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_4
+      rect:
+        serializedVersion: 2
+        x: 2325
+        y: 5053
+        width: 662
+        height: 635
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ab457587c99d1944a9c1e08d447b649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_8
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 907
+        width: 1583
+        height: 1459
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4925de4700a9038468373bd558e7fd84
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_10
+      rect:
+        serializedVersion: 2
+        x: 3318
+        y: 853
+        width: 1786
+        height: 1559
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ac5dec2d6a053441a4e5d79ed78a8cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_19
+      rect:
+        serializedVersion: 2
+        x: 5960
+        y: 858
+        width: 1759
+        height: 1448
+      alignment: 9
+      pivot: {x: 0.45005345, y: 0.53943807}
+      border: {x: 10, y: 0, z: 0, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb4c73046a18de448b7187a7ce1684c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: K.O. fire_24
+      rect:
+        serializedVersion: 2
+        x: 9037
+        y: 854
+        width: 1613
+        height: 1383
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765d80bdb5a83574a86b1d71c575b408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 185b0aa5c3954c5488b77735f211965f
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

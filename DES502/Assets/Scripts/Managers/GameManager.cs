@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private List<PlayerUI> _playerUIs = new List<PlayerUI>();
     private Canvas _canvas;
     private GameEndMenu _gameEndPanel;
+    private TimerUI _timerUI;
     private EventSystem _eventSystem;
 
     //GameMode stuff
@@ -88,6 +89,17 @@ public class GameManager : MonoBehaviour
             _gameEndPanel.gameObject.SetActive(false);
         }
 
+        _timerUI = FindObjectOfType<TimerUI>();
+        if (_timerUI && _WinCondition != GameWinCondition.TIME)
+        {
+            _timerUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            _timerUI.Initialize(this, _GameTimerLeft);
+        }
+
+
         _eventSystem = FindObjectOfType<EventSystem>();
 
         var playersInScene = FindObjectsOfType<CharacterController>();
@@ -129,7 +141,7 @@ public class GameManager : MonoBehaviour
         }
 
         //create TIMER UI
-        if(_WinCondition==GameWinCondition.TIME)
+        if(_WinCondition==GameWinCondition.TIME && _timerUI==null)
         {
             var timer = ObjectFactory.CreateTimerUI(this, _GameTimerLeft);
             timer.transform.SetParent(_canvas.transform, false);

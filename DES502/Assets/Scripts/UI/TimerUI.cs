@@ -25,7 +25,7 @@ public class TimerUI : MonoBehaviour
     public void Initialize(GameManager manager, float amountOfTime)
     {
         _manager = manager;
-        this.transform.position = new Vector3(0, -240, 0);
+        //this.transform.position = new Vector3(0, -240, 0);
         _timeLeft = amountOfTime;
         _text.text = _timeLeft.ToString("F0");
     }
