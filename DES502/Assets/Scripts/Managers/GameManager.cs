@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameModeScriptableObject _GMScriptableObject;
 
     private RespawnPoint[] _respawnPoints;
-    private List<CharacterController> _characterControllers = new List<CharacterController>();
+    public List<CharacterController> _characterControllers = new List<CharacterController>();
 
     //UI
     private List<PlayerUI> _playerUIs = new List<PlayerUI>();
@@ -75,10 +75,12 @@ public class GameManager : MonoBehaviour
        //Debug.Log(_TeamSetup.ToString());
        //Debug.Log(_WinCondition.ToString());
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
+
     }
 
     void Start()
     {
+        Random.seed = System.Environment.TickCount;
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
 
         var playerUIsInScene = FindObjectsOfType<PlayerUI>();

@@ -194,6 +194,22 @@ public class CharacterController : MonoBehaviour
 
     public PlayerState _PlayerState = PlayerState.Idle;
 
+    // Powerup related
+    // general
+    private bool _isPowerupTimerActive;
+    private float _powerupTimer;
+    // effects
+    [HideInInspector]
+    public bool _controlsReversed = false;
+    [HideInInspector]
+    public float _moveSpeedMultiplier = 1;
+    [HideInInspector]
+    public bool _rooted = false;
+    [HideInInspector]
+    public bool _shielded = false;
+    [HideInInspector]
+    public bool _meleeInstantKill = false;
+
     public void Initialize(PlayerData data)
     {
         _PlayerID = data.Id;
@@ -298,6 +314,11 @@ public class CharacterController : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        PowerupTimerTick();
+    }
+
     private void FixedUpdate()
     {
         _grounded = IsGrounded();
@@ -324,7 +345,8 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            _horizontalMove = _horizontalInput * Time.fixedDeltaTime * _moveSpeed;
+            _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1)
+                * _moveSpeed * _moveSpeedMultiplier * Time.fixedDeltaTime;
         }
         Move(_horizontalMove,_jumpKeyDown);
 
@@ -356,7 +378,7 @@ public class CharacterController : MonoBehaviour
 
             // And then smoothing it out and applying it to the character
 
-            if(_attacking)
+            if(_attacking || _rooted)
             {
                 targetVelocity = new Vector2(0, _rigidbody.velocity.y);
 
@@ -390,7 +412,7 @@ public class CharacterController : MonoBehaviour
         }
 
         // should we start jumping?
-        if (_grounded && jump && !_jumpKeyDownAlready)
+        if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
         {
         // _grounded will still return true as you begin to jump!
             _jumping = true;
@@ -753,13 +775,12 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Stun(float duration)
+    private void Stun(float duration)
     {
         _stunned = true;
         _stunnedDuration = duration;
         this.GetComponent<SpriteRenderer>().color = Color.red;
         _animator.SetBool("Stunned", true);
-
     }
 
     private void StunTick()
@@ -857,8 +878,8 @@ public class CharacterController : MonoBehaviour
                     //Debug.Log("STOMP COLLIDED WITH PLAYER");
                     _rigidbody.AddForce(Vector2.up * _playerStompJumpHeight);
                     // get colliding player and stun them
-                    colliders[i].GetComponent<CharacterController>().Stun(_playerStompStunDuration);
-                    colliders[i].GetComponent<Rigidbody2D>().AddForce(Vector2.up * _playerStompKnockbackHeight);
+                    colliders[i].GetComponent<CharacterController>().RecieveHit(
+                            Vector2.up * _playerStompKnockbackHeight, _playerStompStunDuration);
                     // put stomp on a cooldown to prevent this triggering again next tick
                     _playerStompCooldownTimer = _playerStompCooldownDuration;
                     _playerStompOnCooldown = true;
@@ -921,5 +942,60 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void StartPowerupTimer(float duration)
+    {
+        _isPowerupTimerActive = true;
+        _powerupTimer = duration;
+    }
+
+    private void PowerupTimerTick()
+    {
+        // timer tick for disabling powerups after recieving one
+        if (_isPowerupTimerActive)
+        {
+            _powerupTimer -= Time.deltaTime;
+            //Debug.Log("_powerupTimer: " + _powerupTimer);
+            if (_powerupTimer <= 0)
+            {
+                OnPowerupTimerEnd();
+            }
+        }
+    }
+
+    private void OnPowerupTimerEnd()
+    {
+        // stop the timer tick from happening
+        _isPowerupTimerActive = false;
+        // disable all powerup effects
+        // much simpler solution than keeping track of what effect was active
+        // hopefully this won't ever cause an issue
+        _controlsReversed = false;
+        _moveSpeedMultiplier = 1;
+        _rooted = false;
+        _shielded = false;
+        _meleeInstantKill = false;
+    }
+
+    // rename this?
+    public void RecieveHit(Vector2 knockbackVelocity, float stunDuration, bool meleeHit = false)
+    {
+        if (_shielded)  // block hit if shield active
+        {
+            _shielded = false;
+        }
+        else  // recieve hit as normal
+        {
+            if (meleeHit && _meleeInstantKill)
+            {
+                Die();
+            }
+            else
+            {
+                //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
+                _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
+                Stun(stunDuration);
+            }
+        }
+    }
 }
 

@@ -76,8 +76,8 @@ public class MeleeAttack : MonoBehaviour {
         if (col.tag=="Player")
         {
             //Debug.Log("Player");
-            col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
-            col.GetComponent<CharacterController>().Stun(_stunDuration);
+            col.GetComponent<CharacterController>().RecieveHit(launchVector * _launchAmount,
+               _stunDuration, true);
         }
 
         if (col.tag=="Weapon")
