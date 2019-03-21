@@ -38,6 +38,7 @@ public class Powerup : MonoBehaviour
 
     [Header("General")]
     [SerializeField] [Tooltip("What type of powerup is this?")]
+    public PowerupIcons _powerupIcons;
     public POWERUP_TYPES _type;
     [Range(0.0f, 10.0f)] [SerializeField] [Tooltip("How long (in seconds) should the powerup effect last for?")]
     public float _effectTime = 5.0f;
@@ -55,8 +56,7 @@ public class Powerup : MonoBehaviour
     private GameObject _spriteObject;
     private float _animationTimer = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _spriteObject = transform.GetChild(0).gameObject;
         //Debug.Log(_spriteObject.name);
@@ -101,12 +101,7 @@ public class Powerup : MonoBehaviour
             // get the amount of powerup types minus random
             // for this to work, RANDOM must remain the last index of POWERUP_TYPES
             //Debug.Log("RANDOM POWERUP COLLECTED")
-            Random.InitState(System.Environment.TickCount);
-            int powerupTypes = System.Enum.GetValues(typeof(POWERUP_TYPES)).Length - 1;
-            //Debug.Log("powerupTypes: " + powerupTypes);
-            POWERUP_TYPES powerupToActivate = (POWERUP_TYPES)Random.Range(0, powerupTypes);
-            Debug.Log("random powerupToActivate: " + powerupToActivate);
-            GetPowerupTargets(player, powerupToActivate);
+            GetPowerupTargets(player, GetRandomType());
         }
         else
         {
@@ -180,5 +175,31 @@ public class Powerup : MonoBehaviour
     private int GetTeamIndex(CharacterController player)
     {
         return (int)player._TeamID;
+    }
+
+    public void AssignType()
+    {
+        _type = GetRandomType();
+        SetSprite(_type);
+    }
+
+    private POWERUP_TYPES GetRandomType()
+    {
+        Random.InitState(System.Environment.TickCount);
+        int powerupTypes = System.Enum.GetValues(typeof(POWERUP_TYPES)).Length - 1;
+        //Debug.Log("powerupTypes: " + powerupTypes);
+        POWERUP_TYPES powerupToActivate = (POWERUP_TYPES)Random.Range(0, powerupTypes);
+        //Debug.Log("random powerupToActivate: " + powerupToActivate);
+        return powerupToActivate;
+    }
+
+    private void SetSprite(POWERUP_TYPES type)
+    {
+        PowerupData powerupIcon = _powerupIcons.powerups[(int)type];
+        //Debug.Log("powerupName: " + powerupIcon.powerupName);
+        Sprite collectableSprite = powerupIcon.inGameCollectableSprite;
+        //Debug.Log("collectableSprite: " + collectableSprite);
+        SpriteRenderer spriteRenderer = _spriteObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = collectableSprite;
     }
 }

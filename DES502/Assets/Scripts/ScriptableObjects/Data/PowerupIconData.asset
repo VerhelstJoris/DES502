@@ -12,3 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99972e52e09f95f4390fe99ff47bae41, type: 3}
   m_Name: PowerupIconData
   m_EditorClassIdentifier: 
+  powerups:
+  - powerupName: Reverse Controls
+    inGameCollectableSprite: {fileID: 21300002, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300002, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
+  - powerupName: Move Speed
+    inGameCollectableSprite: {fileID: 21300010, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300008, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
+  - powerupName: Root
+    inGameCollectableSprite: {fileID: 21300000, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300000, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
+  - powerupName: Shield
+    inGameCollectableSprite: {fileID: 21300008, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300010, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
+  - powerupName: Melee Instant Kill
+    inGameCollectableSprite: {fileID: 21300004, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300004, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
+  - powerupName: Random
+    inGameCollectableSprite: {fileID: 21300006, guid: ea05de7e964536d4e9ec964dbbce0194,
+      type: 3}
+    sidebarHUDSprite: {fileID: 21300006, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
