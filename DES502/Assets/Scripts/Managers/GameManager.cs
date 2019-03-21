@@ -38,11 +38,18 @@ public class GameManager : MonoBehaviour
     //time
     private int _team1Deaths=0, _team2Deaths=0;
 
+    // powerup spawning
+    [Header("Powerup Spawning")]
+    public GameObject _powerupPrefab;
+    private PowerupSpawnPoint[] _powerupSpawnPoints;
+    [Range(0, 30)]
+    public int _minPowerupSpawnCooldown = 8;
+    [Range(0, 30)]
+    public int _maxPowerupSpawnCooldown = 15;
+    private float _powerupSpawnTimer;
 
     private void Awake()
     {
-
-
         //GM will NOT be created if not in scene
         //GM removes scene duplicates
         //GM has global access
@@ -82,6 +89,7 @@ public class GameManager : MonoBehaviour
     {
         Random.seed = System.Environment.TickCount;
         _respawnPoints = FindObjectsOfType<RespawnPoint>();
+        _powerupSpawnPoints = FindObjectsOfType<PowerupSpawnPoint>();
 
         var playerUIsInScene = FindObjectsOfType<PlayerUI>();
         _canvas = FindObjectOfType<Canvas>();
@@ -168,6 +176,7 @@ public class GameManager : MonoBehaviour
             data.charID = (CharacterID)(i % 2);
             _respawnPoints[i].Activate(data);
         }
+        ResetPowerupSpawnTimer();
     }
 
     public void AddPlayer(CharacterController player)
@@ -238,6 +247,7 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
         }
+        PowerupSpawnTimerTick();
     }
 
     public RespawnPoint FindBestRespawnPoint(PlayerID playerID)
@@ -391,4 +401,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ResetPowerupSpawnTimer()
+    {
+        _powerupSpawnTimer = Random.Range(_minPowerupSpawnCooldown, _maxPowerupSpawnCooldown);
+    }
+
+    private void SpawnPowerup()
+    {
+        // where are we spawning?
+        List<PowerupSpawnPoint> validSpawnPoints = GetValidPowerupSpawnPoints();
+        int spawnPointIndex = Random.Range(0, validSpawnPoints.Count - 1);
+        PowerupSpawnPoint chosenSpawnPoint = validSpawnPoints[spawnPointIndex];
+        // create the powerup
+        Instantiate(_powerupPrefab, chosenSpawnPoint.gameObject.transform);
+        chosenSpawnPoint._containsPowerup = true;
+    }
+
+    private void PowerupSpawnTimerTick()
+    {
+        _powerupSpawnTimer -= Time.deltaTime;
+        if (_powerupSpawnTimer <= 0)
+        {
+            SpawnPowerup();
+            ResetPowerupSpawnTimer();
+        }
+    }
+
+    private List<PowerupSpawnPoint> GetValidPowerupSpawnPoints()
+    {
+        List<PowerupSpawnPoint> validSpawnPoints = new List<PowerupSpawnPoint>();
+        foreach (PowerupSpawnPoint sp in _powerupSpawnPoints)
+        {
+            if (!sp._containsPowerup)
+            {
+                validSpawnPoints.Add(sp);
+            }
+        }
+        return validSpawnPoints;
+    }
 }
