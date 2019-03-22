@@ -416,9 +416,11 @@ public class GameManager : MonoBehaviour
             int spawnPointIndex = Random.Range(0, validSpawnPoints.Count - 1);
             PowerupSpawnPoint chosenSpawnPoint = validSpawnPoints[spawnPointIndex];
             // create the powerup
-            GameObject spawnedPowerup = Instantiate(_powerupPrefab,
+            GameObject spawnedPowerupObject = Instantiate(_powerupPrefab,
                     chosenSpawnPoint.gameObject.transform);
-            spawnedPowerup.GetComponent<Powerup>().AssignType();
+            Powerup spawnedPowerup = spawnedPowerupObject.GetComponent<Powerup>();
+            spawnedPowerup.AssignType();
+            spawnedPowerup._owningSpawnPoint = chosenSpawnPoint;
             chosenSpawnPoint._containsPowerup = true;
         }
     }

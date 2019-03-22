@@ -14,6 +14,7 @@ public class Powerup : MonoBehaviour
         RANDOM  // Needs to be last for the random powerup to work
     }
 
+    // TODO: move this to scriptable object data
     // int is converted to bool
     // bool "target friendly"
     // POWERUP_TARGETS must remain in the same order as POWERUP_TYPES
@@ -55,6 +56,8 @@ public class Powerup : MonoBehaviour
 
     private GameObject _spriteObject;
     private float _animationTimer = 0;
+    [HideInInspector]
+    public PowerupSpawnPoint _owningSpawnPoint;
 
     void Awake()
     {
@@ -107,7 +110,7 @@ public class Powerup : MonoBehaviour
         {
             GetPowerupTargets(player, _type);
         }
-        Destroy(gameObject);
+        Kill();
     }
 
     private void ApplyEffect(CharacterController player, POWERUP_TYPES powerup)
@@ -201,5 +204,11 @@ public class Powerup : MonoBehaviour
         //Debug.Log("collectableSprite: " + collectableSprite);
         SpriteRenderer spriteRenderer = _spriteObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = collectableSprite;
+    }
+
+    private void Kill()
+    {
+        _owningSpawnPoint.OnChildPowerupCollected();
+        Destroy(gameObject);
     }
 }

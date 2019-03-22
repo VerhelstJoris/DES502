@@ -53,8 +53,8 @@ MonoBehaviour:
   _GameTimerLeft: 0
   _powerupPrefab: {fileID: 8589857588049668522, guid: 9ce2a20572140c949997b34c2cd3d490,
     type: 3}
-  _minPowerupSpawnCooldown: 0
-  _maxPowerupSpawnCooldown: 1
+  _minPowerupSpawnCooldown: 2
+  _maxPowerupSpawnCooldown: 5
 --- !u!114 &7024020573438695994
 MonoBehaviour:
   m_ObjectHideFlags: 0

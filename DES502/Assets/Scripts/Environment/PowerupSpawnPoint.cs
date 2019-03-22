@@ -22,15 +22,8 @@ public class PowerupSpawnPoint : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void OnChildPowerupCollected()
     {
-        // set _containsPowerup to false when a player picks up the powerup inside
-        if (other.tag == "Player")
-        {
-            if (_containsPowerup)
-            {
-                _containsPowerup = false;
-            }
-        }
+        _containsPowerup = false;
     }
 }
