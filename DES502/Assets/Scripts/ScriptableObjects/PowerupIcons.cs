@@ -15,4 +15,5 @@ public class PowerupData
     public Sprite inGameCollectableSprite;
     //public Texture sidebarHUDTexture;
     public Sprite sidebarHUDSprite;
+    public bool targetsFriendly;
 }

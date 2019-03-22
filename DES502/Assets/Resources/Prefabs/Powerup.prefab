@@ -141,12 +141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1c52519280ebd4dae4e4e1608134b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _powerupIcons: {fileID: 11400000, guid: 9f8dd136a0613ee4fb50c19f3eed3874, type: 2}
+  _powerupData: {fileID: 11400000, guid: 9f8dd136a0613ee4fb50c19f3eed3874, type: 2}
   _type: 0
   _effectTime: 5
   _moveSpeedMultiplier: 2.5
   _maxYMovement: 0.2
   _animationSpeed: 1.5
+  _owningSpawnPoint: {fileID: 0}
 --- !u!50 &4160153694800172369
 Rigidbody2D:
   serializedVersion: 4

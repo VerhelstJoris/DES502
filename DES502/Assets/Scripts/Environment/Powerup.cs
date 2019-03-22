@@ -39,7 +39,7 @@ public class Powerup : MonoBehaviour
 
     [Header("General")]
     [SerializeField] [Tooltip("What type of powerup is this?")]
-    public PowerupIcons _powerupIcons;
+    public PowerupIcons _powerupData;
     public POWERUP_TYPES _type;
     [Range(0.0f, 10.0f)] [SerializeField] [Tooltip("How long (in seconds) should the powerup effect last for?")]
     public float _effectTime = 5.0f;
@@ -165,7 +165,7 @@ public class Powerup : MonoBehaviour
             int pTeamIndex = GetTeamIndex(p);
             int powerupTypeIndex = System.Array.IndexOf(POWERUP_TYPES.GetValues(_type.GetType()), powerup);
             //Debug.Log("powerupTypeIndex: " + powerupTypeIndex);
-            bool powerupTargetFriendly = POWERUP_TARGETS[powerupTypeIndex];
+            bool powerupTargetFriendly = _powerupData.powerups[powerupTypeIndex].targetsFriendly;
             if ((playerTeamIndex == pTeamIndex && powerupTargetFriendly)
                     || (playerTeamIndex != pTeamIndex && !powerupTargetFriendly))
             {
@@ -198,7 +198,7 @@ public class Powerup : MonoBehaviour
 
     private void SetSprite(POWERUP_TYPES type)
     {
-        PowerupData powerupIcon = _powerupIcons.powerups[(int)type];
+        PowerupData powerupIcon = _powerupData.powerups[(int)type];
         //Debug.Log("powerupName: " + powerupIcon.powerupName);
         Sprite collectableSprite = powerupIcon.inGameCollectableSprite;
         //Debug.Log("collectableSprite: " + collectableSprite);
