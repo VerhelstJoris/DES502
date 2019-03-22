@@ -14,29 +14,6 @@ public class Powerup : MonoBehaviour
         RANDOM  // Needs to be last for the random powerup to work
     }
 
-    // TODO: move this to scriptable object data
-    // int is converted to bool
-    // bool "target friendly"
-    // POWERUP_TARGETS must remain in the same order as POWERUP_TYPES
-    // RANDOM is unnecersary here
-    private static bool[] POWERUP_TARGETS = {
-        false,
-        true,
-        false,
-        true,
-        false};  // simpler to target the taker rather than the giver
-
-    /*
-    private enum POWERUP_TARGETS
-    {
-        REVERSE_CONTROLS = 0,
-        MOVE_SPEED = 1,
-        ROOT = 0,
-        SHIELD = 1,
-        MELEE_INSTANT_KILL = 0  // simpler to target the taker rather than the giver
-    }
-    */
-
     [Header("General")]
     [SerializeField] [Tooltip("What type of powerup is this?")]
     public PowerupIcons _powerupData;
@@ -97,7 +74,7 @@ public class Powerup : MonoBehaviour
 
     private void ActivatePowerup(CharacterController player)
     {
-        Debug.Log("powerup type: " + _type);
+        //Debug.Log("powerup type: " + _type);
         if (_type == POWERUP_TYPES.RANDOM)
         {
             // Activate a random powerup effect that isn't this one
