@@ -35,6 +35,8 @@ public class Powerup : MonoBehaviour
     private float _animationTimer = 0;
     [HideInInspector]
     public PowerupSpawnPoint _owningSpawnPoint;
+    [HideInInspector]
+    public Sprite _HUDSprite;
 
     void Awake()
     {
@@ -130,7 +132,7 @@ public class Powerup : MonoBehaviour
                 break;
             */
         }
-        player.StartPowerupTimer(_effectTime);
+        player.OnPowerupCollected(_effectTime, _HUDSprite);
     }
 
     private void GetPowerupTargets(CharacterController player, POWERUP_TYPES powerup)
@@ -177,6 +179,7 @@ public class Powerup : MonoBehaviour
     {
         PowerupData powerupIcon = _powerupData.powerups[(int)type];
         //Debug.Log("powerupName: " + powerupIcon.powerupName);
+        _HUDSprite = powerupIcon.sidebarHUDSprite;
         Sprite collectableSprite = powerupIcon.inGameCollectableSprite;
         //Debug.Log("collectableSprite: " + collectableSprite);
         SpriteRenderer spriteRenderer = _spriteObject.GetComponent<SpriteRenderer>();

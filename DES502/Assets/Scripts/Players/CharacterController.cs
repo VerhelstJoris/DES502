@@ -988,6 +988,7 @@ public class CharacterController : MonoBehaviour
         _rooted = false;
         _shielded = false;
         _meleeInstantKill = false;
+        _GameManager.OnPowerupExpired(_TeamID);
     }
 
     // rename this?
@@ -1010,6 +1011,12 @@ public class CharacterController : MonoBehaviour
                 Stun(stunDuration);
             }
         }
+    }
+
+    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite)
+    {
+        StartPowerupTimer(effectTime);
+        _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
     }
 }
 

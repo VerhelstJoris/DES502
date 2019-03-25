@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     public PlayerID _PlayerID;
-    private TeamID _teamID;
+    public TeamID _teamID;
     private GameWinCondition _winCondition;
     private int _amountOfStocks;
     private CharacterID _characterID;
@@ -18,6 +18,8 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField]
     private Sprite _rabbitImage, _foxImage;
+    private GameObject _powerupSpriteObject;
+    private Image powerupImage;
 
     private void Awake()
     {
@@ -26,7 +28,6 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
     }
 
     public void Initialize(CharacterController character, int amountOfPlayers, GameWinCondition winCondition, TeamSetup teamSetup)
@@ -105,12 +106,11 @@ public class PlayerUI : MonoBehaviour
             PlayerHelpers.TeamColorDictionary.TryGetValue(_teamID, out temp);
             _bgImage.color = temp;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // get references to powerup sprite renderer, then disable
+        _powerupSpriteObject = GameObject.Find("PowerupImg");
+        powerupImage = _powerupSpriteObject.GetComponent<Image>();
+        powerupImage.enabled = false;
     }
 
     public void UpdateStockText(int stocks)
@@ -121,5 +121,17 @@ public class PlayerUI : MonoBehaviour
             _stocksText.text = _amountOfStocks.ToString();
         }
 
+    }
+
+    public void SetPowerupIcon(Sprite powerup_HUD_sprite)
+    {
+        //Debug.Log("SET POWERUP ICON ON PLAYER UI");
+        powerupImage.sprite = powerup_HUD_sprite;
+        powerupImage.enabled = true;
+    }
+
+    public void HidePowerupIcon()
+    {
+        powerupImage.enabled = false;
     }
 }
