@@ -447,4 +447,26 @@ public class GameManager : MonoBehaviour
         }
         return validSpawnPoints;
     }
+
+    public void OnPowerupCollected(TeamID teamToApply, Sprite powerupHUDSprite)
+    {
+        for (int i = 0; i < _playerUIs.Count; i++)
+        {
+            if (_playerUIs[i]._teamID == teamToApply)
+            {
+                _playerUIs[i].SetPowerupIcon(powerupHUDSprite);
+            }
+        }
+    }
+
+    public void OnPowerupExpired(TeamID teamToApply)
+    {
+        for (int i = 0; i < _playerUIs.Count; i++)
+        {
+            if (_playerUIs[i]._teamID == teamToApply)
+            {
+                _playerUIs[i].HidePowerupIcon();
+            }
+        }
+    }
 }
