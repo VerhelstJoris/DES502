@@ -18,8 +18,8 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField]
     private Sprite _rabbitImage, _foxImage;
-    private GameObject _powerupSpriteObject;
-    private Image powerupImage;
+    [SerializeField]
+    private Image _powerupImage;
 
     private void Awake()
     {
@@ -62,11 +62,15 @@ public class PlayerUI : MonoBehaviour
                 rectTransform.anchorMin = new Vector2(0, 0);
                 rectTransform.anchorMax = new Vector2(0, 0);
                 this.transform.position = new Vector3(50, 50, 0);
+                _stocksText.transform.localPosition = new Vector3(0, 65, 0);
+                _powerupImage.transform.localPosition = new Vector3(0,100,0);
                 break;
             case PlayerID.Player4:
                 rectTransform.anchorMin = new Vector2(1, 0);
                 rectTransform.anchorMax = new Vector2(1, 0);
                 this.transform.position = new Vector3(-50, 50, 0);
+                _stocksText.transform.localPosition = new Vector3(0, 65, 0);
+                _powerupImage.transform.localPosition = new Vector3(0, 100, 0);
                 break;
             default:
                 break;
@@ -108,9 +112,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         // get references to powerup sprite renderer, then disable
-        _powerupSpriteObject = GameObject.Find("PowerupImg");
-        powerupImage = _powerupSpriteObject.GetComponent<Image>();
-        powerupImage.enabled = false;
+        _powerupImage.enabled = false;
     }
 
     public void UpdateStockText(int stocks)
@@ -126,12 +128,12 @@ public class PlayerUI : MonoBehaviour
     public void SetPowerupIcon(Sprite powerup_HUD_sprite)
     {
         //Debug.Log("SET POWERUP ICON ON PLAYER UI");
-        powerupImage.sprite = powerup_HUD_sprite;
-        powerupImage.enabled = true;
+        _powerupImage.sprite = powerup_HUD_sprite;
+        _powerupImage.enabled = true;
     }
 
     public void HidePowerupIcon()
     {
-        powerupImage.enabled = false;
+        _powerupImage.enabled = false;
     }
 }

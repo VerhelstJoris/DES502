@@ -156,7 +156,7 @@ public class CharacterController : MonoBehaviour
     float _stunnedTimer = 0.0f;
     float _stunnedDuration = 0.0f;
 
-    //PROJECTILE ATTACK related
+    //PROJECTILE ATTACK RELATED
     //----------------------------------
     [Header("Projectile Attack")]
     [SerializeField] [Range(0.0f, 5.0f)] [Tooltip("Duration in which you can't fire another projectile")] private float _projectileCooldownDuration = 2.5f;
@@ -201,7 +201,8 @@ public class CharacterController : MonoBehaviour
 
     public PlayerState _PlayerState = PlayerState.Idle;
 
-    // Powerup related
+    // POWERUP RELATED
+    //----------------------------------
     // general
     private bool _isPowerupTimerActive;
     private float _powerupTimer;
