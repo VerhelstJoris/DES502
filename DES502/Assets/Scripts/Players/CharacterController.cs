@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.Audio;
 
 public class CharacterController : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _collider;
+    private AudioSource _source;
     [HideInInspector]
     public PlayerTag _PlayerTag;
     [HideInInspector]
@@ -18,6 +19,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private RuntimeAnimatorController _rabbitAnimator, _foxAnimator;
 
+    [SerializeField]
+    private PlayerAudioScriptableObject _rabbitAudioObject, _foxAudioObject;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -42,6 +45,9 @@ public class CharacterController : MonoBehaviour
     public PlayerID _PlayerID;
     public TeamID _TeamID;
     public CharacterID _CharID;
+
+    private PlayerAudioScriptableObject _audioScriptableObject;
+
 
     //GENERAL MOVEMENT
     //------------------------------------
@@ -242,9 +248,11 @@ public class CharacterController : MonoBehaviour
         {
             case CharacterID.Fox:
                 _animator.runtimeAnimatorController = _foxAnimator;
+                _audioScriptableObject = _foxAudioObject;
                 break;
             case CharacterID.Rabbit:
                 _animator.runtimeAnimatorController = _rabbitAnimator;
+                _audioScriptableObject = _rabbitAudioObject;
                 break;
         }
 
@@ -261,7 +269,7 @@ public class CharacterController : MonoBehaviour
         _animator = this.GetComponent<Animator>();
         _GameManager = FindObjectOfType<GameManager>();
         _collider = this.GetComponent<BoxCollider2D>();
-
+        _source = this.GetComponent<AudioSource>();
 
         //proper input + animator
         switch (_PlayerID)
@@ -867,6 +875,8 @@ public class CharacterController : MonoBehaviour
                 {
                     OnLandEvent.Invoke();
                     _animator.SetBool("Jumping", false);
+
+                    PlayFootStepSound();
                     //_projectileOnCooldown = false;
                     //_projectileCooldownTimer = 0.0f;
                 }
@@ -904,7 +914,7 @@ public class CharacterController : MonoBehaviour
 
     public void WindupAnimationFinished()
     {
-        Debug.Log("WINDUP FINISHED");
+        //Debug.Log("WINDUP FINISHED");
         _attackWindupFinished = true;
 
         if(_attackKeyDown)
@@ -919,6 +929,19 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void FootStepAnimation()
+    {
+        if (_grounded)
+        {
+            PlayFootStepSound();
+        }
+    }
+
+    private void PlayFootStepSound()
+    {
+        _source.PlayOneShot(_audioScriptableObject.RunningClips[Random.Range(0, _audioScriptableObject.RunningClips.Length)]);
+    }
+
     public void AttackAnimationFinished()
     {
         ResetAttack();
@@ -926,7 +949,7 @@ public class CharacterController : MonoBehaviour
 
     public void DeathAnimationFinished()
     {
-        Debug.Log("Death Anim finished");
+        //Debug.Log("Death Anim finished");
 
 
         PlayerData data;
@@ -996,6 +1019,8 @@ public class CharacterController : MonoBehaviour
         if (_shielded)  // block hit if shield active
         {
             _shielded = false;
+
+            //play sound for shielded??
         }
         else  // recieve hit as normal
         {
@@ -1009,6 +1034,11 @@ public class CharacterController : MonoBehaviour
                 _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
                 Stun(stunDuration);
             }
+
+          
+            _source.PlayOneShot(_audioScriptableObject.GettingHitClip);
+               
+            
         }
     }
 }

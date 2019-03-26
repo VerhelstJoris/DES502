@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1f8a03b9f9b9c48bd00cbdc4397461, type: 3}
+  m_Name: RabbitAudio
+  m_EditorClassIdentifier: 
+  GettingHitClip: {fileID: 8300000, guid: bf3a2a447ba50834684c9bc0bccc4b97, type: 3}
+  RunningClips:
+  - {fileID: 8300000, guid: 0a019b844ab63ec42ac905c16475fb77, type: 3}
+  - {fileID: 8300000, guid: b0e27be971a221b4ca40040385f6dc8d, type: 3}
+  - {fileID: 8300000, guid: 262918b4783404241b584105962697df, type: 3}
+  - {fileID: 8300000, guid: e128336988a3a9a488933cc4f0336410, type: 3}
+  - {fileID: 8300000, guid: 48fd1f78eb33db1488b29ef4fba9cde2, type: 3}
+  - {fileID: 8300000, guid: 9d33495829d990340b4339cedfaf6248, type: 3}
+  - {fileID: 8300000, guid: 38bfbccd1917f2147839797532f90762, type: 3}
+  - {fileID: 8300000, guid: b60022b2bdbc1c342853a1bf6a2a3eb3, type: 3}
+  - {fileID: 8300000, guid: 867b643d1f93fb64fb5585080f215ee4, type: 3}
