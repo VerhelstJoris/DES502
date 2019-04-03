@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
             data.TeamId = (TeamID)(i % 2);
             data.Deaths = 0;
             data.charID = (CharacterID)(i % 2);
+            data.controllerID = ControllerID.Controller1;
             _respawnPoints[i].Activate(data);
         }
         ResetPowerupSpawnTimer();

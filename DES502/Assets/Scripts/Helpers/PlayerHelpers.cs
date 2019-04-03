@@ -10,6 +10,8 @@ public enum AttackType { Side, Up, Down, None };
 
 public enum PlayerID { Player1, Player2, Player3, Player4 };
 
+public enum ControllerID { Controller1, Controller2, Controller3, Controller4 };
+
 public enum CharacterID { Rabbit, Fox};
 
 public enum TeamID { Team1, Team2 };
@@ -18,6 +20,7 @@ public enum TeamID { Team1, Team2 };
 public struct PlayerData
 {
     public PlayerID Id;
+    public ControllerID controllerID;
     public CharacterID charID;
     public int Stocks;
     public int Deaths;

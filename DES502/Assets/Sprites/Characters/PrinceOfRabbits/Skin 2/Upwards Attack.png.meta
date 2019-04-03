@@ -1,0 +1,2316 @@
+fileFormatVersion: 2
+guid: 9e1dec180be620b4780748018e41423d
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Upwards Attack_0
+    21300002: Upwards Attack_1
+    21300004: Upwards Attack_2
+    21300006: Upwards Attack_3
+    21300008: Upwards Attack_4
+    21300010: Upwards Attack_5
+    21300012: Upwards Attack_6
+    21300014: Upwards Attack_7
+    21300016: Upwards Attack_8
+    21300018: Upwards Attack_9
+    21300020: Upwards Attack_10
+    21300022: Upwards Attack_11
+    21300024: Upwards Attack_12
+    21300026: Upwards Attack_13
+    21300028: Upwards Attack_14
+    21300030: Upwards Attack_15
+    21300032: Upwards Attack_16
+    21300034: Upwards Attack_17
+    21300036: Upwards Attack_18
+    21300038: Upwards Attack_19
+    21300040: Upwards Attack_20
+    21300042: Upwards Attack_21
+    21300044: Upwards Attack_22
+    21300046: Upwards Attack_23
+    21300048: Upwards Attack_24
+    21300050: Upwards Attack_25
+    21300052: Upwards Attack_26
+    21300054: Upwards Attack_27
+    21300056: Upwards Attack_28
+    21300058: Upwards Attack_29
+    21300060: Upwards Attack_30
+    21300062: Upwards Attack_31
+    21300064: Upwards Attack_32
+    21300066: Upwards Attack_33
+    21300068: Upwards Attack_34
+    21300070: Upwards Attack_35
+    21300072: Upwards Attack_36
+    21300074: Upwards Attack_37
+    21300076: Upwards Attack_38
+    21300078: Upwards Attack_39
+    21300080: Upwards Attack_40
+    21300082: Upwards Attack_41
+    21300084: Upwards Attack_42
+    21300086: Upwards Attack_43
+    21300088: Upwards Attack_44
+    21300090: Upwards Attack_45
+    21300092: Upwards Attack_46
+    21300094: Upwards Attack_47
+    21300096: Upwards Attack_48
+    21300098: Upwards Attack_49
+    21300100: Upwards Attack_50
+    21300102: Upwards Attack_51
+    21300104: Upwards Attack_52
+    21300106: Upwards Attack_53
+    21300108: Upwards Attack_54
+    21300110: Upwards Attack_55
+    21300112: Upwards Attack_56
+    21300114: Upwards Attack_57
+    21300116: Upwards Attack_58
+    21300118: Upwards Attack_59
+    21300120: Upwards Attack_60
+    21300122: Upwards Attack_61
+    21300124: Upwards Attack_62
+    21300126: Upwards Attack_63
+    21300128: Upwards Attack_64
+    21300130: Upwards Attack_65
+    21300132: Upwards Attack_66
+    21300134: Upwards Attack_67
+    21300136: Upwards Attack_68
+    21300138: Upwards Attack_69
+    21300140: Upwards Attack_70
+    21300142: Upwards Attack_71
+    21300144: Upwards Attack_72
+    21300146: Upwards Attack_73
+    21300148: Upwards Attack_74
+    21300150: Upwards Attack_75
+    21300152: Upwards Attack_76
+    21300154: Upwards Attack_77
+    21300156: Upwards Attack_78
+    21300158: Upwards Attack_79
+    21300160: Upwards Attack_80
+    21300162: Upwards Attack_81
+    21300164: Upwards Attack_82
+    21300166: Upwards Attack_83
+    21300168: Upwards Attack_84
+    21300170: Upwards Attack_85
+    21300172: Upwards Attack_86
+    21300174: Upwards Attack_87
+    21300176: Upwards Attack_88
+    21300178: Upwards Attack_89
+    21300180: Upwards Attack_90
+    21300182: Upwards Attack_91
+    21300184: Upwards Attack_92
+    21300186: Upwards Attack_93
+    21300188: Upwards Attack_94
+    21300190: Upwards Attack_95
+    21300192: Upwards Attack_96
+    21300194: Upwards Attack_97
+    21300196: Upwards Attack_98
+    21300198: Upwards Attack_99
+    21300200: Upwards Attack_100
+    21300202: Upwards Attack_101
+    21300204: Upwards Attack_102
+    21300206: Upwards Attack_103
+    21300208: Upwards Attack_104
+    21300210: Upwards Attack_105
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 1
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 900
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Upwards Attack_0
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 3349
+        width: 589
+        height: 908
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889a5118abfa14f43bc396d269f711da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_1
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 3349
+        width: 579
+        height: 915
+      alignment: 9
+      pivot: {x: 0.4127176, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b4a18771874ab46be60d1010f48be9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_2
+      rect:
+        serializedVersion: 2
+        x: 2788
+        y: 3349
+        width: 531
+        height: 885
+      alignment: 9
+      pivot: {x: 0.45101693, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e170a1cff9b72446b9fafde22657c3a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_3
+      rect:
+        serializedVersion: 2
+        x: 3829
+        y: 3989
+        width: 38
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3fcc0ba2f1d7f448e11fbe5ee10ff3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_4
+      rect:
+        serializedVersion: 2
+        x: 3871
+        y: 3349
+        width: 631
+        height: 885
+      alignment: 9
+      pivot: {x: 0.34011692, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87c304607de39ab42b11f96a02d39591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_6
+      rect:
+        serializedVersion: 2
+        x: 2794
+        y: 3954
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecd8765ddc8f00f46baa8d9adc5f4dde
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_7
+      rect:
+        serializedVersion: 2
+        x: 3836
+        y: 3954
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5835257d3964aa8418481b406135cd97
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_8
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 3932
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad09edd3b87c0e479b203dee293e154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_9
+      rect:
+        serializedVersion: 2
+        x: 2750
+        y: 3932
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df021d30e1d6794a89cad5637fdb61e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_10
+      rect:
+        serializedVersion: 2
+        x: 3792
+        y: 3932
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c832d0989cf524c87406f38b2a6330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_11
+      rect:
+        serializedVersion: 2
+        x: 2812
+        y: 3920
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168df7fd042d8664b906462bfbe211d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_12
+      rect:
+        serializedVersion: 2
+        x: 3853
+        y: 3920
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d73c9bc1faecf647b819ac4fb698112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_13
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 3893
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec023aed5f974a94490bec47e6fe0ab0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_14
+      rect:
+        serializedVersion: 2
+        x: 1517
+        y: 3893
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3350e447956f244b8154f8749dad6e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_15
+      rect:
+        serializedVersion: 2
+        x: 2799
+        y: 3893
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd93bdb4d57d51e489041176b07c9769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_16
+      rect:
+        serializedVersion: 2
+        x: 2812
+        y: 3893
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8442edccb730dff439b99c50d19f531c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_17
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 3894
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421422bc139aeaa4e809f13a6d04ef1b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_18
+      rect:
+        serializedVersion: 2
+        x: 3853
+        y: 3893
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda1846b541df3646b475f2942d58103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_19
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 3884
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63286825b4b083e4cb578ed78a96cbf9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_20
+      rect:
+        serializedVersion: 2
+        x: 2764
+        y: 3883
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24ca52de13beb4b4e95c04144af2d5f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_21
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 3883
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043675cc9dc1e75438b67aac8a6d3d14
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_22
+      rect:
+        serializedVersion: 2
+        x: 1470
+        y: 3862
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88f093fb4a0ae448b8196429e5fea94
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_23
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 3853
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4992d4473848cc34a8975ecb270d9feb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_24
+      rect:
+        serializedVersion: 2
+        x: 2767
+        y: 3862
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41c10671349f7946898fc05f39f0766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_25
+      rect:
+        serializedVersion: 2
+        x: 2792
+        y: 3857
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8b7c32d4db37341a861f73ebdc370c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_26
+      rect:
+        serializedVersion: 2
+        x: 3808
+        y: 3862
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74fd5327966f9c640baef82aee7968de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_27
+      rect:
+        serializedVersion: 2
+        x: 3832
+        y: 3857
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33bd9b921c170d64d9a8625fad7538de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_28
+      rect:
+        serializedVersion: 2
+        x: 2797
+        y: 3853
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0ef2a057262e314a8c3c9ecf1bb2aad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_29
+      rect:
+        serializedVersion: 2
+        x: 3838
+        y: 3853
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 150ae1daf96914b449aa64e3033d8b61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_30
+      rect:
+        serializedVersion: 2
+        x: 3340
+        y: 3677
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922e6ee1869263b4abf27ce626f0f5c5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_31
+      rect:
+        serializedVersion: 2
+        x: 2757
+        y: 3591
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814dca1db725f844dbae0d1e1b35cddc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_32
+      rect:
+        serializedVersion: 2
+        x: 3797
+        y: 3591
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d638ccca5897d2548aab1a1751acc7fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_33
+      rect:
+        serializedVersion: 2
+        x: 2764
+        y: 3574
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cd0c7a4926cf764c962cb7cd0853012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_34
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 3573
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a713dd1e57d4aef40bd8d7fdb6a0f364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_35
+      rect:
+        serializedVersion: 2
+        x: 3313
+        y: 3559
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2f5b87bd98e454587f2de63414a751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_36
+      rect:
+        serializedVersion: 2
+        x: 3319
+        y: 3521
+        width: 14
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee6cae8d133cb84e9843f889c9ac7cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_37
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 2738
+        width: 38
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842b0ce9e6413c242b4432292a5ce307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_38
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 2097
+        width: 750
+        height: 886
+      alignment: 9
+      pivot: {x: 0.27655065, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4967178b435ca674a98105529bd9f1c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_39
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 2097
+        width: 703
+        height: 886
+      alignment: 9
+      pivot: {x: 0.40634742, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5340b7b3a5813845b339ef19ed21ddb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_40
+      rect:
+        serializedVersion: 2
+        x: 2749
+        y: 2097
+        width: 636
+        height: 886
+      alignment: 9
+      pivot: {x: 0.4043483, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075c3a5ae0071354b89ae6497815ef9c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_41
+      rect:
+        serializedVersion: 2
+        x: 3786
+        y: 1924
+        width: 807
+        height: 1059
+      alignment: 9
+      pivot: {x: 0.31733987, y: 0.58}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97f99547df24c543973acba82b3e0d7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_42
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 2703
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ff4a2dd2af5ce842adf6e236eed3cf3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_43
+      rect:
+        serializedVersion: 2
+        x: 2755
+        y: 2703
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4ec0b1bda5364546ac7f3d16b586946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_44
+      rect:
+        serializedVersion: 2
+        x: 3794
+        y: 2703
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98267e398c74814488e33a94244ce72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_45
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 2680
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a709061ab9a39c240b45c6583a514b9c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_46
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 2681
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ff57d3210feee4290ff890fe5eb3b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_47
+      rect:
+        serializedVersion: 2
+        x: 2710
+        y: 2681
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac7c4739255a02409def2543654dc92
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_48
+      rect:
+        serializedVersion: 2
+        x: 3749
+        y: 2681
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b85158760122c746a71d35dec587917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_49
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 2669
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0606a170741a594b855ff36a1978130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_50
+      rect:
+        serializedVersion: 2
+        x: 2770
+        y: 2669
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375dd2197c70f69429504c8efebced9a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_51
+      rect:
+        serializedVersion: 2
+        x: 3809
+        y: 2669
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b47ab036fc116504bb92dfefd89d9d49
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_52
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 2643
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1ac28d49bad45143a089660c7a1cf5a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_53
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 2642
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426fa6a3e528fce479b959f8475b4185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_54
+      rect:
+        serializedVersion: 2
+        x: 2759
+        y: 2642
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c142988a8653db94fb39fdd481f60741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_55
+      rect:
+        serializedVersion: 2
+        x: 2773
+        y: 2642
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6816313929f4f4429853a1fd3e73465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_56
+      rect:
+        serializedVersion: 2
+        x: 3799
+        y: 2642
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e97d01cf0f006a4d9be767105c10759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_57
+      rect:
+        serializedVersion: 2
+        x: 3812
+        y: 2642
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ecebcba777998047ba5cebc698794fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_58
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 2633
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 918ad485562ff8a4691bf8fbdf5891f5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_59
+      rect:
+        serializedVersion: 2
+        x: 2723
+        y: 2633
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f98d4255038aa499e55161e9191c4e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_60
+      rect:
+        serializedVersion: 2
+        x: 3762
+        y: 2633
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0477ef655f802459d0d4871020b9f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_61
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 2611
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7285d1af5ed54b48ad1562582b94a6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_62
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 2607
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e049e72680997f94fbc99aaaefdb69f5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_63
+      rect:
+        serializedVersion: 2
+        x: 2726
+        y: 2611
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f147c43296f8fd4cbcce2e86bf5cd7f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_64
+      rect:
+        serializedVersion: 2
+        x: 2752
+        y: 2602
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438955e7641237345a5c1c30aac11ed9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_65
+      rect:
+        serializedVersion: 2
+        x: 3765
+        y: 2611
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d468e51e03b44f148988f4022d3f07c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_66
+      rect:
+        serializedVersion: 2
+        x: 3791
+        y: 2607
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5677373c281dc794285ff0da2f7db8ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_67
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 2602
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba1dc37777dde6a45ba379d2fc717563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_68
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 2602
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b563612d18864d4ca8cd7b61b0b42c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_69
+      rect:
+        serializedVersion: 2
+        x: 3797
+        y: 2602
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ee02d542d736e4fb4acbb412ced749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_70
+      rect:
+        serializedVersion: 2
+        x: 3821
+        y: 2602
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16706d46a2fff294f967b0bb7915442c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_71
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 2340
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dae8b3aa070a2a742a6f3ea174991b49
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_72
+      rect:
+        serializedVersion: 2
+        x: 2717
+        y: 2340
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc84990c086cda84f8371f2474e0a1da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_73
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 2323
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffdc70e1e6be5634399ec1669f651ed9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_74
+      rect:
+        serializedVersion: 2
+        x: 2723
+        y: 2323
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35624217b940fef4ea9cb72bbc8c02c0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_75
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 381
+        width: 1055
+        height: 1032
+      alignment: 9
+      pivot: {x: 0.23897919, y: 0.58109784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda3b946ba595ee40a117892da63bcb8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_76
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 528
+        width: 888
+        height: 1291
+      alignment: 9
+      pivot: {x: 0.2963008, y: 0.3494317}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc9b35e9cc442e4c933a3c19547f2d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_77
+      rect:
+        serializedVersion: 2
+        x: 2373
+        y: 1216
+        width: 14
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702e8b1f76b88894ab9e65cf6565faee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_78
+      rect:
+        serializedVersion: 2
+        x: 2547
+        y: 528
+        width: 863
+        height: 1149
+      alignment: 9
+      pivot: {x: 0.4874866, y: 0.39426476}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618c39171ce9f8e40a580321487cc12b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_79
+      rect:
+        serializedVersion: 2
+        x: 3656
+        y: 528
+        width: 637
+        height: 907
+      alignment: 9
+      pivot: {x: 0.6017185, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9201f5e4df289749ae8a04a29d387a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_80
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 1169
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384f5a51b66f0dd45ae30b3b9a1628a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_81
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1135
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f3ff73da82dbd841b0032029cdd483d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_82
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 1134
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3acc3d7857fec4241b40b2bd28f5af10
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_83
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1111
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05e4e19495291047bce3cd0350e3145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_84
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 1111
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a047b7756fa7b14428da73b86ab85a34
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_85
+      rect:
+        serializedVersion: 2
+        x: 2379
+        y: 1108
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ee7c0d315987f4d8bf47b9e6e0fabd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_86
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1100
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f3cfbd786ee304e99481949eb3251a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_87
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1074
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df49c3596dcc1a24cba1b8c0b4aa72a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_88
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 1074
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24aa555112c40845b2bdca9b2e04526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_89
+      rect:
+        serializedVersion: 2
+        x: 2444
+        y: 1080
+        width: 4
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b3ea7792abff643b8a89487fea74c0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_90
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 1074
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4a4a55becb2be44a95ece45dd21a25
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_91
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 1074
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5241e8614a48c5a46bc555e747c14a2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_92
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 1064
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed0b9150fd5f45458091bb5a6d29684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_93
+      rect:
+        serializedVersion: 2
+        x: 1402
+        y: 1064
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f89835afc21074085abd021917657c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_94
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1043
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f81969e160400479e16b50b47460ac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_95
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1038
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d01e7255e763090439d7d7617898a09b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_96
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 1043
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146f6def88fef90498bb85a52424e98c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_97
+      rect:
+        serializedVersion: 2
+        x: 1431
+        y: 1038
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385dda49c3d2ce14ab51173a3cb9ad7e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_98
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1032
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcde626cc3907e147a1864c2cd4ab8a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_99
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1032
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d0a4d9b2b01e343aa0ae4c1c7348f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_100
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 1032
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12a31abe106a48048962d1f0b3a79144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_101
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1032
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6602a9d7a271d6040aa2390aa5ed3fa2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_102
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 826
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26bf7db7af20b3a4cadfe061058d31f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_103
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 810
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62eda12bda07387478fbccc84f772d1c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_104
+      rect:
+        serializedVersion: 2
+        x: 4305
+        y: 739
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d46ab9d6a8965e40a458238057d4e81
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Upwards Attack_105
+      rect:
+        serializedVersion: 2
+        x: 4310
+        y: 702
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3b554b3fbf0d745938072306a05176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0b136c3102ad6de408b5b273ca34c8c6
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

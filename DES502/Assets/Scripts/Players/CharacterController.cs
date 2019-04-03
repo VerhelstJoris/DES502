@@ -31,7 +31,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform _downAttackObject;
     [SerializeField] private Transform _upAttackObject;
 
-    const float k_groundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    const float k_groundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     private bool _grounded;
     private bool _hitCeiling;  // used to cancel jumping early if hitting a ceiling
     const float k_ceilingHitRadius = .1f; // Radius of the overlap circle to determine if grounded
@@ -45,6 +45,7 @@ public class CharacterController : MonoBehaviour
     public PlayerID _PlayerID;
     public TeamID _TeamID;
     public CharacterID _CharID;
+    public ControllerID _ControllerID;
 
     private PlayerAudioScriptableObject _audioScriptableObject;
 
@@ -336,7 +337,6 @@ public class CharacterController : MonoBehaviour
 
     }
 
-
     private void Update()
     {
         PowerupTimerTick();
@@ -360,18 +360,21 @@ public class CharacterController : MonoBehaviour
         }
 
         //Movement
-        HandlePlayerInput();
-        // halt movement if attacking while on the ground
-        if (_attacking && _grounded)
+        if(_PlayerState != PlayerState.Dead)
         {
-            _horizontalMove = 0;
+            HandlePlayerInput();
+            // halt movement if attacking while on the ground
+            if (_attacking && _grounded)
+            {
+                _horizontalMove = 0;
+            }
+            else
+            {
+                _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1)
+                    * _moveSpeed * _moveSpeedMultiplier * Time.fixedDeltaTime;
+            }
+            Move(_horizontalMove, _jumpKeyDown);
         }
-        else
-        {
-            _horizontalMove = _horizontalInput * ((_controlsReversed.GetHashCode() * 2 - 1) * -1)
-                * _moveSpeed * _moveSpeedMultiplier * Time.fixedDeltaTime;
-        }
-        Move(_horizontalMove,_jumpKeyDown);
 
         //Attacking
         if (_attackKeyDown || _specialAttackKeyDown)
@@ -390,105 +393,107 @@ public class CharacterController : MonoBehaviour
 
     private void Move(float move, bool jump)
     {
-    
-        //only control the player if grounded or airControl is turned on
-        if ((_grounded || (_airControl)) && !_stunned)
+
+        if (_PlayerState != PlayerState.Dead)
         {
-
-            // Move the character by finding the target velocity
-            float magicNumber = 10f;  // this directly affects move speed, refactor?
-            Vector3 targetVelocity = new Vector2(move * magicNumber, _rigidbody.velocity.y);
-
-            // And then smoothing it out and applying it to the character
-
-            if(_attacking || _rooted)
+            //only control the player if grounded or airControl is turned on
+            if ((_grounded || (_airControl)) && !_stunned)
             {
-                targetVelocity = new Vector2(0, _rigidbody.velocity.y);
 
-            }
-            _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
+                // Move the character by finding the target velocity
+                float magicNumber = 10f;  // this directly affects move speed, refactor?
+                Vector3 targetVelocity = new Vector2(move * magicNumber, _rigidbody.velocity.y);
 
+                // And then smoothing it out and applying it to the character
 
-
-            if(_grounded && move!=0 && !_running)
-            {
-                _animator.SetBool("Running", true);
-                _running = true;
-                _collider.size = new Vector2(0.75f, 0.65f);
-            }
-            else if(_grounded && move ==0 && _horizontalInput==0 && _running)
-            {
-                _animator.SetBool("Running", false);
-                _running = false;
-                _collider.size = new Vector2(0.5f, 0.9f);
-            }
-
-            //looking in the right direction
-            if (move > 0 && !_FacingRight)
-            {
-                Flip();
-            }
-            else if (move < 0 && _FacingRight)
-            {
-                Flip();
-            }
-        }
-
-        // should we start jumping?
-        if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
-        {
-        // _grounded will still return true as you begin to jump!
-            _jumping = true;
-            _jumpTimeCounter = _maxJumpTime;
-            //Debug.Log("Started Jump");
-            _animator.SetBool("Jumping", true);
-
-        }
-
-        // currently jumping
-        if (jump && _jumping)
-        {
-            if (_jumpTimeCounter >= 0)
-            {
-                if (!IsHittingCeiling())
+                if (_attacking || _rooted)
                 {
-                    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
+                    targetVelocity = new Vector2(0, _rigidbody.velocity.y);
+
+                }
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
+
+
+
+                if (_grounded && move != 0 && !_running)
+                {
+                    _animator.SetBool("Running", true);
+                    _running = true;
+                    _collider.size = new Vector2(0.75f, 0.65f);
+                }
+                else if (_grounded && move == 0 && _horizontalInput == 0 && _running)
+                {
+                    _animator.SetBool("Running", false);
+                    _running = false;
+                    _collider.size = new Vector2(0.5f, 0.9f);
+                }
+
+                //looking in the right direction
+                if (move > 0 && !_FacingRight)
+                {
+                    Flip();
+                }
+                else if (move < 0 && _FacingRight)
+                {
+                    Flip();
+                }
+            }
+
+            // should we start jumping?
+            if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
+            {
+                // _grounded will still return true as you begin to jump!
+                _jumping = true;
+                _jumpTimeCounter = _maxJumpTime;
+                //Debug.Log("Started Jump");
+                _animator.SetBool("Jumping", true);
+
+            }
+
+            // currently jumping
+            if (jump && _jumping)
+            {
+                if (_jumpTimeCounter >= 0)
+                {
+                    if (!IsHittingCeiling())
+                    {
+                        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
+                    }
+                    else
+                    {
+                        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+                        _jumping = false;
+                    }
+                    _jumpTimeCounter -= Time.deltaTime;
                 }
                 else
                 {
-                    _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                     _jumping = false;
                 }
-                _jumpTimeCounter -= Time.deltaTime;
+            }
+
+            // Don't clamp this during hit stun?
+            if (_shouldClampFallSpeed) // && _rigidbody.velocity.y < 0)
+            {
+                // We create this multiple times, could optimise by pooling together the y velocity value changes then create the new rigidbody value only once
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Max(_rigidbody.velocity.y, _maxFallSpeed));
+                //Debug.Log("_rigidbody.velocity.y = " + _rigidbody.velocity.y);
+            }
+
+            if (!jump)
+                _jumping = false;
+            // TODO: Ensure minimum jump height reached
+
+            // make sure jump key checks will only return true once per press
+            if (jump)
+            {
+                _jumpKeyDownAlready = true;
             }
             else
             {
-                _jumping = false;
+                _jumpKeyDownAlready = false;
             }
         }
-
-        // Don't clamp this during hit stun?
-        if (_shouldClampFallSpeed) // && _rigidbody.velocity.y < 0)
-        {
-            // We create this multiple times, could optimise by pooling together the y velocity value changes then create the new rigidbody value only once
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Max(_rigidbody.velocity.y, _maxFallSpeed));
-            //Debug.Log("_rigidbody.velocity.y = " + _rigidbody.velocity.y);
-        }
-
-        if (!jump)
-            _jumping = false;
-            // TODO: Ensure minimum jump height reached
-
-        // make sure jump key checks will only return true once per press
-        if (jump)
-        {
-            _jumpKeyDownAlready = true;
-        }
-        else
-        {
-            _jumpKeyDownAlready = false;
-        }
-
     }
 
     private void StartAttack()
@@ -827,10 +832,7 @@ public class CharacterController : MonoBehaviour
         _AmountOfDeaths++;
 
         _animator.SetBool("Die", true);
-
-
-       
-
+        _rigidbody.bodyType = RigidbodyType2D.Static;
     }
 
     private void ConfigureJump(float min_height, float min_time, float max_height)
@@ -959,6 +961,7 @@ public class CharacterController : MonoBehaviour
         data.TeamId = _TeamID;
         data.Deaths = _AmountOfDeaths;
         data.charID = _CharID;
+        data.controllerID = _ControllerID;
 
         if (_PlayerTag)
         {
