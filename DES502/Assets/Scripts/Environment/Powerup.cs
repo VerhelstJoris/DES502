@@ -97,25 +97,20 @@ public class Powerup : MonoBehaviour
         switch (powerup)
         {
             case (POWERUP_TYPES.REVERSE_CONTROLS):
-                // TODO: change to activate on the enemy team
                 player._controlsReversed = true;
                 // apply visual effect
                 break;
             case (POWERUP_TYPES.MOVE_SPEED):
-                // TODO: change to activate on the friendly team
                 player._moveSpeedMultiplier = _moveSpeedMultiplier;
                 // apply visual effect
                 break;
             case (POWERUP_TYPES.ROOT):
-                // TODO: change to activate on the enemy team
                 player._rooted = true;
                 break;
             case (POWERUP_TYPES.SHIELD):
-                // TODO: change to activate on the friendly team
                 player._shielded = true;
                 break;
             case (POWERUP_TYPES.MELEE_INSTANT_KILL):
-                // TODO: change to activate on the enemy team
                 player._meleeInstantKill = true;
                 break;
             // RANDOM is no longer called in the effect stage
@@ -132,7 +127,12 @@ public class Powerup : MonoBehaviour
                 break;
             */
         }
-        player.OnPowerupCollected(_effectTime, _HUDSprite);
+        player.OnPowerupCollected(_effectTime, _HUDSprite, GetPlayerModulateColor(powerup));
+    }
+
+    private Color GetPlayerModulateColor(POWERUP_TYPES powerup)
+    {
+        return _powerupData.powerups[GetPowerupTypeIndex(powerup)].playerModulateColor;
     }
 
     private void GetPowerupTargets(CharacterController player, POWERUP_TYPES powerup)
@@ -142,7 +142,7 @@ public class Powerup : MonoBehaviour
         foreach(CharacterController p in totalPlayers)
         {
             int pTeamIndex = GetTeamIndex(p);
-            int powerupTypeIndex = System.Array.IndexOf(POWERUP_TYPES.GetValues(_type.GetType()), powerup);
+            int powerupTypeIndex = GetPowerupTypeIndex(powerup);
             //Debug.Log("powerupTypeIndex: " + powerupTypeIndex);
             bool powerupTargetFriendly = _powerupData.powerups[powerupTypeIndex].targetsFriendly;
             if ((playerTeamIndex == pTeamIndex && powerupTargetFriendly)
@@ -152,6 +152,11 @@ public class Powerup : MonoBehaviour
                 ApplyEffect(p, powerup);
             }
         }
+    }
+
+    private int GetPowerupTypeIndex(POWERUP_TYPES powerup)
+    {
+        return System.Array.IndexOf(POWERUP_TYPES.GetValues(_type.GetType()), powerup);
     }
 
     private int GetTeamIndex(CharacterController player)

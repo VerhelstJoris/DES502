@@ -1017,6 +1017,7 @@ public class CharacterController : MonoBehaviour
         _shielded = false;
         _meleeInstantKill = false;
         _GameManager.OnPowerupExpired(_PlayerID);
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     // rename this?
@@ -1048,10 +1049,11 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite)
+    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor)
     {
         StartPowerupTimer(effectTime);
         _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
+        this.GetComponent<SpriteRenderer>().color = modulateColor;
     }
 }
 
