@@ -16,4 +16,5 @@ public class PowerupData
     //public Texture sidebarHUDTexture;
     public Sprite sidebarHUDSprite;
     public bool targetsFriendly;
+    public Color playerModulateColor;
 }
