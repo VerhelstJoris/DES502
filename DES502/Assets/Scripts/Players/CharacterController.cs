@@ -998,12 +998,12 @@ public class CharacterController : MonoBehaviour
             //Debug.Log("_powerupTimer: " + _powerupTimer);
             if (_powerupTimer <= 0)
             {
-                OnPowerupTimerEnd();
+                DisablePowerups();
             }
         }
     }
 
-    private void OnPowerupTimerEnd()
+    private void DisablePowerups()
     {
         // stop the timer tick from happening
         _isPowerupTimerActive = false;
