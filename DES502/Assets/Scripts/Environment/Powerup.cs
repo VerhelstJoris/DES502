@@ -166,7 +166,10 @@ public class Powerup : MonoBehaviour
 
     public void AssignType()
     {
-        _type = GetRandomType();
+        while (_type == POWERUP_TYPES.REVERSE_CONTROLS)
+        {
+            _type = GetRandomType();
+        }
         SetSprite(_type);
     }
 
