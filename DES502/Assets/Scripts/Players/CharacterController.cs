@@ -833,6 +833,7 @@ public class CharacterController : MonoBehaviour
 
         _animator.SetBool("Die", true);
         _rigidbody.bodyType = RigidbodyType2D.Static;
+        DisablePowerups();
     }
 
     private void ConfigureJump(float min_height, float min_time, float max_height)
@@ -1015,7 +1016,7 @@ public class CharacterController : MonoBehaviour
         _rooted = false;
         _shielded = false;
         _meleeInstantKill = false;
-        _GameManager.OnPowerupExpired(_TeamID);
+        _GameManager.OnPowerupExpired(_PlayerID);
     }
 
     // rename this?

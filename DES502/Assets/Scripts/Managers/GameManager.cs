@@ -460,11 +460,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnPowerupExpired(TeamID teamToApply)
+    public void OnPowerupExpired(PlayerID playerToApply)
     {
         for (int i = 0; i < _playerUIs.Count; i++)
         {
-            if (_playerUIs[i]._teamID == teamToApply)
+            if (_playerUIs[i]._PlayerID == playerToApply)
             {
                 _playerUIs[i].HidePowerupIcon();
             }
