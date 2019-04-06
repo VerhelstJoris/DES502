@@ -94,6 +94,10 @@ public class Powerup : MonoBehaviour
 
     private void ApplyEffect(CharacterController player, POWERUP_TYPES powerup)
     {
+        // Remove any powerup effects that might still be in effect
+        // Powerups will stack without this
+        player.DisablePowerups();
+        // Apply the new powerup
         switch (powerup)
         {
             case (POWERUP_TYPES.REVERSE_CONTROLS):

@@ -1004,7 +1004,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void DisablePowerups()
+    public void DisablePowerups()
     {
         // stop the timer tick from happening
         _isPowerupTimerActive = false;
