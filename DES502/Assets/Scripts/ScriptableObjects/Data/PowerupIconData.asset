@@ -42,7 +42,7 @@ MonoBehaviour:
       type: 3}
     sidebarHUDSprite: {fileID: 21300004, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 0
-    playerModulateColor: {r: 0.5377358, g: 0.13950695, b: 0.13950695, a: 0}
+    playerModulateColor: {r: 0.5377358, g: 0.13950695, b: 0.13950695, a: 1}
   - powerupName: Random
     inGameCollectableSprite: {fileID: 21300006, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
