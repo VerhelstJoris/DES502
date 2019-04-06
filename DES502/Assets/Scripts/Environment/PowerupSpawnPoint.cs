@@ -21,6 +21,7 @@ public class PowerupSpawnPoint : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [HideInInspector]
     public bool _containsPowerup = false;
+    private List<CharacterController> _playersOverlapping = new List<CharacterController>();
     /*
     [HideInInspector]
     public bool[] _powerupsToSpawn;
@@ -59,4 +60,27 @@ public class PowerupSpawnPoint : MonoBehaviour
         return powerups;
     }
     */
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            _playersOverlapping.Add(other.GetComponent<CharacterController>());
+            //Debug.Log(_playersOverlapping.Count);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            _playersOverlapping.Remove(other.GetComponent<CharacterController>());
+            //Debug.Log(_playersOverlapping.Count);
+        }
+    }
+
+    public bool IsValid()
+    {
+        return (_playersOverlapping.Count == 0 && !_containsPowerup);
+    }
 }

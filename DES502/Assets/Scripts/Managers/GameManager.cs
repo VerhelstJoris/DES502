@@ -441,7 +441,7 @@ public class GameManager : MonoBehaviour
         List<PowerupSpawnPoint> validSpawnPoints = new List<PowerupSpawnPoint>();
         foreach (PowerupSpawnPoint sp in _powerupSpawnPoints)
         {
-            if (!sp._containsPowerup)
+            if (sp.IsValid())
             {
                 validSpawnPoints.Add(sp);
             }
