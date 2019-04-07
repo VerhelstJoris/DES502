@@ -262,14 +262,15 @@ MonoBehaviour:
   _PlayerID: 0
   _TeamID: 0
   _CharID: 0
+  _ControllerID: 0
   _moveSpeed: 40
   _movementSmoothing: 0.1
   _airControl: 1
-  _minJumpHeight: 1.5
+  _minJumpHeight: 2
   _minJumpTime: 0.05
-  _maxJumpHeight: 3
+  _maxJumpHeight: 2
   _shouldClampFallSpeed: 1
-  _maxFallSpeed: -10
+  _maxFallSpeed: -12.5
   _playerStompJumpHeight: 1000
   _playerStompKnockbackHeight: 500
   _playerStompStunDuration: 0.35
