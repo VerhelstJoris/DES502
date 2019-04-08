@@ -37,6 +37,7 @@ public class CharacterController : MonoBehaviour
     const float k_ceilingHitRadius = .1f; // Radius of the overlap circle to determine if grounded
     [HideInInspector]
     public bool _FacingRight = true;
+    private bool _previousFacingRight = true;
 
     [Header("General")]
     [SerializeField] [Tooltip("Death duration will always be the same across all player characters")]
@@ -56,13 +57,15 @@ public class CharacterController : MonoBehaviour
 
     [Range(0, 150.0f)] [SerializeField] float _moveSpeed;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
-
+    [SerializeField] private bool _useTurnaround = true;
+    [Range(0, .5f)] [SerializeField] private float _turnaroundDuration = .05f;
 
     float _horizontalMove = 0.0f;
     float _horizontalInput = 0.0f;
     float _verticalInput = 0.0f;
-
     bool _running = false;
+    private float _turnaroundTimer;
+    private bool _isTurningAround = false;
 
     //JUMP RELATED
     //------------------------------------
@@ -396,7 +399,8 @@ public class CharacterController : MonoBehaviour
 
         if (_PlayerState != PlayerState.Dead)
         {
-            //only control the player if grounded or airControl is turned on
+            // Walking
+            // only control the player if grounded or airControl is turned on
             if ((_grounded || (_airControl)) && !_stunned)
             {
 
@@ -406,14 +410,11 @@ public class CharacterController : MonoBehaviour
 
                 // And then smoothing it out and applying it to the character
 
+                bool shouldMove = true;
                 if (_attacking || _rooted)
                 {
-                    targetVelocity = new Vector2(0, _rigidbody.velocity.y);
-
+                    shouldMove = false;
                 }
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
-
-
 
                 if (_grounded && move != 0 && !_running)
                 {
@@ -428,17 +429,41 @@ public class CharacterController : MonoBehaviour
                     _collider.size = new Vector2(0.5f, 0.9f);
                 }
 
-                //looking in the right direction
-                if (move > 0 && !_FacingRight)
+                // looking in the right direction
+                if (move > 0)
+                {
+                    _FacingRight = true;
+                }
+                else if (move < 0)
+                {
+                    _FacingRight = false;
+                }
+
+                // should we turn around?
+                if (_previousFacingRight != _FacingRight)
                 {
                     Flip();
                 }
-                else if (move < 0 && _FacingRight)
+                if (_useTurnaround)
                 {
-                    Flip();
+                    // turnaround timer
+                    if (_isTurningAround)
+                    {
+                        if (!IsTurnaroundTimerExpired())
+                        {
+                            shouldMove = false;
+                        }
+                    }
                 }
+                if (!shouldMove)
+                {
+                    targetVelocity = new Vector2(0, _rigidbody.velocity.y);
+                }
+                // move the player
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
             }
 
+            // Jumping
             // should we start jumping?
             if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
             {
@@ -758,7 +783,10 @@ public class CharacterController : MonoBehaviour
     {
 
         // Switch the way the player is labelled as facing.
-        _FacingRight = !_FacingRight;
+        _isTurningAround = true;
+        _turnaroundTimer = _turnaroundDuration;
+        _previousFacingRight = _FacingRight;
+        //_FacingRight = !_FacingRight;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
@@ -1054,6 +1082,21 @@ public class CharacterController : MonoBehaviour
         StartPowerupTimer(effectTime);
         _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
         this.GetComponent<SpriteRenderer>().color = modulateColor;
+    }
+
+    private bool IsTurnaroundTimerExpired()
+    {
+        _turnaroundTimer -= Time.deltaTime;
+        Debug.Log("_turnaroundTimer:" + _turnaroundTimer.ToString());
+        if (_turnaroundTimer <= 0)
+        {
+            _isTurningAround = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 

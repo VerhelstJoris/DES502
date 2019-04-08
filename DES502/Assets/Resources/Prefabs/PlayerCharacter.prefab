@@ -264,7 +264,9 @@ MonoBehaviour:
   _CharID: 0
   _ControllerID: 0
   _moveSpeed: 40
-  _movementSmoothing: 0.1
+  _movementSmoothing: 0.05
+  _useTurnaround: 1
+  _turnaroundDuration: 0.1
   _airControl: 1
   _minJumpHeight: 2
   _minJumpTime: 0.05
