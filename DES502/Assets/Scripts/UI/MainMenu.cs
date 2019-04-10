@@ -44,9 +44,8 @@ public class MainMenu : MonoBehaviour
             SetWinCondition(_winConditionDropdown);
         });
 
-        //_nextButton.GetComponent<Image>().color = new Color(200, 200, 200);
-        _nextButton.enabled = false;
-        _nextButton.gameObject.SetActive(false);
+        //_nextButton.enabled = false;
+        //_nextButton.gameObject.SetActive(false);
 
     }
 
@@ -81,8 +80,8 @@ public class MainMenu : MonoBehaviour
 
         if(_playerAmountJoined!= _playerAmountReady)
         {
-            _nextButton.gameObject.SetActive(false);
-            _nextButton.enabled = false;
+            //_nextButton.gameObject.SetActive(false);
+            //_nextButton.enabled = false;
 
 
             //_nextButton.GetComponent<Image>().color = new Color(200, 200, 200);
@@ -96,8 +95,8 @@ public class MainMenu : MonoBehaviour
         if (_playerAmountJoined == _playerAmountReady && _playerAmountReady > 1)
         {
             Debug.Log("Activate Button");
-            _nextButton.gameObject.SetActive(true);
-            _nextButton.enabled = true;
+            //_nextButton.gameObject.SetActive(true);
+            //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }
 
