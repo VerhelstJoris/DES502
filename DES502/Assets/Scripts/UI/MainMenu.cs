@@ -14,18 +14,24 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Dropdown _winConditionDropdown;
 
+    [SerializeField]
+    private Button _nextButton;
 
+    int _playerAmountJoined = 0;
+    int _playerAmountReady = 0;
     // Start is called before the first frame update
     void Start()
     {
-        _GMScriptableObject.PlayerAmount = 2;
+        _GMScriptableObject.PlayerAmount = 0;
         _GMScriptableObject.TeamSetup = TeamSetup.FFA;
         _GMScriptableObject.GameWinCondition = GameWinCondition.STOCKS;
+
+
 
         //add delegates here so we don't have to manually add them in the inspector
         _amountPlayersDropdown.onValueChanged.AddListener(delegate
         {
-            SetPlayerAmount(_amountPlayersDropdown);
+            //SetPlayerAmount(_amountPlayersDropdown);
         });
 
         _teamSetupDropdown.onValueChanged.AddListener(delegate
@@ -37,6 +43,11 @@ public class MainMenu : MonoBehaviour
         {
             SetWinCondition(_winConditionDropdown);
         });
+
+        //_nextButton.GetComponent<Image>().color = new Color(200, 200, 200);
+        _nextButton.enabled = false;
+        _nextButton.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -61,5 +72,41 @@ public class MainMenu : MonoBehaviour
     {
         _GMScriptableObject.GameWinCondition = (GameWinCondition)dropdown.value;
         Debug.Log(_GMScriptableObject.GameWinCondition.ToString());
+    }
+
+    public void AddPlayer()
+    {
+        _playerAmountJoined++;
+        _GMScriptableObject.PlayerAmount=_playerAmountJoined;
+
+        if(_playerAmountJoined!= _playerAmountReady)
+        {
+            _nextButton.gameObject.SetActive(false);
+            _nextButton.enabled = false;
+
+
+            //_nextButton.GetComponent<Image>().color = new Color(200, 200, 200);
+        }
+    }
+
+    public void PlayerReady()
+    {
+        _playerAmountReady++;
+
+        if (_playerAmountJoined == _playerAmountReady && _playerAmountReady > 1)
+        {
+            Debug.Log("Activate Button");
+            _nextButton.gameObject.SetActive(true);
+            _nextButton.enabled = true;
+            //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+
+        //add the player data to its scriptable object
+    }
+
+    public PlayerID GetNextPlayerID()
+    {
+        Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
+        return (PlayerID)_playerAmountReady;
     }
 }

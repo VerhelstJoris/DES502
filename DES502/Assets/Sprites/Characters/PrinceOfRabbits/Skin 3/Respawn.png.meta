@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: c0689e4ab85c3fa4da6fab5c487c188f
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Respawn_4
+    21300002: Respawn_0
+    21300004: Respawn_2
+    21300006: Respawn_5
+    21300008: Respawn_6
+    21300010: Respawn_14
+    21300012: Respawn_15
+    21300014: Respawn_20
+    21300016: Respawn_24
+    21300018: Respawn_30
+    21300020: Respawn_82
+    21300022: Respawn_95
+    21300024: Respawn_47
+    21300026: Respawn_52
+    21300028: Respawn_73
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -93,7 +108,207 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Respawn_4
+      rect:
+        serializedVersion: 2
+        x: 5043
+        y: 4165
+        width: 1564
+        height: 1490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df932edd5e16ae4ab5cc4035fe9842c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_0
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 4221
+        width: 1276
+        height: 1418
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47589c4546f556f4e8908259ddf55422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_2
+      rect:
+        serializedVersion: 2
+        x: 2769
+        y: 4231
+        width: 1544
+        height: 1408
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c041d9376ce9c9343b4a34069afedfcd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_5
+      rect:
+        serializedVersion: 2
+        x: 7309
+        y: 4187
+        width: 1565
+        height: 1490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c41b37b8780534cb3689766adfe364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_6
+      rect:
+        serializedVersion: 2
+        x: 9494
+        y: 4176
+        width: 1610
+        height: 1536
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1628e7cc567e06442b03daa09daac647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_14
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 2440
+        width: 1802
+        height: 1572
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23d822d109545b34ab82b2d08d7e4be5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_82
+      rect:
+        serializedVersion: 2
+        x: 7155
+        y: 2385
+        width: 1533
+        height: 1649
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ac1e3dce19a0244ba4e5f743d74a052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_95
+      rect:
+        serializedVersion: 2
+        x: 9415
+        y: 2386
+        width: 1519
+        height: 1641
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7864e7d6b9c7b464b9d649c3657ef231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_52
+      rect:
+        serializedVersion: 2
+        x: 2757
+        y: 2397
+        width: 1896
+        height: 1641
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ada133361f374242afab6c5daca69df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Respawn_73
+      rect:
+        serializedVersion: 2
+        x: 4937
+        y: 2388
+        width: 1918
+        height: 1649
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097c089fbcb9fec449bada41b9149b0c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

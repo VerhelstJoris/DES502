@@ -245,8 +245,22 @@ MonoBehaviour:
   _GameManager: {fileID: 0}
   _PlayerTag: {fileID: 0}
   _PlayerUI: {fileID: 0}
-  _rabbitAnimator: {fileID: 9100000, guid: f1814f1c1de3f2741930d38214f8d066, type: 2}
-  _foxAnimator: {fileID: 22100000, guid: 1ad7a4e2de7952945981bfec00609cbb, type: 2}
+  _rabbitAnimators:
+  - {fileID: 22100000, guid: b77c3b374eb8c474f9d575e56dca233c, type: 2}
+  - {fileID: 22100000, guid: 9e3eaf97eff65ef45a1249501b4528df, type: 2}
+  - {fileID: 22100000, guid: 68d99550602625e45b7321f009967f5c, type: 2}
+  - {fileID: 22100000, guid: b8a05bd5deb999c46aa1875ed1324f87, type: 2}
+  - {fileID: 22100000, guid: ce6dd93e52699a64c951cac2c9a5543a, type: 2}
+  - {fileID: 22100000, guid: f104f623512311b498e12f955ca1346c, type: 2}
+  - {fileID: 22100000, guid: e8d1a7168280c1145b08b3c20360b9b5, type: 2}
+  _foxAnimators:
+  - {fileID: 22100000, guid: 1ad7a4e2de7952945981bfec00609cbb, type: 2}
+  - {fileID: 22100000, guid: 3bb58ba96eb30c64d85666e25bb75e1e, type: 2}
+  - {fileID: 22100000, guid: 12b56c9e6def7ac42814a4fed5712e58, type: 2}
+  - {fileID: 22100000, guid: 17ccc555970de4542b0b0685cc3960da, type: 2}
+  - {fileID: 22100000, guid: d926bfbd1c07c5f47a531fa558269965, type: 2}
+  - {fileID: 22100000, guid: 1341549267c20d74c95728dbd31a38f5, type: 2}
+  - {fileID: 22100000, guid: fbc8440c5dc6f70488603dbb4635b0bd, type: 2}
   _rabbitAudioObject: {fileID: 11400000, guid: 7a560f9caa447de4692691ab7925e1f0, type: 2}
   _foxAudioObject: {fileID: 11400000, guid: 08d656d000a83be4e959745ddb493f1c, type: 2}
   _whatIsGround:
@@ -262,6 +276,8 @@ MonoBehaviour:
   _PlayerID: 0
   _TeamID: 0
   _CharID: 0
+  _ControllerID: 0
+  _SkinID: 0
   _moveSpeed: 40
   _movementSmoothing: 0.1
   _airControl: 1

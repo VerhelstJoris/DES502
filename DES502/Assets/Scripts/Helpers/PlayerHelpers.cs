@@ -22,6 +22,7 @@ public struct PlayerData
     public PlayerID Id;
     public ControllerID controllerID;
     public CharacterID charID;
+    public int skinID;
     public int Stocks;
     public int Deaths;
     public TeamID TeamId;

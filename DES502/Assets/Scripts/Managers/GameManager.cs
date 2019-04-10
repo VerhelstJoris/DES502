@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameWinCondition _WinCondition;
 
+    //PLAYERDATAS
+    public PlayerDataScriptableObject[] _PlayerDataObjects;
+
     public float _GameTimerLeft=0.0f;
 
     //stocks
@@ -166,16 +169,34 @@ public class GameManager : MonoBehaviour
         }
 
         //spawn in the players
-        for (int i = 0; i < _PlayerAmount; i++)
+        //for (int i = 0; i < _PlayerAmount; i++)
+        //{
+        //    PlayerData data;
+        //    data.Id = (PlayerID)i;
+        //    data.Stocks = _startingStocksPerPlayer;
+        //    data.TeamId = (TeamID)(i % 2);
+        //    data.Deaths = 0;
+        //    data.charID = (CharacterID)(i % 2);
+        //    data.controllerID = ControllerID.Controller1;
+        //    _respawnPoints[i].Activate(data);
+        //}
+
+        for (int i = 0; i < _PlayerDataObjects.Length; i++)
         {
-            PlayerData data;
-            data.Id = (PlayerID)i;
-            data.Stocks = _startingStocksPerPlayer;
-            data.TeamId = (TeamID)(i % 2);
-            data.Deaths = 0;
-            data.charID = (CharacterID)(i % 2);
-            data.controllerID = ControllerID.Controller1;
-            _respawnPoints[i].Activate(data);
+            if(_PlayerDataObjects[i].Active)
+            {
+                PlayerData data;
+                data.Id = _PlayerDataObjects[i].PlayerID;
+                data.controllerID = _PlayerDataObjects[i].ControllerID;
+                data.charID = _PlayerDataObjects[i].CharacterID;
+                data.Stocks = _startingStocksPerPlayer;
+                data.TeamId = (TeamID)(i % 2);
+                data.Deaths = 0;
+                data.skinID = _PlayerDataObjects[i].SkinID;
+
+                _respawnPoints[i].Activate(data);
+                Debug.Log("Spawn Player");
+            }
         }
         ResetPowerupSpawnTimer();
     }

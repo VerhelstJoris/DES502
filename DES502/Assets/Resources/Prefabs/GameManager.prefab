@@ -50,6 +50,11 @@ MonoBehaviour:
   _PlayerAmount: 2
   _TeamSetup: 0
   _WinCondition: 0
+  _PlayerDataObjects:
+  - {fileID: 11400000, guid: a7eca5afe3854894c95592f1304b0380, type: 2}
+  - {fileID: 11400000, guid: 6b1df2d28247bbd4a82ba73af7871c57, type: 2}
+  - {fileID: 11400000, guid: ec542f34f194af245bc98fdbc2ca94b1, type: 2}
+  - {fileID: 11400000, guid: 2513ce98a5d79a54fbb968836f148b07, type: 2}
   _GameTimerLeft: 0
   _powerupPrefab: {fileID: 8589857588049668522, guid: 9ce2a20572140c949997b34c2cd3d490,
     type: 3}

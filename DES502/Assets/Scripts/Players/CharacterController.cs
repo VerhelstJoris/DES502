@@ -17,7 +17,7 @@ public class CharacterController : MonoBehaviour
     public PlayerUI _PlayerUI;
 
     [SerializeField]
-    private RuntimeAnimatorController _rabbitAnimator, _foxAnimator;
+    private RuntimeAnimatorController[] _rabbitAnimators, _foxAnimators;
 
     [SerializeField]
     private PlayerAudioScriptableObject _rabbitAudioObject, _foxAudioObject;
@@ -46,6 +46,7 @@ public class CharacterController : MonoBehaviour
     public TeamID _TeamID;
     public CharacterID _CharID;
     public ControllerID _ControllerID;
+    public int _SkinID;
 
     private PlayerAudioScriptableObject _audioScriptableObject;
 
@@ -226,6 +227,7 @@ public class CharacterController : MonoBehaviour
         _TeamID = data.TeamId;
         _AmountOfDeaths = data.Deaths;
         _CharID = data.charID;
+        _SkinID = data.skinID;
 
         //proper input + animator
         switch (_PlayerID)
@@ -249,11 +251,11 @@ public class CharacterController : MonoBehaviour
         switch (_CharID)
         {
             case CharacterID.Fox:
-                _animator.runtimeAnimatorController = _foxAnimator;
+                _animator.runtimeAnimatorController = _foxAnimators[_SkinID];
                 _audioScriptableObject = _foxAudioObject;
                 break;
             case CharacterID.Rabbit:
-                _animator.runtimeAnimatorController = _rabbitAnimator;
+                _animator.runtimeAnimatorController = _rabbitAnimators[_SkinID];
                 _audioScriptableObject = _rabbitAudioObject;
                 break;
         }
@@ -295,10 +297,10 @@ public class CharacterController : MonoBehaviour
         switch (_CharID)
         {
             case CharacterID.Fox:
-                _animator.runtimeAnimatorController = _foxAnimator;
+                _animator.runtimeAnimatorController = _foxAnimators[_SkinID];
                 break;
             case CharacterID.Rabbit:
-                _animator.runtimeAnimatorController = _rabbitAnimator;
+                _animator.runtimeAnimatorController = _rabbitAnimators[_SkinID];
                 break;
         }
 
@@ -962,6 +964,7 @@ public class CharacterController : MonoBehaviour
         data.Deaths = _AmountOfDeaths;
         data.charID = _CharID;
         data.controllerID = _ControllerID;
+        data.skinID = _SkinID;
 
         if (_PlayerTag)
         {

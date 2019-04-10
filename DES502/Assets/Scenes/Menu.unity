@@ -888,7 +888,6 @@ GameObject:
   - component: {fileID: 187408920}
   - component: {fileID: 187408922}
   - component: {fileID: 187408921}
-  - component: {fileID: 187408923}
   m_Layer: 5
   m_Name: GameModeScreen
   m_TagString: Untagged
@@ -960,18 +959,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187408919}
   m_CullTransparentMesh: 0
---- !u!114 &187408923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187408919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ab73c53deb77f14cb699d2c4c23e660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &232758814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1667,7 @@ MonoBehaviour:
   _amountPlayersDropdown: {fileID: 688852072}
   _teamSetupDropdown: {fileID: 287753217}
   _winConditionDropdown: {fileID: 1110823753}
+  _nextButton: {fileID: 240592817}
 --- !u!1 &424651133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1974,12 @@ PrefabInstance:
       propertyPath: _controllerID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2749849236402430653, guid: 0ceafe1965adea44fa68d99a44d830f1,
+        type: 3}
+      propertyPath: _Data
+      value: 
+      objectReference: {fileID: 11400000, guid: ec542f34f194af245bc98fdbc2ca94b1,
+        type: 2}
     - target: {fileID: 1627616699035837762, guid: 0ceafe1965adea44fa68d99a44d830f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2701,7 +2695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &688852071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3834,6 +3828,12 @@ PrefabInstance:
       propertyPath: _controllerID
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2749849236402430653, guid: 0ceafe1965adea44fa68d99a44d830f1,
+        type: 3}
+      propertyPath: _Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 2513ce98a5d79a54fbb968836f148b07,
+        type: 2}
     - target: {fileID: 1627616699035837762, guid: 0ceafe1965adea44fa68d99a44d830f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5672,6 +5672,12 @@ PrefabInstance:
       propertyPath: _controllerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2749849236402430653, guid: 0ceafe1965adea44fa68d99a44d830f1,
+        type: 3}
+      propertyPath: _Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b1df2d28247bbd4a82ba73af7871c57,
+        type: 2}
     - target: {fileID: 1627616699035837762, guid: 0ceafe1965adea44fa68d99a44d830f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
