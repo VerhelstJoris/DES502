@@ -1087,7 +1087,7 @@ public class CharacterController : MonoBehaviour
     private bool IsTurnaroundTimerExpired()
     {
         _turnaroundTimer -= Time.deltaTime;
-        Debug.Log("_turnaroundTimer:" + _turnaroundTimer.ToString());
+        //Debug.Log("_turnaroundTimer:" + _turnaroundTimer.ToString());
         if (_turnaroundTimer <= 0)
         {
             _isTurningAround = false;
