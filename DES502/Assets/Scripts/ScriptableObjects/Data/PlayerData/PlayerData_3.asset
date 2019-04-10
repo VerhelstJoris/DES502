@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 2c82013e7349ac8469e74ffb7469a8ce, type: 3}
   m_Name: PlayerData_3
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataScriptableObject
   Active: 0
-  ControllerID: 2
+  ControllerID: 0
   PlayerID: 0
   CharacterID: 0
   SkinID: 0
