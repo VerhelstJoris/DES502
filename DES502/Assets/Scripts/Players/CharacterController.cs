@@ -37,6 +37,7 @@ public class CharacterController : MonoBehaviour
     const float k_ceilingHitRadius = .1f; // Radius of the overlap circle to determine if grounded
     [HideInInspector]
     public bool _FacingRight = true;
+    private bool _previousFacingRight = true;
 
     [Header("General")]
     [SerializeField] [Tooltip("Death duration will always be the same across all player characters")]
@@ -57,13 +58,15 @@ public class CharacterController : MonoBehaviour
 
     [Range(0, 150.0f)] [SerializeField] float _moveSpeed;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
-
+    [SerializeField] private bool _useTurnaround = true;
+    [Range(0, .5f)] [SerializeField] private float _turnaroundDuration = .05f;
 
     float _horizontalMove = 0.0f;
     float _horizontalInput = 0.0f;
     float _verticalInput = 0.0f;
-
     bool _running = false;
+    private float _turnaroundTimer;
+    private bool _isTurningAround = false;
 
     //JUMP RELATED
     //------------------------------------
@@ -75,12 +78,27 @@ public class CharacterController : MonoBehaviour
     float _minJumpHeight = 0.5f;
     [Range(0, 1.0f)] [SerializeField] [Tooltip("How long (in seconds) does it take to reach the minimum jump height?")]
     float _minJumpTime = 0.2f;
-    [Range(0, 5.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
+    [Range(0, 20.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
     float _maxJumpHeight = 3.0f;
     [SerializeField] [Tooltip("Should fall speed be clamped?")]
     bool _shouldClampFallSpeed = true;
     [Range(-50.0f, 0)] [SerializeField] [Tooltip("How fast should fall speed be clamped to?")]
     float _maxFallSpeed = -20.0f;
+    /*
+    [Range(1, 5)] [SerializeField] [Tooltip("What gravity scale should be used normally?")]
+    float _normalGravityScale = 1;
+    [Range(1, 5)] [SerializeField] [Tooltip("What gravity scale should be used while falling?")]
+    float _fallingGravityScale = 1;
+    */
+    /*
+    [Range(0, 1f)] [SerializeField] [Tooltip("How long should the player float for at the peak of their jump arc?")]
+        private float _jumpPeakFloatDuration = 1;
+    [SerializeField] [Tooltip("Should the player float at the peak of their jump arc?")] 
+        private bool _floatAtJumpPeak = true;
+    private float _jumpPeakFloatTimer = 1;
+    private Vector2 _defaultGravityValue;
+    private bool _currentlyFloating = false;
+    */
 
     float _jumpTimeCounter;
     bool _jumpKeyDown = false;
@@ -317,7 +335,7 @@ public class CharacterController : MonoBehaviour
             OnLandEvent = new UnityEvent();
 
         ConfigureJump(_minJumpHeight, _minJumpTime, _maxJumpHeight);
-
+        //_defaultGravityValue = Physics2D.gravity;
 
         //setting animation length
         //get length of animation clip
@@ -398,7 +416,8 @@ public class CharacterController : MonoBehaviour
 
         if (_PlayerState != PlayerState.Dead)
         {
-            //only control the player if grounded or airControl is turned on
+            // Walking
+            // only control the player if grounded or airControl is turned on
             if ((_grounded || (_airControl)) && !_stunned)
             {
 
@@ -408,14 +427,11 @@ public class CharacterController : MonoBehaviour
 
                 // And then smoothing it out and applying it to the character
 
+                bool shouldMove = true;
                 if (_attacking || _rooted)
                 {
-                    targetVelocity = new Vector2(0, _rigidbody.velocity.y);
-
+                    shouldMove = false;
                 }
-                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
-
-
 
                 if (_grounded && move != 0 && !_running)
                 {
@@ -430,23 +446,47 @@ public class CharacterController : MonoBehaviour
                     _collider.size = new Vector2(0.5f, 0.9f);
                 }
 
-                //looking in the right direction
-                if (move > 0 && !_FacingRight)
+                // looking in the right direction
+                if (move > 0)
+                {
+                    _FacingRight = true;
+                }
+                else if (move < 0)
+                {
+                    _FacingRight = false;
+                }
+
+                // should we turn around?
+                if (_previousFacingRight != _FacingRight)
                 {
                     Flip();
                 }
-                else if (move < 0 && _FacingRight)
+                if (_useTurnaround && _grounded)
                 {
-                    Flip();
+                    // turnaround timer
+                    if (_isTurningAround)
+                    {
+                        if (!IsTurnaroundTimerExpired())
+                        {
+                            shouldMove = false;
+                        }
+                    }
                 }
+                if (!shouldMove)
+                {
+                    targetVelocity = new Vector2(0, _rigidbody.velocity.y);
+                }
+                // move the player
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _Velocity, _movementSmoothing);
             }
 
+            // Jumping
             // should we start jumping?
             if (_grounded && jump && !_jumpKeyDownAlready && !_rooted)
             {
                 // _grounded will still return true as you begin to jump!
                 _jumping = true;
-                _jumpTimeCounter = _maxJumpTime;
+                _jumpTimeCounter = 0;
                 //Debug.Log("Started Jump");
                 _animator.SetBool("Jumping", true);
 
@@ -455,24 +495,39 @@ public class CharacterController : MonoBehaviour
             // currently jumping
             if (jump && _jumping)
             {
-                if (_jumpTimeCounter >= 0)
+                if (_jumpTimeCounter < _maxJumpTime)
                 {
+                    //_currentlyFloating = false;
                     if (!IsHittingCeiling())
                     {
-                        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpVelocity);
+                        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, GetJumpYVelocity());
                     }
                     else
                     {
                         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                         _jumping = false;
                     }
-                    _jumpTimeCounter -= Time.deltaTime;
+                    _jumpTimeCounter += Time.deltaTime;
                 }
                 else
                 {
+                    //Debug.Log("ENDING JUMP");
                     _jumping = false;
                 }
+                //Debug.Log("Y Velocity: " + _rigidbody.velocity.y.ToString());
             }
+            
+            /*
+            // apply correct gravity scale
+            if (IsFalling())
+            {
+                SetGravityScale(_fallingGravityScale);
+            }
+            else
+            {
+                SetGravityScale(_normalGravityScale);
+            }
+            */
 
             // Don't clamp this during hit stun?
             if (_shouldClampFallSpeed) // && _rigidbody.velocity.y < 0)
@@ -760,7 +815,10 @@ public class CharacterController : MonoBehaviour
     {
 
         // Switch the way the player is labelled as facing.
-        _FacingRight = !_FacingRight;
+        _isTurningAround = true;
+        _turnaroundTimer = _turnaroundDuration;
+        _previousFacingRight = _FacingRight;
+        //_FacingRight = !_FacingRight;
 
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
@@ -835,6 +893,7 @@ public class CharacterController : MonoBehaviour
 
         _animator.SetBool("Die", true);
         _rigidbody.bodyType = RigidbodyType2D.Static;
+        DisablePowerups();
     }
 
     private void ConfigureJump(float min_height, float min_time, float max_height)
@@ -843,6 +902,7 @@ public class CharacterController : MonoBehaviour
         float delta = 1.0f / 8;  // based on physics velocity update ticks but this might be wrong...
         float gravity = (2 * min_height) / (2 * min_time);
         float jumpVelocity = Mathf.Sqrt(2 * gravity * min_height);
+        //float maxTime = Mathf.Sqrt((2 * max_height) / (gravity + jumpVelocity));
         float maxTime = Mathf.Sqrt((2 * max_height) / (gravity + jumpVelocity));
         // apply values to member variables to be used in jump/gravity calculation
         //Physics2D.gravity = new Vector2(0, -gravity * delta);
@@ -1001,12 +1061,12 @@ public class CharacterController : MonoBehaviour
             //Debug.Log("_powerupTimer: " + _powerupTimer);
             if (_powerupTimer <= 0)
             {
-                OnPowerupTimerEnd();
+                DisablePowerups();
             }
         }
     }
 
-    private void OnPowerupTimerEnd()
+    public void DisablePowerups()
     {
         // stop the timer tick from happening
         _isPowerupTimerActive = false;
@@ -1018,7 +1078,8 @@ public class CharacterController : MonoBehaviour
         _rooted = false;
         _shielded = false;
         _meleeInstantKill = false;
-        _GameManager.OnPowerupExpired(_TeamID);
+        _GameManager.OnPowerupExpired(_PlayerID);
+        this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     // rename this?
@@ -1050,10 +1111,53 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite)
+    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor)
     {
         StartPowerupTimer(effectTime);
         _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
+        this.GetComponent<SpriteRenderer>().color = modulateColor;
     }
+
+    private bool IsTurnaroundTimerExpired()
+    {
+        _turnaroundTimer -= Time.deltaTime;
+        //Debug.Log("_turnaroundTimer:" + _turnaroundTimer.ToString());
+        if (_turnaroundTimer <= 0)
+        {
+            _isTurningAround = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /*
+    private void SetGravityScale(float gravityScale)
+    {
+        _rigidbody.gravityScale = gravityScale;
+        Debug.Log("Current gravity scale: " + gravityScale.ToString());
+    }
+    */
+
+    private bool IsFalling()
+    {
+        return _rigidbody.velocity.y < 0;
+    }
+
+    private float GetJumpYVelocity()
+    {
+        float timerPercent = _jumpTimeCounter / _maxJumpTime;
+        float jumpYVelocity = Mathf.Lerp(_jumpVelocity, 0, timerPercent);
+        return jumpYVelocity;
+    }
+
+    /*
+    private float SmoothStop(float x, float power)
+    {
+        return 1 - Mathf.Pow((1 - x), power);
+    }
+    */
 }
 

@@ -462,7 +462,7 @@ public class GameManager : MonoBehaviour
         List<PowerupSpawnPoint> validSpawnPoints = new List<PowerupSpawnPoint>();
         foreach (PowerupSpawnPoint sp in _powerupSpawnPoints)
         {
-            if (!sp._containsPowerup)
+            if (sp.IsValid())
             {
                 validSpawnPoints.Add(sp);
             }
@@ -481,11 +481,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnPowerupExpired(TeamID teamToApply)
+    public void OnPowerupExpired(PlayerID playerToApply)
     {
         for (int i = 0; i < _playerUIs.Count; i++)
         {
-            if (_playerUIs[i]._teamID == teamToApply)
+            if (_playerUIs[i]._PlayerID == playerToApply)
             {
                 _playerUIs[i].HidePowerupIcon();
             }

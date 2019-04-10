@@ -18,28 +18,34 @@ MonoBehaviour:
       type: 3}
     sidebarHUDSprite: {fileID: 21300002, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 0
+    playerModulateColor: {r: 0.6981132, g: 0.59478295, b: 0.15477037, a: 1}
   - powerupName: Move Speed
     inGameCollectableSprite: {fileID: 21300010, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
     sidebarHUDSprite: {fileID: 21300008, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 1
+    playerModulateColor: {r: 0.4978195, g: 0.9339623, b: 0.5293449, a: 1}
   - powerupName: Root
     inGameCollectableSprite: {fileID: 21300000, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
     sidebarHUDSprite: {fileID: 21300000, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 0
+    playerModulateColor: {r: 0.14311142, g: 0.4528302, b: 0.22785531, a: 1}
   - powerupName: Shield
     inGameCollectableSprite: {fileID: 21300008, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
     sidebarHUDSprite: {fileID: 21300010, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 1
+    playerModulateColor: {r: 0.7216981, g: 0.8265132, b: 1, a: 1}
   - powerupName: Melee Instant Kill
     inGameCollectableSprite: {fileID: 21300004, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
     sidebarHUDSprite: {fileID: 21300004, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 0
+    playerModulateColor: {r: 0.5377358, g: 0.13950695, b: 0.13950695, a: 1}
   - powerupName: Random
     inGameCollectableSprite: {fileID: 21300006, guid: ea05de7e964536d4e9ec964dbbce0194,
       type: 3}
     sidebarHUDSprite: {fileID: 21300006, guid: a4f70c0c878b6d1499e2447a6aafa1fb, type: 3}
     targetsFriendly: 0
+    playerModulateColor: {r: 0, g: 0, b: 0, a: 0}
