@@ -224,7 +224,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 2.25
   m_Material: {fileID: 6200000, guid: 9263270debf7a22408be45cb04c550ae, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -263,14 +263,14 @@ MonoBehaviour:
   _TeamID: 0
   _CharID: 0
   _ControllerID: 0
-  _moveSpeed: 40
+  _moveSpeed: 50
   _movementSmoothing: 0.08
   _useTurnaround: 1
   _turnaroundDuration: 0.08
   _airControl: 1
   _minJumpHeight: 2
-  _minJumpTime: 0.05
-  _maxJumpHeight: 2
+  _minJumpTime: 0.03
+  _maxJumpHeight: 15
   _shouldClampFallSpeed: 1
   _maxFallSpeed: -12.5
   _playerStompJumpHeight: 1000
