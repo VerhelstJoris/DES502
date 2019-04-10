@@ -444,7 +444,7 @@ public class CharacterController : MonoBehaviour
                 {
                     Flip();
                 }
-                if (_useTurnaround)
+                if (_useTurnaround && _grounded)
                 {
                     // turnaround timer
                     if (_isTurningAround)
