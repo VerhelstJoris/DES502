@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
     public int _maxPowerupSpawnCooldown = 15;
     private float _powerupSpawnTimer;
 
+    [Header("Rising Oil Spawning")]
+    [Range(0, 2)] [Tooltip("How long (in seconds) should we wait inbetween checking again if the oil should spawn?")]
+    public float _timeBetweenOilChecks = 1f;
+    public float _oilSpawnAtTimeLeft = 176f;
+
     private void Awake()
     {
         //GM will NOT be created if not in scene
@@ -191,6 +196,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("ACTIVE PLAYERS: " + activePlayers);
         ResetPowerupSpawnTimer();
+        StartCoroutine(CheckIfOilShouldSpawn(_timeBetweenOilChecks, _oilSpawnAtTimeLeft));
     }
 
     public void AddPlayer(CharacterController player)
@@ -481,5 +487,25 @@ public class GameManager : MonoBehaviour
                 _playerUIs[i].HidePowerupIcon();
             }
         }
+    }
+
+    private IEnumerator CheckIfOilShouldSpawn(float timeBetweenChecks, float timeOilWillSpawnAt)
+    {
+        while(!ShouldOilSpawn(timeOilWillSpawnAt))
+        {
+            //Debug.Log("COROUTINE TICK");
+            yield return new WaitForSeconds(timeBetweenChecks);
+        }
+        SpawnOil();
+    }
+
+    private bool ShouldOilSpawn(float timeOilWillSpawnAt)
+    {
+        return _GameTimerLeft >= timeOilWillSpawnAt;
+    }
+
+    private void SpawnOil()
+    {
+        Debug.Log("SPAWN OIL");
     }
 }
