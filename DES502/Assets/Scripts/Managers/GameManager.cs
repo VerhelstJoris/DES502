@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     //stocks
     private int _startingStocksPerPlayer;
     private int _playersWithStocksLeft;
+    private int _team1Stocks, _team2Stocks;
 
     //time
     private int _team1Deaths=0, _team2Deaths=0;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     [Range(0, 2)] [Tooltip("How long (in seconds) should we wait inbetween checking again if the oil should spawn?")]
     public float _timeBetweenOilChecks = 1f;
     public float _oilSpawnAtTimeLeft = 176f;
+    public int _oilSpawnAtStocksRemaining = 4;
 
     private void Awake()
     {
@@ -196,7 +198,9 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("ACTIVE PLAYERS: " + activePlayers);
         ResetPowerupSpawnTimer();
-        StartCoroutine(CheckIfOilShouldSpawn(_timeBetweenOilChecks, _oilSpawnAtTimeLeft));
+        _team1Stocks = _startingStocksPerPlayer;
+        _team2Stocks = _startingStocksPerPlayer;
+        StartCoroutine(CheckIfOilShouldSpawn());
     }
 
     public void AddPlayer(CharacterController player)
@@ -225,7 +229,16 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath(CharacterController player)
     {
-        //END GAME
+        // decriment stocks remaining
+        if ((int)player._TeamID == 1)
+        {
+            _team1Stocks -= 1;
+        }
+        else
+        {
+            _team2Stocks -= 1;
+        }
+        //END GAME?
         if (_WinCondition == GameWinCondition.STOCKS)
         {
           
@@ -489,19 +502,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CheckIfOilShouldSpawn(float timeBetweenChecks, float timeOilWillSpawnAt)
+    private IEnumerator CheckIfOilShouldSpawn()
     {
-        while(!ShouldOilSpawn(timeOilWillSpawnAt))
+        while(!ShouldOilSpawn())
         {
             //Debug.Log("COROUTINE TICK");
-            yield return new WaitForSeconds(timeBetweenChecks);
+            yield return new WaitForSeconds(_timeBetweenOilChecks);
         }
         SpawnOil();
     }
 
-    private bool ShouldOilSpawn(float timeOilWillSpawnAt)
+    private bool ShouldOilSpawn()
     {
-        return _GameTimerLeft >= timeOilWillSpawnAt;
+        switch (_WinCondition)
+        {
+            case GameWinCondition.TIME:
+                return _GameTimerLeft >= _oilSpawnAtTimeLeft;
+                break;
+            case GameWinCondition.STOCKS:
+                return (_team1Stocks <= _oilSpawnAtStocksRemaining || _team2Stocks <= _oilSpawnAtStocksRemaining);
+                break;
+            default:
+                Debug.Log("ERROR: " + _WinCondition.ToString() + " is not a valid win condition!");
+                return false;
+                break;
+        }
     }
 
     private void SpawnOil()
