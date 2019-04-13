@@ -35,7 +35,7 @@ public class PlayerUI : MonoBehaviour
         _PlayerID = character._PlayerID;
         _teamID = character._TeamID;
         _characterID = character._CharID;
-        Debug.Log(_teamID.ToString());
+        //Debug.Log(_teamID.ToString());
 
         _amountOfStocks = character._AmountOfStocks;
         _winCondition = winCondition;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData_3
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataScriptableObject
   Active: 0
-  ControllerID: 0
+  ControllerID: 2
   PlayerID: 0
   CharacterID: 0
   SkinID: 0

@@ -58,7 +58,6 @@ public class MainMenu : MonoBehaviour
     public void SetPlayerAmount(Dropdown dropdown)
     {
         _GMScriptableObject.PlayerAmount = dropdown.value + 2;
-        Debug.Log("Player amount set " + _GMScriptableObject.PlayerAmount);
     }
 
     public void SetTeamMode(Dropdown dropdown)
@@ -94,7 +93,6 @@ public class MainMenu : MonoBehaviour
 
         if (_playerAmountJoined == _playerAmountReady && _playerAmountReady > 1)
         {
-            Debug.Log("Activate Button");
             //_nextButton.gameObject.SetActive(true);
             //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);

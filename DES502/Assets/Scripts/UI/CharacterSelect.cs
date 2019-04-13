@@ -68,6 +68,7 @@ public class CharacterSelect : MonoBehaviour
         _playerNametext.enabled = false;
         _characterImageDisplay.enabled = false;
         _subtext.enabled = false;
+
         _Data.Active = false;
 
         _mainMenu = FindObjectOfType<MainMenu>();
@@ -88,7 +89,7 @@ public class CharacterSelect : MonoBehaviour
             if (!_playerJoined)
             {
                 _playerJoined = true;
-                Debug.Log(_inputSuffix + " PlayerJoined");
+                //Debug.Log(_inputSuffix + " PlayerJoined");
                 _text.enabled = false;
                 _playerNametext.enabled = true;
                 _subtext.enabled = true;
@@ -101,7 +102,7 @@ public class CharacterSelect : MonoBehaviour
             //SELECTED CHARACTER
             else if (_playerJoined && !_characterSelected)
             {
-                Debug.Log(_inputSuffix + " Character selected");
+                //Debug.Log(_inputSuffix + " Character selected");
 
                 _subtext.text = "Select a Character Skin";
 
@@ -169,7 +170,7 @@ public class CharacterSelect : MonoBehaviour
                 }
             }
 
-            Debug.Log("Selected next character");
+            //Debug.Log("Selected next character");
         }
 
         //CHARACTER SKINS

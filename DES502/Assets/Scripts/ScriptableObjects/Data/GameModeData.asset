@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be16705b8b8b0284f9ee2faba9dc678d, type: 3}
   m_Name: GameModeData
   m_EditorClassIdentifier: 
-  PlayerAmount: 4
+  PlayerAmount: 2
   TeamSetup: 0
   GameWinCondition: 0
   AmountOfStocks: 5
-  AmountOfTime: 180
+  AmountOfTime: 10

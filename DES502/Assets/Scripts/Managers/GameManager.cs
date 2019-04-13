@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    public static GameManager Instance { get { return _instance; } }
+    //private static GameManager _instance;
+    //public static GameManager Instance { get { return _instance; } }
 
     public GameModeScriptableObject _GMScriptableObject;
 
@@ -57,14 +57,14 @@ public class GameManager : MonoBehaviour
         //GM removes scene duplicates
         //GM has global access
         //GM NOT Kept across scene loads
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else 
-        {
-            _instance = this;
-        }
+        //if (_instance != null && _instance != this)
+        //{
+        //    Destroy(this.gameObject);
+        //}
+        //else 
+        //{
+        //    _instance = this;
+        //}
 
         _TeamSetup = _GMScriptableObject.TeamSetup;
         _WinCondition = _GMScriptableObject.GameWinCondition;
@@ -168,18 +168,8 @@ public class GameManager : MonoBehaviour
             _respawnPoints[i]._GM = this;
         }
 
-        //spawn in the players
-        //for (int i = 0; i < _PlayerAmount; i++)
-        //{
-        //    PlayerData data;
-        //    data.Id = (PlayerID)i;
-        //    data.Stocks = _startingStocksPerPlayer;
-        //    data.TeamId = (TeamID)(i % 2);
-        //    data.Deaths = 0;
-        //    data.charID = (CharacterID)(i % 2);
-        //    data.controllerID = ControllerID.Controller1;
-        //    _respawnPoints[i].Activate(data);
-        //}
+        Debug.Log("RESPAWNPOINTS FOUND: " + _respawnPoints.Length.ToString());
+        int activePlayers = 0;
 
         for (int i = 0; i < _PlayerDataObjects.Length; i++)
         {
@@ -190,14 +180,16 @@ public class GameManager : MonoBehaviour
                 data.controllerID = _PlayerDataObjects[i].ControllerID;
                 data.charID = _PlayerDataObjects[i].CharacterID;
                 data.Stocks = _startingStocksPerPlayer;
-                data.TeamId = (TeamID)(i % 2);
+                data.TeamId = (TeamID)((int)data.Id % 2);
                 data.Deaths = 0;
                 data.skinID = _PlayerDataObjects[i].SkinID;
 
                 _respawnPoints[i].Activate(data);
-                Debug.Log("Spawn Player");
+                activePlayers++;
             }
         }
+
+        Debug.Log("ACTIVE PLAYERS: " + activePlayers);
         ResetPowerupSpawnTimer();
     }
 
@@ -227,7 +219,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDeath(CharacterController player)
     {
-        //END GAME?
+        //END GAME
         if (_WinCondition == GameWinCondition.STOCKS)
         {
           
@@ -344,7 +336,6 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        Debug.Log("GAME ENDED");
         Time.timeScale = 0;
         _gameEndPanel.gameObject.SetActive(true);
 
