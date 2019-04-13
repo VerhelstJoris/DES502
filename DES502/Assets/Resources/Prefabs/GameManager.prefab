@@ -60,6 +60,11 @@ MonoBehaviour:
     type: 3}
   _minPowerupSpawnCooldown: 2
   _maxPowerupSpawnCooldown: 5
+  _oilBodyPrefab: {fileID: 1098199542267269618, guid: d8c92b59246a0fa47a643c74b2f568fd,
+    type: 3}
+  _timeBetweenOilChecks: 1
+  _oilSpawnAtTimeLeft: 176
+  _oilSpawnAtStocksRemaining: 4
 --- !u!114 &7024020573438695994
 MonoBehaviour:
   m_ObjectHideFlags: 0

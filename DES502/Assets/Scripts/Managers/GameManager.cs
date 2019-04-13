@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     private float _powerupSpawnTimer;
 
     [Header("Rising Oil Spawning")]
+    public GameObject _oilBodyPrefab;
     [Range(0, 2)] [Tooltip("How long (in seconds) should we wait inbetween checking again if the oil should spawn?")]
     public float _timeBetweenOilChecks = 1f;
     public float _oilSpawnAtTimeLeft = 176f;
@@ -457,6 +458,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // TODO: replace with coroutine!!
     private void PowerupSpawnTimerTick()
     {
         _powerupSpawnTimer -= Time.deltaTime;
@@ -532,5 +534,13 @@ public class GameManager : MonoBehaviour
     private void SpawnOil()
     {
         Debug.Log("SPAWN OIL");
+        GameObject risingOil = Instantiate(_oilBodyPrefab, transform);
+    }
+
+    public float GetMaxOilYPos()
+    {
+        // called from the rising oil script
+        // TODO: populate this with a child object's position.y
+        return 0;
     }
 }
