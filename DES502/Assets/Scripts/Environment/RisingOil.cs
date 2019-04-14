@@ -12,8 +12,6 @@ public class RisingOil : MonoBehaviour
 
     const int TILE_SIZE = 250;
 
-    [HideInInspector]
-    public float _maxYPos;
     private Vector3Int _tilemapSize;
     private OilBody _oilBody;
     private GameManager _gameManager;
@@ -22,7 +20,6 @@ public class RisingOil : MonoBehaviour
     {
         _oilBody = _oilBodyGameObject.GetComponent<OilBody>();
         SetGameManager();
-        SetMaxYPos();
     }
 
     void Start()
@@ -32,6 +29,7 @@ public class RisingOil : MonoBehaviour
         _oilBody.SetSpriteColor(_bodyColor);
         _oilBody.SetSize(_tilemapSize.x, _tilemapSize.y);
         SetInitialPosition(_tilemapSize);
+        StartCoroutine(MoveOil(_gameManager.GetOilMaxHeightPosition()));
     }
 
     // The following is for dynamic texture generation, which has been depricated as it does not work
@@ -83,11 +81,6 @@ public class RisingOil : MonoBehaviour
         return tilemap.size;
     }
 
-    private void SetMaxYPos()
-    {
-        _maxYPos = _gameManager.GetMaxOilYPos();
-    }
-
     public void OnChildTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -105,5 +98,21 @@ public class RisingOil : MonoBehaviour
     {
         GameObject gameManagerObject = transform.parent.gameObject;
         _gameManager = gameManagerObject.GetComponent<GameManager>();
+    }
+
+    private IEnumerator MoveOil(Vector3 targetPosition)
+    {
+        Vector3 startPosition = transform.position;
+        //Vector3 targetPosition = new Vector3(0, targetHeight, 0);
+        float percentTravelled = 0;
+        while (percentTravelled < 1)
+        {
+            // increment percent travelled, clamping it to max lerp weight value
+            percentTravelled = Mathf.Min(percentTravelled + Time.deltaTime, 1);
+            Debug.Log("Percent of Oil travelled: " + percentTravelled.ToString());
+            // lerp position based on percent travelled
+            transform.position = Vector3.Lerp(transform.position, targetPosition, percentTravelled);
+            yield return null;
+        }
     }
 }

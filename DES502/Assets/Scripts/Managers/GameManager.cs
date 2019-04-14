@@ -550,4 +550,10 @@ public class GameManager : MonoBehaviour
         Transform oilSpawnLocation = transform.Find("OilSpawnLocation");
         return oilSpawnLocation.position;
     }
+
+    public Vector3 GetOilMaxHeightPosition()
+    {
+        Transform oilMaxHeight = transform.Find("OilMaxHeight");
+        return oilMaxHeight.position;
+    }
 }
