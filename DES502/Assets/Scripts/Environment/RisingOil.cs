@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class RisingOil : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _oilBodyGameObject;
     [SerializeField] [Tooltip("The color to be used for the body of the oil.")]
     private Color _bodyColor;
 
@@ -13,38 +15,41 @@ public class RisingOil : MonoBehaviour
     [HideInInspector]
     public float _maxYPos;
     private Vector3Int _tilemapSize;
+    private OilBody _oilBody;
 
     void Awake()
     {
+        _oilBody = _oilBodyGameObject.GetComponent<OilBody>();
         SetMaxYPos();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         _tilemapSize = GetTilemapSize();
         Debug.Log("_tilemapSize: " + _tilemapSize.ToString());
-        SetBodySprite(_bodyColor);
+        _oilBody.SetSpriteColor(_bodyColor);
+        _oilBody.SetSize(_tilemapSize.x, _tilemapSize.y);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    // The following is for dynamic texture generation, which has been depricated as it does not work
+    /*
     private void SetBodySprite(Color bodyColor)
     {
-        Texture2D tex = CreateBodyTexture();
+        // I have no idea why the following doesnt work or how to make it work, just add a big white square texture
+        Texture2D tex = CreateBodyTexture(bodyColor);
         Rect texRect = new Rect(0f, 0f, tex.width, tex.height);
         Vector2 texPivot = new Vector2(tex.width / 2, 0);
-        Sprite bodySprite = Sprite.Create(tex, texRect, texPivot);
-        GetComponent<SpriteRenderer>().sprite = bodySprite;
+        float pixelsPerUnit = (float)TILE_SIZE;
+        Sprite bodySprite = Sprite.Create(tex, texRect, texPivot, 100000f);
+        //SpriteRenderer spriteRenderer = _oilBody.GetComponent<SpriteRenderer>();
+        //spriteRenderer.sprite = bodySprite;
+        //spriteRenderer.color = bodyColor;
     }
 
-    private Texture2D CreateBodyTexture()
+    private Texture2D CreateBodyTexture(Color bodyColor)
     {
-        Vector2Int texSize = CalculateTextureSize();
-        /*
+        //Vector2Int texSize = CalculateTextureSize();
+        // this doesn't work!!!!!!!!
         Texture2D tex = new Texture2D(texSize.x, texSize.y);
         Color[] pixels = tex.GetPixels();
         // set all the pixels of the texture to be the specified body colour
@@ -54,9 +59,10 @@ public class RisingOil : MonoBehaviour
         }
         tex.SetPixels(pixels);
         tex.Apply(true);
-        */
+        // TODO: if it remains as just this line refactor out this function
         Texture2D tex = Texture2D.whiteTexture;
-        //tex.Resize(texSize.x, texSize.y);
+        //tex.SetPixel(1,1, bodyColor);
+        //tex.Resize(texSize.x, texSize.y);  // this is very slow!!!!!!!
         //tex.Apply(true);
         return tex;
     }
@@ -66,6 +72,7 @@ public class RisingOil : MonoBehaviour
         Vector2Int tilemapSize2D = new Vector2Int(_tilemapSize.x, _tilemapSize.y);
         return tilemapSize2D * TILE_SIZE;
     }
+    */
 
     private Vector3Int GetTilemapSize()
     {
@@ -78,5 +85,13 @@ public class RisingOil : MonoBehaviour
         GameObject gameManagerObject = transform.parent.gameObject;
         GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
         _maxYPos = gameManager.GetMaxOilYPos();
+    }
+
+    public void OnChildTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.GetComponent<CharacterController>().Die();
+        }
     }
 }
