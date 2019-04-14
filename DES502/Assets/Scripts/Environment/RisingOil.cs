@@ -9,6 +9,8 @@ public class RisingOil : MonoBehaviour
     private GameObject _oilBodyGameObject;
     [SerializeField] [Tooltip("The color to be used for the body of the oil.")]
     private Color _bodyColor;
+    [SerializeField] [Range(0, 1)] [Tooltip("Speed multiplier to use when moving the oil. This should be extremely small.")]
+    private float _moveSpeedMultiplier = 0.5f;
 
     const int TILE_SIZE = 250;
 
@@ -25,55 +27,12 @@ public class RisingOil : MonoBehaviour
     void Start()
     {
         _tilemapSize = GetTilemapSize();
-        Debug.Log("_tilemapSize: " + _tilemapSize.ToString());
+        //Debug.Log("_tilemapSize: " + _tilemapSize.ToString());
         _oilBody.SetSpriteColor(_bodyColor);
         _oilBody.SetSize(_tilemapSize.x, _tilemapSize.y);
         SetInitialPosition(_tilemapSize);
-        StartCoroutine(MoveOil(_gameManager.GetOilMaxHeightPosition()));
+        StartCoroutine(MoveOil(_gameManager.GetOilMaxHeightPosition(), _moveSpeedMultiplier));
     }
-
-    // The following is for dynamic texture generation, which has been depricated as it does not work
-    /*
-    private void SetBodySprite(Color bodyColor)
-    {
-        // I have no idea why the following doesnt work or how to make it work, just add a big white square texture
-        Texture2D tex = CreateBodyTexture(bodyColor);
-        Rect texRect = new Rect(0f, 0f, tex.width, tex.height);
-        Vector2 texPivot = new Vector2(tex.width / 2, 0);
-        float pixelsPerUnit = (float)TILE_SIZE;
-        Sprite bodySprite = Sprite.Create(tex, texRect, texPivot, 100000f);
-        //SpriteRenderer spriteRenderer = _oilBody.GetComponent<SpriteRenderer>();
-        //spriteRenderer.sprite = bodySprite;
-        //spriteRenderer.color = bodyColor;
-    }
-
-    private Texture2D CreateBodyTexture(Color bodyColor)
-    {
-        //Vector2Int texSize = CalculateTextureSize();
-        // this doesn't work!!!!!!!!
-        Texture2D tex = new Texture2D(texSize.x, texSize.y);
-        Color[] pixels = tex.GetPixels();
-        // set all the pixels of the texture to be the specified body colour
-        for (int i = 0; i < pixels.Length; i++)
-        {
-            pixels[i] = _bodyColor;
-        }
-        tex.SetPixels(pixels);
-        tex.Apply(true);
-        // TODO: if it remains as just this line refactor out this function
-        Texture2D tex = Texture2D.whiteTexture;
-        //tex.SetPixel(1,1, bodyColor);
-        //tex.Resize(texSize.x, texSize.y);  // this is very slow!!!!!!!
-        //tex.Apply(true);
-        return tex;
-    }
-
-    private Vector2Int CalculateTextureSize()
-    {
-        Vector2Int tilemapSize2D = new Vector2Int(_tilemapSize.x, _tilemapSize.y);
-        return tilemapSize2D * TILE_SIZE;
-    }
-    */
 
     private Vector3Int GetTilemapSize()
     {
@@ -100,16 +59,15 @@ public class RisingOil : MonoBehaviour
         _gameManager = gameManagerObject.GetComponent<GameManager>();
     }
 
-    private IEnumerator MoveOil(Vector3 targetPosition)
+    private IEnumerator MoveOil(Vector3 targetPosition, float speedMultiplier)
     {
         Vector3 startPosition = transform.position;
-        //Vector3 targetPosition = new Vector3(0, targetHeight, 0);
         float percentTravelled = 0;
         while (percentTravelled < 1)
         {
             // increment percent travelled, clamping it to max lerp weight value
-            percentTravelled = Mathf.Min(percentTravelled + Time.deltaTime, 1);
-            Debug.Log("Percent of Oil travelled: " + percentTravelled.ToString());
+            percentTravelled = Mathf.Min(percentTravelled + (Time.deltaTime * speedMultiplier), 1);
+            //Debug.Log("Percent of Oil travelled: " + percentTravelled.ToString());
             // lerp position based on percent travelled
             transform.position = Vector3.Lerp(transform.position, targetPosition, percentTravelled);
             yield return null;
