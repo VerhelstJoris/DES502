@@ -53,11 +53,15 @@ public class GameManager : MonoBehaviour
     private float _powerupSpawnTimer;
 
     [Header("Rising Oil Spawning")]
+    // TODO: should these members be public???
     public GameObject _oilBodyPrefab;
     [Range(0, 2)] [Tooltip("How long (in seconds) should we wait inbetween checking again if the oil should spawn?")]
     public float _timeBetweenOilChecks = 1f;
     public float _oilSpawnAtTimeLeft = 176f;
     public int _oilSpawnAtStocksRemaining = 4;
+    [SerializeField] [Range(0, 10)]
+    [Tooltip("How far away (in grid units) should players be from the rising oil when spawning. Prevents situations where players spawn and immediatly die to the rising oil.")]
+    private float _maxSpawnDistanceFromOil = 2;
 
     private void Awake()
     {
@@ -297,7 +301,7 @@ public class GameManager : MonoBehaviour
         {
             float closestPlayerDistance = float.MaxValue ;
 
-            if (!_respawnPoints[i]._Active)
+            if (!_respawnPoints[i]._Active && !_respawnPoints[i].IsCloseToOil(_maxSpawnDistanceFromOil))
             {
 
                 for (int j = 0; j < _characterControllers.Count; j++)
@@ -535,13 +539,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("SPAWN OIL");
         GameObject risingOil = Instantiate(_oilBodyPrefab, transform, true);
-    }
-
-    public float GetMaxOilYPos()
-    {
-        // called from the rising oil script
-        // TODO: populate this with a child object's position.y
-        return 0;
     }
 
     public Vector3 GetSpawnLocationPosition()

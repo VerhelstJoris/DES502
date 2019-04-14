@@ -133,4 +133,21 @@ public class RespawnPoint : MonoBehaviour
         _animator.SetBool("DoorClosed", true);
         //Debug.Log("Door Closed");
     }
+
+    public bool IsCloseToOil(float maxDistance)
+    {
+        int hazardsLayer = 9;
+        int layerMask = 1 << hazardsLayer;
+        Collider2D[] overlappedHazards = Physics2D.OverlapCircleAll(transform.position, maxDistance, layerMask);
+        foreach (Collider2D h in overlappedHazards)
+        {
+            if (h.gameObject.tag == "Oil")
+            {
+                return true;
+                // we only care about oil, break early
+                break;
+            }
+        }
+        return false;
+    }
 }
