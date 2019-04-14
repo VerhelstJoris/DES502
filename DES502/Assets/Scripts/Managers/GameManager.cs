@@ -534,7 +534,7 @@ public class GameManager : MonoBehaviour
     private void SpawnOil()
     {
         Debug.Log("SPAWN OIL");
-        GameObject risingOil = Instantiate(_oilBodyPrefab, transform);
+        GameObject risingOil = Instantiate(_oilBodyPrefab, transform, true);
     }
 
     public float GetMaxOilYPos()
@@ -542,5 +542,12 @@ public class GameManager : MonoBehaviour
         // called from the rising oil script
         // TODO: populate this with a child object's position.y
         return 0;
+    }
+
+    public Vector3 GetSpawnLocationPosition()
+    {
+        // Return the position of OilSpawnLocation
+        Transform oilSpawnLocation = transform.Find("OilSpawnLocation");
+        return oilSpawnLocation.position;
     }
 }

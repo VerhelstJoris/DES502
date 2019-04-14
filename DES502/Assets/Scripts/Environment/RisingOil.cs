@@ -16,10 +16,12 @@ public class RisingOil : MonoBehaviour
     public float _maxYPos;
     private Vector3Int _tilemapSize;
     private OilBody _oilBody;
+    private GameManager _gameManager;
 
     void Awake()
     {
         _oilBody = _oilBodyGameObject.GetComponent<OilBody>();
+        SetGameManager();
         SetMaxYPos();
     }
 
@@ -29,6 +31,7 @@ public class RisingOil : MonoBehaviour
         Debug.Log("_tilemapSize: " + _tilemapSize.ToString());
         _oilBody.SetSpriteColor(_bodyColor);
         _oilBody.SetSize(_tilemapSize.x, _tilemapSize.y);
+        SetInitialPosition(_tilemapSize);
     }
 
     // The following is for dynamic texture generation, which has been depricated as it does not work
@@ -82,9 +85,7 @@ public class RisingOil : MonoBehaviour
 
     private void SetMaxYPos()
     {
-        GameObject gameManagerObject = transform.parent.gameObject;
-        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
-        _maxYPos = gameManager.GetMaxOilYPos();
+        _maxYPos = _gameManager.GetMaxOilYPos();
     }
 
     public void OnChildTriggerEnter2D(Collider2D other)
@@ -93,5 +94,16 @@ public class RisingOil : MonoBehaviour
         {
             other.GetComponent<CharacterController>().Die();
         }
+    }
+
+    private void SetInitialPosition(Vector3Int tilemapSize)
+    {
+        transform.position = _gameManager.GetSpawnLocationPosition();
+    }
+
+    private void SetGameManager()
+    {
+        GameObject gameManagerObject = transform.parent.gameObject;
+        _gameManager = gameManagerObject.GetComponent<GameManager>();
     }
 }

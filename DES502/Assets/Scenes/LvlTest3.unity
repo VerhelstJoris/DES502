@@ -589,6 +589,16 @@ PrefabInstance:
       propertyPath: _GameEndMenuPrefab
       value: 
       objectReference: {fileID: 2126652477}
+    - target: {fileID: 294086453980782755, guid: 000ed5fa71f028942a0633d0551e82d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 294086453980782755, guid: 000ed5fa71f028942a0633d0551e82d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 000ed5fa71f028942a0633d0551e82d2, type: 3}
 --- !u!1 &397174327 stripped
@@ -3083,6 +3093,10 @@ PrefabInstance:
     - target: {fileID: 93, guid: 68e19cc3c87696746beb438759612373, type: 3}
       propertyPath: m_Name
       value: GameEndPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 93, guid: 68e19cc3c87696746beb438759612373, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 147, guid: 68e19cc3c87696746beb438759612373, type: 3}
       propertyPath: m_LocalPosition.x
