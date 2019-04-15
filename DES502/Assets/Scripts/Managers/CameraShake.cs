@@ -6,12 +6,12 @@ public class CameraShake : MonoBehaviour
 {
     [SerializeField] private float shakeSpeed = 10f;
 
-    /*
-    void Start()
+    private Vector3 _originalPosition;
+
+    void Awake()
     {
-        BeginShake(0.25f, 3f);
+        _originalPosition = transform.position;
     }
-    */
 
     public void BeginShake(float intensity, float duration)
     {
@@ -22,9 +22,8 @@ public class CameraShake : MonoBehaviour
     {
         float timer = 0;
         // get initial target
-        Vector3 originalPosition = transform.position;
-        Vector3 startPosition = originalPosition;
-        Vector3 shakeTarget = GetShakeTarget(originalPosition, intensity);
+        Vector3 startPosition = _originalPosition;
+        Vector3 shakeTarget = GetShakeTarget(_originalPosition, intensity);
         float percentTravelled = 0;
         // Keep moving to new targets while the timer hasn't expired
         while (timer < duration)
@@ -34,7 +33,7 @@ public class CameraShake : MonoBehaviour
             if (percentTravelled >= 1)
             {
                 startPosition = transform.position;
-                shakeTarget = GetShakeTarget(originalPosition, intensity);
+                shakeTarget = GetShakeTarget(_originalPosition, intensity);
                 percentTravelled = 0;
             }
             // don't bother clamping, we don't care if it goes over a bit
@@ -46,20 +45,19 @@ public class CameraShake : MonoBehaviour
         }
         // travel back to the original position
         startPosition = transform.position;
-        //shakeTarget = originalPosition;
         percentTravelled = 0;
         while (percentTravelled != 1)
         {
             // increment timer while clamping to 1
             percentTravelled = IncrementPercentTravelled(percentTravelled);
-            MoveToShakeTarget(startPosition, originalPosition, percentTravelled);
+            MoveToShakeTarget(startPosition, _originalPosition, percentTravelled);
             yield return null;
         }
     }
 
-    static private Vector3 GetShakeTarget(Vector3 originalPosition, float intensity)
+    static private Vector3 GetShakeTarget(Vector3 _originalPosition, float intensity)
     {
-        Vector3 newTarget = originalPosition + Random.insideUnitSphere * intensity;
+        Vector3 newTarget = _originalPosition + Random.insideUnitSphere * intensity;
         Debug.Log("New shake target: " + newTarget.ToString());
         return newTarget;
     }
