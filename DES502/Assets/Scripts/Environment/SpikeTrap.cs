@@ -17,22 +17,19 @@ public class SpikeTrap : Trap
     [SerializeField]
     private bool _activeWhileActivating, _activeWhileDeactivating;
 
-
     private bool _active=true;
-
     private bool _activating = false;
     private bool _deactivating = false;
-
     private float _timer = 0.0f;
-
     private Vector3 _startPos,_endPos;
+    private CameraShake _cameraShake;
 
     void Awake()
     {
         _renderer = this.GetComponent<SpriteRenderer>();
         _startPos = this.transform.position;
         _endPos = transform.position +( transform.up * -0.5f);
-
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     void Update()
@@ -77,6 +74,8 @@ public class SpikeTrap : Trap
             if (col.tag == "Player")
             {
                 col.GetComponent<CharacterController>().Die();
+                // TODO: replace magic numbers with serialized private members!!!!!
+                _cameraShake.BeginShake(1, 0.25f);
             }
         }
     }

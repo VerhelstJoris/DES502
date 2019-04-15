@@ -17,11 +17,13 @@ public class RisingOil : MonoBehaviour
     private Vector3Int _tilemapSize;
     private OilBody _oilBody;
     private GameManager _gameManager;
+    private CameraShake _cameraShake;
 
     void Awake()
     {
         _oilBody = _oilBodyGameObject.GetComponent<OilBody>();
         SetGameManager();
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     void Start()
@@ -45,6 +47,8 @@ public class RisingOil : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.GetComponent<CharacterController>().Die();
+            // TODO: replace magic numbers with serialized private members!!!!!
+            _cameraShake.BeginShake(1, 0.25f);
         }
     }
 
