@@ -12,6 +12,14 @@ public class RisingOil : MonoBehaviour
     [SerializeField] [Range(0, 1)] [Tooltip("Speed multiplier to use when moving the oil. This should be extremely small.")]
     private float _moveSpeedMultiplier = 0.5f;
 
+    [Header("Camera Shake")]
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeIntensity = 0.5f;
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeDuration = 0.25f;
+
     const int TILE_SIZE = 250;
 
     private Vector3Int _tilemapSize;
@@ -47,8 +55,7 @@ public class RisingOil : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.GetComponent<CharacterController>().Die();
-            // TODO: replace magic numbers with serialized private members!!!!!
-            _cameraShake.BeginShake(1, 0.25f);
+            _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
         }
     }
 

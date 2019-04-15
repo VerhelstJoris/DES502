@@ -17,6 +17,14 @@ public class SpikeTrap : Trap
     [SerializeField]
     private bool _activeWhileActivating, _activeWhileDeactivating;
 
+    [Header("Camera Shake")]
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeIntensity = 0.5f;
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeDuration = 0.25f;
+
     private bool _active=true;
     private bool _activating = false;
     private bool _deactivating = false;
@@ -74,8 +82,7 @@ public class SpikeTrap : Trap
             if (col.tag == "Player")
             {
                 col.GetComponent<CharacterController>().Die();
-                // TODO: replace magic numbers with serialized private members!!!!!
-                _cameraShake.BeginShake(1, 0.25f);
+                _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
             }
         }
     }
