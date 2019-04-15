@@ -58,7 +58,7 @@ public class CameraShake : MonoBehaviour
     static private Vector3 GetShakeTarget(Vector3 _originalPosition, float intensity)
     {
         Vector3 newTarget = _originalPosition + Random.insideUnitSphere * intensity;
-        Debug.Log("New shake target: " + newTarget.ToString());
+        //Debug.Log("New shake target: " + newTarget.ToString());
         return newTarget;
     }
 
