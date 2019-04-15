@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttack : MonoBehaviour {
-
-    private BoxCollider2D _collider;
-    private CharacterController _charController;
-
-
+public class MeleeAttack : MonoBehaviour
+{
     [SerializeField]
     public HitboxID _hitboxID;
 
-
+    private BoxCollider2D _collider;
+    private CharacterController _charController;
     private float _launchAmount;
     private Vector2 _defaultLaunchVector;
     private float _stunDuration;
+    private CameraShake _cameraShake;
 
     // Use this for initialization
     void Awake () {
         _collider = this.GetComponent<BoxCollider2D>();
         _charController = this.GetComponentInParent<CharacterController>();
-
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     private void Start()
@@ -76,8 +74,11 @@ public class MeleeAttack : MonoBehaviour {
         if (col.tag=="Player")
         {
             //Debug.Log("Player");
-            col.GetComponent<CharacterController>().RecieveHit(launchVector * _launchAmount,
-               _stunDuration, true);
+            CharacterController collidedPlayer = col.GetComponent<CharacterController>();
+            collidedPlayer.RecieveHit(launchVector * _launchAmount,
+                    _stunDuration, true);
+            float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
+            _cameraShake.BeginShake(cameraShakeValues[0], cameraShakeValues[1]);
         }
 
         if (col.tag=="Weapon")

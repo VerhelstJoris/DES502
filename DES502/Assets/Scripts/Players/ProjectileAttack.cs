@@ -15,12 +15,14 @@ public class ProjectileAttack : MonoBehaviour
     private float _dropTimer;
     private float _dropDuration;
     private float _dropGravityScale;
+    private CameraShake _cameraShake;
 
 
     private void Awake()
     {
         _rb = this.GetComponent<Rigidbody2D>();
         _rb.gravityScale = 0;
+        _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
     }
 
     public void Inititalize(PlayerID owner, Vector2 direction, float launchAmount, float stunduration, float dropduration, int launchspeed, float dropgravityscale)
@@ -52,10 +54,13 @@ public class ProjectileAttack : MonoBehaviour
 
         if (col.tag == "Player")
         {
-            if (col.GetComponent<CharacterController>()._PlayerID != _owner)
+            CharacterController collidedPlayer = col.GetComponent<CharacterController>();
+            if (collidedPlayer._PlayerID != _owner)
             {
-                col.GetComponent<CharacterController>().RecieveHit(launchVector * _launchAmount,
-                    _stunDuration);
+                collidedPlayer.RecieveHit(launchVector * _launchAmount, _stunDuration);
+                // this assumes that all players have the same camera shake values
+                float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
+                _cameraShake.BeginShake(cameraShakeValues[2], cameraShakeValues[3]);
             }
         }
         else

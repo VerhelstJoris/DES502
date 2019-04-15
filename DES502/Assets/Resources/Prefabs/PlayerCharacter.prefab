@@ -293,6 +293,8 @@ MonoBehaviour:
   _playerStompStunDuration: 0.35
   _playerStompCooldownDuration: 0.2
   _attackCooldownDuration: 0.4
+  _cameraShakeIntensityMelee: 0.5
+  _cameraShakeDurationMelee: 0.25
   _UpAttackSize: {x: 1, y: 0.6}
   _UpAttackOffset: {x: 0, y: 0.6}
   _upAttackDuration: 0.25
@@ -324,6 +326,8 @@ MonoBehaviour:
   _projectileDropDuration: 0.1
   _projectileLaunchSpeed: 1600
   _projectileGravityScale: 1
+  _cameraShakeIntensityProjectile: 0.11
+  _cameraShakeDurationProjectile: 0.06
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []

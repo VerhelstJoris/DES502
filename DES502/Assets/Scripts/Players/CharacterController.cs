@@ -128,6 +128,13 @@ public class CharacterController : MonoBehaviour
     private BoxCollider2D _sideAttackCollider, _downAttackCollider, _upAttackCollider;
     private MeleeAttack _sideAttack, _downAttack, _upAttack;
 
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeIntensityMelee = 0.5f;
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeDurationMelee = 0.25f;
+
     [Header("Upwards Attack")]
 
     public Vector2 _UpAttackSize;
@@ -186,6 +193,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 0.2f)] [Tooltip("Duration before projectiles start to be affected by gravity")] private float _projectileDropDuration = 0.1f;
     [SerializeField] [Range(0, 2000)] [Tooltip("Launch force to apply to projectiles")] private int _projectileLaunchSpeed = 1600;
     [SerializeField] [Range(0.0f, 3.0f)] [Tooltip("Gravity scale to use when projectiles start to drop")] private float _projectileGravityScale = 1.0f;
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeIntensityProjectile = 0.5f;
+    [SerializeField] [Range(0, 2)]
+    [Tooltip("Max distance for camera shake from origin.")]
+    private float _cameraShakeDurationProjectile = 0.25f;
 
     bool _specialAttackKeyDown = false;
     bool _specialAttacking = false;
@@ -1159,5 +1172,15 @@ public class CharacterController : MonoBehaviour
         return 1 - Mathf.Pow((1 - x), power);
     }
     */
+
+    public float[] GetCameraShakeValues()
+    {
+        float[] cameraValues = new float[4];
+        cameraValues[0] = _cameraShakeIntensityMelee;
+        cameraValues[1] = _cameraShakeDurationMelee;
+        cameraValues[2] = _cameraShakeIntensityProjectile;
+        cameraValues[3] = _cameraShakeDurationProjectile;
+        return cameraValues;
+    }
 }
 
