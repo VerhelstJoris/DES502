@@ -1035,17 +1035,6 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void StartPowerupTimer(float duration)
-    {
-        StartCoroutine(PowerupTimer(duration));
-    }
-
-    private IEnumerator PowerupTimer(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        DisablePowerups();
-    }
-
     public void DisablePowerups()
     {
         // disable all powerup effects
@@ -1092,7 +1081,7 @@ public class CharacterController : MonoBehaviour
 
     public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor)
     {
-        StartPowerupTimer(effectTime);
+        Invoke("DisablePowerups", effectTime);
         _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
         this.GetComponent<SpriteRenderer>().color = modulateColor;
     }
