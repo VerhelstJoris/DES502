@@ -70,7 +70,8 @@ public class CharacterSelect : MonoBehaviour
         _subtext.enabled = false;
 
         _Data.Active = false;
-
+        _Data.SkinID = 0;
+        _Data.CharacterID = CharacterID.Rabbit;
         _mainMenu = FindObjectOfType<MainMenu>();
     }
 

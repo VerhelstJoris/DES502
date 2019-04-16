@@ -616,20 +616,21 @@ public class CharacterController : MonoBehaviour
             //collider specific changes
             case AttackType.Side:
                 _sideAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                _sideAttackCollider.enabled = true;
+                //_sideAttackCollider.enabled = true;
                 _sideAttack.SetLaunchAmount(_SideAttackMinLaunchSize + ((_attackChargeTimer / _SideAttackHoldDuration) * (_SideAttackMaxLaunchSize - _SideAttackMinLaunchSize)));
+                _sideAttack.Activate();
                 break;
             case AttackType.Up:
                 _upAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                _upAttackCollider.enabled = true;
+                //_upAttackCollider.enabled = true;
                 _upAttack.SetLaunchAmount(_UpAttackMinLaunchSize + ((_attackChargeTimer / _UpAttackHoldDuration) * (_UpAttackMaxLaunchSize - _UpAttackMinLaunchSize)));
-
+                _upAttack.Activate();
                 break;
             case AttackType.Down:
                 _downAttackObject.GetComponent<SpriteRenderer>().enabled = true;
-                _downAttackCollider.enabled = true;
+                //_downAttackCollider.enabled = true;
                 _downAttack.SetLaunchAmount(_DownAttackMinLaunchSize +  ((_attackChargeTimer / _DownAttackHoldDuration) * (_DownAttackMaxLaunchSize-_DownAttackMinLaunchSize)));
-
+                _downAttack.Activate();
                 break;
             case AttackType.None:
                 break;
@@ -749,15 +750,18 @@ public class CharacterController : MonoBehaviour
             //collider specific changes
             case AttackType.Side:
                 _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                _sideAttackCollider.enabled = false;
+                //_sideAttackCollider.enabled = false;
+                _sideAttack.Activate(false);
                 break;
             case AttackType.Up:
                 _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                _upAttackCollider.enabled = false;
+                //_upAttackCollider.enabled = false;
+                _upAttack.Activate(false);
                 break;
             case AttackType.Down:
                  _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
-                 _downAttackCollider.enabled = false;
+                //_downAttackCollider.enabled = false;
+                _downAttack.Activate(false);
                 break;
             case AttackType.None:
                 break;

@@ -25,7 +25,7 @@ public class WeaponColliderEditor : MonoBehaviour
     private void Start()
     {
         this.GetComponent<SpriteRenderer>().enabled = false;
-        _collider.enabled = false;
+        //_collider.enabled = false;
     }
 
     // Update is called once per frame

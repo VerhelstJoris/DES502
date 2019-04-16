@@ -14,6 +14,9 @@ public class MeleeAttack : MonoBehaviour
     private float _stunDuration;
     private CameraShake _cameraShake;
 
+    private List<Collider2D> _playerColliders = new List<Collider2D>();
+
+    private bool _active;
     // Use this for initialization
     void Awake () {
         _collider = this.GetComponent<BoxCollider2D>();
@@ -65,31 +68,83 @@ public class MeleeAttack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Vector2 launchVector=_defaultLaunchVector;
-        if (!_charController._FacingRight)
+        if (col.tag == "Player")
         {
-            launchVector.x *= -1;
+            if (!_playerColliders.Contains(col))
+            {
+                _playerColliders.Add(col);
+            }
+            
         }
 
-        if (col.tag=="Player")
+        if (_active)
         {
-            //Debug.Log("Player");
-            CharacterController collidedPlayer = col.GetComponent<CharacterController>();
-            collidedPlayer.RecieveHit(launchVector * _launchAmount,
-                    _stunDuration, true);
-            float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
-            _cameraShake.BeginShake(cameraShakeValues[0], cameraShakeValues[1]);
+
+            Vector2 launchVector = _defaultLaunchVector;
+            if (!_charController._FacingRight)
+            {
+                launchVector.x *= -1;
+            }
+
+            if (col.tag == "Player")
+            {
+                //Debug.Log("Player");
+                CharacterController collidedPlayer = col.GetComponent<CharacterController>();
+                collidedPlayer.RecieveHit(launchVector * _launchAmount,
+                        _stunDuration, true);
+                float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
+                _cameraShake.BeginShake(cameraShakeValues[0], cameraShakeValues[1]);
+            }
+
+            if (col.tag == "Weapon")
+            {
+                //parry
+            }
+
         }
 
-        if (col.tag=="Weapon")
-        {
-            //parry
-        }
+        
+    }
 
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            _playerColliders.Remove(col);
+        }
     }
 
     public void SetLaunchAmount(float amount)
     {
         _launchAmount = amount;
+    }
+
+    public void Activate(bool active = true)
+    {
+        _active = active;
+
+        if (active)
+        {
+            for (int i = 0; i < _playerColliders.Count; i++)
+            {
+                Vector2 launchVector = _defaultLaunchVector;
+                if (!_charController._FacingRight)
+                {
+                    launchVector.x *= -1;
+                }
+
+                if (_playerColliders[i].tag == "Player")
+                {
+                    //Debug.Log("Player");
+                    CharacterController collidedPlayer = _playerColliders[i].GetComponent<CharacterController>();
+                    collidedPlayer.RecieveHit(launchVector * _launchAmount,
+                            _stunDuration, true);
+                    float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
+                    _cameraShake.BeginShake(cameraShakeValues[0], cameraShakeValues[1]);
+                }
+
+          
+            }
+        }
     }
 }
