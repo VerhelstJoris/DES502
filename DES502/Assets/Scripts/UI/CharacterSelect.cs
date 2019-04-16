@@ -129,11 +129,17 @@ public class CharacterSelect : MonoBehaviour
                 _subtext.enabled = false;
                 _ready = true;
 
+
+                
                 _Data.CharacterID = _charID;
                 _Data.ControllerID = _controllerID;
                 _Data.PlayerID = _mainMenu.GetNextPlayerID();
                 _Data.SkinID = _currenSkinSelected;
                 _Data.Active = true;
+
+                Debug.Log("CHARACTER READIED UP");
+                Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
+
                 _mainMenu.PlayerReady();
 
             }

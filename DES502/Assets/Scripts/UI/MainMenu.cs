@@ -22,7 +22,6 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _GMScriptableObject.PlayerAmount = 0;
         _GMScriptableObject.TeamSetup = TeamSetup.FFA;
         _GMScriptableObject.GameWinCondition = GameWinCondition.STOCKS;
 
@@ -57,7 +56,7 @@ public class MainMenu : MonoBehaviour
 
     public void SetPlayerAmount(Dropdown dropdown)
     {
-        _GMScriptableObject.PlayerAmount = dropdown.value + 2;
+        //_GMScriptableObject.PlayerAmount = dropdown.value + 2;
     }
 
     public void SetTeamMode(Dropdown dropdown)
@@ -75,7 +74,7 @@ public class MainMenu : MonoBehaviour
     public void AddPlayer()
     {
         _playerAmountJoined++;
-        _GMScriptableObject.PlayerAmount=_playerAmountJoined;
+        //_GMScriptableObject.PlayerAmount=_playerAmountJoined;
 
         if(_playerAmountJoined!= _playerAmountReady)
         {
@@ -97,8 +96,6 @@ public class MainMenu : MonoBehaviour
             //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }
-
-        //add the player data to its scriptable object
     }
 
     public PlayerID GetNextPlayerID()

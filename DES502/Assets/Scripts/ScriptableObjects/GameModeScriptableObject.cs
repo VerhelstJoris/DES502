@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="GameModeData", menuName ="Data/Gamemode", order = 1 )]
 public class GameModeScriptableObject: ScriptableObject
 {
-    public int PlayerAmount = 2;
     public TeamSetup TeamSetup = (TeamSetup)0;
     public GameWinCondition GameWinCondition = (GameWinCondition)0;
 
