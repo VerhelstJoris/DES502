@@ -527,13 +527,10 @@ public class GameManager : MonoBehaviour
         {
             case GameWinCondition.TIME:
                 return _GameTimerLeft >= _oilSpawnAtTimeLeft;
-                break;
             case GameWinCondition.STOCKS:
                 return (_team1Stocks <= _oilSpawnAtStocksRemaining || _team2Stocks <= _oilSpawnAtStocksRemaining);
-                break;
             default:
                 return false;
-                break;
         }
     }
 

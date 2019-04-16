@@ -145,7 +145,6 @@ public class RespawnPoint : MonoBehaviour
             {
                 return true;
                 // we only care about oil, break early
-                break;
             }
         }
         return false;

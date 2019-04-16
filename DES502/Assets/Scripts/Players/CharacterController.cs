@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.Audio;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterController : MonoBehaviour
 {
@@ -20,8 +21,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private RuntimeAnimatorController[] _rabbitAnimators, _foxAnimators;
 
-    [SerializeField]
-    private PlayerAudioScriptableObject _rabbitAudioObject, _foxAudioObject;
+    
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -50,6 +50,18 @@ public class CharacterController : MonoBehaviour
     public ControllerID _ControllerID;
     public int _SkinID;
 
+    //SOUND RELATED
+    //--------------------------------------
+
+    [Header("Sound Related")]
+    [SerializeField]
+    public List<DeathSettings> _deathSettings;
+
+    [SerializeField]
+    public KeyValuePair<CauseOfDeath, AudioClip> list;
+    
+    [SerializeField]
+    private PlayerAudioScriptableObject _rabbitAudioObject, _foxAudioObject;
     private PlayerAudioScriptableObject _audioScriptableObject;
 
 
@@ -211,7 +223,7 @@ public class CharacterController : MonoBehaviour
     public PlayerState _PlayerState = PlayerState.Idle;
 
     // POWERUP RELATED
-    //----------------------------------
+    //-------------------------------------
     // effects
     [HideInInspector]
     public bool _controlsReversed = false;
@@ -223,6 +235,8 @@ public class CharacterController : MonoBehaviour
     public bool _shielded = false;
     [HideInInspector]
     public bool _meleeInstantKill = false;
+
+    
 
     public void Initialize(PlayerData data)
     {
@@ -836,7 +850,7 @@ public class CharacterController : MonoBehaviour
         _animator.SetBool("Stunned", false);
     }
 
-    public void Die()
+    public void Die(CauseOfDeath cause)
     {
         _PlayerState = PlayerState.Dead;
         _AmountOfStocks--;
@@ -844,6 +858,14 @@ public class CharacterController : MonoBehaviour
         _animator.SetBool("Die", true);
         _rigidbody.bodyType = RigidbodyType2D.Static;
         DisablePowerups();
+
+        for (int i = 0; i < _deathSettings.Count; i++)
+        {
+            if(_deathSettings[i].Cause == cause && _deathSettings[i].Clip != null)
+            {
+                _source.PlayOneShot(_deathSettings[i].Clip);
+            }
+        }
     }
 
     private void ConfigureJump(float min_height, float min_time, float max_height)
@@ -1024,7 +1046,7 @@ public class CharacterController : MonoBehaviour
         {
             if (meleeHit && _meleeInstantKill)
             {
-                Die();
+                Die(CauseOfDeath.Melee);
             }
             else
             {

@@ -54,7 +54,7 @@ public class RisingOil : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<CharacterController>().Die();
+            other.GetComponent<CharacterController>().Die(CauseOfDeath.Oil);
             _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
         }
     }

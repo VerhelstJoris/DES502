@@ -261,8 +261,6 @@ MonoBehaviour:
   - {fileID: 22100000, guid: d926bfbd1c07c5f47a531fa558269965, type: 2}
   - {fileID: 22100000, guid: 1341549267c20d74c95728dbd31a38f5, type: 2}
   - {fileID: 22100000, guid: fbc8440c5dc6f70488603dbb4635b0bd, type: 2}
-  _rabbitAudioObject: {fileID: 11400000, guid: 7a560f9caa447de4692691ab7925e1f0, type: 2}
-  _foxAudioObject: {fileID: 11400000, guid: 08d656d000a83be4e959745ddb493f1c, type: 2}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 23
@@ -278,6 +276,15 @@ MonoBehaviour:
   _CharID: 0
   _ControllerID: 0
   _SkinID: 0
+  _deathSettings:
+  - Cause: 0
+    Clip: {fileID: 0}
+  - Cause: 1
+    Clip: {fileID: 0}
+  - Cause: 2
+    Clip: {fileID: 0}
+  _rabbitAudioObject: {fileID: 11400000, guid: 7a560f9caa447de4692691ab7925e1f0, type: 2}
+  _foxAudioObject: {fileID: 11400000, guid: 08d656d000a83be4e959745ddb493f1c, type: 2}
   _moveSpeed: 50
   _movementSmoothing: 0.08
   _useTurnaround: 1

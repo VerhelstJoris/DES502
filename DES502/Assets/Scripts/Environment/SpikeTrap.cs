@@ -81,7 +81,7 @@ public class SpikeTrap : Trap
         {
             if (col.tag == "Player")
             {
-                col.GetComponent<CharacterController>().Die();
+                col.GetComponent<CharacterController>().Die(CauseOfDeath.Spikes);
                 _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
             }
         }

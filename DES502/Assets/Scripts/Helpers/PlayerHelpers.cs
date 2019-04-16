@@ -16,6 +16,7 @@ public enum CharacterID { Rabbit, Fox};
 
 public enum TeamID { Team1, Team2 };
 
+public enum CauseOfDeath { Spikes, Oil, Melee};
 
 public struct PlayerData
 {
@@ -27,6 +28,13 @@ public struct PlayerData
     public int Deaths;
     public TeamID TeamId;
 };
+
+[System.Serializable]
+public class DeathSettings
+{
+    public CauseOfDeath Cause;
+    public AudioClip Clip;
+}
 
 public class PlayerHelpers : MonoBehaviour
 {
