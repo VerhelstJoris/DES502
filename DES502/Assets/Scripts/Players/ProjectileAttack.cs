@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class ProjectileAttack : MonoBehaviour
 {
-
     private float _launchAmount;
     private Vector2 _defaultLaunchVector;
     private float _stunDuration;
     private bool _movingRight;
-    PlayerID _owner;
-    Rigidbody2D _rb;
+    private PlayerID _owner;
+    private Rigidbody2D _rb;
     private bool _currentlyDropping = false;
     private float _dropTimer;
     private float _dropDuration;
     private float _dropGravityScale;
     private CameraShake _cameraShake;
-
 
     private void Awake()
     {
@@ -50,8 +48,6 @@ public class ProjectileAttack : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Vector2 launchVector = _defaultLaunchVector;
-    
-
         if (col.tag == "Player")
         {
             CharacterController collidedPlayer = col.GetComponent<CharacterController>();
@@ -63,11 +59,12 @@ public class ProjectileAttack : MonoBehaviour
                 _cameraShake.BeginShake(cameraShakeValues[2], cameraShakeValues[3]);
             }
         }
-        else
+        else if (col.IsTouchingLayers(GetKillLayers()))
         {
             Destroy(gameObject);
         }
 
+        // what does this do???
         if (col.tag == "Weapon")
         {
         }
@@ -84,5 +81,12 @@ public class ProjectileAttack : MonoBehaviour
             }
             _dropTimer -= Time.deltaTime;
         }
+    }
+
+    private int GetKillLayers()
+    {
+        // returns the layer index for every layer mask that isn't UI
+        // TODO: change this to work via serialized layermasks if this section ever needs to be altered
+        return ~(LayerMask.NameToLayer("UI"));
     }
 }

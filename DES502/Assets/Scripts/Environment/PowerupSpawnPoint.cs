@@ -18,7 +18,6 @@ public class PowerupSpawnPoint : MonoBehaviour
     public bool _spawnRandom = true;
     */
 
-    private SpriteRenderer spriteRenderer;
     [HideInInspector]
     public bool _containsPowerup = false;
     private List<CharacterController> _playersOverlapping = new List<CharacterController>();
@@ -30,14 +29,15 @@ public class PowerupSpawnPoint : MonoBehaviour
     // Disabling SpriteRenderer method
     void OnValidate()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(1f, 1f, 1f, _spriteTransparency);
     }
 
     void Awake()
     {
+        // this needs to be gotten again for the build, as OnValidate() only triggers in-editor
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = false;
-        //_powerupsToSpawn = GetPowerupsToSpawn();
     }
 
     public void OnChildPowerupCollected()
