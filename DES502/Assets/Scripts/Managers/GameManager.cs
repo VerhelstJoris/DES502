@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
         }
 
         _timerUI = FindObjectOfType<TimerUI>();
-        if (_timerUI && _WinCondition != GameWinCondition.TIME)
+        if (_timerUI != null && _WinCondition != GameWinCondition.TIME)
         {
             _timerUI.gameObject.SetActive(false);
         }
