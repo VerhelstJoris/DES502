@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 1278327643
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c8bae17b0b9186640b02608a2567a6a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22e2283e8f0ca9d42a675786773e0b08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,6 +97,8 @@ MonoBehaviour:
   _deactivationDuration: 0.3
   _activeWhileActivating: 0
   _activeWhileDeactivating: 1
+  _cameraShakeIntensity: 0.5
+  _cameraShakeDuration: 0.25
 --- !u!61 &8144705289790166594
 BoxCollider2D:
   m_ObjectHideFlags: 0
