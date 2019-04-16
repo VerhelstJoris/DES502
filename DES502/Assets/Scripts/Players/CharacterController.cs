@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Audio;
+using System.Collections;
 
 public class CharacterController : MonoBehaviour
 {
@@ -180,8 +181,6 @@ public class CharacterController : MonoBehaviour
     private float _attackChargeTimer=0.0f;
 
     bool _stunned = false;
-    float _stunnedTimer = 0.0f;
-    float _stunnedDuration = 0.0f;
 
     //PROJECTILE ATTACK RELATED
     //----------------------------------
@@ -236,9 +235,6 @@ public class CharacterController : MonoBehaviour
 
     // POWERUP RELATED
     //----------------------------------
-    // general
-    private bool _isPowerupTimerActive;
-    private float _powerupTimer;
     // effects
     [HideInInspector]
     public bool _controlsReversed = false;
@@ -370,11 +366,6 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        PowerupTimerTick();
-    }
-
     private void FixedUpdate()
     {
         _grounded = IsGrounded();
@@ -416,12 +407,6 @@ public class CharacterController : MonoBehaviour
         }
 
         AttackTick();
-
-        //being stunned
-        if (_stunned)
-        {
-            StunTick();
-        }
     }
 
     private void Move(float move, bool jump)
@@ -722,7 +707,7 @@ public class CharacterController : MonoBehaviour
                 case AttackType.Up:
                     if (_attackChargeTimer > _UpAttackHoldDuration)
                     {
-                       // Debug.Log("RELEASE UP");
+                        //Debug.Log("RELEASE UP");
                         ReleaseAttack();
                         _attackChargeTimer = 0.0f;
                         _chargingAttack = false;
@@ -879,23 +864,16 @@ public class CharacterController : MonoBehaviour
     private void Stun(float duration)
     {
         _stunned = true;
-        _stunnedDuration = duration;
+        Invoke("DisableStun", duration);
         this.GetComponent<SpriteRenderer>().color = Color.red;
         _animator.SetBool("Stunned", true);
     }
 
-    private void StunTick()
+    private void DisableStun()
     {
-        _stunnedTimer += Time.deltaTime;
-
-        if(_stunnedTimer>=_stunnedDuration)
-        {
-            _stunned = false;
-            _stunnedTimer = 0.0f;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
-            _animator.SetBool("Stunned", false);
-
-        }
+        _stunned = false;
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+        _animator.SetBool("Stunned", false);
     }
 
     public void Die()
@@ -927,6 +905,7 @@ public class CharacterController : MonoBehaviour
 
     private bool IsHittingCeiling()
     {
+        // TODO: Change this to a raycast upwards?
         // Check to see if the character is currently hitting a ceiling
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_ceilingCheck.position, k_ceilingHitRadius, _whatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -1053,36 +1032,22 @@ public class CharacterController : MonoBehaviour
 
             point.Activate(data);
         }
-
-
-
         Destroy(gameObject);
     }
 
     public void StartPowerupTimer(float duration)
     {
-        _isPowerupTimerActive = true;
-        _powerupTimer = duration;
+        StartCoroutine(PowerupTimer(duration));
     }
 
-    private void PowerupTimerTick()
+    private IEnumerator PowerupTimer(float duration)
     {
-        // timer tick for disabling powerups after recieving one
-        if (_isPowerupTimerActive)
-        {
-            _powerupTimer -= Time.deltaTime;
-            //Debug.Log("_powerupTimer: " + _powerupTimer);
-            if (_powerupTimer <= 0)
-            {
-                DisablePowerups();
-            }
-        }
+        yield return new WaitForSeconds(duration);
+        DisablePowerups();
     }
 
     public void DisablePowerups()
     {
-        // stop the timer tick from happening
-        _isPowerupTimerActive = false;
         // disable all powerup effects
         // much simpler solution than keeping track of what effect was active
         // hopefully this won't ever cause an issue
@@ -1092,6 +1057,7 @@ public class CharacterController : MonoBehaviour
         _shielded = false;
         _meleeInstantKill = false;
         _GameManager.OnPowerupExpired(_PlayerID);
+        // set colour back to default
         this.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
@@ -1120,11 +1086,7 @@ public class CharacterController : MonoBehaviour
 
                 //add ui knockback
             }
-
-          
             _source.PlayOneShot(_audioScriptableObject.GettingHitClip);
-               
-            
         }
     }
 
@@ -1135,6 +1097,7 @@ public class CharacterController : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = modulateColor;
     }
 
+    // this needs to be a timer in FixedUpdate() rather than a coroutine/invoke as the timer can be reset back when another turnaround is triggered
     private bool IsTurnaroundTimerExpired()
     {
         _turnaroundTimer -= Time.deltaTime;
@@ -1149,14 +1112,6 @@ public class CharacterController : MonoBehaviour
             return false;
         }
     }
-
-    /*
-    private void SetGravityScale(float gravityScale)
-    {
-        _rigidbody.gravityScale = gravityScale;
-        Debug.Log("Current gravity scale: " + gravityScale.ToString());
-    }
-    */
 
     private bool IsFalling()
     {
@@ -1177,6 +1132,7 @@ public class CharacterController : MonoBehaviour
     }
     */
 
+    // TODO: just change these to public members
     public float[] GetCameraShakeValues()
     {
         float[] cameraValues = new float[4];
