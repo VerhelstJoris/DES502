@@ -56,57 +56,39 @@ public class CharacterController : MonoBehaviour
     //GENERAL MOVEMENT
     //------------------------------------
     [Header("Player Movement")]
-
     [Range(0, 150.0f)] [SerializeField] float _moveSpeed;
     [Range(0, .3f)] [SerializeField] private float _movementSmoothing = .05f;
     [SerializeField] private bool _useTurnaround = true;
     [Range(0, .5f)] [SerializeField] private float _turnaroundDuration = .05f;
 
-    float _horizontalMove = 0.0f;
-    float _horizontalInput = 0.0f;
-    float _verticalInput = 0.0f;
-    bool _running = false;
+    private float _horizontalMove = 0.0f;
+    private float _horizontalInput = 0.0f;
+    private float _verticalInput = 0.0f;
+    private bool _running = false;
     private float _turnaroundTimer;
     private bool _isTurningAround = false;
 
     //JUMP RELATED
     //------------------------------------
     [Header("Jump")]
-
     [SerializeField] private bool _airControl = false;
-
     [Range(0, 2.0f)] [SerializeField] [Tooltip("How high (in grid units) will the minimum jump height reach?")]
-    float _minJumpHeight = 0.5f;
+    private float _minJumpHeight = 0.5f;
     [Range(0, 1.0f)] [SerializeField] [Tooltip("How long (in seconds) does it take to reach the minimum jump height?")]
-    float _minJumpTime = 0.2f;
+    private float _minJumpTime = 0.2f;
     [Range(0, 20.0f)] [SerializeField] [Tooltip("How high (in grid units) will the maximum jump height reach?")]
-    float _maxJumpHeight = 3.0f;
+    private float _maxJumpHeight = 3.0f;
     [SerializeField] [Tooltip("Should fall speed be clamped?")]
-    bool _shouldClampFallSpeed = true;
+    private bool _shouldClampFallSpeed = true;
     [Range(-50.0f, 0)] [SerializeField] [Tooltip("How fast should fall speed be clamped to?")]
-    float _maxFallSpeed = -20.0f;
-    /*
-    [Range(1, 5)] [SerializeField] [Tooltip("What gravity scale should be used normally?")]
-    float _normalGravityScale = 1;
-    [Range(1, 5)] [SerializeField] [Tooltip("What gravity scale should be used while falling?")]
-    float _fallingGravityScale = 1;
-    */
-    /*
-    [Range(0, 1f)] [SerializeField] [Tooltip("How long should the player float for at the peak of their jump arc?")]
-        private float _jumpPeakFloatDuration = 1;
-    [SerializeField] [Tooltip("Should the player float at the peak of their jump arc?")] 
-        private bool _floatAtJumpPeak = true;
-    private float _jumpPeakFloatTimer = 1;
-    private Vector2 _defaultGravityValue;
-    private bool _currentlyFloating = false;
-    */
+    private float _maxFallSpeed = -20.0f;
 
-    float _jumpTimeCounter;
-    bool _jumpKeyDown = false;
-    bool _jumpKeyDownAlready = false;
-    bool _jumping = false;
-    float _jumpVelocity = 0.0f;
-    float _maxJumpTime = 0.0f;
+    private float _jumpTimeCounter;
+    private bool _jumpKeyDown = false;
+    private bool _jumpKeyDownAlready = false;
+    private bool _jumping = false;
+    private float _jumpVelocity = 0.0f;
+    private float _maxJumpTime = 0.0f;
 
     // These values aren't as important to fine tweak as regular jumping
     [Header("Player Stomp")]
@@ -124,7 +106,8 @@ public class CharacterController : MonoBehaviour
     //ATTACK RELATED
     //-----------------------------------
     [Header("Attacks")]
-    [SerializeField] [Tooltip("How long that you can't attack after the attack ends")] private float _attackCooldownDuration;
+    [SerializeField] [Tooltip("How long that you can't attack after the attack ends")]
+    private float _attackCooldownDuration;
 
     private BoxCollider2D _sideAttackCollider, _downAttackCollider, _upAttackCollider;
     private MeleeAttack _sideAttack, _downAttack, _upAttack;
@@ -137,7 +120,6 @@ public class CharacterController : MonoBehaviour
     private float _cameraShakeDurationMelee = 0.25f;
 
     [Header("Upwards Attack")]
-
     public Vector2 _UpAttackSize;
     public Vector2 _UpAttackOffset;
     [SerializeField] private float _upAttackDuration;
@@ -148,7 +130,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 2.5f)] public float _UpAttackHoldDuration;
 
     [Header("Downwards Attack")]
-
     public Vector2 _DownAttackSize;
     public Vector2 _DownAttackOffset;
     [SerializeField] private float _downAttackDuration;
@@ -159,7 +140,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 2.5f)] public float _DownAttackHoldDuration;
 
     [Header("Side Attacks")]
-
     public Vector2 _SideAttackSize;
     public Vector2 _SideAttackOffset;
     [SerializeField] private float _sideAttackDuration;
@@ -169,29 +149,34 @@ public class CharacterController : MonoBehaviour
     [SerializeField] [Range(0.0f, 1.5f)] public float _SideAttackStunDuration;
     [SerializeField] [Range(0.0f, 2.5f)] public float _SideAttackHoldDuration;
 
-    bool _attackKeyDown = false;
-    bool _chargingAttack = false;
-    bool _attacking = false;
-    bool _attackOnCooldown = false;
-    bool _attackWindupFinished = false;
-    AttackType _currentAttack = AttackType.None;
-
+    private bool _attackKeyDown = false;
+    private bool _chargingAttack = false;
+    private bool _attacking = false;
+    private bool _attackOnCooldown = false;
+    private bool _attackWindupFinished = false;
+    private AttackType _currentAttack = AttackType.None;
     private float _attackTimer = 0.0f;
     private float _attackCooldownTimer = 0.0f;
     private float _attackChargeTimer=0.0f;
-
-    bool _stunned = false;
+    private bool _stunned = false;
 
     //PROJECTILE ATTACK RELATED
     //----------------------------------
     [Header("Projectile Attack")]
-    [SerializeField] [Range(0.0f, 5.0f)] [Tooltip("Duration in which you can't fire another projectile")] private float _projectileCooldownDuration = 2.5f;
-    [SerializeField] [Range(0.0f, 1.5f)] [Tooltip("Duration for which opponents hit are stunned")] private float _projectileStunDuration = 0.25f;
-    [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")] private float _projectileLaunchAmount = 200.0f;
-    [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing")] private float _projectileStartupDuration = 0.5f;
-    [SerializeField] [Range(0.0f, 0.2f)] [Tooltip("Duration before projectiles start to be affected by gravity")] private float _projectileDropDuration = 0.1f;
-    [SerializeField] [Range(0, 2000)] [Tooltip("Launch force to apply to projectiles")] private int _projectileLaunchSpeed = 1600;
-    [SerializeField] [Range(0.0f, 3.0f)] [Tooltip("Gravity scale to use when projectiles start to drop")] private float _projectileGravityScale = 1.0f;
+    [SerializeField] [Range(0.0f, 5.0f)] [Tooltip("Duration in which you can't fire another projectile")] 
+    private float _projectileCooldownDuration = 2.5f;
+    [SerializeField] [Range(0.0f, 1.5f)] [Tooltip("Duration for which opponents hit are stunned")] 
+    private float _projectileStunDuration = 0.25f;
+    [SerializeField] [Range(0.0f, 1000.0f)] [Tooltip("By how much oppents hit are launched")]
+    private float _projectileLaunchAmount = 200.0f;
+    [SerializeField] [Range(0.0f, 0.5f)] [Tooltip("Duration inbetween pressing the button and the projectile firing")]
+    private float _projectileStartupDuration = 0.5f;
+    [SerializeField] [Range(0.0f, 0.2f)] [Tooltip("Duration before projectiles start to be affected by gravity")]
+    private float _projectileDropDuration = 0.1f;
+    [SerializeField] [Range(0, 2000)] [Tooltip("Launch force to apply to projectiles")]
+    private int _projectileLaunchSpeed = 1600;
+    [SerializeField] [Range(0.0f, 3.0f)] [Tooltip("Gravity scale to use when projectiles start to drop")] 
+    private float _projectileGravityScale = 1.0f;
     [SerializeField] [Range(0, 2)]
     [Tooltip("Max distance for camera shake from origin.")]
     private float _cameraShakeIntensityProjectile = 0.5f;
@@ -199,9 +184,8 @@ public class CharacterController : MonoBehaviour
     [Tooltip("Max distance for camera shake from origin.")]
     private float _cameraShakeDurationProjectile = 0.25f;
 
-    bool _specialAttackKeyDown = false;
-    bool _specialAttacking = false;
-
+    private bool _specialAttackKeyDown = false;
+    private bool _specialAttacking = false;
     private bool _projectileFiring = false;
     private bool _projectileOnCooldown = false;
     private float _projectileCooldownTimer = 0.0f;
@@ -212,9 +196,7 @@ public class CharacterController : MonoBehaviour
     //-----------------------------------
     [Header("Events")]
     [Space]
-
     public UnityEvent OnLandEvent;
-
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
@@ -222,15 +204,10 @@ public class CharacterController : MonoBehaviour
     //-----------------------------------
     [HideInInspector]
     public int _AmountOfStocks;
-
     [HideInInspector]
     public int _AmountOfDeaths;
-    //random
-
     string _inputSuffix;
-
     private Vector3 _Velocity = Vector3.zero;
-
     public PlayerState _PlayerState = PlayerState.Idle;
 
     // POWERUP RELATED
@@ -255,7 +232,6 @@ public class CharacterController : MonoBehaviour
         _AmountOfDeaths = data.Deaths;
         _CharID = data.charID;
         _SkinID = data.skinID;
-
         //proper input + animator
         switch (_PlayerID)
         {
@@ -274,7 +250,6 @@ public class CharacterController : MonoBehaviour
             default:
                 break;
         }
-
         switch (_CharID)
         {
             case CharacterID.Fox:
@@ -286,12 +261,9 @@ public class CharacterController : MonoBehaviour
                 _audioScriptableObject = _rabbitAudioObject;
                 break;
         }
-
-
         //player UI
         _GameManager.CreatePlayerUI(this);
         _GameManager.AddPlayer(this);
-
     }
 
     private void Awake()
@@ -748,20 +720,16 @@ public class CharacterController : MonoBehaviour
             _projectileFiringTimer += Time.deltaTime;
             if (_projectileFiringTimer >= _projectileStartupDuration)
             {
-                
                 //actually create the projectile
                 Vector2 direction = new Vector2(1, 0);
                 if (!_FacingRight)
                 {
                     direction.x = -1;
                 }
-
                 ObjectFactory.CreateProjectile(_PlayerID, _projectileSpawn.transform.position, direction, _projectileLaunchAmount, _projectileStunDuration, _projectileDropDuration, _projectileLaunchSpeed, _projectileGravityScale);
-
                 _projectileFiring = false;
                 _projectileOnCooldown = true;
                 _projectileFiringTimer = 0.0f;
-
             }
         }
     }
@@ -772,41 +740,31 @@ public class CharacterController : MonoBehaviour
         _attacking = false;
         _attackOnCooldown = true;
         _attackWindupFinished = false;
-
         _animator.SetBool("Attacking_Side", false);
         _animator.SetBool("Attacking_Up", false);
 
         //reset after attack finishes
         switch (_currentAttack)
         {
-
             //collider specific changes
             case AttackType.Side:
-                
                 _sideAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                 _sideAttackCollider.enabled = false;
-                
                 break;
             case AttackType.Up:
-               
                 _upAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                 _upAttackCollider.enabled = false;
-                
                 break;
             case AttackType.Down:
-                
                  _downAttackObject.GetComponent<SpriteRenderer>().enabled = false;
                  _downAttackCollider.enabled = false;
-                
                 break;
             case AttackType.None:
                 break;
             default:
                 break;
         }
-
         _currentAttack = AttackType.None;
-
     }
 
     private void Flip()
@@ -830,7 +788,7 @@ public class CharacterController : MonoBehaviour
         {
             _horizontalInput = Input.GetAxisRaw("Horizontal" + _inputSuffix);
             _verticalInput = Input.GetAxisRaw("Vertical" + _inputSuffix);
-
+            // TODO: is there a reason why these are all else ifs and not just else?
             if (Input.GetButtonDown("Jump" + _inputSuffix))
             {
                 _jumpKeyDown = true;
@@ -847,9 +805,7 @@ public class CharacterController : MonoBehaviour
             else if (Input.GetButtonUp("Attack" + _inputSuffix))
             {
                 _attackKeyDown = false;
-
             }
-
             if (Input.GetButtonDown("SpecialAttack" + _inputSuffix))
             {
                 _specialAttackKeyDown = true;
@@ -881,7 +837,6 @@ public class CharacterController : MonoBehaviour
         _PlayerState = PlayerState.Dead;
         _AmountOfStocks--;
         _AmountOfDeaths++;
-
         _animator.SetBool("Die", true);
         _rigidbody.bodyType = RigidbodyType2D.Static;
         DisablePowerups();
