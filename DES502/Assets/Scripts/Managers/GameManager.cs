@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
 
         _TeamSetup = _GMScriptableObject.TeamSetup;
         _WinCondition = _GMScriptableObject.GameWinCondition;
-        _PlayerAmount = _GMScriptableObject.PlayerAmount;
         _playersWithStocksLeft = _PlayerAmount;
 
         //stocks of timer
@@ -196,12 +195,16 @@ public class GameManager : MonoBehaviour
                 data.Deaths = 0;
                 data.skinID = _PlayerDataObjects[i].SkinID;
 
+                Debug.Log("CONTROLLER ID: " + data.controllerID.ToString() + " PLAYER ID: " + data.Id + " CHARACTER ID: " + data.charID.ToString() + " SKIN ID: " + data.skinID);
+
+
                 _respawnPoints[i].Activate(data);
                 activePlayers++;
             }
         }
 
         Debug.Log("ACTIVE PLAYERS: " + activePlayers);
+        _PlayerAmount = activePlayers;
         ResetPowerupSpawnTimer();
         _team1Stocks = _startingStocksPerPlayer;
         _team2Stocks = _startingStocksPerPlayer;

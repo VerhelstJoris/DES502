@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5138004441775566154}
   - component: {fileID: 7953048530445940385}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FrameImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5387103091838023574}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -146,7 +146,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 143e3278ffd3b514284d639434dc93b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3483c50c2cef2854186a3dbcefa635f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -185,11 +185,11 @@ RectTransform:
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 5387103091838023574}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -31}
   m_SizeDelta: {x: 70, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5387103091761663556
@@ -259,8 +259,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
-  - {fileID: 3635334651126586096}
   - {fileID: 5387103091761663558}
+  - {fileID: 3635334651126586096}
   - {fileID: 7688520799177259258}
   - {fileID: 7016760924082013087}
   m_Father: {fileID: 0}
@@ -269,7 +269,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5387103091838023572
 CanvasRenderer:
@@ -325,8 +325,11 @@ MonoBehaviour:
   _stocksText: {fileID: 635700298540310917}
   _bgImage: {fileID: 5387103091838023575}
   _charImage: {fileID: 5387103091761663559}
+  _frameImage: {fileID: 7953048530445940385}
   _rabbitImage: {fileID: 21300000, guid: 2dff48283f7161a4dbc073cfc2bc853a, type: 3}
   _foxImage: {fileID: 21300000, guid: 0d6f5db8814a0524b878387066f24099, type: 3}
+  _rabbitFrameImage: {fileID: 21300004, guid: 3483c50c2cef2854186a3dbcefa635f9, type: 3}
+  _foxFrameImage: {fileID: 21300000, guid: 3483c50c2cef2854186a3dbcefa635f9, type: 3}
   _powerupImage: {fileID: 6423100187113833244}
 --- !u!1 &6262601203245834844
 GameObject:

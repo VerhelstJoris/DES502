@@ -14,10 +14,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Text _stocksText;
     [SerializeField]
-    private Image _bgImage, _charImage;
+    private Image _bgImage, _charImage , _frameImage;
 
     [SerializeField]
-    private Sprite _rabbitImage, _foxImage;
+    private Sprite _rabbitImage, _foxImage, _rabbitFrameImage , _foxFrameImage;
     [SerializeField]
     private Image _powerupImage;
 
@@ -80,11 +80,12 @@ public class PlayerUI : MonoBehaviour
         {
             case CharacterID.Rabbit:
                 _charImage.sprite = _rabbitImage;
+                _frameImage.sprite = _rabbitFrameImage;
 
                 break;
             case CharacterID.Fox:
                 _charImage.sprite = _foxImage;
-
+                _frameImage.sprite = _foxFrameImage;
                 break;
         }
 
