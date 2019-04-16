@@ -47,6 +47,8 @@ MonoBehaviour:
   _oilBodyGameObject: {fileID: 6760649108331258638}
   _bodyColor: {r: 0.26321647, g: 0.28310835, b: 0.3301887, a: 0.46666667}
   _moveSpeedMultiplier: 0.0001
+  _cameraShakeIntensity: 0.5
+  _cameraShakeDuration: 0.25
 --- !u!1 &6760649108331258638
 GameObject:
   m_ObjectHideFlags: 0

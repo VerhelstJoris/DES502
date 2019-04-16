@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c82013e7349ac8469e74ffb7469a8ce, type: 3}
   m_Name: PlayerData_4
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataScriptableObject
-  Active: 0
+  Active: 1
   ControllerID: 3
-  PlayerID: 0
+  PlayerID: 3
   CharacterID: 0
   SkinID: 0
