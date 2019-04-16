@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 /// <summary>
 /// Place on a 3D object to modify its visibility relative to Sprite 'sorting
 /// layers'.
@@ -16,18 +16,25 @@ public sealed class SortingLayerExposer : MonoBehaviour
 
     public void OnValidate()
     {
-        apply();
+        Apply();
     }
 
     public void OnEnable()
     {
-        apply();
+        Apply();
     }
 
-    private void apply()
+    private void Apply()
     {
         var meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        meshRenderer.sortingLayerName = SortingLayerName;
-        meshRenderer.sortingOrder = SortingOrder;
+        if(meshRenderer)
+        {
+            meshRenderer.sortingLayerName = SortingLayerName;
+            meshRenderer.sortingOrder = SortingOrder;
+
+            return;
+        }
+      
+     
     }
 }

@@ -3,7 +3,19 @@ guid: 890566ee55da0a949b0d07cac77008d4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _GameManager: {instanceID: 0}
+  - _PlayerTag: {instanceID: 0}
+  - _PlayerUI: {instanceID: 0}
+  - _rabbitAudioObject: {fileID: 11400000, guid: 7a560f9caa447de4692691ab7925e1f0,
+      type: 2}
+  - _foxAudioObject: {fileID: 11400000, guid: 08d656d000a83be4e959745ddb493f1c, type: 2}
+  - _groundCheck: {instanceID: 0}
+  - _ceilingCheck: {instanceID: 0}
+  - _projectileSpawn: {instanceID: 0}
+  - _sideAttackObject: {instanceID: 0}
+  - _downAttackObject: {instanceID: 0}
+  - _upAttackObject: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

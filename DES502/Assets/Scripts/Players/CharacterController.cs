@@ -699,13 +699,13 @@ public class CharacterController : MonoBehaviour
         if (_chargingAttack && _attackWindupFinished && !_attackKeyDown)
         {
             //releasing attack
-            Debug.Log("attack tap");
+            //Debug.Log("attack tap");
             ReleaseAttack();
         }
 
         if (_chargingAttack && _attackWindupFinished)
         {
-            Debug.Log("CHARGING");
+            //Debug.Log("CHARGING");
             _attackChargeTimer += Time.deltaTime;
 
             switch (_currentAttack)
@@ -722,7 +722,7 @@ public class CharacterController : MonoBehaviour
                 case AttackType.Up:
                     if (_attackChargeTimer > _UpAttackHoldDuration)
                     {
-                        Debug.Log("RELEASE UP");
+                       // Debug.Log("RELEASE UP");
                         ReleaseAttack();
                         _attackChargeTimer = 0.0f;
                         _chargingAttack = false;
@@ -1002,7 +1002,7 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            Debug.Log("attack tap");
+            //Debug.Log("attack tap");
             ReleaseAttack();
         }
     }
@@ -1098,6 +1098,8 @@ public class CharacterController : MonoBehaviour
     // rename this?
     public void RecieveHit(Vector2 knockbackVelocity, float stunDuration, bool meleeHit = false)
     {
+
+
         if (_shielded)  // block hit if shield active
         {
             _shielded = false;
@@ -1115,6 +1117,8 @@ public class CharacterController : MonoBehaviour
                 //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
                 _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
                 Stun(stunDuration);
+
+                //add ui knockback
             }
 
           

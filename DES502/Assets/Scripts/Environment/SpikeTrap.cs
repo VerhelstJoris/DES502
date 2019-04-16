@@ -83,6 +83,7 @@ public class SpikeTrap : Trap
             {
                 col.GetComponent<CharacterController>().Die();
                 _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
+                Debug.Log("Killed Player");
             }
         }
     }

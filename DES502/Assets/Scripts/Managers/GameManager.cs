@@ -529,7 +529,6 @@ public class GameManager : MonoBehaviour
                 return (_team1Stocks <= _oilSpawnAtStocksRemaining || _team2Stocks <= _oilSpawnAtStocksRemaining);
                 break;
             default:
-                Debug.Log("ERROR: " + _WinCondition.ToString() + " is not a valid win condition!");
                 return false;
                 break;
         }
