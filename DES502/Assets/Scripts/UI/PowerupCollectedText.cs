@@ -22,8 +22,10 @@ public class PowerupCollectedText : MonoBehaviour
     {
         // set initial position
         SetWorldPosition(powerupPosition);
-        //SetText(powerupName);
+        SetText(powerupName);
         //StartCoroutine(FloatUpwards());
+        // TODO: this is created multiple times!!!!!! should only trigger once per pickup
+        Debug.Log("POWERUP TEXT EXISTS");
     }
 
     private void SetText(string newText)
