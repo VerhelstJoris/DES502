@@ -497,9 +497,15 @@ public class GameManager : MonoBehaviour
             if (_playerUIs[i]._teamID == teamToApply)
             {
                 _playerUIs[i].SetPowerupIcon(powerupHUDSprite);
-                _canvasScript.SpawnPowerupText(powerupName, powerupPosition);
             }
         }
+        _canvasScript.SpawnPowerupText(powerupName, powerupPosition);
+        /*
+        if (isFirstTarget)
+        {
+            _canvasScript.SpawnPowerupText(powerupName, powerupPosition);
+        }
+        */
     }
 
     public void OnPowerupExpired(PlayerID playerToApply)

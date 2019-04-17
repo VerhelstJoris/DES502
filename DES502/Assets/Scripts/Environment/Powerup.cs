@@ -93,7 +93,7 @@ public class Powerup : MonoBehaviour
         Kill();
     }
 
-    private void ApplyEffect(CharacterController player, POWERUP_TYPES powerup)
+    private void ApplyEffect(CharacterController player, POWERUP_TYPES powerup, bool isFirstTarget)
     {
         // Remove any powerup effects that might still be in effect
         // Powerups will stack without this
@@ -132,7 +132,7 @@ public class Powerup : MonoBehaviour
                 break;
             */
         }
-        player.OnPowerupCollected(_effectTime, _HUDSprite, GetPlayerModulateColor(powerup), _powerupName, transform.position);
+        player.OnPowerupCollected(_effectTime, _HUDSprite, GetPlayerModulateColor(powerup), _powerupName, transform.position, isFirstTarget);
     }
 
     private Color GetPlayerModulateColor(POWERUP_TYPES powerup)
@@ -144,6 +144,7 @@ public class Powerup : MonoBehaviour
     {
         List<CharacterController> totalPlayers = GameObject.Find("GameManager").GetComponent<GameManager>()._characterControllers;
         int playerTeamIndex = GetTeamIndex(player);
+        int targetIndex = 0;
         foreach(CharacterController p in totalPlayers)
         {
             int pTeamIndex = GetTeamIndex(p);
@@ -154,7 +155,9 @@ public class Powerup : MonoBehaviour
                     || (playerTeamIndex != pTeamIndex && !powerupTargetFriendly))
             {
                 // do effect here!!
-                ApplyEffect(p, powerup);
+                bool isFirstTarget = targetIndex == 0;
+                ApplyEffect(p, powerup, isFirstTarget);
+                targetIndex++;
             }
         }
     }

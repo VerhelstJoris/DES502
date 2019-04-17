@@ -1063,11 +1063,15 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor, string powerupName, Vector3 powerupPosition)
+    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor,
+            string powerupName, Vector3 powerupPosition, bool isFirstTarget)
     {
         Invoke("DisablePowerups", effectTime);
-        _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite, powerupName, powerupPosition);
         this.GetComponent<SpriteRenderer>().color = modulateColor;
+        if (isFirstTarget)
+        {
+            _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite, powerupName, powerupPosition);
+        }
     }
 
     // this needs to be a timer in FixedUpdate() rather than a coroutine/invoke as the timer can be reset back when another turnaround is triggered
