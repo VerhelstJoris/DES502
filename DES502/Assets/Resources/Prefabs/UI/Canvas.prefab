@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6009940022533680254}
   - component: {fileID: 6009940022533680249}
   - component: {fileID: 6009940022533680248}
+  - component: {fileID: 101932513}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -100,6 +101,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &101932513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6009940022533680251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabe15b59c31c5e4baab3c98d2dc316a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerupTextPrefab: {fileID: 1209678823018649146, guid: 70e55b31cc7624b438dcf4ab916f6fc9,
+    type: 3}
 --- !u!1001 &6009940021599222597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,10 +125,6 @@ PrefabInstance:
     - target: {fileID: 93, guid: 68e19cc3c87696746beb438759612373, type: 3}
       propertyPath: m_Name
       value: GameEndPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 93, guid: 68e19cc3c87696746beb438759612373, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 147, guid: 68e19cc3c87696746beb438759612373, type: 3}
       propertyPath: m_LocalPosition.x

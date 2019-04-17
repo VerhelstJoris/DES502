@@ -37,6 +37,7 @@ public class Powerup : MonoBehaviour
     public PowerupSpawnPoint _owningSpawnPoint;
     [HideInInspector]
     public Sprite _HUDSprite;
+    public string _powerupName;
 
     void Awake()
     {
@@ -175,6 +176,7 @@ public class Powerup : MonoBehaviour
             _type = GetRandomType();
         }
         SetSprite(_type);
+        SetName(_type);
     }
 
     private POWERUP_TYPES GetRandomType()
@@ -202,5 +204,12 @@ public class Powerup : MonoBehaviour
     {
         _owningSpawnPoint.OnChildPowerupCollected();
         Destroy(gameObject);
+    }
+
+    private void SetName(POWERUP_TYPES type)
+    {
+        PowerupData powerupIcon = _powerupData.powerups[(int)type];
+        //Debug.Log("powerupName: " + powerupIcon.powerupName);
+        _powerupName = powerupIcon.powerupName;
     }
 }

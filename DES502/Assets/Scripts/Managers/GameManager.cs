@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private GameEndMenu _gameEndPanel;
     private TimerUI _timerUI;
     private EventSystem _eventSystem;
+    private InGameCanvas _canvasScript;
 
     //GameMode stuff
     [HideInInspector]
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
        //Debug.Log(_WinCondition.ToString());
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
 
+        _canvasScript = GameObject.Find("Canvas").GetComponent<InGameCanvas>();
     }
 
     void Start()
@@ -461,10 +463,11 @@ public class GameManager : MonoBehaviour
             spawnedPowerup.AssignType();
             spawnedPowerup._owningSpawnPoint = chosenSpawnPoint;
             chosenSpawnPoint._containsPowerup = true;
+            _canvasScript.SpawnPowerupText(spawnedPowerup._powerupName, spawnedPowerup.transform.position);
         }
     }
 
-    // TODO: replace with coroutine!!
+    // TODO: replace with invoke!!
     private void PowerupSpawnTimerTick()
     {
         _powerupSpawnTimer -= Time.deltaTime;
