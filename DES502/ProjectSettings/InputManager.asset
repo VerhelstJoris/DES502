@@ -308,7 +308,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 1
-    joyNum: 3
+    joyNum: 1
   - serializedVersion: 3
     m_Name: Vertical_P4
     descriptiveName: 
@@ -324,7 +324,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 1
-    joyNum: 4
+    joyNum: 2
   - serializedVersion: 3
     m_Name: Submit_P1
     descriptiveName: 

@@ -161,6 +161,7 @@ public class CharacterSelect : MonoBehaviour
         //CHARACTERS
         if (_playerJoined && !_nextSelected && !_characterSelected)
         {
+
             if (_horizontalInput >= 0.5f || _horizontalInput <= -0.5f)
             {
                 _nextSelected = true;
@@ -210,7 +211,7 @@ public class CharacterSelect : MonoBehaviour
 
                 if (_rabbitImageSelected)
                 {
-                    if (_currenSkinSelected <= 0)
+                    if (_currenSkinSelected < 0)
                     {
                         _currenSkinSelected = _rabbitImages.Length-1;
                     }
@@ -218,7 +219,7 @@ public class CharacterSelect : MonoBehaviour
                 }
                 else
                 {
-                    if (_currenSkinSelected <= 0)
+                    if (_currenSkinSelected < 0)
                     {
                         _currenSkinSelected = _foxImages.Length-1;
                     }
