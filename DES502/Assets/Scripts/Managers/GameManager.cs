@@ -463,7 +463,6 @@ public class GameManager : MonoBehaviour
             spawnedPowerup.AssignType();
             spawnedPowerup._owningSpawnPoint = chosenSpawnPoint;
             chosenSpawnPoint._containsPowerup = true;
-            _canvasScript.SpawnPowerupText(spawnedPowerup._powerupName, spawnedPowerup.transform.position);
         }
     }
 
@@ -491,13 +490,14 @@ public class GameManager : MonoBehaviour
         return validSpawnPoints;
     }
 
-    public void OnPowerupCollected(TeamID teamToApply, Sprite powerupHUDSprite)
+    public void OnPowerupCollected(TeamID teamToApply, Sprite powerupHUDSprite, string powerupName, Vector3 powerupPosition)
     {
         for (int i = 0; i < _playerUIs.Count; i++)
         {
             if (_playerUIs[i]._teamID == teamToApply)
             {
                 _playerUIs[i].SetPowerupIcon(powerupHUDSprite);
+                _canvasScript.SpawnPowerupText(powerupName, powerupPosition);
             }
         }
     }
@@ -538,7 +538,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnOil()
     {
-        Debug.Log("SPAWN OIL");
+        //Debug.Log("SPAWN OIL");
         GameObject risingOil = Instantiate(_oilBodyPrefab, transform, true);
     }
 

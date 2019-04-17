@@ -132,7 +132,7 @@ public class Powerup : MonoBehaviour
                 break;
             */
         }
-        player.OnPowerupCollected(_effectTime, _HUDSprite, GetPlayerModulateColor(powerup));
+        player.OnPowerupCollected(_effectTime, _HUDSprite, GetPlayerModulateColor(powerup), _powerupName, transform.position);
     }
 
     private Color GetPlayerModulateColor(POWERUP_TYPES powerup)

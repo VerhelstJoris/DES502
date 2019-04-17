@@ -1063,10 +1063,10 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor)
+    public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor, string powerupName, Vector3 powerupPosition)
     {
         Invoke("DisablePowerups", effectTime);
-        _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite);
+        _GameManager.OnPowerupCollected(_TeamID, powerupHUDSprite, powerupName, powerupPosition);
         this.GetComponent<SpriteRenderer>().color = modulateColor;
     }
 
