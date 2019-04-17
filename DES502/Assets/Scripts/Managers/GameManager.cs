@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviour
         //set respawnTime
         for (int i = 0; i < _respawnPoints.Length; i++)
         {
-            _respawnPoints[i]._ActiveTimeBeforeRespawn = CharacterController.RespawnDuration;
             _respawnPoints[i]._GM = this;
         }
 

@@ -736,6 +736,7 @@ public class CharacterController : MonoBehaviour
             if (_projectileFiringTimer >= _projectileStartupDuration)
             {
                 //actually create the projectile
+                Debug.Log("Creating the projectile");
                 Vector2 direction = new Vector2(1, 0);
                 if (!_FacingRight)
                 {
