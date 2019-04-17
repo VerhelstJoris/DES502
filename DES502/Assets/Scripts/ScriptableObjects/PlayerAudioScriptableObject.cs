@@ -7,4 +7,5 @@ public class PlayerAudioScriptableObject: ScriptableObject
 {
     public AudioClip GettingHitClip;
     public AudioClip[] RunningClips;
+    public AudioClip MissingMeleeClip;
 }

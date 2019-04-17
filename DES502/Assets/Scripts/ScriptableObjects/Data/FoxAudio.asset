@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f5b1ebec1ea45a4d85ba14031e6e294, type: 3}
   - {fileID: 8300000, guid: bc0a0ce6e428f754083a00699e6fba11, type: 3}
   - {fileID: 8300000, guid: f28651a147b511347948dda09af1c575, type: 3}
+  MissingMeleeClip: {fileID: 8300000, guid: 5f51778be07fe6a488788ba61e7ba7fc, type: 3}

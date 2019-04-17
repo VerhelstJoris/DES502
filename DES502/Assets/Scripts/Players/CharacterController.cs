@@ -651,6 +651,8 @@ public class CharacterController : MonoBehaviour
             default:
                 break;
         }
+
+        _source.PlayOneShot(_audioScriptableObject.MissingMeleeClip);
     }
 
     private void AttackTick()
