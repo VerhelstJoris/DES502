@@ -96,4 +96,4 @@ MonoBehaviour:
   _startOffset: -0.75
   _endOffset: -1.25
   _moveSpeed: 1.25
-  _debugDontDestroy: 1
+  _debugDontDestroy: 0
