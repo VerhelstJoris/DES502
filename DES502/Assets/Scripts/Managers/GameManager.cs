@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
     public int _minPowerupSpawnCooldown = 8;
     [Range(0, 30)]
     public int _maxPowerupSpawnCooldown = 15;
-    private float _powerupSpawnTimer;
 
     [Header("Rising Oil Spawning")]
     // TODO: should these members be public???
@@ -206,10 +205,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("ACTIVE PLAYERS: " + activePlayers);
         _PlayerAmount = activePlayers;
-        ResetPowerupSpawnTimer();
         _team1Stocks = _startingStocksPerPlayer;
         _team2Stocks = _startingStocksPerPlayer;
         StartCoroutine(CheckIfOilShouldSpawn());
+        BeginPowerupSpawnTimer();
     }
 
     public void AddPlayer(CharacterController player)
@@ -289,7 +288,6 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
         }
-        PowerupSpawnTimerTick();
     }
 
     public RespawnPoint FindBestRespawnPoint(PlayerID playerID)
@@ -442,9 +440,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ResetPowerupSpawnTimer()
+    private void BeginPowerupSpawnTimer()
     {
-        _powerupSpawnTimer = Random.Range(_minPowerupSpawnCooldown, _maxPowerupSpawnCooldown);
+        float spawnTime = Random.Range(_minPowerupSpawnCooldown, _maxPowerupSpawnCooldown);
+        Invoke("SpawnPowerup", spawnTime);
     }
 
     private void SpawnPowerup()
@@ -464,17 +463,7 @@ public class GameManager : MonoBehaviour
             spawnedPowerup._owningSpawnPoint = chosenSpawnPoint;
             chosenSpawnPoint._containsPowerup = true;
         }
-    }
-
-    // TODO: replace with invoke!!
-    private void PowerupSpawnTimerTick()
-    {
-        _powerupSpawnTimer -= Time.deltaTime;
-        if (_powerupSpawnTimer <= 0)
-        {
-            SpawnPowerup();
-            ResetPowerupSpawnTimer();
-        }
+        BeginPowerupSpawnTimer();
     }
 
     private List<PowerupSpawnPoint> GetValidPowerupSpawnPoints()
