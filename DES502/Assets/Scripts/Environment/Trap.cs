@@ -2,35 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public abstract class Trap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public virtual void Reset()
-    {
-
-    }
-
+    [Header("Base Trap Class")]
+    [SerializeField] [Tooltip("If the trap has a cooldown period or if it is always active.")]
+    private bool _constant = false;
 
     //just for inheritance sake
-    public virtual void Activate()
-    {
-
-    }
-
-    public virtual void Deactivate()
-    {
-
-    }
-
+    public abstract void Reset();
+    public abstract void Activate();
+    public abstract void Deactivate();
 }
