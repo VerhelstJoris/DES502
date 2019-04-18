@@ -8,12 +8,17 @@ public class PowerupCollectedText : MonoBehaviour
     [SerializeField] [Range(0, 5)]
     [Tooltip("How long (in seconds) the powerup stays active for before being destroyed.")]
     private float _lifeDuration = 2f;
-    [SerializeField] [Range(0, -2)]
+    [SerializeField] [Range(-2, 2)]
     [Tooltip("How far (in grid units) the text travels before being destroyed.")]
-    private float _floatOffset = 0.5f;
+    private float _startOffset = 0;
+    [SerializeField] [Range(-2, 2)]
+    [Tooltip("How far (in grid units) the text travels before being destroyed.")]
+    private float _endOffset = 0;
     [SerializeField] [Range(0, 3)]
     [Tooltip("How fast should the powerup text travel?")]
     private float _moveSpeed = 1;
+    [SerializeField] [Tooltip("DEBUG: don't destroy the text after the life duration. Leave as false.")]
+    private bool _debugDontDestroy = false;
 
     private bool _targetPositionReached = false;
 
@@ -22,7 +27,10 @@ public class PowerupCollectedText : MonoBehaviour
     {
         SetText(powerupName);
         StartCoroutine(FloatUpwards(powerupPosition));
-        Invoke("QueueDeath", _lifeDuration);
+        if (!_debugDontDestroy)
+        {
+            Invoke("QueueDeath", _lifeDuration);
+        }
     }
 
     private void SetText(string newText)
@@ -33,8 +41,9 @@ public class PowerupCollectedText : MonoBehaviour
 
     private IEnumerator FloatUpwards(Vector3 powerupPosition)
     {
-        Vector3 startPosition = transform.position;
-        Vector3 targetPosition = InGameCanvas.GetScreenPositionWithOffset(powerupPosition, _floatOffset);
+        //Vector3 startPosition = transform.position;
+        Vector3 startPosition = InGameCanvas.GetScreenPositionWithOffset(powerupPosition, _startOffset);
+        Vector3 targetPosition = InGameCanvas.GetScreenPositionWithOffset(powerupPosition, _endOffset);
         float percentTravelled = 0;
         while (percentTravelled < 1)
         {
