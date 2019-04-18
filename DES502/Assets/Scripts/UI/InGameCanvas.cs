@@ -20,15 +20,15 @@ public class InGameCanvas : MonoBehaviour
     public void SpawnPowerupText(string powerupName, Vector3 worldPosition)
     {
         //Debug.Log("SPAWN POWERUP TEXT");
-        Vector3 textPosition = GetScreenPosition(worldPosition);
+        Vector3 textPosition = GetScreenPositionWithOffset(worldPosition, _powerupTextPositionOffset);
         //Debug.Log("Powerup text screen position: " + textPosition.ToString());
         GameObject spawnedPowerupTextObject = Instantiate(_powerupTextPrefab, textPosition, Quaternion.identity, transform);
         spawnedPowerupTextObject.GetComponent<PowerupCollectedText>().Activate(powerupName, worldPosition);
     }
 
-    private Vector3 GetScreenPosition(Vector3 worldPosition)
+    static public Vector3 GetScreenPositionWithOffset(Vector3 worldPosition, float verticalOffset)
     {
-        Vector3 offset = new Vector3(0, _powerupTextPositionOffset, 0);
-        return _camera.WorldToScreenPoint(worldPosition - offset);
+        Vector3 offset = new Vector3(0, verticalOffset, 0);
+        return Camera.main.WorldToScreenPoint(worldPosition - offset);
     }
 }
