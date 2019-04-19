@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8144705289790166593}
   - component: {fileID: 8144705289790166592}
-  - component: {fileID: 3552744140020776705}
   - component: {fileID: 841971054081569259}
+  - component: {fileID: 3552744140020776705}
   m_Layer: 9
   m_Name: SpringTrap
   m_TagString: Untagged
@@ -81,22 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &3552744140020776705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8144705289790166597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d6afd922db33b248985da676ff2d058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _constant: 0
-  _cooldownTimer: 4
-  _knockbackDirection: {x: 0, y: 1}
-  _knockbackForce: 3500
 --- !u!58 &841971054081569259
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,3 +97,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.64}
   serializedVersion: 2
   m_Radius: 0.7
+--- !u!114 &3552744140020776705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144705289790166597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6afd922db33b248985da676ff2d058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _globalTrapData: {fileID: 11400000, guid: abcaa2d245f31b943a4edc8b8b92f4ae, type: 2}
+  _constant: 0
+  _cooldownTimer: 4
+  _knockbackDirection: {x: 0, y: 1}
+  _knockbackForce: 3500

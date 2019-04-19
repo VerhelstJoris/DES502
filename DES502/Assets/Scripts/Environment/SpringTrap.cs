@@ -18,10 +18,7 @@ public class SpringTrap : Trap
 
     public override void Trigger(CharacterController playerAffecting)
     {
-        // apply knockback
         playerAffecting.AddKnockback(_knockbackDirection * _knockbackForce);
-        //playerAffecting.RecieveHit(_knockbackDirection * _knockbackForce, 0);
-        Debug.Log("TRIGGERING");
-        //BeginCooldownTimer();
+        BeginCooldownTimer();
     }
 }
