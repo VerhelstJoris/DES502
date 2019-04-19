@@ -19,6 +19,7 @@ public abstract class Trap : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
+    private bool _isCooldownBlinking = false;
 
     public abstract void Trigger(CharacterController playerAffecting);
     // legacy virtual methods, ignore
@@ -106,12 +107,15 @@ public abstract class Trap : MonoBehaviour
     private void BeginCooldownBlinking()
     {
         //Debug.Log("BEGIN COOLDOWN BLINKING");
-        StartCoroutine(CooldownBlinking());
+        if (!_isCooldownBlinking)
+        {
+            StartCoroutine(CooldownBlinking());
+        }
     }
 
-    // TODO: sometimes this can trigger twice
     private IEnumerator CooldownBlinking()
     {
+        _isCooldownBlinking = true;
         WaitForSeconds delay = new WaitForSeconds(_globalTrapData._colorBlinkWaitDuration);
         Color[] blinkColors = new Color[2];
         blinkColors[0] = _globalTrapData._cooldownSpriteColor;
@@ -123,5 +127,6 @@ public abstract class Trap : MonoBehaviour
             SetSpriteColor(blinkColors[blink.GetHashCode()]);
             yield return delay;
         }
+        _isCooldownBlinking = false;
     }
 }
