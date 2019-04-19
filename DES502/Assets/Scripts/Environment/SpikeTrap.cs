@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpikeTrap : Trap
 {
-
     private SpriteRenderer _renderer;
 
     [SerializeField][Tooltip ("time it takes for it to pop-up after the inital lever has been activated. leaves room for animation later down the line") ]
@@ -47,9 +46,7 @@ public class SpikeTrap : Trap
         {
             _timer += Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, _startPos, _timer / _activationDuration);
-
             //transform.position += transform.up * 0.5f * _activationDuration;
-
             if (_timer >= _activationDuration)
             {
                 _timer = 0.0f;
@@ -63,9 +60,7 @@ public class SpikeTrap : Trap
         {
             _timer += Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, _endPos, _timer / _deactivationDuration);
-
             //transform.position += transform.up * -0.5f * _deactivationDuration;
-
             if (_timer >= _deactivationDuration)
             {
                 _timer = 0.0f;
@@ -75,48 +70,46 @@ public class SpikeTrap : Trap
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public override void OnTriggerEnter2D(Collider2D col)
     {
         if (_active)
         {
             if (col.tag == "Player")
             {
-                col.GetComponent<CharacterController>().Die(CauseOfDeath.Spikes);
-                _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
+                Trigger(col.GetComponent<CharacterController>());
             }
         }
     }
 
-    public override void Activate()
+    public override void Trigger(CharacterController playerAffecting)
     {
-        //base.Activate();
+        playerAffecting.Die(CauseOfDeath.Spikes);
+        _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
+    }
+
+    public void Activate()
+    {
         if (_activeWhileActivating)
         {
             _active = true;
         }
         _activating = true;
         _renderer.enabled = true;
-
         //Debug.Log("Spike Activating");
     }
 
-
-
-    public override void Deactivate()
+    public void Deactivate()
     {
-        //base.Deactivate();
         if(!_activeWhileDeactivating)
         {
             _active = false;
         }
-
         _deactivating = true;
         //Debug.Log("Spike Deactivating");
     }
 
-    public override void Reset()
+    public void Reset()
     {
-        //base.Reset();
         transform.position = _endPos;
         _active = false;
     }

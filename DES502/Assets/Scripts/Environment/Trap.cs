@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Trap : MonoBehaviour
 {
     [Header("Base Trap Class")]
+    // when would we use this???
     [SerializeField] [Tooltip("If the trap has a cooldown period or if it is always active.")]
     private bool _constant = false;
     [SerializeField] [Range(0, 10)] 
@@ -13,7 +14,13 @@ public abstract class Trap : MonoBehaviour
 
     private bool _onCooldown = false;
 
-    private void BeginCooldownTimer()
+    public abstract void Trigger(CharacterController playerAffecting);
+    // legacy virtual methods, ignore
+    public virtual void Reset(){}
+    public virtual void Activate(){}
+    public virtual void Deactivate(){}
+
+    public void BeginCooldownTimer()
     {
         _onCooldown = true;
         Invoke("OnCooldownTimerEnded", _cooldownTimer);
@@ -24,8 +31,15 @@ public abstract class Trap : MonoBehaviour
         _onCooldown = false;
     }
 
-    //just for inheritance sake
-    public abstract void Reset();
-    public abstract void Activate();
-    public abstract void Deactivate();
+    public virtual void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!_onCooldown)
+        {
+            if (col.tag == "Player")
+            {
+                //Debug.Log("OBJECT ENTERED");
+                Trigger(col.GetComponent<CharacterController>());
+            }
+        }
+    }
 }

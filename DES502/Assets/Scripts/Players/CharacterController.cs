@@ -8,20 +8,17 @@ public class CharacterController : MonoBehaviour
 {
     [HideInInspector]
     public GameManager _GameManager;
-
-    private Animator _animator;
-    private Rigidbody2D _rigidbody;
-    private BoxCollider2D _collider;
-    private AudioSource _source;
     [HideInInspector]
     public PlayerTag _PlayerTag;
     [HideInInspector]
     public PlayerUI _PlayerUI;
-
     [SerializeField]
     private RuntimeAnimatorController[] _rabbitAnimators, _foxAnimators;
 
-    
+    private Rigidbody2D _rigidbody;
+    private Animator _animator;
+    private BoxCollider2D _collider;
+    private AudioSource _source;
 
     [SerializeField] private LayerMask _whatIsGround;
     [SerializeField] private Transform _groundCheck;
@@ -1037,8 +1034,7 @@ public class CharacterController : MonoBehaviour
     // rename this?
     public void RecieveHit(Vector2 knockbackVelocity, float stunDuration, bool meleeHit = false)
     {
-
-
+        //Debug.Log("HIT RECIEVED");
         if (_shielded)  // block hit if shield active
         {
             _shielded = false;
@@ -1054,13 +1050,19 @@ public class CharacterController : MonoBehaviour
             else
             {
                 //col.GetComponent<Rigidbody2D>().AddForceAtPosition(launchVector*_launchAmount,col.transform.position);
-                _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
+                AddKnockback(knockbackVelocity);
                 Stun(stunDuration);
 
                 //add ui knockback
             }
             _source.PlayOneShot(_audioScriptableObject.GettingHitClip);
         }
+    }
+
+    public void AddKnockback(Vector2 knockbackVelocity)
+    {
+        //Debug.Log("INFLICTING KNOCKBACK");
+        _rigidbody.AddForceAtPosition(knockbackVelocity, transform.position);
     }
 
     public void OnPowerupCollected(float effectTime, Sprite powerupHUDSprite, Color modulateColor,

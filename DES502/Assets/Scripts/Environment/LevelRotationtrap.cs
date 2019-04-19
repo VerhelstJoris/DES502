@@ -80,6 +80,9 @@ public class LevelRotationtrap : Trap
     }
 
 
+    // these are no longer virtuals
+    // plus this script is unused, just comment out
+    /*
     public override void Activate()
     {
         //base.Activate();
@@ -101,5 +104,9 @@ public class LevelRotationtrap : Trap
         //base.Reset();
        
     }
+    */
 
+    public override void Trigger(CharacterController p)
+    {
+    }
 }
