@@ -105,6 +105,23 @@ public abstract class Trap : MonoBehaviour
 
     private void BeginCooldownBlinking()
     {
-        Debug.Log("BEGIN COOLDOWN BLINKING");
+        //Debug.Log("BEGIN COOLDOWN BLINKING");
+        StartCoroutine(CooldownBlinking());
+    }
+
+    // TODO: sometimes this can trigger twice
+    private IEnumerator CooldownBlinking()
+    {
+        WaitForSeconds delay = new WaitForSeconds(_globalTrapData._colorBlinkWaitDuration);
+        Color[] blinkColors = new Color[2];
+        blinkColors[0] = _globalTrapData._cooldownSpriteColor;
+        blinkColors[1] = DEFAULT_SPRITE_COLOR;
+        bool blink = false;
+        while (_onCooldown)
+        {
+            blink = !blink;
+            SetSpriteColor(blinkColors[blink.GetHashCode()]);
+            yield return delay;
+        }
     }
 }
