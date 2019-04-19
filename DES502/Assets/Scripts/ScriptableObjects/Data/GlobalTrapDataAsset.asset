@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d72c2a1f5e81045b1016392e3108c9, type: 3}
   m_Name: GlobalTrapDataAsset
   m_EditorClassIdentifier: 
-  _cooldownSpriteColor: {r: 0, g: 0, b: 0, a: 0}
+  _cooldownSpriteColor: {r: 0.28893736, g: 0.31452385, b: 0.4056604, a: 1}
+  _colorBlinkDuration: 1.5
+  _colorBlinkWaitDuration: 0.2
