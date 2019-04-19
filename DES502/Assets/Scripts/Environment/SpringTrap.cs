@@ -11,6 +11,11 @@ public class SpringTrap : Trap
     [Tooltip("How much knockback force is applied to the player when triggered.")]
     private float _knockbackForce = 1000;
 
+    private void OnValidate()
+    {
+        _knockbackDirection = Vector2.ClampMagnitude(_knockbackDirection, 1);
+    }
+
     public override void Trigger(CharacterController playerAffecting)
     {
         // apply knockback
