@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2c9bb25e5ae2c9549bc11f4b2a62f348
+=======
+guid: 345c09c434e5edf44975f6523a6d8217
+>>>>>>> Added stray meta file for pixel font
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
