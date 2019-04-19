@@ -88,6 +88,7 @@ public abstract class Trap : MonoBehaviour
     private IEnumerator QueueTrigger()
     {
         _queueActive = true;
+        WaitForSeconds delay = new WaitForSeconds(_globalTrapData._overlapQueueWaitDuration);
         while (playersOverlapping.Count > 0)
         {
             if (!_onCooldown)
@@ -98,8 +99,7 @@ public abstract class Trap : MonoBehaviour
                     _queueActive = false;
                 }
             }
-            // TODO: does this need to be checked every tick? could just change to a really small value
-            yield return null;
+            yield return delay;
         }
         _queueActive = false;
     }

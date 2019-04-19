@@ -12,4 +12,7 @@ public class GlobalTrapData : ScriptableObject
     [Range(0, 1)]
     [Tooltip("How long (in seconds) should we wait in between flip flopping from default sprite color and cooldown sprite color while blinking?")
     public float _colorBlinkWaitDuration = 0.2f;
+    [Range(0, 0.5f)]
+    [Tooltip("How long (in seconds) should we wait in between checking if players are overlapping a trap when cooldown ends?")]
+    public float _overlapQueueWaitDuration = 0.1f;
 }
