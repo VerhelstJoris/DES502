@@ -7,7 +7,6 @@ public abstract class Trap : MonoBehaviour
     [Header("Base Trap Class")]
     [SerializeField] [Tooltip("Reference to the global trap data scriptable object.")]
     private GlobalTrapData _globalTrapData;
-    // when would we use this???
     [SerializeField] [Tooltip("If the trap has a cooldown period or if it is always active.")]
     private bool _constant = false;
     [SerializeField] [Range(0, 10)] 
@@ -18,6 +17,8 @@ public abstract class Trap : MonoBehaviour
 
     private bool _onCooldown = false;
     private SpriteRenderer _spriteRenderer;
+    private List<CharacterController> playersOverlapping = new List<CharacterController>();
+    private bool _queueActive = false;
 
     public abstract void Trigger(CharacterController playerAffecting);
     // legacy virtual methods, ignore
@@ -46,18 +47,56 @@ public abstract class Trap : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D col)
     {
-        if (_constant || !_onCooldown)
+        if (col.tag == "Player")
         {
-            if (col.tag == "Player")
+            //Debug.Log("OBJECT ENTERED");
+            CharacterController playerOverlapping = col.GetComponent<CharacterController>();
+            if (_constant)
             {
-                //Debug.Log("OBJECT ENTERED");
-                Trigger(col.GetComponent<CharacterController>());
+                Trigger(playerOverlapping);
             }
+            else
+            {
+                playersOverlapping.Add(playerOverlapping);
+                if (!_queueActive)
+                {
+                    StartCoroutine(QueueTrigger());
+                }
+            }
+        }
+    }
+
+    public virtual void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Player" && !_constant)
+        {
+            //Debug.Log("OBJECT EXITED");
+            CharacterController playerExited = col.GetComponent<CharacterController>();
+            playersOverlapping.Remove(playerExited);
         }
     }
 
     private void SetSpriteColor(Color newColor)
     {
         _spriteRenderer.color = newColor;
+    }
+
+    private IEnumerator QueueTrigger()
+    {
+        _queueActive = true;
+        while (playersOverlapping.Count > 0)
+        {
+            if (!_onCooldown)
+            {
+                foreach (CharacterController p in playersOverlapping)
+                {
+                    Trigger(p);
+                    _queueActive = false;
+                }
+            }
+            // TODO: does this need to be checked every tick? could just change to a really small value
+            yield return null;
+        }
+        _queueActive = false;
     }
 }
