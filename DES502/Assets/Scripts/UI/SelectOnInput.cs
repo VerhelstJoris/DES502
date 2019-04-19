@@ -9,14 +9,14 @@ public class SelectOnInput : MonoBehaviour
     private Button[] _buttons;
     int _currentButtonSelected=0;
     bool _nextSelected = false;
-    bool _controllerDecided = false;
+    static bool _controllerDecided = false;
 
-    ControllerID _currentController = ControllerID.Controller3;
+    static ControllerID _currentController = ControllerID.Controller3;
 
     // Start is called before the first frame update
     void Start()
     {
-        _buttons[0].Select();
+        //_buttons[0].Select();
 
     }
 
@@ -69,8 +69,8 @@ public class SelectOnInput : MonoBehaviour
         }
 
         //button
-        if((inputSubmit_P3 && _currentController == ControllerID.Controller3) )
-            //||(inputSubmit_P4 && _currentController == ControllerID.Controller4))
+        if((inputSubmit_P3 && _currentController == ControllerID.Controller3)
+            ||(inputSubmit_P4 && _currentController == ControllerID.Controller4))
         {
             _buttons[_currentButtonSelected].onClick.Invoke();
         }

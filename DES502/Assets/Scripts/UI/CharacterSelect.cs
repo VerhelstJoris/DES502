@@ -138,8 +138,8 @@ public class CharacterSelect : MonoBehaviour
                 _Data.SkinID = _currenSkinSelected;
                 _Data.Active = true;
 
-                Debug.Log("CHARACTER READIED UP");
-                Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
+                Debug.Log("PLAYER READIED UP");
+                //Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
 
                 _mainMenu.PlayerReady();
 

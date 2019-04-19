@@ -5,7 +5,7 @@ using UnityEngine;
 public class RespawnPoint : MonoBehaviour
 {
     [SerializeField]
-    private RuntimeAnimatorController[] _animators;
+    private RuntimeAnimatorController[] _rabbitAnimators, _foxAnimators;
 
     [HideInInspector]
     public GameManager _GM;
@@ -31,7 +31,14 @@ public class RespawnPoint : MonoBehaviour
     public void Activate(PlayerData data)
     {
         _playerData = data;
-        _animator.runtimeAnimatorController = _animators[data.skinID];
+        if(data.charID == CharacterID.Fox)
+        {
+            _animator.runtimeAnimatorController = _foxAnimators[data.skinID];
+        }
+        else
+        {
+            _animator.runtimeAnimatorController = _rabbitAnimators[data.skinID];
+        }
         _renderer.enabled = true;
         _Active = true;
         //_animator.Play("Respawn",-1,0);

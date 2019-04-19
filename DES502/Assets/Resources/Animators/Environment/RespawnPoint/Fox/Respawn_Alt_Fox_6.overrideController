@@ -6,8 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Respawn_Alt_4
+  m_Name: Respawn_Alt_Fox_6
   m_Controller: {fileID: 9100000, guid: 886ecb1ae421d734ca7a20c92a1f8169, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: ed83cef29df73c841a5a6228d98f98fe, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 82e45bf1f7768df4dbb45ca9a8dd11ad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3378896897c6d06438ca78e6dc5d38cb, type: 2}

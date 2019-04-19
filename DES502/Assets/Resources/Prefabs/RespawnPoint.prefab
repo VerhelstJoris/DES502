@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908a364b734136b4d8a2e6e39fffd1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GM: {fileID: 0}
-  _animators:
+  _rabbitAnimators:
   - {fileID: 22100000, guid: 6fc730bde8b7b744a953c9d54f924c2a, type: 2}
   - {fileID: 22100000, guid: 28723a0bc5bebc5429855207f67ebdb8, type: 2}
   - {fileID: 22100000, guid: a149f613584d15143b15a26866853bbe, type: 2}
@@ -54,6 +53,15 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 79ba4c06ab5411d4e96beed4410812b5, type: 2}
   - {fileID: 22100000, guid: cf192a3cbac5b5d4c9ed052424b22d7a, type: 2}
   - {fileID: 22100000, guid: f2ea2e09ae4e58240b506bc7b9bb92cd, type: 2}
+  _foxAnimators:
+  - {fileID: 22100000, guid: cce886d37ffbb5341bc8906a3fcf7178, type: 2}
+  - {fileID: 22100000, guid: f203a5b31aaecd84f821ddd409979452, type: 2}
+  - {fileID: 22100000, guid: 32146dd02da8a2a4289685e4aa925c1e, type: 2}
+  - {fileID: 22100000, guid: 811ddc6133b08074d8f205ac4328d035, type: 2}
+  - {fileID: 22100000, guid: 62789ee6b868c854cbb941c3b9597932, type: 2}
+  - {fileID: 22100000, guid: eeea60d79e910b84fb88d4564b15de91, type: 2}
+  - {fileID: 22100000, guid: 25e53ed0601fb764cb33971170c15f9b, type: 2}
+  _GM: {fileID: 0}
   _Active: 0
 --- !u!212 &8574216823215246072
 SpriteRenderer:
@@ -90,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -722496145
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
