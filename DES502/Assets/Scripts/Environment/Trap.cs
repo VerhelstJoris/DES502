@@ -37,6 +37,8 @@ public abstract class Trap : MonoBehaviour
         _onCooldown = true;
         SetSpriteColor(_globalTrapData._cooldownSpriteColor);
         Invoke("OnCooldownTimerEnded", _cooldownTimer);
+        float cooldownBlinkingTimer = _cooldownTimer - _globalTrapData._colorBlinkDuration;
+        Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
     }
 
     private void OnCooldownTimerEnded()
@@ -99,5 +101,10 @@ public abstract class Trap : MonoBehaviour
             yield return null;
         }
         _queueActive = false;
+    }
+
+    private void BeginCooldownBlinking()
+    {
+        Debug.Log("BEGIN COOLDOWN BLINKING");
     }
 }
