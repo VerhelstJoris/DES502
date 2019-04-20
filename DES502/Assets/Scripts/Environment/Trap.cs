@@ -24,6 +24,8 @@ public abstract class Trap : MonoBehaviour
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
     private bool _isCooldownBlinking = false;
+    private Color[] _blinkColors = new Color[2];
+    private bool _blink = true;
 
     public abstract void Trigger(CharacterController playerAffecting);
     // legacy virtual methods, ignore
@@ -34,6 +36,7 @@ public abstract class Trap : MonoBehaviour
     public virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        SetBlinkColors();
     }
 
     public void BeginCooldownTimer()
@@ -43,12 +46,14 @@ public abstract class Trap : MonoBehaviour
         SetSpriteColor(_globalTrapData._cooldownSpriteColor);
         Invoke("OnCooldownTimerEnded", _cooldownTimer);
         float cooldownBlinkingTimer = _cooldownTimer - _globalTrapData._colorBlinkDuration;
-        Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
+        //Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
+        InvokeRepeating("CooldownBlink", cooldownBlinkingTimer, _globalTrapData._colorBlinkWaitDuration);
     }
 
     private void OnCooldownTimerEnded()
     {
         _onCooldown = false;
+        CancelInvoke("CooldownBlink");
         SetSpriteColor(DEFAULT_SPRITE_COLOR);
     }
 
@@ -108,6 +113,7 @@ public abstract class Trap : MonoBehaviour
         _queueActive = false;
     }
 
+    // TODO: legacy - depricated
     private void BeginCooldownBlinking()
     {
         //Debug.Log("BEGIN COOLDOWN BLINKING");
@@ -117,6 +123,7 @@ public abstract class Trap : MonoBehaviour
         }
     }
 
+    // TODO: legacy - depricated
     private IEnumerator CooldownBlinking()
     {
         _isCooldownBlinking = true;
@@ -132,5 +139,21 @@ public abstract class Trap : MonoBehaviour
             yield return delay;
         }
         _isCooldownBlinking = false;
+    }
+
+    private void CooldownBlink()
+    {
+        if (_onCooldown)
+        {
+            _blink = !_blink;
+            SetSpriteColor(_blinkColors[_blink.GetHashCode()]);
+        }
+    }
+
+    public void SetBlinkColors()
+    {
+        _blinkColors = new Color[2];
+        _blinkColors[0] = _globalTrapData._cooldownSpriteColor;
+        _blinkColors[1] = DEFAULT_SPRITE_COLOR;
     }
 }
