@@ -113,6 +113,7 @@ MonoBehaviour:
   _globalTrapData: {fileID: 11400000, guid: abcaa2d245f31b943a4edc8b8b92f4ae, type: 2}
   _constant: 0
   _cooldownTimer: 4
+  _animator: {fileID: 0}
   _knockbackDirection: {x: 0, y: 1}
   _knockbackForce: 3500
 --- !u!95 &2395481796272677900
@@ -125,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 8144705289790166597}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b9126462e6cd2848b6063d57da756bd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

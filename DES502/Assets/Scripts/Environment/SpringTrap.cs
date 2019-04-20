@@ -20,15 +20,12 @@ public class SpringTrap : Trap
     {
         playerAffecting.AddKnockback(_knockbackDirection * _knockbackForce);
         BeginCooldownTimer();
-
-        // why does this not work??
-        _animator.SetBool("Triggered",true);
+        _animator.SetTrigger("Trigger");
     }
 
-    public void AnimBounceDone()
+    public void AnimResetPointReached()
     {
-        _animator.SetBool("Triggered", false);
-        Debug.Log("BounceDone");
+        _animator.ResetTrigger("Trigger");
     }
 }
 
