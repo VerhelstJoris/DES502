@@ -1167,6 +1167,8 @@ MonoBehaviour:
   _buttons:
   - {fileID: 240592817}
   - {fileID: 1507789434}
+  _resetAtStart: 0
+  _active: 0
 --- !u!1 &232758814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1612,8 @@ MonoBehaviour:
   - {fileID: 528143600}
   - {fileID: 973592880}
   - {fileID: 1831996256}
+  _resetAtStart: 1
+  _active: 1
 --- !u!1 &402265183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1887,7 @@ MonoBehaviour:
   _teamSetupDropdown: {fileID: 287753217}
   _winConditionDropdown: {fileID: 1110823753}
   _nextButton: {fileID: 240592817}
+  _menuInputGameMode: {fileID: 187408923}
 --- !u!1 &424651133
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,6 +6923,8 @@ MonoBehaviour:
   - {fileID: 764260779}
   - {fileID: 402265186}
   - {fileID: 1751075157}
+  _resetAtStart: 1
+  _active: 1
 --- !u!1 &2125282766
 GameObject:
   m_ObjectHideFlags: 0
