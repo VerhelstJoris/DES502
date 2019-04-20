@@ -824,14 +824,14 @@ public class CharacterController : MonoBehaviour
             {
                 _attackKeyDown = false;
             }
-            if (Input.GetButtonDown("SpecialAttack" + _inputSuffix))
-            {
-                _specialAttackKeyDown = true;
-            }
-            else
-            {
-                _specialAttackKeyDown = false;
-            }
+            //if (Input.GetButtonDown("SpecialAttack" + _inputSuffix))
+            //{
+            //    _specialAttackKeyDown = true;
+            //}
+            //else
+            //{
+            //    _specialAttackKeyDown = false;
+            //}
         }
     }
 
