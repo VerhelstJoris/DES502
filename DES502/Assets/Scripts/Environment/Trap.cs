@@ -58,7 +58,8 @@ public abstract class Trap : MonoBehaviour
         {
             //Debug.Log("OBJECT ENTERED");
             CharacterController playerOverlapping = col.GetComponent<CharacterController>();
-            if (_constant || !_onCooldown)
+            //if (_constant || !_onCooldown)
+            if (_constant)
             {
                 //Debug.Log("BYPASSING TRIGGER QUEUE");
                 Trigger(playerOverlapping);
