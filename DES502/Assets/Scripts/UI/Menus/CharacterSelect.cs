@@ -140,7 +140,6 @@ public class CharacterSelect : MonoBehaviour
                 _Data.SkinID = _currenSkinSelected;
                 _Data.Active = true;
 
-                Debug.Log("PLAYER READIED UP");
                 //Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
 
                 _mainMenu.PlayerReady(_controllerID);
@@ -233,4 +232,23 @@ public class CharacterSelect : MonoBehaviour
        
 
     }
+
+    public void Reset()
+    {
+        _text.text = "PRESS SPACE/RIGHT CTRL/A TO JOIN";
+        _subtext.text = "Select a Character";
+        _nextSelected = false;
+        _playerJoined = false;
+        _characterSelected = false;
+
+        _Data.Active = false;
+        _Data.SkinID = 0;
+        _Data.CharacterID = CharacterID.Rabbit;
+
+        _playerNametext.enabled = false;
+        _characterImageDisplay.enabled = false;
+        _subtext.enabled = false;
+        _text.enabled = true;
+    }
+
 }
