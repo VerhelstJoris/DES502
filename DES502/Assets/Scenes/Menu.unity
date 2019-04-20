@@ -292,6 +292,8 @@ MonoBehaviour:
   _levels:
   - LevelImage: {fileID: 21300000, guid: 913a5b0016f7e034cb6b4c372f06702f, type: 3}
     LevelName: Lvl_1
+  - LevelImage: {fileID: 21300000, guid: 09d0c9690e348b44aaa22fe530c6bd40, type: 3}
+    LevelName: Lvl_2
   - LevelImage: {fileID: 21300000, guid: d1bdfbee90d7bdd45a13afe28f917ae8, type: 3}
     LevelName: Lvl_3
 --- !u!1 &27468767
@@ -1098,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &187408920
 RectTransform:
   m_ObjectHideFlags: 0
