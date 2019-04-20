@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _globalTrapData: {fileID: 11400000, guid: abcaa2d245f31b943a4edc8b8b92f4ae, type: 2}
   _constant: 0
-  _cooldownTimer: 4
+  _cooldownTimer: 2
   _animator: {fileID: 0}
   _knockbackDirection: {x: 0, y: 1}
   _knockbackForce: 3500
