@@ -15,11 +15,12 @@ public abstract class Trap : MonoBehaviour
 
     [HideInInspector]
     public Animator _animator;
+    [HideInInspector]
+    public SpriteRenderer _spriteRenderer;
 
     private static Color DEFAULT_SPRITE_COLOR = new Color(1, 1, 1, 1);
 
     private bool _onCooldown = false;
-    private SpriteRenderer _spriteRenderer;
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
     private bool _isCooldownBlinking = false;
@@ -30,10 +31,9 @@ public abstract class Trap : MonoBehaviour
     public virtual void Activate(){}
     public virtual void Deactivate(){}
 
-    private void Awake()
+    public virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
     }
 
     public void BeginCooldownTimer()
