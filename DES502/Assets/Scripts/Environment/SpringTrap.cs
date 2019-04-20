@@ -20,5 +20,8 @@ public class SpringTrap : Trap
     {
         playerAffecting.AddKnockback(_knockbackDirection * _knockbackForce);
         BeginCooldownTimer();
+        // TODO: change this from being hardcoded?
+        // why does this not work??
+        _animator.Play("Trigger");
     }
 }

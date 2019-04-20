@@ -13,6 +13,9 @@ public abstract class Trap : MonoBehaviour
     [Tooltip("How long does the cooldown between triggers last for.")]
     private float _cooldownTimer = 4;
 
+    [HideInInspector]
+    public Animator _animator;
+
     private static Color DEFAULT_SPRITE_COLOR = new Color(1, 1, 1, 1);
 
     private bool _onCooldown = false;
@@ -30,6 +33,7 @@ public abstract class Trap : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     public void BeginCooldownTimer()
