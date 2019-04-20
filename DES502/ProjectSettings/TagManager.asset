@@ -49,6 +49,9 @@ TagManager:
   - name: Oil
     uniqueID: 3179765549
     locked: 0
+  - name: EnvironmentBehindTilemap
+    uniqueID: 3421787753
+    locked: 0
   - name: Tilemap
     uniqueID: 2553175975
     locked: 0
