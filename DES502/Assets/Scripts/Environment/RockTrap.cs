@@ -13,7 +13,7 @@ public class RockTrap : Trap
     public override void Awake()
     {
         _spriteRenderer = _rockSpawnLocation.GetComponent<SpriteRenderer>();
-        SetBlinkColors();
+        SetCooldownColors(true);
     }
 
     public override void Trigger(CharacterController player)

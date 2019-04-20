@@ -19,12 +19,13 @@ public abstract class Trap : MonoBehaviour
     public SpriteRenderer _spriteRenderer;
 
     private static Color DEFAULT_SPRITE_COLOR = new Color(1, 1, 1, 1);
+    private static Color TRANSPARENT_SPRITE_COLOR = new Color(0, 0, 0, 0);
 
     private bool _onCooldown = false;
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
     private bool _isCooldownBlinking = false;
-    private Color[] _blinkColors = new Color[2];
+    private Color[] _cooldownColors = new Color[2];
     private bool _blink = true;
 
     public abstract void Trigger(CharacterController playerAffecting);
@@ -36,14 +37,14 @@ public abstract class Trap : MonoBehaviour
     public virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        SetBlinkColors();
+        SetCooldownColors();
     }
 
     public void BeginCooldownTimer()
     {
         // Call this at the end of children's Trigger methods
         _onCooldown = true;
-        SetSpriteColor(_globalTrapData._cooldownSpriteColor);
+        SetSpriteColor(_onCooldown);
         Invoke("OnCooldownTimerEnded", _cooldownTimer);
         float cooldownBlinkingTimer = _cooldownTimer - _globalTrapData._colorBlinkDuration;
         //Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
@@ -54,7 +55,7 @@ public abstract class Trap : MonoBehaviour
     {
         _onCooldown = false;
         CancelInvoke("CooldownBlink");
-        SetSpriteColor(DEFAULT_SPRITE_COLOR);
+        SetSpriteColor(_onCooldown);
     }
 
     public virtual void OnTriggerEnter2D(Collider2D col)
@@ -89,9 +90,10 @@ public abstract class Trap : MonoBehaviour
         }
     }
 
-    private void SetSpriteColor(Color newColor)
+    private void SetSpriteColor(bool isOnCooldown)
     {
-        _spriteRenderer.color = newColor;
+        bool isActive = !isOnCooldown;
+        _spriteRenderer.color = _cooldownColors[isActive.GetHashCode()];
     }
 
     private IEnumerator QueueTrigger()
@@ -114,6 +116,7 @@ public abstract class Trap : MonoBehaviour
     }
 
     // TODO: legacy - depricated
+    /*
     private void BeginCooldownBlinking()
     {
         //Debug.Log("BEGIN COOLDOWN BLINKING");
@@ -122,8 +125,10 @@ public abstract class Trap : MonoBehaviour
             StartCoroutine(CooldownBlinking());
         }
     }
+    */
 
     // TODO: legacy - depricated
+    /*
     private IEnumerator CooldownBlinking()
     {
         _isCooldownBlinking = true;
@@ -140,20 +145,28 @@ public abstract class Trap : MonoBehaviour
         }
         _isCooldownBlinking = false;
     }
+    */
 
     private void CooldownBlink()
     {
         if (_onCooldown)
         {
             _blink = !_blink;
-            SetSpriteColor(_blinkColors[_blink.GetHashCode()]);
+            SetSpriteColor(_blink);
         }
     }
 
-    public void SetBlinkColors()
+    public void SetCooldownColors(bool isBlinkOffTransparent = false)
     {
-        _blinkColors = new Color[2];
-        _blinkColors[0] = _globalTrapData._cooldownSpriteColor;
-        _blinkColors[1] = DEFAULT_SPRITE_COLOR;
+        //_cooldownColors = new Color[2];
+        if (isBlinkOffTransparent)
+        {
+            _cooldownColors[0] = TRANSPARENT_SPRITE_COLOR;
+        }
+        else
+        {
+            _cooldownColors[0] = _globalTrapData._cooldownSpriteColor;
+        }
+        _cooldownColors[1] = DEFAULT_SPRITE_COLOR;
     }
 }

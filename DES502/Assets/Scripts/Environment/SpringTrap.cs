@@ -15,7 +15,7 @@ public class SpringTrap : Trap
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        SetBlinkColors();
+        SetCooldownColors();
     }
 
     private void OnValidate()
