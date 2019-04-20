@@ -21,6 +21,8 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField]
     private Image _characterImageDisplay;
 
+
+
     MainMenu _mainMenu;
 
     bool _playerJoined = false;
@@ -141,7 +143,7 @@ public class CharacterSelect : MonoBehaviour
                 Debug.Log("PLAYER READIED UP");
                 //Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
 
-                _mainMenu.PlayerReady();
+                _mainMenu.PlayerReady(_controllerID);
 
             }
 

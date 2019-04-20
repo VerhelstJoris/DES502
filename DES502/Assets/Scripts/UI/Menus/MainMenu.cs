@@ -17,6 +17,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button _nextButton;
 
+    [SerializeField]
+    private SelectOnInput _menuInputGameMode;
+
     int _playerAmountJoined = 0;
     int _playerAmountReady = 0;
     // Start is called before the first frame update
@@ -86,7 +89,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void PlayerReady()
+    public void PlayerReady(ControllerID controller)
     {
         _playerAmountReady++;
 
@@ -96,6 +99,15 @@ public class MainMenu : MonoBehaviour
             //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }
+
+        if((controller == ControllerID.Controller3 && SelectOnInput._CurrentController==ControllerID.Controller3) ||
+            (controller == ControllerID.Controller4 && SelectOnInput._CurrentController == ControllerID.Controller4))
+        {
+            _menuInputGameMode.SetActive(true);
+            _menuInputGameMode.ResetToFirst();
+        }
+
+
     }
 
     public PlayerID GetNextPlayerID()

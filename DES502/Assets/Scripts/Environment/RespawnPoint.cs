@@ -18,14 +18,15 @@ public class RespawnPoint : MonoBehaviour
     void Awake()
     {
         _GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _animator = this.GetComponent<Animator>();
+        _renderer = this.GetComponent<SpriteRenderer>();
+        _renderer.enabled = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _animator = this.GetComponent<Animator>();
-        _renderer = this.GetComponent<SpriteRenderer>();
-        _renderer.enabled = true;
+    
     }
 
     public void Activate(PlayerData data)
