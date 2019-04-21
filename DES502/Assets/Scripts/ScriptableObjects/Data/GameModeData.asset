@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TeamSetup: 0
   GameWinCondition: 0
-  AmountOfStocks: 1
-  AmountOfTime: 10
+  AmountOfStocks: 5
+  AmountOfTime: 180

@@ -123,12 +123,13 @@ public class GameManager : MonoBehaviour
             _gameEndPanel.gameObject.SetActive(false);
         }
 
+
         _timerUI = FindObjectOfType<TimerUI>();
         if (_timerUI != null && _WinCondition != GameWinCondition.TIME)
         {
             _timerUI.gameObject.SetActive(false);
         }
-        else
+        else if(_timerUI != null && _WinCondition == GameWinCondition.TIME)
         {
             _timerUI.Initialize(this, _GameTimerLeft);
         }

@@ -115,4 +115,10 @@ public class MainMenu : MonoBehaviour
         //Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
         return (PlayerID)_playerAmountReady;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit game");
+    }
 }
