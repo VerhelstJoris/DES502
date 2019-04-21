@@ -427,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 294086453980782755, guid: 000ed5fa71f028942a0633d0551e82d2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 294086453980782755, guid: 000ed5fa71f028942a0633d0551e82d2,
         type: 3}
@@ -437,11 +437,16 @@ PrefabInstance:
     - target: {fileID: 4750428144523967864, guid: 000ed5fa71f028942a0633d0551e82d2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.01
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750428144523967864, guid: 000ed5fa71f028942a0633d0551e82d2,
         type: 3}
       propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 354290755902989058, guid: 000ed5fa71f028942a0633d0551e82d2,
+        type: 3}
+      propertyPath: _isOilSpawnedAtStart
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -622,11 +627,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6009940022533680251, guid: 0784ea7325a185c498d1b2f6f331d3ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6009940022533680255, guid: 0784ea7325a185c498d1b2f6f331d3ae,
         type: 3}

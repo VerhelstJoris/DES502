@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
 
         _canvasScript = GameObject.Find("Canvas").GetComponent<InGameCanvas>();
-        _pauseMenu = GameObject.Find("PausePanel").GetComponent<PauseMenu>();
-        _pauseMenu.gameObject.SetActive(false);
+        //_pauseMenu = GameObject.Find("PausePanel").GetComponent<PauseMenu>();
+        //_pauseMenu.gameObject.SetActive(false);
     }
 
     void Start()
@@ -568,17 +568,21 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(ControllerID controller)
     {
-        if (!_gamePaused)
-        {
-            _controllerThatPaused = controller;
-            _gamePaused = true;
-            Debug.Log("Pause");
-        }
-        else if (_gamePaused && controller == _controllerThatPaused)
-        {
-            _gamePaused = false;
-            Debug.Log("UnPause");
+      //if (!_gamePaused)
+      //{
+          //_controllerThatPaused = controller;
+          //_gamePaused = true;
+          //Debug.Log("Pause");
+          //_pauseMenu.gameObject.SetActive(true);
+          //Time.timeScale = 0.0f;
+      //}
+      //else if (_gamePaused && controller == _controllerThatPaused)
+      //{
+          //_gamePaused = false;
+          //Debug.Log("UnPause");
+          //_pauseMenu.gameObject.SetActive(false);
+          //Time.timeScale = 1.0f;
 
-        }
+      //}
     }
 }

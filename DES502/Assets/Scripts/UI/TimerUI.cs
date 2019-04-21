@@ -9,23 +9,28 @@ public class TimerUI : MonoBehaviour
     private float _timeLeft;
 
     private GameManager _manager;
+    [SerializeField]
     private Text _text;
 
     private void Awake()
     {
-        _text = GetComponentInChildren<Text>();
     }
 
     private void Update()
     {
-        _text.text = _manager._GameTimerLeft.ToString("F0");
-
+        if (_manager != null)
+        {
+            _text.text = _manager._GameTimerLeft.ToString("F0");
+        }
+        else
+        {
+            _manager = FindObjectOfType<GameManager>();
+        }
     }
 
     public void Initialize(GameManager manager, float amountOfTime)
     {
         _manager = manager;
-        //this.transform.position = new Vector3(0, -240, 0);
         _timeLeft = amountOfTime;
         _text.text = _timeLeft.ToString("F0");
     }
