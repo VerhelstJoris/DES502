@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8144705289790166593}
   - component: {fileID: 841971054081569259}
+  - component: {fileID: 6612563003279697479}
   - component: {fileID: 3370838703699687450}
   - component: {fileID: 9157007784342655184}
   - component: {fileID: 2158423059955116311}
@@ -49,7 +50,23 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.09
+  m_Radius: 1.11
+--- !u!58 &6612563003279697479
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144705289790166597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.27
 --- !u!212 &3370838703699687450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,3 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0ece8aad3c2694cbfda8040ce2fe6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _globalTrapData: {fileID: 11400000, guid: abcaa2d245f31b943a4edc8b8b92f4ae, type: 2}
+  _constant: 1
+  _cooldownTimer: 4
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _minKillSpeed: 10

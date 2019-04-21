@@ -16,7 +16,7 @@ public enum CharacterID { Rabbit, Fox};
 
 public enum TeamID { Team1, Team2 };
 
-public enum CauseOfDeath { Spikes, Oil, Melee};
+public enum CauseOfDeath {Spikes, Oil, Melee, Rock};
 
 public struct PlayerData
 {
