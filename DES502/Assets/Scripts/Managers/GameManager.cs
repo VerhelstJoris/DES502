@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] [Range(0, 10)]
     [Tooltip("How far away (in grid units) should players be from the rising oil when spawning. Prevents situations where players spawn and immediatly die to the rising oil.")]
     private float _maxSpawnDistanceFromOil = 2;
+    [SerializeField] [Tooltip("Is this a level where the oil is spawned from the start?.")]
+    private bool _isOilSpawnedAtStart = false;
 
     private void Awake()
     {
@@ -207,7 +209,14 @@ public class GameManager : MonoBehaviour
         _PlayerAmount = activePlayers;
         _team1Stocks = _startingStocksPerPlayer;
         _team2Stocks = _startingStocksPerPlayer;
-        StartCoroutine(CheckIfOilShouldSpawn());
+        if (_isOilSpawnedAtStart)
+        {
+            SpawnOil();
+        }
+        else
+        {
+            StartCoroutine(CheckIfOilShouldSpawn());
+        }
         BeginPowerupSpawnTimer();
     }
 
