@@ -8,6 +8,12 @@ public class FallingRock : Trap
     [SerializeField]  // TODO: add suitable range slider here!!
     [Tooltip("The minimum speed (velocity magnitude squared) for the rock to be travelling at in order to kill players.")]
     private float _minKillSpeed = 10;
+    [SerializeField]  // TODO: add suitable range slider here!!
+    [Tooltip("The minimum speed (velocity magnitude squared) for the rock to be travelling at in order to not be queued for deletion.")]
+    private float _minSpeed = 3;
+    [SerializeField] [Range(0, 1)]
+    [Tooltip("How often should check to see the rock is moving slow enough to begin to expire?")]
+    private float _cooldownStartCheckWaitDuration = 1;
 
     private Rigidbody2D _rigidbody;
 
@@ -15,7 +21,12 @@ public class FallingRock : Trap
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        SetCooldownColors(true);
+        SetCooldownColors(true, true);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(CheckIfCooldownShouldBegin());
     }
 
     public override void Trigger(CharacterController playerAffecting)
@@ -30,5 +41,23 @@ public class FallingRock : Trap
     private float GetCurrentSpeed()
     {
         return _rigidbody.velocity.sqrMagnitude;
+    }
+
+    private IEnumerator CheckIfCooldownShouldBegin()
+    {
+        WaitForSeconds delay = new WaitForSeconds(_cooldownStartCheckWaitDuration);
+        while (!_onCooldown)
+        {
+            if (GetCurrentSpeed() < _minSpeed)
+            {
+                BeginCooldownTimer();
+            }
+            yield return delay;
+        }
+    }
+
+    public override void OnCooldownTimerEnded()
+    {
+        Destroy(gameObject);
     }
 }

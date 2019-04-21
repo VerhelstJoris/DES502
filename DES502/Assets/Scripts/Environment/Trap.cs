@@ -17,11 +17,12 @@ public abstract class Trap : MonoBehaviour
     public Animator _animator;
     [HideInInspector]
     public SpriteRenderer _spriteRenderer;
+    [HideInInspector]
+    public bool _onCooldown = false;
 
     private static Color DEFAULT_SPRITE_COLOR = new Color(1, 1, 1, 1);
     private static Color TRANSPARENT_SPRITE_COLOR = new Color(0, 0, 0, 0);
 
-    private bool _onCooldown = false;
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
     private bool _isCooldownBlinking = false;
@@ -51,11 +52,23 @@ public abstract class Trap : MonoBehaviour
         InvokeRepeating("CooldownBlink", cooldownBlinkingTimer, _globalTrapData._colorBlinkWaitDuration);
     }
 
-    private void OnCooldownTimerEnded()
+    public void StopCooldownTimer()
     {
+        _onCooldown = false;
+        SetSpriteColor(_onCooldown);
+        CancelInvoke("OnCooldownTimerEnded");
+        CancelInvoke("CooldownBlink");
+        //InvokeRepeating("CooldownBlink", cooldownBlinkingTimer, _globalTrapData._colorBlinkWaitDuration);
+    }
+
+    public virtual void OnCooldownTimerEnded()
+    {
+        /*
         _onCooldown = false;
         CancelInvoke("CooldownBlink");
         SetSpriteColor(_onCooldown);
+        */
+        StopCooldownTimer();
     }
 
     public virtual void OnTriggerEnter2D(Collider2D col)
@@ -156,7 +169,7 @@ public abstract class Trap : MonoBehaviour
         }
     }
 
-    public void SetCooldownColors(bool isBlinkOffTransparent = false)
+    public void SetCooldownColors(bool isBlinkOffTransparent = false, bool reverseColors = false)
     {
         //_cooldownColors = new Color[2];
         if (isBlinkOffTransparent)
@@ -168,5 +181,9 @@ public abstract class Trap : MonoBehaviour
             _cooldownColors[0] = _globalTrapData._cooldownSpriteColor;
         }
         _cooldownColors[1] = DEFAULT_SPRITE_COLOR;
+        if (reverseColors)
+        {
+            System.Array.Reverse(_cooldownColors);
+        }
     }
 }
