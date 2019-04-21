@@ -24,6 +24,9 @@ public class SpikeTrap : Trap
     [Tooltip("Max distance for camera shake from origin.")]
     private float _cameraShakeDuration = 0.25f;
 
+    [SerializeField]
+    private float _minAngleNeeded =60.0f;
+
     private bool _active=true;
     private bool _activating = false;
     private bool _deactivating = false;
@@ -76,7 +79,11 @@ public class SpikeTrap : Trap
         {
             if (col.tag == "Player")
             {
-                Trigger(col.GetComponent<CharacterController>());
+                float angle = Vector2.Angle(this.transform.up, col.GetComponent<Rigidbody2D>().GetPointVelocity(col.transform.position));
+                if (angle >= _minAngleNeeded)
+                {
+                    Trigger(col.GetComponent<CharacterController>());
+                }
             }
         }
     }
