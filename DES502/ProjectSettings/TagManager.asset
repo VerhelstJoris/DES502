@@ -46,14 +46,17 @@ TagManager:
   - name: BackGround
     uniqueID: 3884895813
     locked: 0
-  - name: Oil
-    uniqueID: 3179765549
+  - name: EnvironmentBehindTilemap
+    uniqueID: 3421787753
     locked: 0
   - name: Tilemap
     uniqueID: 2553175975
     locked: 0
   - name: Environmental
     uniqueID: 1278327643
+    locked: 0
+  - name: Oil
+    uniqueID: 3179765549
     locked: 0
   - name: Players
     uniqueID: 3572471151

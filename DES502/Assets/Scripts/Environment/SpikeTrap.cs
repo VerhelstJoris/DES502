@@ -34,7 +34,7 @@ public class SpikeTrap : Trap
     private Vector3 _startPos,_endPos;
     private CameraShake _cameraShake;
 
-    void Awake()
+    public override void Awake()
     {
         _renderer = this.GetComponent<SpriteRenderer>();
         _startPos = this.transform.position;
@@ -94,7 +94,7 @@ public class SpikeTrap : Trap
         _cameraShake.BeginShake(_cameraShakeIntensity, _cameraShakeDuration);
     }
 
-    public void Activate()
+    public override void Activate()
     {
         if (_activeWhileActivating)
         {
@@ -105,7 +105,7 @@ public class SpikeTrap : Trap
         //Debug.Log("Spike Activating");
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         if(!_activeWhileDeactivating)
         {
@@ -115,7 +115,7 @@ public class SpikeTrap : Trap
         //Debug.Log("Spike Deactivating");
     }
 
-    public void Reset()
+    public override void Reset()
     {
         transform.position = _endPos;
         _active = false;

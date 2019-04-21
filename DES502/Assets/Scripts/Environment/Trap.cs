@@ -15,14 +15,18 @@ public abstract class Trap : MonoBehaviour
 
     [HideInInspector]
     public Animator _animator;
+    [HideInInspector]
+    public SpriteRenderer _spriteRenderer;
 
     private static Color DEFAULT_SPRITE_COLOR = new Color(1, 1, 1, 1);
+    private static Color TRANSPARENT_SPRITE_COLOR = new Color(0, 0, 0, 0);
 
     private bool _onCooldown = false;
-    private SpriteRenderer _spriteRenderer;
     private List<CharacterController> playersOverlapping = new List<CharacterController>();
     private bool _queueActive = false;
     private bool _isCooldownBlinking = false;
+    private Color[] _cooldownColors = new Color[2];
+    private bool _blink = true;
 
     public abstract void Trigger(CharacterController playerAffecting);
     // legacy virtual methods, ignore
@@ -30,26 +34,28 @@ public abstract class Trap : MonoBehaviour
     public virtual void Activate(){}
     public virtual void Deactivate(){}
 
-    private void Awake()
+    public virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
+        SetCooldownColors();
     }
 
     public void BeginCooldownTimer()
     {
         // Call this at the end of children's Trigger methods
         _onCooldown = true;
-        SetSpriteColor(_globalTrapData._cooldownSpriteColor);
+        SetSpriteColor(_onCooldown);
         Invoke("OnCooldownTimerEnded", _cooldownTimer);
         float cooldownBlinkingTimer = _cooldownTimer - _globalTrapData._colorBlinkDuration;
-        Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
+        //Invoke("BeginCooldownBlinking", cooldownBlinkingTimer);
+        InvokeRepeating("CooldownBlink", cooldownBlinkingTimer, _globalTrapData._colorBlinkWaitDuration);
     }
 
     private void OnCooldownTimerEnded()
     {
         _onCooldown = false;
-        SetSpriteColor(DEFAULT_SPRITE_COLOR);
+        CancelInvoke("CooldownBlink");
+        SetSpriteColor(_onCooldown);
     }
 
     public virtual void OnTriggerEnter2D(Collider2D col)
@@ -58,7 +64,7 @@ public abstract class Trap : MonoBehaviour
         {
             //Debug.Log("OBJECT ENTERED");
             CharacterController playerOverlapping = col.GetComponent<CharacterController>();
-            if (_constant || !_onCooldown)
+            if (_constant)
             {
                 //Debug.Log("BYPASSING TRIGGER QUEUE");
                 Trigger(playerOverlapping);
@@ -84,9 +90,10 @@ public abstract class Trap : MonoBehaviour
         }
     }
 
-    private void SetSpriteColor(Color newColor)
+    private void SetSpriteColor(bool isOnCooldown)
     {
-        _spriteRenderer.color = newColor;
+        bool isActive = !isOnCooldown;
+        _spriteRenderer.color = _cooldownColors[isActive.GetHashCode()];
     }
 
     private IEnumerator QueueTrigger()
@@ -108,6 +115,8 @@ public abstract class Trap : MonoBehaviour
         _queueActive = false;
     }
 
+    // TODO: legacy - depricated
+    /*
     private void BeginCooldownBlinking()
     {
         //Debug.Log("BEGIN COOLDOWN BLINKING");
@@ -116,7 +125,10 @@ public abstract class Trap : MonoBehaviour
             StartCoroutine(CooldownBlinking());
         }
     }
+    */
 
+    // TODO: legacy - depricated
+    /*
     private IEnumerator CooldownBlinking()
     {
         _isCooldownBlinking = true;
@@ -132,5 +144,29 @@ public abstract class Trap : MonoBehaviour
             yield return delay;
         }
         _isCooldownBlinking = false;
+    }
+    */
+
+    private void CooldownBlink()
+    {
+        if (_onCooldown)
+        {
+            _blink = !_blink;
+            SetSpriteColor(_blink);
+        }
+    }
+
+    public void SetCooldownColors(bool isBlinkOffTransparent = false)
+    {
+        //_cooldownColors = new Color[2];
+        if (isBlinkOffTransparent)
+        {
+            _cooldownColors[0] = TRANSPARENT_SPRITE_COLOR;
+        }
+        else
+        {
+            _cooldownColors[0] = _globalTrapData._cooldownSpriteColor;
+        }
+        _cooldownColors[1] = DEFAULT_SPRITE_COLOR;
     }
 }

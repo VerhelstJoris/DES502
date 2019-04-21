@@ -11,6 +11,13 @@ public class SpringTrap : Trap
     [Tooltip("How much knockback force is applied to the player when triggered.")]
     private float _knockbackForce = 1000;
 
+    public override void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        SetCooldownColors();
+    }
+
     private void OnValidate()
     {
         _knockbackDirection = Vector2.ClampMagnitude(_knockbackDirection, 1);
