@@ -832,6 +832,10 @@ public class CharacterController : MonoBehaviour
             //{
             //    _specialAttackKeyDown = false;
             //}
+            if (Input.GetButtonDown("Pause" + _inputSuffix))
+            {
+                _GameManager.PauseGame(_ControllerID);
+            }
         }
     }
 

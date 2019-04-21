@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rabbitAnimators:
+  - {fileID: 22100000, guid: f2ea2e09ae4e58240b506bc7b9bb92cd, type: 2}
   - {fileID: 22100000, guid: 6fc730bde8b7b744a953c9d54f924c2a, type: 2}
   - {fileID: 22100000, guid: 28723a0bc5bebc5429855207f67ebdb8, type: 2}
   - {fileID: 22100000, guid: a149f613584d15143b15a26866853bbe, type: 2}
   - {fileID: 22100000, guid: fa793d2a7c1787b47ae5ed4acb7662da, type: 2}
   - {fileID: 22100000, guid: 79ba4c06ab5411d4e96beed4410812b5, type: 2}
   - {fileID: 22100000, guid: cf192a3cbac5b5d4c9ed052424b22d7a, type: 2}
-  - {fileID: 22100000, guid: f2ea2e09ae4e58240b506bc7b9bb92cd, type: 2}
   _foxAnimators:
   - {fileID: 22100000, guid: cce886d37ffbb5341bc8906a3fcf7178, type: 2}
   - {fileID: 22100000, guid: f203a5b31aaecd84f821ddd409979452, type: 2}

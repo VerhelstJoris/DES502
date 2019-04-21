@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameWinCondition _WinCondition;
 
+    //pause stuff
+    private bool _gamePaused = false;
+    private ControllerID _controllerThatPaused;
+    private PauseMenu _pauseMenu;
+
     //PLAYERDATAS
     public PlayerDataScriptableObject[] _PlayerDataObjects;
 
@@ -98,6 +103,8 @@ public class GameManager : MonoBehaviour
        //Debug.Log("PLAYERAMOUNT: " + _PlayerAmount);
 
         _canvasScript = GameObject.Find("Canvas").GetComponent<InGameCanvas>();
+        _pauseMenu = GameObject.Find("PausePanel").GetComponent<PauseMenu>();
+        _pauseMenu.gameObject.SetActive(false);
     }
 
     void Start()
@@ -179,7 +186,7 @@ public class GameManager : MonoBehaviour
             _respawnPoints[i]._GM = this;
         }
 
-        Debug.Log("RESPAWNPOINTS FOUND: " + _respawnPoints.Length.ToString());
+        //Debug.Log("RESPAWNPOINTS FOUND: " + _respawnPoints.Length.ToString());
         int activePlayers = 0;
 
         for (int i = 0; i < _PlayerDataObjects.Length; i++)
@@ -195,7 +202,7 @@ public class GameManager : MonoBehaviour
                 data.Deaths = 0;
                 data.skinID = _PlayerDataObjects[i].SkinID;
 
-                Debug.Log("CONTROLLER ID: " + data.controllerID.ToString() + " PLAYER ID: " + data.Id + " CHARACTER ID: " + data.charID.ToString() + " SKIN ID: " + data.skinID);
+                //Debug.Log("CONTROLLER ID: " + data.controllerID.ToString() + " PLAYER ID: " + data.Id + " CHARACTER ID: " + data.charID.ToString() + " SKIN ID: " + data.skinID);
 
 
                 _respawnPoints[i].Activate(data);
@@ -203,7 +210,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log("ACTIVE PLAYERS: " + activePlayers);
+        //Debug.Log("ACTIVE PLAYERS: " + activePlayers);
         _PlayerAmount = activePlayers;
         _team1Stocks = _startingStocksPerPlayer;
         _team2Stocks = _startingStocksPerPlayer;
@@ -548,5 +555,21 @@ public class GameManager : MonoBehaviour
     {
         Transform oilMaxHeight = transform.Find("OilMaxHeight");
         return oilMaxHeight.position;
+    }
+
+    public void PauseGame(ControllerID controller)
+    {
+        if (!_gamePaused)
+        {
+            _controllerThatPaused = controller;
+            _gamePaused = true;
+            Debug.Log("Pause");
+        }
+        else if (_gamePaused && controller == _controllerThatPaused)
+        {
+            _gamePaused = false;
+            Debug.Log("UnPause");
+
+        }
     }
 }

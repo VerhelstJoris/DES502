@@ -6827,11 +6827,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 512404557281292153, guid: 7dbed4f489165554a9bdd605d8cdb0a4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dbed4f489165554a9bdd605d8cdb0a4, type: 3}
 --- !u!4 &1655389550 stripped
@@ -7403,11 +7398,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6009940022533680251, guid: 0784ea7325a185c498d1b2f6f331d3ae,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6009940022533680255, guid: 0784ea7325a185c498d1b2f6f331d3ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7513,8 +7503,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6067863283109021676, guid: 0784ea7325a185c498d1b2f6f331d3ae,
+        type: 3}
+      propertyPath: m_Name
+      value: PausePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009940022266890739, guid: 0784ea7325a185c498d1b2f6f331d3ae,
+        type: 3}
+      propertyPath: m_Name
+      value: Pause
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0784ea7325a185c498d1b2f6f331d3ae, type: 3}
+--- !u!1 &6067863283109021676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6067863283109021676, guid: 0784ea7325a185c498d1b2f6f331d3ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 6009940022294703354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6067863283109021677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067863283109021676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d2a4026c4811f4e9676bc8c0a6cd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8918556200947825119
 PrefabInstance:
   m_ObjectHideFlags: 0
