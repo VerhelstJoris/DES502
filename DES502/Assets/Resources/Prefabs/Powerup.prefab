@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1278327643
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300006, guid: ea05de7e964536d4e9ec964dbbce0194, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144,10 +144,12 @@ MonoBehaviour:
   _powerupData: {fileID: 11400000, guid: 9f8dd136a0613ee4fb50c19f3eed3874, type: 2}
   _type: 0
   _effectTime: 5
-  _moveSpeedMultiplier: 2.5
+  _moveSpeedMultiplier: 1.75
   _maxYMovement: 0.2
   _animationSpeed: 1.5
   _owningSpawnPoint: {fileID: 0}
+  _HUDSprite: {fileID: 0}
+  _powerupName: 
 --- !u!50 &4160153694800172369
 Rigidbody2D:
   serializedVersion: 4
