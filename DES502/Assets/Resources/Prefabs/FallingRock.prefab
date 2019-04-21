@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2158423059955116311}
   m_Layer: 9
   m_Name: FallingRock
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -153,4 +153,7 @@ MonoBehaviour:
   _cooldownTimer: 4
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _onCooldown: 0
   _minKillSpeed: 10
+  _minSpeed: 3
+  _cooldownStartCheckWaitDuration: 1

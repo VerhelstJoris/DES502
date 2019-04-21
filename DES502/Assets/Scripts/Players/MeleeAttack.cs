@@ -13,10 +13,9 @@ public class MeleeAttack : MonoBehaviour
     private Vector2 _defaultLaunchVector;
     private float _stunDuration;
     private CameraShake _cameraShake;
-
     private List<Collider2D> _playerColliders = new List<Collider2D>();
-
     private bool _active;
+    private List<FallingRock> _overlappingRocks = new List<FallingRock>();
     // Use this for initialization
     void Awake () {
         _collider = this.GetComponent<BoxCollider2D>();
@@ -76,7 +75,15 @@ public class MeleeAttack : MonoBehaviour
             }
             
         }
-
+        if (col.tag == "Rock")
+        {
+            FallingRock overlappingRock = col.gameObject.GetComponent<FallingRock>();
+            if (!_overlappingRocks.Contains(overlappingRock))
+            {
+                _overlappingRocks.Add(overlappingRock);
+            }
+        }
+        // does any of this even activate???
         if (_active)
         {
 
@@ -100,10 +107,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 //parry
             }
-
         }
-
-        
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -111,6 +115,11 @@ public class MeleeAttack : MonoBehaviour
         if (col.tag == "Player")
         {
             _playerColliders.Remove(col);
+        }
+        if (col.tag == "Rock")
+        {
+            FallingRock overlappingRock = col.gameObject.GetComponent<FallingRock>();
+            _overlappingRocks.Remove(overlappingRock);
         }
     }
 
@@ -125,14 +134,13 @@ public class MeleeAttack : MonoBehaviour
 
         if (active)
         {
+            Vector2 launchVector = _defaultLaunchVector;
+            if (!_charController._FacingRight)
+            {
+                launchVector.x *= -1;
+            }
             for (int i = 0; i < _playerColliders.Count; i++)
             {
-                Vector2 launchVector = _defaultLaunchVector;
-                if (!_charController._FacingRight)
-                {
-                    launchVector.x *= -1;
-                }
-
                 if (_playerColliders[i].tag == "Player")
                 {
                     //Debug.Log("Player");
@@ -142,8 +150,11 @@ public class MeleeAttack : MonoBehaviour
                     float[] cameraShakeValues = collidedPlayer.GetCameraShakeValues();
                     _cameraShake.BeginShake(cameraShakeValues[0], cameraShakeValues[1]);
                 }
-
-          
+            }
+            foreach (FallingRock r in _overlappingRocks)
+            {
+                Debug.Log("HIT ROCK");
+                r.AddKnockback(transform.position, launchVector, _launchAmount);
             }
         }
     }
