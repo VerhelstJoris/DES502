@@ -1003,11 +1003,7 @@ Transform:
   - {fileID: 1875599444}
   - {fileID: 671097010}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 4
-=======
   m_RootOrder: 7
->>>>>>> Added rock trap
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587654422
 GameObject:
@@ -1052,11 +1048,7 @@ Transform:
   m_Children:
   - {fileID: 1338606555}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 3
-=======
   m_RootOrder: 5
->>>>>>> Added rock trap
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &587654425
 Tilemap:
@@ -2167,11 +2159,7 @@ PrefabInstance:
     - target: {fileID: 3033028419246368832, guid: 21da0bff09b25d0488324cfe97cbbb37,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 1
-=======
       value: 3
->>>>>>> Added rock trap
       objectReference: {fileID: 0}
     - target: {fileID: 3033028419246368832, guid: 21da0bff09b25d0488324cfe97cbbb37,
         type: 3}
@@ -3498,8 +3486,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb5da9bb63e3e0c469e87ce5c88640e0, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1108316197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3579,7 +3565,6 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2b9126462e6cd2848b6063d57da756bd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb1496b17f119f544aa7663579aa8731, type: 3}
->>>>>>> Added rock trap
 --- !u!1001 &1116574087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3630,11 +3615,7 @@ PrefabInstance:
     - target: {fileID: 3033028419246368832, guid: 21da0bff09b25d0488324cfe97cbbb37,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 8
-=======
       value: 10
->>>>>>> Added rock trap
       objectReference: {fileID: 0}
     - target: {fileID: 3033028419246368832, guid: 21da0bff09b25d0488324cfe97cbbb37,
         type: 3}
@@ -7633,11 +7614,7 @@ PrefabInstance:
     - target: {fileID: 6009940022533680255, guid: 0784ea7325a185c498d1b2f6f331d3ae,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 6
-=======
       value: 8
->>>>>>> Added rock trap
       objectReference: {fileID: 0}
     - target: {fileID: 6009940022533680255, guid: 0784ea7325a185c498d1b2f6f331d3ae,
         type: 3}
@@ -7756,11 +7733,7 @@ PrefabInstance:
     - target: {fileID: 7942856341958229850, guid: 636107fd8db594a4989c36bbb89fa5bb,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 7
-=======
       value: 9
->>>>>>> Added rock trap
       objectReference: {fileID: 0}
     - target: {fileID: 7942856341958229850, guid: 636107fd8db594a4989c36bbb89fa5bb,
         type: 3}
