@@ -66,9 +66,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -873179543
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3e0516e6681598c4aa87bfa35723a309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea0e604bc4bc35b40aae646fbbebd328, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   _cooldownTimer: 4
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
+  _onCooldown: 0
   _rockPrefab: {fileID: 8144705289790166597, guid: c7cc012c88458b5488bffbc82646c3b7,
     type: 3}
   _rockSpawnLocation: {fileID: 6516670660060350727}
