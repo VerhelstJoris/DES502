@@ -58,3 +58,7 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/vim
+DES502/Assets/Resources/Scriptable Objects/PlayerData/PlayerData_1.asset
+DES502/Assets/Resources/Scriptable Objects/PlayerData/PlayerData_3.asset
+DES502/Assets/Resources/Scriptable Objects/PlayerData/PlayerData_2.asset
+DES502/Assets/Resources/Scriptable Objects/PlayerData/PlayerData_4.asset

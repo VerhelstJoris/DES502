@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c82013e7349ac8469e74ffb7469a8ce, type: 3}
   m_Name: PlayerData_1
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataScriptableObject
-  Active: 1
+  Active: 0
   ControllerID: 0
   PlayerID: 0
   CharacterID: 0
