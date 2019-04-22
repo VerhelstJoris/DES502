@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _globalTrapData: {fileID: 11400000, guid: abcaa2d245f31b943a4edc8b8b92f4ae, type: 2}
   _constant: 0
-  _cooldownTimer: 4
+  _cooldownTimer: 8
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _onCooldown: 0

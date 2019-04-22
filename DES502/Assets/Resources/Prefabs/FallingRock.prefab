@@ -66,7 +66,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.27
+  m_Radius: 2
 --- !u!212 &3370838703699687450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -154,6 +154,6 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _onCooldown: 0
-  _minKillSpeed: 10
-  _minSpeed: 3
+  _minKillSpeed: 3
+  _minSpeed: 2
   _cooldownStartCheckWaitDuration: 1
