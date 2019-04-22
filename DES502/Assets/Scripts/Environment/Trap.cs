@@ -128,38 +128,6 @@ public abstract class Trap : MonoBehaviour
         _queueActive = false;
     }
 
-    // TODO: legacy - depricated
-    /*
-    private void BeginCooldownBlinking()
-    {
-        //Debug.Log("BEGIN COOLDOWN BLINKING");
-        if (!_isCooldownBlinking)
-        {
-            StartCoroutine(CooldownBlinking());
-        }
-    }
-    */
-
-    // TODO: legacy - depricated
-    /*
-    private IEnumerator CooldownBlinking()
-    {
-        _isCooldownBlinking = true;
-        WaitForSeconds delay = new WaitForSeconds(_globalTrapData._colorBlinkWaitDuration);
-        Color[] blinkColors = new Color[2];
-        blinkColors[0] = _globalTrapData._cooldownSpriteColor;
-        blinkColors[1] = DEFAULT_SPRITE_COLOR;
-        bool blink = false;
-        while (_onCooldown)
-        {
-            blink = !blink;
-            SetSpriteColor(blinkColors[blink.GetHashCode()]);
-            yield return delay;
-        }
-        _isCooldownBlinking = false;
-    }
-    */
-
     private void CooldownBlink()
     {
         if (_onCooldown)
