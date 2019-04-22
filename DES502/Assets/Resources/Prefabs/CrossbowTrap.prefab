@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 8144705289790166597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4523536418922236618}
   m_Father: {fileID: 0}
@@ -166,5 +166,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   _onCooldown: 0
-  _boltPrefab: {fileID: 0}
+  _boltPrefab: {fileID: 8144705289790166597, guid: 99aab47367c15b245b075e183b86b827,
+    type: 3}
   _boltSpawnLocation: {fileID: 6516670660060350727}
+  _facingRight: 0

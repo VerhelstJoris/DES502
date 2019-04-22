@@ -9,6 +9,8 @@ public class CrossbowTrap : Trap
     private GameObject _boltPrefab;
     [SerializeField] [Tooltip("Reference to bolt spawn location child (animation is also played here).")]
     private GameObject _boltSpawnLocation;
+    [SerializeField] [Tooltip("Should this instance be facing right or left?")]
+    private bool _facingRight = false;
 
     public override void Awake()
     {
@@ -19,7 +21,18 @@ public class CrossbowTrap : Trap
 
     public override void Trigger(CharacterController playerOverlapping)
     {
-        Debug.Log("SPAWN BOLT");
+        SpawnBolt();
         BeginCooldownTimer();
+    }
+
+    private void SpawnBolt()
+    {
+        //Debug.Log("SPAWN BOLT");
+        Vector3 boltSpawnPosition = _boltSpawnLocation.transform.position;
+        Quaternion boltSpawnRotation = _boltSpawnLocation.transform.rotation;
+        GameObject newBoltObject = Instantiate(_boltPrefab, boltSpawnPosition, boltSpawnRotation);
+        //CrossbowBolt newBolt = newBoltObject.GetComponent<CrossbowBolt>();
+        //newBolt.Activate(_facingRight);
+        newBoltObject.GetComponent<CrossbowBolt>().Activate(_facingRight);
     }
 }
