@@ -25,7 +25,7 @@ public class CrossbowBolt : MonoBehaviour
         //_spriteRenderer.flipX = facingRight;
         transform.localScale = new Vector3(directionFacing * -1, 1, 1);
         Vector2 boltVelocity = Vector2.right * directionFacing * _speed;
-        Debug.Log("Bolt velocity: " + boltVelocity.ToString());
+        //Debug.Log("Bolt velocity: " + boltVelocity.ToString());
         _rigidbody.velocity = boltVelocity;
     }
 
