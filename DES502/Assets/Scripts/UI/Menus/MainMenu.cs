@@ -112,7 +112,8 @@ public class MainMenu : MonoBehaviour
 
     public PlayerID GetNextPlayerID()
     {
-        //Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
+        Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
+
         return (PlayerID)_playerAmountReady;
     }
 

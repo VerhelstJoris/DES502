@@ -15,3 +15,4 @@ MonoBehaviour:
   _cooldownSpriteColor: {r: 0.28893736, g: 0.31452385, b: 0.4056604, a: 1}
   _colorBlinkDuration: 1.5
   _colorBlinkWaitDuration: 0.1
+  _overlapQueueWaitDuration: 0.1
