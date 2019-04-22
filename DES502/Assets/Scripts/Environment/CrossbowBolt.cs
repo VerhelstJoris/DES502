@@ -25,4 +25,20 @@ public class CrossbowBolt : MonoBehaviour
         Vector2 boltVelocity = Vector2.right * directionFacing * _speed;
         _rigidbody.velocity = boltVelocity;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            // kill player
+            //Debug.Log("KILL PLAYER");
+            CharacterController playerAffecting = col.gameObject.GetComponent<CharacterController>();
+            playerAffecting.Die(CauseOfDeath.Crossbow);
+        }
+        // destroy self on collding with anything else
+        else if (col.gameObject.layer == LayerMask.NameToLayer("Default"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
