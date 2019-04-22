@@ -46,7 +46,8 @@ public class RisingOil : MonoBehaviour
 
     private Vector3Int GetTilemapSize()
     {
-        Tilemap tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
+        //Tilemap tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
+        Tilemap tilemap= FindObjectOfType<Tilemap>();
         return tilemap.size;
     }
 
