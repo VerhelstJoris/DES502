@@ -61,25 +61,10 @@ public class FallingRock : Trap
         Destroy(gameObject);
     }
 
-    /*
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log(col.collider.tag);
-        if (col.collider.tag == "Weapon")
-        {
-            OnWeaponHit(col);
-        }
-    }
-
-    private void OnWeaponHit(Collision2D weaponCollision)
-    {
-        Debug.Log("WEAPON HIT ROCK");
-        Vector3 hitPosition = weaponCollision.GetContact(0).point;
-    }
-    */
-
     public void AddKnockback(Vector3 forcePosition, Vector2 direction, float magnitude)
     {
         _rigidbody.AddForceAtPosition(direction * magnitude, forcePosition);
+        StopCooldownTimer();
+        StartCoroutine(CheckIfCooldownShouldBegin());
     }
 }

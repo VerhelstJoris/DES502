@@ -153,7 +153,7 @@ public class MeleeAttack : MonoBehaviour
             }
             foreach (FallingRock r in _overlappingRocks)
             {
-                Debug.Log("HIT ROCK");
+                //Debug.Log("HIT ROCK");
                 r.AddKnockback(transform.position, launchVector, _launchAmount);
             }
         }
