@@ -12,11 +12,22 @@ public class CrossbowTrap : Trap
     [SerializeField] [Tooltip("Should this instance be facing right or left?")]
     private bool _facingRight = false;
 
+    private void OnValidate()
+    {
+        _spriteRenderer = _boltSpawnLocation.GetComponent<SpriteRenderer>();
+        UpdateSpriteDirection();
+    }
+
     public override void Awake()
     {
         _spriteRenderer = _boltSpawnLocation.GetComponent<SpriteRenderer>();
         _animator = _boltSpawnLocation.GetComponent<Animator>();
         SetCooldownColors();
+    }
+
+    private void Start()
+    {
+        UpdateSpriteDirection();
     }
 
     public override void Trigger(CharacterController playerOverlapping)
@@ -34,5 +45,10 @@ public class CrossbowTrap : Trap
         //CrossbowBolt newBolt = newBoltObject.GetComponent<CrossbowBolt>();
         //newBolt.Activate(_facingRight);
         newBoltObject.GetComponent<CrossbowBolt>().Activate(_facingRight);
+    }
+
+    private void UpdateSpriteDirection()
+    {
+        _spriteRenderer.flipX = _facingRight;
     }
 }

@@ -20,9 +20,12 @@ public class CrossbowBolt : MonoBehaviour
     {
         // convert the facing right bool into 1 and -1 respectively
         int directionFacing = facingRight.GetHashCode() * 2 - 1;
+        //directionFacing = 1;
         //Debug.Log("Bolt direction: " + directionFacing.ToString());
-        _spriteRenderer.flipX = facingRight;
+        //_spriteRenderer.flipX = facingRight;
+        transform.localScale = new Vector3(directionFacing * -1, 1, 1);
         Vector2 boltVelocity = Vector2.right * directionFacing * _speed;
+        Debug.Log("Bolt velocity: " + boltVelocity.ToString());
         _rigidbody.velocity = boltVelocity;
     }
 
