@@ -99,10 +99,6 @@ public class MainMenu : MonoBehaviour
             //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }
-
-     
-
-
     }
 
     public void ActivateMenu(ControllerID controller)

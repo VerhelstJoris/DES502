@@ -30,7 +30,7 @@ public class PlayerUI : MonoBehaviour
     {
     }
 
-    public void Initialize(CharacterController character, int amountOfPlayers, GameWinCondition winCondition, TeamSetup teamSetup)
+    public void Initialize(CharacterController character, GameWinCondition winCondition, TeamSetup teamSetup)
     {
         _PlayerID = character._PlayerID;
         _teamID = character._TeamID;
@@ -39,8 +39,6 @@ public class PlayerUI : MonoBehaviour
 
         _amountOfStocks = character._AmountOfStocks;
         _winCondition = winCondition;
-
-        this.transform.position = new Vector3(-350 + ((700.0f / (amountOfPlayers-1)) * (int)_PlayerID), 150, 0);
 
         var rectTransform = GetComponent<RectTransform>();
 

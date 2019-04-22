@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
                 data.Id = _PlayerDataObjects[i].PlayerID;
                 data.controllerID = _PlayerDataObjects[i].ControllerID;
                 data.charID = _PlayerDataObjects[i].CharacterID;
-                data.TeamId = (TeamID)((int)data.Id % 2);
+                data.TeamId = (TeamID)(activePlayers % 2);
                 data.Deaths = 0;
                 data.Stocks = _startingStocksPerPlayer;
                 data.skinID = _PlayerDataObjects[i].SkinID;
@@ -372,7 +372,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        var ui = ObjectFactory.CreatePlayerUI(character, _PlayerAmount, _WinCondition, _TeamSetup, character._CharID );
+        var ui = ObjectFactory.CreatePlayerUI(character, _WinCondition, _TeamSetup, character._CharID );
         ui.transform.SetParent(_canvas.transform,false);
         _playerUIs.Add(ui);
     }

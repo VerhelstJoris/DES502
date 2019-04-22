@@ -137,7 +137,8 @@ public class CharacterSelect : MonoBehaviour
                 
                 _Data.CharacterID = _charID;
                 _Data.ControllerID = _controllerID;
-                _Data.PlayerID = _mainMenu.GetNextPlayerID();
+                //_Data.PlayerID = _mainMenu.GetNextPlayerID();
+                _Data.PlayerID = (PlayerID)_controllerID;
                 _Data.SkinID = _currenSkinSelected;
                 _Data.Active = true;
 
