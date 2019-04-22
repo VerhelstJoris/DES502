@@ -550,7 +550,7 @@ public class CharacterController : MonoBehaviour
                 
                 if (absVertical > absHorizontal)
                 {
-                    if (_verticalInput < 0)
+                    if (_verticalInput > 0)
                     {
                         if (!_grounded)
                         {

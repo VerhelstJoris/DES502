@@ -200,12 +200,12 @@ public class GameManager : MonoBehaviour
                 data.Id = _PlayerDataObjects[i].PlayerID;
                 data.controllerID = _PlayerDataObjects[i].ControllerID;
                 data.charID = _PlayerDataObjects[i].CharacterID;
-                data.Stocks = _startingStocksPerPlayer;
                 data.TeamId = (TeamID)((int)data.Id % 2);
                 data.Deaths = 0;
+                data.Stocks = _startingStocksPerPlayer;
                 data.skinID = _PlayerDataObjects[i].SkinID;
 
-                //Debug.Log("CONTROLLER ID: " + data.controllerID.ToString() + " PLAYER ID: " + data.Id + " CHARACTER ID: " + data.charID.ToString() + " SKIN ID: " + data.skinID);
+                Debug.Log("CONTROLLER ID: " + data.controllerID.ToString() + " PLAYER ID: " + data.Id);
 
 
                 _respawnPoints[i].Activate(data);

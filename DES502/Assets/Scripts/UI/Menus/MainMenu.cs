@@ -100,19 +100,24 @@ public class MainMenu : MonoBehaviour
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }
 
-        if((controller == ControllerID.Controller3 && SelectOnInput._CurrentController==ControllerID.Controller3) ||
-            (controller == ControllerID.Controller4 && SelectOnInput._CurrentController == ControllerID.Controller4))
-        {
-            _menuInputGameMode.SetActive(true);
-            _menuInputGameMode.ResetToFirst();
-        }
+     
 
 
     }
 
+    public void ActivateMenu(ControllerID controller)
+    {
+        if ((controller == ControllerID.Controller3 && SelectOnInput._CurrentController == ControllerID.Controller3) ||
+         (controller == ControllerID.Controller4 && SelectOnInput._CurrentController == ControllerID.Controller4))
+        {
+            _menuInputGameMode.SetActive(true);
+            _menuInputGameMode.ResetToFirst();
+        }
+    }
+
     public PlayerID GetNextPlayerID()
     {
-        Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
+        //Debug.Log("PlayerID: " + (PlayerID)_playerAmountReady);
 
         return (PlayerID)_playerAmountReady;
     }

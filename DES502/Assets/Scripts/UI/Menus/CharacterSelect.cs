@@ -28,6 +28,7 @@ public class CharacterSelect : MonoBehaviour
     bool _playerJoined = false;
     bool _characterSelected = false;
     bool _rabbitImageSelected = true;
+    bool _skinSelected = false;
     bool _nextSelected = false;
     bool _ready = false;
     string _inputSuffix;
@@ -131,7 +132,7 @@ public class CharacterSelect : MonoBehaviour
                 _text.enabled = true;
                 _subtext.enabled = false;
                 _ready = true;
-
+                _skinSelected = true;
 
                 
                 _Data.CharacterID = _charID;
@@ -140,11 +141,17 @@ public class CharacterSelect : MonoBehaviour
                 _Data.SkinID = _currenSkinSelected;
                 _Data.Active = true;
 
-                //Debug.Log("CONTROLLER ID: " + _Data.ControllerID.ToString()  + " PLAYER ID: " + _Data.PlayerID + " CHARACTER ID: " + _Data.CharacterID.ToString() + " SKIN ID: " + _Data.SkinID);
+                Debug.Log("MENU: CONTROLLER ID: " + _Data.ControllerID.ToString() + " PLAYER ID: " + _Data.PlayerID);
 
                 _mainMenu.PlayerReady(_controllerID);
 
             }
+
+            if(_skinSelected)
+            {
+                _mainMenu.ActivateMenu(_controllerID);
+            }
+         
 
         }
 
@@ -240,6 +247,7 @@ public class CharacterSelect : MonoBehaviour
         _nextSelected = false;
         _playerJoined = false;
         _characterSelected = false;
+        _skinSelected = false;
 
         _Data.Active = false;
         _Data.SkinID = 0;
