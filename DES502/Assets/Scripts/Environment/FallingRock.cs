@@ -34,9 +34,9 @@ public class FallingRock : Trap
         CheckIfKillsPlayer(playerAffecting);
     }
 
-    private void OnCollisionEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        CharacterController playerAffecting = col.gameObject.GetComponent<CharacterController>();
+        CharacterController playerAffecting = col.collider.gameObject.GetComponent<CharacterController>();
         CheckIfKillsPlayer(playerAffecting);
     }
 

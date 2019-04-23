@@ -164,7 +164,9 @@ public class CharacterController : MonoBehaviour
     private bool _attackOnCooldown = false;
     private bool _attackWindupFinished = false;
     private AttackType _currentAttack = AttackType.None;
-    private float _attackTimer = 0.0f;
+    private float _attackResetBackupTimer = 0.0f;
+    private bool _attackAnimPlaying = false;
+
     private float _attackCooldownTimer = 0.0f;
     private float _attackChargeTimer=0.0f;
     private bool _stunned = false;
@@ -650,6 +652,7 @@ public class CharacterController : MonoBehaviour
         }
 
         _source.PlayOneShot(_audioScriptableObject.MissingMeleeClip);
+        _attackAnimPlaying = true;
     }
 
     private void AttackTick()
@@ -678,6 +681,8 @@ public class CharacterController : MonoBehaviour
         {
             //Debug.Log("CHARGING");
             _attackChargeTimer += Time.deltaTime;
+
+            
 
             switch (_currentAttack)
             {
@@ -727,8 +732,33 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        //backup Timer
+        if (_attackAnimPlaying)
+        {
+            _attackResetBackupTimer += Time.deltaTime;
 
-        if(_projectileFiring)
+
+            switch (_currentAttack)
+            {
+                //collider specific changes
+                case AttackType.Side:
+                    if (_attackResetBackupTimer >= _sideAttackDuration +0.3f)
+                    {
+                        ResetAttack();
+                    }
+                    break;
+                case AttackType.Up:
+                    if (_attackResetBackupTimer >= _upAttackDuration + 0.3f)
+                    {
+                        ResetAttack();
+                    }
+                    break;
+            }
+
+        }
+
+
+        if (_projectileFiring)
         {
             // is this startup on a projectile?
             _projectileFiringTimer += Time.deltaTime;
@@ -751,13 +781,15 @@ public class CharacterController : MonoBehaviour
 
     private void ResetAttack()
     {
-        _attackTimer = 0.0f;
+        _attackResetBackupTimer = 0.0f;
         _attacking = false;
         _attackOnCooldown = true;
         _attackWindupFinished = false;
+        _attackAnimPlaying = false;
         _animator.SetBool("Attacking_Side", false);
         _animator.SetBool("Attacking_Up", false);
 
+        _animator.Play("Idle");
         //reset after attack finishes
         switch (_currentAttack)
         {
