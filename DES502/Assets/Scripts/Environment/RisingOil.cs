@@ -12,6 +12,9 @@ public class RisingOil : MonoBehaviour
     [SerializeField] [Range(0, 1)] [Tooltip("Speed multiplier to use when moving the oil. This should be extremely small.")]
     private float _moveSpeedMultiplier = 0.5f;
 
+    [SerializeField]
+    private AudioClip _spawnClip;
+
     [Header("Camera Shake")]
     [SerializeField] [Range(0, 2)]
     [Tooltip("Max distance for camera shake from origin.")]
@@ -26,12 +29,14 @@ public class RisingOil : MonoBehaviour
     private OilBody _oilBody;
     private GameManager _gameManager;
     private CameraShake _cameraShake;
+    private AudioSource _source;
 
     void Awake()
     {
         _oilBody = _oilBodyGameObject.GetComponent<OilBody>();
         SetGameManager();
         _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        _source = this.GetComponent<AudioSource>();
     }
 
     void Start()

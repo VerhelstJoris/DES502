@@ -282,7 +282,7 @@ MonoBehaviour:
   - Cause: 1
     Clip: {fileID: 8300000, guid: eec220c42063c3a4e8e59a29617dde99, type: 3}
   - Cause: 2
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 755e33bf1e21a094183693f246980144, type: 3}
   - Cause: 4
     Clip: {fileID: 8300000, guid: 755e33bf1e21a094183693f246980144, type: 3}
   - Cause: 3

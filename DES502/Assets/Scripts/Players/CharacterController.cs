@@ -345,7 +345,7 @@ public class CharacterController : MonoBehaviour
             if (ac.animationClips[i].name == "Attack_Up")        //If it has the same name as your clip
             {
                 float upAttackDurationAnim = ac.animationClips[i].length;
-                _animator.SetFloat("Attack_Up_Speed", upAttackDurationAnim / _sideAttackDuration);
+                _animator.SetFloat("Attack_Up_Speed", upAttackDurationAnim / _upAttackDuration);
             }
         }
 

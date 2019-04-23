@@ -45,7 +45,10 @@ public class FallingRock : Trap
         //Debug.Log("Current rock speed: " + GetCurrentSpeed().ToString());
         if (GetCurrentSpeed() >= _minKillSpeed)
         {
-            playerAffecting.Die(CauseOfDeath.Rock);
+            if (playerAffecting != null)
+            {
+                playerAffecting.Die(CauseOfDeath.Rock);
+            }
         }
     }
 
