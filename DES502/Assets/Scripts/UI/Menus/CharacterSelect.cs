@@ -124,8 +124,9 @@ public class CharacterSelect : MonoBehaviour
                 _characterSelected = true;
             }
 
+
             //SELECTED A SKIN
-            else if (_playerJoined && _characterSelected)
+            else if (_playerJoined && _characterSelected && !_skinSelected)
             {
                 _characterImageDisplay.enabled = false;
                 _text.text = "READY";
@@ -147,12 +148,12 @@ public class CharacterSelect : MonoBehaviour
                 _mainMenu.PlayerReady(_controllerID);
 
             }
-
-            if(_skinSelected)
+            else if (_skinSelected)
             {
                 _mainMenu.ActivateMenu(_controllerID);
             }
-         
+
+
 
         }
 

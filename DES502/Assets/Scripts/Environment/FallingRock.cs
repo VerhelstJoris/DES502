@@ -7,7 +7,7 @@ public class FallingRock : Trap
     [Header("Falling Rock-specific")]
     [SerializeField]  // TODO: add suitable range slider here!!
     [Tooltip("The minimum speed (velocity magnitude squared) for the rock to be travelling at in order to kill players.")]
-    private float _minKillSpeed = 10;
+    private float _minKillSpeed = 50;
     [SerializeField]  // TODO: add suitable range slider here!!
     [Tooltip("The minimum speed (velocity magnitude squared) for the rock to be travelling at in order to not be queued for deletion.")]
     private float _minSpeed = 3;
@@ -45,6 +45,7 @@ public class FallingRock : Trap
         //Debug.Log("Current rock speed: " + GetCurrentSpeed().ToString());
         if (GetCurrentSpeed() >= _minKillSpeed)
         {
+
             if (playerAffecting != null)
             {
                 playerAffecting.Die(CauseOfDeath.Rock);

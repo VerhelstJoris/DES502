@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
         });
 
         //_nextButton.enabled = false;
-        //_nextButton.gameObject.SetActive(false);
+        _nextButton.gameObject.SetActive(false);
 
     }
 
@@ -95,7 +95,7 @@ public class MainMenu : MonoBehaviour
 
         if (_playerAmountJoined == _playerAmountReady && _playerAmountReady > 1)
         {
-            //_nextButton.gameObject.SetActive(true);
+            _nextButton.gameObject.SetActive(true);
             //_nextButton.enabled = true;
             //_nextButton.GetComponent<Image>().color = new Color(255, 255, 255);
         }

@@ -15,5 +15,5 @@ MonoBehaviour:
   Active: 0
   ControllerID: 0
   PlayerID: 0
-  CharacterID: 0
-  SkinID: 0
+  CharacterID: 1
+  SkinID: 1
