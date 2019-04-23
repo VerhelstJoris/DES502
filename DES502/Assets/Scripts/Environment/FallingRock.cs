@@ -31,7 +31,18 @@ public class FallingRock : Trap
 
     public override void Trigger(CharacterController playerAffecting)
     {
-        Debug.Log("Current rock speed: " + GetCurrentSpeed().ToString());
+        CheckIfKillsPlayer(playerAffecting);
+    }
+
+    private void OnCollisionEnter2D(Collider2D col)
+    {
+        CharacterController playerAffecting = col.gameObject.GetComponent<CharacterController>();
+        CheckIfKillsPlayer(playerAffecting);
+    }
+
+    private void CheckIfKillsPlayer(CharacterController playerAffecting)
+    {
+        //Debug.Log("Current rock speed: " + GetCurrentSpeed().ToString());
         if (GetCurrentSpeed() >= _minKillSpeed)
         {
             playerAffecting.Die(CauseOfDeath.Rock);
